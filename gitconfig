@@ -37,11 +37,6 @@
 [commit]
     verbose = true
 
-[pager]
-    log = /usr/share/git/diff-highlight/diff-highlight | less -F
-    show = /usr/share/git/diff-highlight/diff-highlight | less -F
-    diff = /usr/share/git/diff-highlight/diff-highlight | less -F
-
 [diff]
     indentHeuristic = true
     renamelimit = 0

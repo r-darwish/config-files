@@ -9,3 +9,5 @@ source ${REPO_PATH}/tmux/tmux.conf
 END
 
 ln -sf ${REPO_PATH}/tmux ~/.tmux
+mkdir -p ~/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm

@@ -22,7 +22,7 @@ nnoremap <C-p> :Commands<CR>
 lua << EOF
 
 vim.g.coq_settings = {
-  auto_start = true
+  auto_start = 'shut-up'
 }
 
 local coq = require("coq")

@@ -70,7 +70,7 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker sudo zsh-autosuggestions zsh-syntax-highlighting z tmux fzf)
+plugins=(fzf-tab git docker sudo zsh-autosuggestions zsh-syntax-highlighting z tmux fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,6 +89,51 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 export EDITOR=nvim
+
+# Tmux completion
+_tmux_pane_words() {
+  local expl
+  local -a w
+  if [[ -z "$TMUX_PANE" ]]; then
+    _message "not running inside tmux!"
+    return 1
+  fi
+
+  # Based on vim-tmuxcomplete's splitwords function.
+  # https://github.com/wellle/tmux-complete.vim/blob/master/sh/tmuxcomplete
+  _tmux_capture_pane() {
+    tmux capture-pane -J -p -S -100 $@ |
+      # Remove "^C".
+      sed 's/\^C\S*/ /g' |
+      # copy lines and split words
+      sed -e 'p;s/[^a-zA-Z0-9_]/ /g' |
+      # split on spaces
+      tr -s '[:space:]' '\n' |
+      # remove surrounding non-word characters
+      =grep -o "\w.*\w"
+  }
+  # Capture current pane first.
+  w=( ${(u)=$(_tmux_capture_pane)} )
+  local i
+  for i in $(tmux list-panes -F '#D'); do
+    # Skip current pane (handled before).
+    [[ "$TMUX_PANE" = "$i" ]] && continue
+    w+=( ${(u)=$(_tmux_capture_pane -t $i)} )
+  done
+  _wanted values expl 'words from current tmux pane' compadd -a w
+}
+
+zle -C tmux-pane-words-prefix   complete-word _generic
+zle -C tmux-pane-words-anywhere complete-word _generic
+bindkey '^Xt' tmux-pane-words-prefix
+bindkey '^X^X' tmux-pane-words-anywhere
+zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' completer _tmux_pane_words
+zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' ignore-line current
+# Display the (interactive) menu on first execution of the hotkey.
+zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' menu yes select interactive
+# zstyle ':completion:tmux-pane-words-anywhere:*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
+zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

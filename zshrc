@@ -90,49 +90,39 @@ source $ZSH/oh-my-zsh.sh
 # fi
 export EDITOR=nvim
 
-# Tmux completion
-_tmux_pane_words() {
-  local expl
+_complete_tmux_pane_words() {
   local -a w
+
   if [[ -z "$TMUX_PANE" ]]; then
     _message "not running inside tmux!"
     return 1
   fi
 
-  # Based on vim-tmuxcomplete's splitwords function.
-  # https://github.com/wellle/tmux-complete.vim/blob/master/sh/tmuxcomplete
   _tmux_capture_pane() {
-    tmux capture-pane -J -p -S -100 $@ |
-      # Remove "^C".
-      sed 's/\^C\S*/ /g' |
-      # copy lines and split words
+    tmux capture-pane -J -p $@ |
       sed -e 'p;s/[^a-zA-Z0-9_]/ /g' |
-      # split on spaces
       tr -s '[:space:]' '\n' |
-      # remove surrounding non-word characters
-      =grep -o "\w.*\w"
+      grep -o "\w.*\w"
   }
-  # Capture current pane first.
-  w=( ${(u)=$(_tmux_capture_pane)} )
+
   local i
-  for i in $(tmux list-panes -F '#D'); do
-    # Skip current pane (handled before).
-    [[ "$TMUX_PANE" = "$i" ]] && continue
-    w+=( ${(u)=$(_tmux_capture_pane -t $i)} )
+  for i in $(tmux list-panes -a -F '#D') ; do
+    w+=$(_tmux_capture_pane -t "$i")
   done
-  _wanted values expl 'words from current tmux pane' compadd -a w
+
+  w=$(echo -n "$w" | sort | uniq)
+
+  local selected=$(echo ${w} | fzf --height='25%' --reverse --prompt="tmux> ")
+
+  LBUFFER="${LBUFFER}${selected}"
+
+  zle reset-prompt
+
+  return 0
 }
 
-zle -C tmux-pane-words-prefix   complete-word _generic
-zle -C tmux-pane-words-anywhere complete-word _generic
-bindkey '^Xt' tmux-pane-words-prefix
-bindkey '^X^X' tmux-pane-words-anywhere
-zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' completer _tmux_pane_words
-zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' ignore-line current
-# Display the (interactive) menu on first execution of the hotkey.
-zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' menu yes select interactive
-# zstyle ':completion:tmux-pane-words-anywhere:*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
-zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
+zle -N complete-fzf-pane-words _complete_tmux_pane_words
+bindkey ^x^x complete-fzf-pane-words
 
 
 # Compilation flags

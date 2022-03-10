@@ -4,6 +4,7 @@ if [[ -f /usr/bin/apt-get ]]; then
         sudo add-apt-repository ppa:neovim-ppa/stable
         sudo apt-get update
         sudo apt-get install neovim fzf tmux zsh ripgrep python3-venv
+        sudo snap install starship
 fi
 
 git clone https://github.com/r-darwish/config-files ~/config-files
@@ -17,4 +18,5 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 rm -f ~/.zshrc
 ln -s ~/config-files/zshrc ~/.zshrc
 ~/config-files/install-zsh-plugins.zsh
+nvim +PlugInstall +COQdep
 chsh -s $(which zsh)

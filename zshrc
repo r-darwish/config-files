@@ -67,56 +67,37 @@ zstyle ':omz:update' mode disabled  # disable automatic updates
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+zstyle ':autocomplete:*' min-input 2  # int
+zstyle ':completion:*:*:man:*:*' menu select=long search
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' widget-style menu-select
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(fzf-tab git docker sudo zsh-autosuggestions zsh-syntax-highlighting z tmux fzf)
+plugins=(
+  fzf
+  zsh-autocomplete
+  git
+  docker
+  sudo
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  fasd
+  tmux
+)
 
 source $ZSH/oh-my-zsh.sh
 
 
 export EDITOR=nvim
 
-_complete_tmux_pane_words() {
-  local -a w
-
-  if [[ -z "$TMUX_PANE" ]]; then
-    _message "not running inside tmux!"
-    return 1
-  fi
-
-  _tmux_capture_pane() {
-    tmux capture-pane -J -p $@ |
-      sed -e 'p;s/[^a-zA-Z0-9_]/ /g' |
-      tr -s '[:space:]' '\n' |
-      grep -o "\w.*\w"
-  }
-
-  local i
-  for i in $(tmux list-panes -a -F '#D') ; do
-    w+=$(_tmux_capture_pane -t "$i")
-  done
-
-  w=$(echo -n "$w" | sort | uniq)
-
-  local selected=$(echo ${w} | fzf --height='25%' --reverse --prompt="tmux> ")
-
-  LBUFFER="${LBUFFER}${selected}"
-
-  zle reset-prompt
-
-  return 0
-}
-
-zle -N complete-fzf-pane-words _complete_tmux_pane_words
-bindkey ^x^x complete-fzf-pane-words
-
-
 if type "starship" > /dev/null; then
     eval "$(starship init zsh)"
 fi
 
+alias ks=kubectx
 alias choco="sudo.exe choco"
 alias l="exa -l --git"

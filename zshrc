@@ -5,7 +5,7 @@ zplug "zsh-users/zsh-syntax-highlighting"
 
 zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/fzf",   from:oh-my-zsh
-zplug "plugins/fasd",   from:oh-my-zsh
+zplug "plugins/z",   from:oh-my-zsh
 zplug "plugins/sudo",   from:oh-my-zsh
 zplug "plugins/tmux",   from:oh-my-zsh
 zplug "plugins/docker",   from:oh-my-zsh

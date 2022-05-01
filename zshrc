@@ -29,6 +29,8 @@ export EDITOR=nvim
 
 if type "starship" > /dev/null; then
     eval "$(starship init zsh)"
+else
+  zplug "themes/blinks", from:oh-my-zsh 
 fi
 
 alias ks=kubectx

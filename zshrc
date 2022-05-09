@@ -24,10 +24,14 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
-export EDITOR=nvim
+if type "code" > /dev/null; then
+  export EDITOR=code
+elif type "nvim" > /dev/null; then
+  export EDITOR=nvim
+fi
 
 if type "starship" > /dev/null; then
-    eval "$(starship init zsh)"
+  eval "$(starship init zsh)"
 else
   zplug "themes/refined", from:oh-my-zsh 
 fi

@@ -1,7 +1,6 @@
-source ~/.zplug/init.zsh
+source ${ZPLUG_HOME:-~/.zplug}/init.zsh
 
 zplug "zsh-users/zsh-autosuggestions"
-#zplug "zsh-users/zsh-syntax-highlighting"
 
 zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/fzf",   from:oh-my-zsh
@@ -24,10 +23,10 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
-if type "code" > /dev/null; then
-  export EDITOR=code
-elif type "nvim" > /dev/null; then
+if type "nvim" > /dev/null; then
   export EDITOR=nvim
+else 
+  export EDITOR=vi
 fi
 
 if type "starship" > /dev/null; then

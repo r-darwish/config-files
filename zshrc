@@ -40,4 +40,13 @@ alias choco="sudo.exe choco"
 alias l="exa -l --git"
 alias ls='ls --color=auto'
 
+function whatsapp() {
+    local phone=$1
+    if [[ ${phone:0:1} == "0" ]]; then
+        phone=+972${phone:1}
+    fi
+
+    open "https://web.whatsapp.com/send?phone=$phone&text&type=phone_number&app_absent=0"
+}
+
 zplug load

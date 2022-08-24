@@ -40,6 +40,20 @@ alias choco="sudo.exe choco"
 alias l="exa -l --git"
 alias ls='ls --color=auto'
 
+function zj() {
+  local args=()
+  if [[ -n "$1" ]]; then
+    if [[ $(zellij list-sessions) =~ "$1" ]]; then
+      args=("attach" "$1")
+    else
+      args+=("--session" "$1")
+    fi
+  fi
+
+  zellij $args
+}
+
+
 function whatsapp() {
     local phone=$1
     if [[ ${phone:0:1} == "0" ]]; then

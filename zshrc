@@ -63,4 +63,8 @@ function whatsapp() {
     open "https://web.whatsapp.com/send?phone=$phone&text&type=phone_number&app_absent=0"
 }
 
+function cdf () {
+  cd $(dirname $1)
+}
+
 zplug load

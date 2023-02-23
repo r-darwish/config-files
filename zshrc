@@ -1,20 +1,9 @@
-source ${ZPLUG_HOME:-~/.zplug}/init.zsh
+autoload -Uz compinit
+compinit
+for f in $(dirname "$(realpath ~/.zshrc)")/zsh/*.zsh; do
+  source $f
+done
 
-zplug "zsh-users/zsh-autosuggestions"
-
-zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/fzf",   from:oh-my-zsh
-zplug "plugins/z",   from:oh-my-zsh
-zplug "plugins/sudo",   from:oh-my-zsh
-zplug "plugins/tmux",   from:oh-my-zsh
-zplug "plugins/docker",   from:oh-my-zsh
-zplug "lib/*", from:oh-my-zsh
-
-if [[ -n $WIZ ]]; then
-  zplug "wiz-sec/dotfiles", use:"oh-my-zsh-custom/*"
-  zplug "wiz-sec/darwish", as:command, use:"bin/*"
-  zplug "wiz-sec/darwish", use:"zsh/*"
-fi
 
 local gnubin="/usr/local/opt/coreutils/libexec/gnubin"
 test -d $gnubin && path=($gnubin $path)
@@ -39,8 +28,6 @@ function nvim() {
 
 if type "starship" > /dev/null; then
   eval "$(starship init zsh)"
-else
-  zplug "themes/refined", from:oh-my-zsh 
 fi
 
 alias ks=kubectx
@@ -67,5 +54,3 @@ function nd() {
   -d "" \
   ntfy.sh/$NTFY_TOPIC
 }
-
-zplug load

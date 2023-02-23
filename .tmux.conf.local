@@ -21,7 +21,7 @@ set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT
 #   - true
 #   - false (default)
 #   - disabled (do not modify new-window bindings)
-tmux_conf_new_window_retain_current_path=false
+tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
@@ -39,7 +39,7 @@ tmux_conf_new_pane_reconnect_ssh=false
 #   - true
 #   - false (default)
 #   - disabled (do not modify new-session bindings)
-tmux_conf_new_session_prompt=false
+tmux_conf_new_session_prompt=true
 
 
 # -- display -------------------------------------------------------------------
@@ -404,6 +404,9 @@ tmux_conf_uninstall_plugins_on_reload=true
 
 # edit configuration
 bind k split-window k9s --headless --crumbsless
+bind t split-window htop
+bind -r n next-window
+bind -r p previous-window
 
 
 # -- custom variables ----------------------------------------------------------

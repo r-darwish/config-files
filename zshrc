@@ -11,11 +11,11 @@ else
   export EDITOR=vi
 fi
 
-function nvim() {
+function e() {
   if [[ "$TMUX" ]]; then
-    tmux split-window "nvim $*"
+    tmux split-window "$EDITOR $*"
   else
-    command nvim "$@"
+    command $EDITOR "$@"
   fi
 }
 

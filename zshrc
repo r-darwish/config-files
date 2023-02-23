@@ -5,13 +5,6 @@ for f in $(dirname "$(realpath ~/.zshrc)")/zsh/*.zsh; do
 done
 
 
-local gnubin="/usr/local/opt/coreutils/libexec/gnubin"
-test -d $gnubin && path=($gnubin $path)
-
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
 if type "nvim" > /dev/null; then
   export EDITOR=nvim
 else 
@@ -54,3 +47,5 @@ function nd() {
   -d "" \
   ntfy.sh/$NTFY_TOPIC
 }
+
+bindkey -e

@@ -29,6 +29,14 @@ else
   export EDITOR=vi
 fi
 
+function nvim() {
+  if [[ "$TMUX" ]]; then
+    tmux split-window "nvim $*"
+  else
+    command nvim "$@"
+  fi
+}
+
 if type "starship" > /dev/null; then
   eval "$(starship init zsh)"
 else
@@ -39,20 +47,6 @@ alias ks=kubectx
 alias choco="sudo.exe choco"
 alias l="exa -l --git"
 alias ls='ls --color=auto'
-
-function zj() {
-  local args=()
-  if [[ -n "$1" ]]; then
-    if [[ $(zellij list-sessions) =~ "$1" ]]; then
-      args=("attach" "$1")
-    else
-      args+=("--session" "$1")
-    fi
-  fi
-
-  zellij $args
-}
-
 
 function whatsapp() {
     local phone=$1
@@ -65,6 +59,13 @@ function whatsapp() {
 
 function cdf () {
   cd $(dirname $1)
+}
+
+function nd() {
+  curl \
+  -H "Title: Process done in $(hostname)" \
+  -d "" \
+  ntfy.sh/$NTFY_TOPIC
 }
 
 zplug load

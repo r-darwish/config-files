@@ -43,6 +43,13 @@ function cdf () {
   cd $(dirname $1)
 }
 
+function targs() {
+    while read -r line; do
+        tmux new-window -n "$line"
+        tmux send-keys "$@ $line" C-m
+    done
+}
+
 function nd() {
   curl \
   -H "Title: Process done in $(hostname)" \

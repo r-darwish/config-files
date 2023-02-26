@@ -57,6 +57,10 @@ function nd() {
   ntfy.sh/$NTFY_TOPIC
 }
 
+function fixssh() {
+  eval $(tmux show-env -s | grep '^SSH_')
+}
+
 dirs=("/home/linuxbrew/.linuxbrew/bin" "${HOME}/.local/bin")
 
 for dir in $dirs; do

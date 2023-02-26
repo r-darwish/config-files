@@ -27,6 +27,8 @@ alias ks=kubectx
 alias choco="sudo.exe choco"
 alias l="exa -l --git"
 alias ls='ls --color=auto'
+alias t=tmux
+alias lg=lazygit
 
 function whatsapp() {
     local phone=$1

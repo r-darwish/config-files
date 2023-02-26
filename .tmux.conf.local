@@ -407,6 +407,9 @@ bind k split-window k9s --headless --crumbsless
 bind t split-window htop
 bind -r n next-window
 bind -r p previous-window
+bind -n M-m select-pane -m # mark
+bind -n M-M select-pane -M # unmark
+bind -n M-. join-pane
 
 
 # -- custom variables ----------------------------------------------------------

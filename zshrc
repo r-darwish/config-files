@@ -48,4 +48,12 @@ function nd() {
   ntfy.sh/$NTFY_TOPIC
 }
 
+dirs=("/home/linuxbrew/.linuxbrew/bin" "${HOME}/.local/bin")
+
+for dir in $dirs; do
+  if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
+    export PATH="$dir:$PATH"
+  fi
+done
+
 bindkey -e

@@ -1,13 +1,9 @@
 call plug#begin()
-Plug 'junegunn/fzf' 
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'jremmen/vim-ripgrep'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'aymericbeaumet/vim-symlink'

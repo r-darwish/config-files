@@ -42,4 +42,4 @@ nnoremap <C-p> :Commands<CR>
 syntax on
 colorscheme onedark
 set termguicolors
-
+hi Normal guibg=NONE ctermbg=NONE

@@ -10,6 +10,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'jremmen/vim-ripgrep'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'aymericbeaumet/vim-symlink'
 call plug#end()
 
 filetype plugin indent on

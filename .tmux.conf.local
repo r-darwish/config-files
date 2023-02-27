@@ -405,11 +405,13 @@ tmux_conf_uninstall_plugins_on_reload=true
 # edit configuration
 bind k split-window k9s --headless --crumbsless
 bind t split-window htop
+bind g display-popup -h 80% -w 80% -E lazygit
 bind -r n next-window
 bind -r p previous-window
 bind -n M-m select-pane -m # mark
 bind -n M-M select-pane -M # unmark
 bind -n M-. join-pane
+set-option -g repeat-time 0
 
 
 # -- custom variables ----------------------------------------------------------

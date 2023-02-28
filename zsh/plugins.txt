@@ -1,12 +1,11 @@
-zsh-users/zsh-autosuggestions
-
 belak/zsh-utils path:editor
 belak/zsh-utils path:history
 belak/zsh-utils path:utility
 belak/zsh-utils path:completion
 
+Aloxaf/fzf-tab
+zsh-users/zsh-autosuggestions
+rupa/z
+
 ohmyzsh/ohmyzsh path:plugins/git
-ohmyzsh/ohmyzsh path:plugins/fzf
-ohmyzsh/ohmyzsh path:plugins/z
-ohmyzsh/ohmyzsh path:plugins/sudo
 ohmyzsh/ohmyzsh path:plugins/tmux

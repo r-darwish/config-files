@@ -70,3 +70,5 @@ for dir in $dirs; do
 done
 
 bindkey -e
+#zstyle ':completion:*' menu yes select
+

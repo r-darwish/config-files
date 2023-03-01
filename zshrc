@@ -65,3 +65,7 @@ function nd() {
   -d "" \
   ntfy.sh/$NTFY_TOPIC
 }
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd ' ' edit-command-line

@@ -1,3 +1,12 @@
+
+dirs=("/home/linuxbrew/.linuxbrew/bin" "${HOME}/.local/bin")
+
+for dir in $dirs; do
+  if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
+    export PATH="$dir:$PATH"
+  fi
+done
+
 autoload -Uz compinit
 compinit
 for f in $(dirname "$(realpath ~/.zshrc)")/zsh/*.zsh; do
@@ -60,14 +69,6 @@ function nd() {
 function fixssh() {
   eval $(tmux show-env -s | grep '^SSH_')
 }
-
-dirs=("/home/linuxbrew/.linuxbrew/bin" "${HOME}/.local/bin")
-
-for dir in $dirs; do
-  if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
-    export PATH="$dir:$PATH"
-  fi
-done
 
 bindkey -e
 #zstyle ':completion:*' menu yes select

@@ -65,7 +65,3 @@ function nd() {
   -d "" \
   ntfy.sh/$NTFY_TOPIC
 }
-
-bindkey -e
-bindkey -M emacs '^R' fzf-history-widget
-

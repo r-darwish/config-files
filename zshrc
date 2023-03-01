@@ -66,10 +66,6 @@ function nd() {
   ntfy.sh/$NTFY_TOPIC
 }
 
-function fixssh() {
-  eval $(tmux show-env -s | grep '^SSH_')
-}
-
 bindkey -e
-#zstyle ':completion:*' menu yes select
+bindkey -M emacs '^R' fzf-history-widget
 

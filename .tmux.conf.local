@@ -404,7 +404,7 @@ set -g @plugin 'tmux-plugins/tmux-fpp'
 #set -g @continuum-restore 'on'
 
 # edit configuration
-bind k split-window k9s --headless --crumbsless
+bind K split-window k9s --headless --crumbsless
 bind t split-window htop
 bind g display-popup -d "#{pane_current_path}" -h 80% -w 80% -E lazygit
 bind -r n next-window

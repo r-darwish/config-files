@@ -39,3 +39,4 @@ set termguicolors
 hi Normal guibg=NONE ctermbg=NONE
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+inoremap jk <Esc>

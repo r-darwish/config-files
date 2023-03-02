@@ -69,3 +69,4 @@ function nd() {
 autoload -z edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd ' ' edit-command-line
+bindkey -M viins 'jk' vi-cmd-mode

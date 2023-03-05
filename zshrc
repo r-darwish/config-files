@@ -1,5 +1,5 @@
-
-dirs=("/home/linuxbrew/.linuxbrew/bin" "${HOME}/.local/bin")
+linuxbrew_dir="/home/linuxbrew/.linuxbrew"
+dirs=("$linuxbrew_dir/bin" "${HOME}/.local/bin")
 
 for dir in $dirs; do
   if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
@@ -9,10 +9,12 @@ done
 
 autoload -Uz compinit
 compinit
-for f in $(dirname "$(realpath ~/.zshrc)")/zsh/*.zsh; do
-  source $f
-done
 
+plugins_dir="$(dirname "$(realpath ~/.zshrc)")/zsh"
+wiz_plugins="$plugins_dir/plugins-wiz.zsh"
+
+source $plugins_dir/plugins.zsh
+[ -f $wiz_plugins ] && source $wiz_plugins
 
 if type "nvim" > /dev/null; then
   export EDITOR=nvim
@@ -66,7 +68,9 @@ function nd() {
   ntfy.sh/$NTFY_TOPIC
 }
 
-autoload -z edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd ' ' edit-command-line
-bindkey -M viins 'jk' vi-cmd-mode
+
+[ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf
+zvm_after_init_commands+=("source $plugins_dir/plugins-post.zsh")
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+

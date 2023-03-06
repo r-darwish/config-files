@@ -9,6 +9,7 @@ done
 
 autoload -Uz compinit
 compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 plugins_dir="$(dirname "$(realpath ~/.zshrc)")/zsh"
 wiz_plugins="$plugins_dir/plugins-wiz.zsh"

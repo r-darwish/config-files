@@ -1,59 +1,14 @@
-[alias]
-    br = branch -vv --sort=-committerdate
-    co = checkout
-    ci = commit -v
-    dc = diff --cached
-    ds = diff --stat
-    dw = diff --color-words
-    fix = commit --amend --no-edit
-    flush = !git add -A && git commit -m flush && git reset --hard HEAD@{1}
-    l = log --graph
-    la = log --graph --all
-    lgg = log --walk-reflogs --decorate --pretty=oneline --abbrev-commit
-    lg = log --graph
-    lo = log --graph @{upstream}..
-    lgs = log --graph --stat
-    lp = log --patch
-    lpw = log --patch --color-words
-    ls = log --stat
-    pr = !git co master && git pull && git co @{-1} && git rb master
-    ri = rebase -i
-    st = status
-    unstage = reset --
-
-[color "diff"]
-    old = red bold
-    new = blue bold
-    frag = magenta bold
-
-[format]
-    pretty = format:%C(auto)%h%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset
+[user]
+    name = "Roey Darwish Dror"
+    email = "roey.ghost@gmail.com"
 
 [core]
-    pager = less -F
     sparseCheckout = true
     untrackedCache = true
+    pager = delta
 
 [commit]
     verbose = true
-
-[diff]
-    indentHeuristic = true
-    renamelimit = 0
-    renames = copy
-    ignoreSubmodules = dirty
-
-[log]
-    date = format:%a %F %T
-
-[status]
-    branch = true
-    short = true
-
-[rebase]
-    autosquash = true
-    autostash = true
-    stat = true
 
 [fetch]
     prune = true
@@ -66,23 +21,14 @@
     followTags = true
 
 [interactive]
-    diffFilter = /usr/share/git/diff-highlight/diff-highlight
+    diffFilter = delta --color-only
 
-[user]
-    useConfigOnly = true
-    name = Dror Levin
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 
-[gui]
-    fontui = -family \"Open Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-    fontdiff = -family \"Ubuntu Mono\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+[merge]
+    conflictstyle = diff3
 
-[svn]
-    rmdir = true
-
-[tig]
-    line-graphics = utf-8
-
-[url "https://github.com/"]
-    insteadOf = "gh:"
-[url "git@github.com:"]
-    pushInsteadOf = "gh:"
+[diff]
+    colorMoved = default

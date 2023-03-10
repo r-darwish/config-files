@@ -23,6 +23,15 @@ else
   export EDITOR=vi
 fi
 
+es() {
+  local script=$(which $1 2>/dev/null)
+  if [ ! -f $script ]; then
+    $script="~/.local/bin/$script"
+  fi
+
+  e $script
+}
+
 e() {
   if [[ "$TMUX" ]]; then
     tmux split-window "$EDITOR $*"

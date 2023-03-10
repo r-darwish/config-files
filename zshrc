@@ -23,7 +23,7 @@ else
   export EDITOR=vi
 fi
 
-function e() {
+e() {
   if [[ "$TMUX" ]]; then
     tmux split-window "$EDITOR $*"
   else
@@ -42,7 +42,7 @@ alias ls='ls --color=auto'
 alias t=tmux
 alias lg=lazygit
 
-function whatsapp() {
+whatsapp() {
     local phone=$1
     if [[ ${phone:0:1} == "0" ]]; then
         phone=+972${phone:1}
@@ -51,18 +51,18 @@ function whatsapp() {
     open "https://web.whatsapp.com/send?phone=$phone&text&type=phone_number&app_absent=0"
 }
 
-function cdf () {
+cdf () {
   cd $(dirname $1)
 }
 
-function targs() {
+targs() {
     while read -r line; do
         tmux new-window -n "$line"
         tmux send-keys "$@ $line" C-m
     done
 }
 
-function nd() {
+nd() {
   curl \
   -H "Title: Process done in $(hostname)" \
   -d "" \

@@ -1,7 +1,7 @@
 return {
   { "airblade/vim-rooter" },
   { "echasnovski/mini.pairs", enabled = false },
-  { "cappyzawa/trim.nvim" },
+  { "ntpeters/vim-better-whitespace" },
   {
     "LazyVim/LazyVim",
     opts = {

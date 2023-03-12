@@ -19,7 +19,7 @@ source $plugins_dir/plugins.zsh
 
 if type "nvim" > /dev/null; then
   export EDITOR=nvim
-else 
+else
   export EDITOR=vi
 fi
 

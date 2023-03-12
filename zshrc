@@ -23,14 +23,30 @@ else
   export EDITOR=vi
 fi
 
+_es_completion() {
+  local paths=()
+  for d in $(echo "$PATH" | tr ':' ' '); do
+    while IFS= read -r line; do # Whitespace-safe EXCEPT newlines
+      paths+=("$line")
+    done <<< $(find $d -type f -perm +111 -user "$(whoami)" -execdir basename '{}' ';' 2>/dev/null)
+  done
+
+  compadd "${paths[@]}"
+}
+
 es() {
-  local script=$(which $1 2>/dev/null)
-  if [ ! -f $script ]; then
-    $script="~/.local/bin/$script"
+  local script
+  script=$(which "$1" 2>/dev/null)
+
+  if [ ! -f "${script}" ]; then
+    script="$HOME/.local/bin/$script"
   fi
 
-  e $script
+  e "$script"
 }
+
+compctl -K _es_completion es
+compdef _es_completion es
 
 e() {
   if [[ "$TMUX" ]]; then

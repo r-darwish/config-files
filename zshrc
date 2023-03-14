@@ -72,6 +72,7 @@ alias l="exa -l --git"
 alias ls='ls --color=auto'
 alias t=tmux
 alias lg=lazygit
+alias pf="fzf --preview='bat --color=always {}' --bind ctrl-p:preview-page-up,ctrl-n:preview-page-down --preview-window=70%,border-double,top"
 
 whatsapp() {
     local phone=$1

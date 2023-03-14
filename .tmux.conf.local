@@ -406,6 +406,7 @@ set -g @plugin 'tmux-plugins/tmux-fpp'
 # edit configuration
 bind K split-window k9s --headless --crumbsless
 bind t split-window htop
+bind E new-window -n "~/.zshrc" sh -c '${EDITOR:-vim} ${HOME}/.zshrc'
 bind g display-popup -d "#{pane_current_path}" -h 80% -w 80% -E lazygit
 bind -r n next-window
 bind -r p previous-window

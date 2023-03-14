@@ -39,10 +39,16 @@ es() {
   script=$(which "$1" 2>/dev/null)
 
   if [ ! -f "${script}" ]; then
-    script="$HOME/.local/bin/$script"
+    script="$HOME/.local/bin/$1"
+    touch "$script" && chmod +x "$script" || return 1
   fi
 
   e "$script"
+}
+
+unalias gcm
+gcm() {
+  git checkout develop || git checkout main || git checkout master
 }
 
 compctl -K _es_completion es

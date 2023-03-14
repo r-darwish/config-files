@@ -99,4 +99,5 @@ nd() {
 zvm_after_init_commands+=("source $plugins_dir/plugins-post.zsh")
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+setopt AUTO_PUSHD
 

@@ -43,7 +43,7 @@ return {
     },
     keys = {
       {
-        "<C-n>",
+        "<leader>t",
         function()
           require("alternate-toggler").toggleAlternate()
         end,

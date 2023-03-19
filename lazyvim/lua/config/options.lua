@@ -3,3 +3,4 @@
 -- Add any additional options here
 vim.o.autochdir = true
 vim.o.tabstop = 4
+vim.o.autowriteall = true

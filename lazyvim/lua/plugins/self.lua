@@ -26,4 +26,29 @@ return {
       colorscheme = "catppuccin",
     },
   },
+  {
+    "rmagatti/alternate-toggler",
+    opts = {
+      alternates = {
+        ["true"] = "false",
+        ["True"] = "False",
+        ["TRUE"] = "FALSE",
+        ["Yes"] = "No",
+        ["YES"] = "NO",
+        ["yes"] = "no",
+        ["1"] = "0",
+        ["&&"] = "||",
+        ["and"] = "or",
+      },
+    },
+    keys = {
+      {
+        "<C-n>",
+        function()
+          require("alternate-toggler").toggleAlternate()
+        end,
+        desc = "Toggle Alternate",
+      },
+    },
+  },
 }

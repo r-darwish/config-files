@@ -28,20 +28,13 @@ map <leader>f <Plug>(easymotion-s)
 map <leader>e <Plug>(easymotion-f)
 map  <Leader>w <Plug>(easymotion-bd-w)
 
-map <leader>d <Action>(Debug)
-map <leader>r <Action>(RenameElement)
-map <leader>c <Action>(Stop)
-map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>cr <Action>(RenameElement)
 
-map <leader>s <Action>(SelectInProjectView)
-map <leader>a <Action>(Annotate)
-map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
 map [d <Action>(GotoPreviousError)
 map ]d <Action>(GotoNextError)
 map [h <Action>(VcsShowPrevChangeMarker)
 map ]h <Action>(VcsShowNextChangeMarker)
 
-map <leader>b <Action>(ToggleLineBreakpoint)
-map <leader>o <Action>(FileStructurePopup)
+map <leader>ss <Action>(FileStructurePopup)
 
 nmap s <Plug>(easymotion-s2)

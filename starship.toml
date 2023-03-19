@@ -70,8 +70,9 @@ $shell\
 $character"""
 
 [gcloud]
-disabled = true
-format = 'on [$symbol$account(@$domain)(\($region\))]($style) '
+disabled = false
+format = 'on [$symbol$account(@$domain)(/$project)(\($region\))]($style) '
+style = "red"
 
 [kubernetes]
 disabled = false

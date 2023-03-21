@@ -5,6 +5,7 @@ return {
       ensure_installed = {
         "bash",
         "go",
+        "graphql",
         "html",
         "javascript",
         "json",

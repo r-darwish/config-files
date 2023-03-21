@@ -4,6 +4,7 @@ return {
     opts = {
       ensure_installed = {
         "bash",
+        "ini",
         "go",
         "graphql",
         "html",

@@ -4,3 +4,12 @@
 vim.o.autochdir = true
 vim.o.tabstop = 4
 vim.o.autowriteall = true
+
+vim.filetype.add({
+  filename = {
+    [".okta_aws_login_config"] = "ini",
+  },
+  pattern = {
+    [".*/.aws/.*"] = "ini",
+  },
+})

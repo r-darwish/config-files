@@ -1,5 +1,10 @@
 return {
   { "ntpeters/vim-better-whitespace" },
+  { "towolf/vim-helm" },
+  { "akinsho/git-conflict.nvim", opts = {
+    default_mappings = true,
+    default_commands = true,
+  } },
   {
     "max397574/better-escape.nvim",
     opts = {

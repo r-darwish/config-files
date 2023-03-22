@@ -6,6 +6,7 @@ return {
         "bash",
         "ini",
         "go",
+        "gomod",
         "graphql",
         "html",
         "javascript",

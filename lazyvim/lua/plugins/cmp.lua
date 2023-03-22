@@ -17,9 +17,6 @@ return {
     end,
   },
   {
-    "andersevenrud/cmp-tmux",
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = { "andersevenrud/cmp-tmux" },
     ---@param opts cmp.ConfigSchema

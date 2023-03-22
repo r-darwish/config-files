@@ -405,7 +405,7 @@ set -g @plugin 'tmux-plugins/tmux-fpp'
 #set -g @continuum-restore 'on'
 
 # edit configuration
-bind g display-popup -d "#{pane_current_path}" -h 80% -w 80% -e lazygit
+bind g display-popup -d "#{pane_current_path}" -h 80% -w 80% -E lazygit
 bind t display-popup -d "#{pane_current_path}" -h 80% -w 80% -E
 bind -r n next-window
 bind -r p previous-window

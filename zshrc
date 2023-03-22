@@ -76,6 +76,12 @@ alias pf="fzf --preview='bat --color=always {}' --bind ctrl-p:preview-page-up,ct
 alias st="starship toggle"
 alias cj="bat -l json"
 alias c="bat"
+alias nvs="nvim --listen /tmp/nvim"
+
+nvc() {
+  nvim --server /tmp/nvim --remote-send ":e $(realpath $1)<CR>"
+}
+
 
 whatsapp() {
     local phone=$1

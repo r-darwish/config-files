@@ -1,0 +1,1 @@
+{"name": "aws", "expecting": "shell command", "variables": null, "role": "please output aws cli commands"}

@@ -1,1 +1,2 @@
 ohmyzsh/ohmyzsh path:plugins/fzf
+zsh-users/zsh-syntax-highlighting

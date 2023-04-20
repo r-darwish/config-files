@@ -6,7 +6,6 @@ belak/zsh-utils path:completion
 Aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
 rupa/z
-jeffreytse/zsh-vi-mode
 
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/tmux

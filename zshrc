@@ -111,9 +111,18 @@ nd() {
 }
 
 
+bindkey -e
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^v' edit-command-line
+
 [ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf
-zvm_after_init_commands+=("source $plugins_dir/plugins-post.zsh")
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+source $plugins_dir/plugins-post.zsh
 setopt AUTO_PUSHD
 
+alias hcode="sgpt --code --chat code"
+alias haws="sgpt --shell --role aws"
+alias haz="sgpt --shell --role az"
+alias hgo="sgpt --chat go_code --role go"
+alias hpy="sgpt --chat py_code --role py"
+alias hsh="sgpt -s"

@@ -92,6 +92,16 @@ whatsapp() {
     open "https://web.whatsapp.com/send?phone=$phone&text&type=phone_number&app_absent=0"
 }
 
+bi() {
+  local criteria=$1
+  if [[ -z "$criteria" ]]; then
+    echo "No criteria provided" >&2
+    return 1
+  fi
+
+  brew search "$criteria" | grep -v '^$' | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | xargs brew install
+}
+
 cdf () {
   cd $(dirname $1)
 }

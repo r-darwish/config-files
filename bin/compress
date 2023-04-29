@@ -1,0 +1,17 @@
+import sys
+import subprocess
+
+video_file = sys.argv[1]
+max_size = 15 * 1024 * 1024  # 16 MiB in bytes
+
+# Get video duration
+duration_cmd = f"ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 {video_file}"
+duration = float(subprocess.check_output(duration_cmd, shell=True))
+
+# Calculate bitrate
+bitrate = int((max_size * 8) / duration)
+
+# Call ffmpeg to encode video
+output_file = sys.argv[2]
+encode_cmd = f"ffmpeg -i {video_file} -c:v libx264 -b:v {bitrate} -s 854x480 -c:a aac -strict experimental -b:a 128k {output_file}"
+subprocess.call(encode_cmd, shell=True)

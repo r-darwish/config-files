@@ -113,11 +113,11 @@ targs() {
     done
 }
 
-nd() {
+ntfy() {
   curl \
-  -H "Title: Process done in $(hostname)" \
-  -d "" \
-  ntfy.sh/$NTFY_TOPIC
+  -H "Title: $1" \
+  -d "$2" \
+  ntfy.sh/$NTFY_TOPIC > /dev/null 2> /dev/null
 }
 
 

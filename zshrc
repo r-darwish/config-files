@@ -1,5 +1,5 @@
 linuxbrew_dir="/home/linuxbrew/.linuxbrew"
-dirs=("$linuxbrew_dir/bin" "${HOME}/.local/bin")
+dirs=("$linuxbrew_dir/bin" "${HOME}/.local/bin" "$(dirname "$(readlink -f "$HOME/.zshrc")")/bin")
 
 for dir in $dirs; do
   if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
@@ -103,7 +103,23 @@ bi() {
 }
 
 cdf () {
-  cd $(dirname $1)
+  cd "$(dirname "$1")" || return 1
+}
+
+gitroot() {
+  local dir=${1:-.}
+  dir=$(readlink -f "$dir") || return 1
+  [[ -f "$dir" ]] && dir=$(dirname "$dir")
+
+  (cd "$dir" && git rev-parse --show-toplevel)
+}
+
+rcode() {
+  code --remote "ssh-remote+$1" "$2"
+}
+
+gitback() {
+  git rev-list -n 1 --before="$1" HEAD
 }
 
 targs() {
@@ -120,7 +136,6 @@ ntfy() {
   ntfy.sh/$NTFY_TOPIC > /dev/null 2> /dev/null
 }
 
-
 bindkey -e
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -136,3 +151,4 @@ alias haz="sgpt --shell --role az"
 alias hgo="sgpt --chat go_code --role go"
 alias hpy="sgpt --chat py_code --role py"
 alias hsh="sgpt -s"
+alias gbsn="git bisect run"

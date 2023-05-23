@@ -10,6 +10,10 @@ done
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group ',' '.'
 
 plugins_dir="$(dirname "$(realpath ~/.zshrc)")/zsh"
 wiz_plugins="$plugins_dir/plugins-wiz.zsh"

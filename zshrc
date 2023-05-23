@@ -66,6 +66,10 @@ if type "starship" > /dev/null; then
   eval "$(starship init zsh)"
 fi
 
+if type "zoxide" > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
 alias ks=kubectx
 alias choco="sudo.exe choco"
 alias l="exa -l --git"

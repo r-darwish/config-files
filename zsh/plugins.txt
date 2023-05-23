@@ -4,7 +4,6 @@ belak/zsh-utils path:utility
 belak/zsh-utils path:completion
 
 Aloxaf/fzf-tab
-zsh-users/zsh-autosuggestions
 marlonrichert/zsh-autocomplete
 
 ohmyzsh/ohmyzsh path:plugins/git

@@ -153,6 +153,10 @@ bindkey '^v' edit-command-line
 source $plugins_dir/plugins-post.zsh
 setopt AUTO_PUSHD
 
+if type "atuin" > /dev/null; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
 alias hcode="sgpt --code --chat code"
 alias haws="sgpt --shell --role aws"
 alias haz="sgpt --shell --role az"

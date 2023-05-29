@@ -50,10 +50,12 @@ es() {
   e "$script"
 }
 
-unalias gcm
-gcm() {
-  git checkout develop || git checkout main || git checkout master
+unalias gcd
+git_checkout_default() {
+  git checkout "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
 }
+alias gcd=git_checkout_default
+alias gcdu="gcd && gup"
 
 compctl -K _es_completion es
 compdef _es_completion es

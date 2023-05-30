@@ -156,7 +156,7 @@ source $plugins_dir/plugins-post.zsh
 setopt AUTO_PUSHD
 
 if type "atuin" > /dev/null; then
-  eval "$(atuin init zsh --disable-up-arrow)"
+  eval "$(atuin init zsh)"
 fi
 
 alias hcode="sgpt --code --chat code"
@@ -166,3 +166,13 @@ alias hgo="sgpt --chat go_code --role go"
 alias hpy="sgpt --chat py_code --role py"
 alias hsh="sgpt -s"
 alias gbsn="git bisect run"
+
+_atuin_up_search() {
+    _atuin_search --shell-up-key-binding --filter-mode session
+}
+
+_atuin_dir_search() {
+    _atuin_search --filter-mode directory
+}
+zle -N _atuin_dir_search_widget _atuin_dir_search
+bindkey '\er' _atuin_dir_search_widget

@@ -70,17 +70,17 @@ $shell\
 $character"""
 
 [gcloud]
-disabled = false
+disabled = true
 format = 'on [$symbol$account(@$domain)(/$project)(\($region\))]($style) '
 style = "red"
 
 [kubernetes]
-disabled = false
+disabled = true
 format="[$symbol$context]($style) "
 style="yellow bold"
 
 [azure]
-disabled = false
+disabled = true
 
 [time]
 disabled = false

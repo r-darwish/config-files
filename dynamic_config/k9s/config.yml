@@ -8,6 +8,7 @@ k9s:
   readOnly: false
   noExitOnCtrlC: false
   noIcons: false
+  skipLatestRevCheck: false
   logger:
     tail: 100
     buffer: 5000
@@ -15,15 +16,14 @@ k9s:
     fullScreenLogs: false
     textWrap: false
     showTime: false
-  currentContext: minikube
-  currentCluster: minikube
+  currentContext: arn:aws:eks:us-east-2:281817111670:cluster/wiz-orchestrator-eks-cluster-126-e2e-eu1-fj16a1qo
+  currentCluster: arn:aws:eks:us-east-2:281817111670:cluster/wiz-orchestrator-eks-cluster-126-e2e-eu1-fj16a1qo
   clusters:
-    minikube:
+    arn:aws:eks:us-east-2:281817111670:cluster/wiz-orchestrator-eks-cluster-126-e2e-eu1-fj16a1qo:
       namespace:
         active: all
         lockFavorites: false
         favorites:
-        - all
         - default
       view:
         active: po
@@ -37,6 +37,7 @@ k9s:
         limits:
           cpu: 100m
           memory: 100Mi
+        labels: {}
       portForwardAddress: localhost
   thresholds:
     cpu:

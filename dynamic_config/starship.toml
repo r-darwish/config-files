@@ -85,3 +85,5 @@ disabled = true
 [time]
 disabled = false
 
+[git_status]
+disabled = true

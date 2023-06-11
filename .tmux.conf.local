@@ -449,3 +449,6 @@ setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 #
 # "$@"
 # # /!\ do not remove the previous line
+set -g visual-activity off
+set -g visual-bell off
+set -g visual-silence on

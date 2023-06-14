@@ -181,3 +181,5 @@ checkout_wip() {
   git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview="git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" develop..{-1}" --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
 }
 alias wip=checkout_wip
+
+export AWS_CLI_AUTO_PROMPT=on-partial

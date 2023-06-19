@@ -76,6 +76,10 @@ if type "zoxide" > /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+if type "thefuck" > /dev/null; then
+  eval "$(thefuck --alias f)"
+fi
+
 alias ks=kubectx
 alias choco="sudo.exe choco"
 alias l="exa -l --git"

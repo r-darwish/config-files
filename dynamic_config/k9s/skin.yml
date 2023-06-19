@@ -30,7 +30,7 @@ k9s:
   # General K9s styles
   body:
     fgColor: *text
-    bgColor: *base
+    bgColor: default
     logoColor: *mauve
 
   # Command prompt styles
@@ -88,7 +88,7 @@ k9s:
     # Border title styles.
     title:
       fgColor: *teal
-      bgColor: *base
+      bgColor: default
       highlightColor: *pink
       counterColor: *yellow
       filterColor: *green
@@ -96,7 +96,7 @@ k9s:
   views:
     # Charts skins...
     charts:
-      bgColor: *base
+      bgColor: default
       chartBgColor: *base
       dialBgColor: *base
       defaultDialColors:
@@ -116,14 +116,14 @@ k9s:
     # TableView attributes.
     table:
       fgColor: *text #Doesn't Work
-      bgColor: *base
+      bgColor: default
       cursorFgColor: *surface0 # Doesn't Work
       cursorBgColor: *surface1 # should be rosewater
       markColor: *rosewater # Doesn't Work
       # Header row styles.
       header:
         fgColor: *yellow
-        bgColor: *base
+        bgColor: default
         sorterColor: *sky
 
     # Xray view attributes.
@@ -145,14 +145,14 @@ k9s:
     # Logs styles.
     logs:
       fgColor: *text
-      bgColor: *base
+      bgColor: default
       indicator:
         fgColor: *lavender
-        bgColor: *base
+        bgColor: default
 
   help:
     fgColor: *text
-    bgColor: *base
+    bgColor: default
     sectionColor: *green
     keyColor: *blue
     numKeyColor: *maroon

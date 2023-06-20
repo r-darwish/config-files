@@ -80,6 +80,10 @@ if type "thefuck" > /dev/null; then
   eval "$(thefuck --alias f)"
 fi
 
+if type "broot" > /dev/null; then
+  eval "$(broot --print-shell-function zsh)"
+fi
+
 alias ks=kubectx
 alias choco="sudo.exe choco"
 alias l="exa -l --git"

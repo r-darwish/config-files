@@ -162,6 +162,7 @@ bindkey '^v' edit-command-line
 [ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf
 source $plugins_dir/plugins-post.zsh
 setopt AUTO_PUSHD
+setopt interactive_comments
 
 if type "atuin" > /dev/null; then
   eval "$(atuin init zsh)"

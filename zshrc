@@ -21,8 +21,8 @@ wiz_plugins="$plugins_dir/plugins-wiz.zsh"
 source $plugins_dir/plugins.zsh
 [ -f $wiz_plugins ] && source $wiz_plugins
 
-if type "nvim" > /dev/null; then
-  export EDITOR=nvim
+if type "hx" > /dev/null; then
+  export EDITOR=hx
 else
   export EDITOR=vi
 fi
@@ -94,12 +94,7 @@ alias pf="fzf --preview='bat --color=always {}' --bind ctrl-p:preview-page-up,ct
 alias st="starship toggle"
 alias cj="bat -l json"
 alias c="bat"
-alias nvs="nvim --listen /tmp/nvim"
-
-nvc() {
-  nvim --server /tmp/nvim --remote-send ":e $(realpath $1)<CR>"
-}
-
+alias tidy="go mod tidy"
 
 whatsapp() {
     local phone=$1

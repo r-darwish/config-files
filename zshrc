@@ -1,7 +1,8 @@
 linuxbrew_dir="/home/linuxbrew/.linuxbrew"
-dirs=("$linuxbrew_dir/bin" "${HOME}/.local/bin" "$(dirname "$(readlink -f "$HOME/.zshrc")")/bin")
+bin_dirs=("$linuxbrew_dir/bin" "${HOME}/.local/bin" "$(dirname "$(readlink -f "$HOME/.zshrc")")/bin")
+completion_dirs=("$linuxbrew_dir/etc/bash_completion.d" "/usr/local/etc/bash_completion.d")
 
-for dir in $dirs; do
+for dir in $bin_dirs; do
   if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
     export PATH="$dir:$PATH"
   fi
@@ -9,6 +10,15 @@ done
 
 autoload -Uz compinit
 compinit
+
+for dir in $completion_dirs; do
+  if [[ -d "$dir" ]]; then
+    autoload bashcompinit
+    bashcompinit
+    source $dir/*
+  fi
+done
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:descriptions' format '[%d]'
@@ -82,6 +92,10 @@ fi
 
 if type "broot" > /dev/null; then
   eval "$(broot --print-shell-function zsh)"
+fi
+
+if type "aws_completer" > /dev/null; then
+   complete -C "$(where aws_completer)" aws
 fi
 
 alias ks=kubectx

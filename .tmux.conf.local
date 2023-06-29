@@ -413,7 +413,7 @@ bind -r n next-window
 bind -r p previous-window
 bind -n M-m select-pane -m # mark
 bind -n M-M select-pane -M # unmark
-bind -n M-. join-pane
+bind -n M-j join-pane
 set-option -g repeat-time 0
 
 # Remove SSH_AUTH_SOCK to disable tmux automatically resetting the variable

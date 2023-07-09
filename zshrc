@@ -110,13 +110,8 @@ alias cj="bat -l json"
 alias c="bat"
 alias tidy="go mod tidy"
 
-whatsapp() {
-    local phone=$1
-    if [[ ${phone:0:1} == "0" ]]; then
-        phone=+972${phone:1}
-    fi
-
-    open "https://web.whatsapp.com/send?phone=$phone&text&type=phone_number&app_absent=0"
+s() {
+  ssh $@; reset
 }
 
 bi() {

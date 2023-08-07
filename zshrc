@@ -192,3 +192,7 @@ checkout_wip() {
 alias wip=checkout_wip
 
 export AWS_CLI_AUTO_PROMPT=on-partial
+
+tm() {
+  tmux new-session -t "${1:-0}"
+}

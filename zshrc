@@ -196,3 +196,7 @@ export AWS_CLI_AUTO_PROMPT=on-partial
 tm() {
   tmux new-session -t "${1:-0}"
 }
+
+zlong_send_notifications=false
+zlong_duration=10
+zlong_ignore_cmds="vim nvim hx ssh"

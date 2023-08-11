@@ -98,7 +98,6 @@ alias ks=kubectx
 alias choco="sudo.exe choco"
 alias l="exa -l --git"
 alias ls='ls --color=auto'
-alias t=tmux
 alias lg=lazygit
 alias pf="fzf --preview='bat --color=always {}' --bind ctrl-p:preview-page-up,ctrl-n:preview-page-down --preview-window=70%,border-double,top"
 alias st="starship toggle"
@@ -193,8 +192,12 @@ alias wip=checkout_wip
 
 export AWS_CLI_AUTO_PROMPT=on-partial
 
+t() {
+  tmux new-session -A -s "${1:-general}"
+}
+
 tm() {
-  tmux new-session -t "${1:-0}"
+  tmux new-session -t "${1:-general}"
 }
 
 zlong_send_notifications=false

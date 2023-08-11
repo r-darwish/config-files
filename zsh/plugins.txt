@@ -6,7 +6,6 @@ belak/zsh-utils path:completion
 Aloxaf/fzf-tab
 
 ohmyzsh/ohmyzsh path:plugins/git
-ohmyzsh/ohmyzsh path:plugins/tmux
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
 kevinywlui/zlong_alert.zsh

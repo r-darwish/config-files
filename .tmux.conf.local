@@ -414,7 +414,9 @@ bind -r p previous-window
 bind -n M-m select-pane -m # mark
 bind -n M-M select-pane -M # unmark
 bind -n M-j join-pane
+bind ? list-keys
 set-option -g repeat-time 0
+set-option -g detach-on-destroy off
 
 # Remove SSH_AUTH_SOCK to disable tmux automatically resetting the variable
 set -g update-environment "DISPLAY SSH_ASKPASS SSH_AGENT_PID \

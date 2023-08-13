@@ -106,7 +106,11 @@ alias c="bat"
 alias tidy="go mod tidy"
 
 s() {
-  ssh $@; reset
+  (
+     echo -ne "\033]0;📡 ${@[$#]}\007"
+     exec ssh "$@"
+  )
+  reset
 }
 
 bi() {

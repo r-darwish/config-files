@@ -19,12 +19,6 @@ for dir in $completion_dirs; do
   fi
 done
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:*' switch-group ',' '.'
-
 plugins_dir="$(dirname "$(realpath ~/.zshrc)")/zsh"
 wiz_plugins="$plugins_dir/plugins-wiz.zsh"
 
@@ -207,3 +201,17 @@ tm() {
 zlong_send_notifications=false
 zlong_duration=10
 zlong_ignore_cmds="vim nvim hx ssh"
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group ',' '.'
+
+fix-git-completion() {
+  (
+    cd /usr/local/share/zsh/site-functions
+    rm _git
+    ln -s ../../../Cellar/zsh/*/share/zsh/functions/_git _git
+  )
+}

@@ -25,8 +25,8 @@ wiz_plugins="$plugins_dir/plugins-wiz.zsh"
 source $plugins_dir/plugins.zsh
 [ -f $wiz_plugins ] && source $wiz_plugins
 
-if type "hx" > /dev/null; then
-  export EDITOR=hx
+if type "nvim" > /dev/null; then
+  export EDITOR=nvim
 else
   export EDITOR=vi
 fi

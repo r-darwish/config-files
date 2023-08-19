@@ -28,6 +28,8 @@ set smartcase
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"] = '<M-j>'
 let g:VM_maps["Add Cursor Up"] = '<M-k>'
+let g:editorconfig = v:false
+
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fr <cmd>Telescope oldfiles<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>

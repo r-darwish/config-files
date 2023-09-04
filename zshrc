@@ -1,5 +1,5 @@
 linuxbrew_dir="/home/linuxbrew/.linuxbrew"
-bin_dirs=("$linuxbrew_dir/bin" "${HOME}/.local/bin" "$(dirname "$(readlink -f "$HOME/.zshrc")")/bin")
+bin_dirs=("/usr/local/opt/coreutils/libexec/gnubin" "$linuxbrew_dir/bin" "${HOME}/.local/bin" "$(dirname "$(readlink -f "$HOME/.zshrc")")/bin")
 completion_dirs=("$linuxbrew_dir/etc/bash_completion.d" "/usr/local/etc/bash_completion.d")
 
 for dir in $bin_dirs; do
@@ -68,7 +68,7 @@ e() {
   if [[ "$TMUX" ]]; then
     tmux split-window "$EDITOR $*"
   else
-    command $EDITOR "$@"
+    kitten @launch --type window "$EDITOR" "$@"
   fi
 }
 
@@ -102,6 +102,9 @@ alias tidy="go mod tidy"
 s() {
   (
      echo -ne "\033]0;📡 ${@[$#]}\007"
+     if type "kitty" > /dev/null; then
+         exec kitty +kitten ssh "$@"
+     fi
      exec ssh "$@"
   )
   reset
@@ -200,13 +203,12 @@ tm() {
 
 zlong_send_notifications=false
 zlong_duration=10
-zlong_ignore_cmds="vim nvim hx ssh"
+zlong_ignore_cmds="vim nvim hx ssh kitty"
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:*' switch-group ',' '.'
 
 fix-git-completion() {
   (

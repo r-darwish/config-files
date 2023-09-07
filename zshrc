@@ -90,8 +90,6 @@ fi
 
 alias ks=kubectx
 alias choco="sudo.exe choco"
-alias l="exa -l --git"
-alias ls='ls --color=auto'
 alias lg=lazygit
 alias pf="fzf --preview='bat --color=always {}' --bind ctrl-p:preview-page-up,ctrl-n:preview-page-down --preview-window=70%,border-double,top"
 alias st="starship toggle"
@@ -168,6 +166,10 @@ if type "atuin" > /dev/null; then
   eval "$(atuin init zsh)"
 fi
 
+if type "lsd" > /dev/null; then
+  alias ls="lsd --hyperlink=auto"
+fi
+
 alias hcode="sgpt --code --chat code"
 alias haws="sgpt --shell --role aws"
 alias haz="sgpt --shell --role az"
@@ -208,7 +210,7 @@ zlong_ignore_cmds="vim nvim hx ssh kitty"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color=always $realpath'
 
 fix-git-completion() {
   (

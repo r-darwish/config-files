@@ -1,62 +1,56 @@
 linuxbrew_dir="/home/linuxbrew/.linuxbrew"
 bin_dirs=("/usr/local/opt/coreutils/libexec/gnubin" "$linuxbrew_dir/bin" "${HOME}/.local/bin" "$(dirname "$(readlink -f "$HOME/.zshrc")")/bin")
-completion_dirs=("$linuxbrew_dir/etc/bash_completion.d" "/usr/local/etc/bash_completion.d")
 
-for dir in $bin_dirs; do
-  if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
-    export PATH="$dir:$PATH"
-  fi
+for dir in "${bin_dirs[@]}"; do
+    if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
+        export PATH="$dir:$PATH"
+    fi
 done
 
-autoload -Uz compinit
+autoload -Uz compinit bashcompinit
 compinit
-
-for dir in $completion_dirs; do
-  if [[ -d "$dir" ]]; then
-    autoload bashcompinit
-    bashcompinit
-    source $dir/*
-  fi
-done
+bashcompinit
 
 plugins_dir="$(dirname "$(realpath ~/.zshrc)")/zsh"
 wiz_plugins="$plugins_dir/plugins-wiz.zsh"
 
-source $plugins_dir/plugins.zsh
-[ -f $wiz_plugins ] && source $wiz_plugins
+# shellcheck source=zsh/plugins.zsh
+source "$plugins_dir/plugins.zsh"
+# shellcheck source=zsh/plugins-wiz.zsh
+[ -f "$wiz_plugins" ] && source "$wiz_plugins"
 
-if type "nvim" > /dev/null; then
-  export EDITOR=nvim
+if type "hx" >/dev/null; then
+    export EDITOR=hx
 else
-  export EDITOR=vi
+    export EDITOR=vi
 fi
 
 _es_completion() {
-  local paths=()
-  for d in $(echo "$PATH" | tr ':' ' '); do
-    while IFS= read -r line; do # Whitespace-safe EXCEPT newlines
-      paths+=("$line")
-    done <<< $(find $d -type f -perm +111 -user "$(whoami)" -execdir basename '{}' ';' 2>/dev/null)
-  done
+    local paths=()
+    for d in $(echo "$PATH" | tr ':' ' '); do
+        while IFS= read -r line; do # Whitespace-safe EXCEPT newlines
+            paths+=("$line")
+        done <<<"$(find "$d" -type f -perm +111 -user "$(whoami)" -execdir basename '{}' ';' 2>/dev/null)"
+    done
 
-  compadd "${paths[@]}"
+    compadd "${paths[@]}"
 }
 
 es() {
-  local script
-  script=$(which "$1" 2>/dev/null)
+    local script
+    script=$(which "$1" 2>/dev/null)
 
-  if [ ! -f "${script}" ]; then
-    script="$HOME/.local/bin/$1"
-    touch "$script" && chmod +x "$script" || return 1
-  fi
+    if [ ! -f "${script}" ]; then
+        script="$HOME/.local/bin/$1"
+        touch "$script" && chmod +x "$script" || return 1
+    fi
 
-  e "$script"
+    e "$script"
 }
 
 unalias gcd
 git_checkout_default() {
-  git checkout "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+    git checkout "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
 }
 alias gcd=git_checkout_default
 alias gcdu="gcd && gup"
@@ -65,27 +59,27 @@ compctl -K _es_completion es
 compdef _es_completion es
 
 e() {
-  if [[ "$TMUX" ]]; then
-    tmux split-window "$EDITOR $*"
-  else
-    kitten @launch --type window "$EDITOR" "$@"
-  fi
+    if [[ "$TMUX" ]]; then
+        tmux split-window "$EDITOR $*"
+    else
+        kitten @launch --type window "$EDITOR" "$@"
+    fi
 }
 
-if type "starship" > /dev/null; then
-  eval "$(starship init zsh)"
+if type "starship" >/dev/null; then
+    eval "$(starship init zsh)"
 fi
 
-if type "zoxide" > /dev/null; then
-  eval "$(zoxide init zsh)"
+if type "zoxide" >/dev/null; then
+    eval "$(zoxide init zsh)"
 fi
 
-if type "broot" > /dev/null; then
-  eval "$(broot --print-shell-function zsh)"
+if type "broot" >/dev/null; then
+    eval "$(broot --print-shell-function zsh)"
 fi
 
-if type "aws_completer" > /dev/null; then
-   complete -C "$(where aws_completer)" aws
+if type "aws_completer" >/dev/null; then
+    complete -C "$(where aws_completer)" aws
 fi
 
 alias ks=kubectx
@@ -98,58 +92,60 @@ alias c="bat"
 alias tidy="go mod tidy"
 
 s() {
-  (
-     echo -ne "\033]0;📡 ${@[$#]}\007"
-     if type "kitty" > /dev/null; then
-         exec kitty +kitten ssh "$@"
-     fi
-     exec ssh "$@"
-  )
-  reset
+    (
+        # shellcheck disable=SC2145
+        echo -ne "\033]0;📡 ${@[-1]}\007"
+        if type "kitty" >/dev/null; then
+            exec kitty +kitten ssh "$@"
+        fi
+        exec ssh "$@"
+    )
+    reset
 }
 
 bi() {
-  local criteria=$1
-  if [[ -z "$criteria" ]]; then
-    echo "No criteria provided" >&2
-    return 1
-  fi
+    local criteria=$1
+    if [[ -z "$criteria" ]]; then
+        echo "No criteria provided" >&2
+        return 1
+    fi
 
-  brew search "$criteria" | grep -v '^$' | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | xargs brew install
+    brew search "$criteria" | grep -v '^$' | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | xargs brew install
 }
 
-cdf () {
-  cd "$(dirname "$1")" || return 1
+cdf() {
+    cd "$(dirname "$1")" || return 1
 }
 
 gitroot() {
-  local dir=${1:-.}
-  dir=$(readlink -f "$dir") || return 1
-  [[ -f "$dir" ]] && dir=$(dirname "$dir")
+    local dir=${1:-.}
+    dir=$(readlink -f "$dir") || return 1
+    [[ -f "$dir" ]] && dir=$(dirname "$dir")
 
-  (cd "$dir" && git rev-parse --show-toplevel)
+    (cd "$dir" && git rev-parse --show-toplevel)
 }
 
 rcode() {
-  code --remote "ssh-remote+$1" "$2"
+    code --remote "ssh-remote+$1" "$2"
 }
 
 gitback() {
-  git rev-list -n 1 --before="$1" HEAD
+    git rev-list -n 1 --before="$1" HEAD
 }
 
 targs() {
     while read -r line; do
         tmux new-window -n "$line"
+        # shellcheck disable=SC2145
         tmux send-keys "$@ $line" C-m
     done
 }
 
 ntfy() {
-  curl \
-  -H "Title: $1" \
-  -d "$2" \
-  ntfy.sh/$NTFY_TOPIC > /dev/null 2> /dev/null
+    curl \
+        -H "Title: $1" \
+        -d "$2" \
+        "ntfy.sh/$NTFY_TOPIC" >/dev/null 2>/dev/null
 }
 
 bindkey -e
@@ -157,17 +153,19 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^v' edit-command-line
 
-[ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf
-source $plugins_dir/plugins-post.zsh
+# shellcheck disable=SC2034
+[ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf 
+# shellcheck source=zsh/plugins-post.zsh
+source "$plugins_dir/plugins-post.zsh"
 setopt AUTO_PUSHD
 setopt interactive_comments
 
-if type "atuin" > /dev/null; then
-  eval "$(atuin init zsh)"
+if type "atuin" >/dev/null; then
+    eval "$(atuin init zsh)"
 fi
 
-if type "lsd" > /dev/null; then
-  alias ls="lsd --hyperlink=auto"
+if type "lsd" >/dev/null; then
+    alias ls="lsd --hyperlink=auto"
 fi
 
 alias hcode="sgpt --code --chat code"
@@ -189,33 +187,33 @@ zle -N _atuin_dir_search_widget _atuin_dir_search
 bindkey '\er' _atuin_dir_search_widget
 
 checkout_wip() {
-  git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview="git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" develop..{-1}" --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
+    git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview="git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" develop..{-1}" --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
 }
 alias wip=checkout_wip
 
 export AWS_CLI_AUTO_PROMPT=on-partial
 
 t() {
-  tmux new-session -A -s "${1:-general}"
+    tmux new-session -A -s "${1:-general}"
 }
 
 tm() {
-  tmux new-session -t "${1:-general}"
+    tmux new-session -t "${1:-general}"
 }
 
-zlong_send_notifications=false
-zlong_duration=10
-zlong_ignore_cmds="vim nvim hx ssh kitty"
+# shellcheck disable=SC2034
+zlong_send_notifications=false zlong_duration=10 zlong_ignore_cmds="vim nvim hx ssh kitty"
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:descriptions' format '[%d]'
+# shellcheck disable=SC2016
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color=always $realpath'
 
 fix-git-completion() {
-  (
-    cd /usr/local/share/zsh/site-functions
-    rm _git
-    ln -s ../../../Cellar/zsh/*/share/zsh/functions/_git _git
-  )
+    (
+        set -e
+        cd /usr/local/share/zsh/site-functions
+        rm _git
+        ln -s ../../../Cellar/zsh/*/share/zsh/functions/_git _git
+    )
 }

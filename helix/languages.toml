@@ -4,3 +4,10 @@ indent = { tab-width = 4, unit = "    " }
 formatter = { command = 'shfmt', args = ["-i", "4"] }
 auto-format = true
 
+[[language]]
+name = "python"
+roots = ["pyproject.toml"]
+language-server = { command = "pyright-langserver", args = ["--stdio"] }
+config = {}
+formatter = { command = "black", args = ["--quiet", "-"] }
+auto-format = true

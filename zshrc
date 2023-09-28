@@ -7,10 +7,6 @@ for dir in "${bin_dirs[@]}"; do
     fi
 done
 
-autoload -Uz compinit bashcompinit
-compinit
-bashcompinit
-
 plugins_dir="$(dirname "$(realpath ~/.zshrc)")/zsh"
 wiz_plugins="$plugins_dir/plugins-wiz.zsh"
 
@@ -72,14 +68,6 @@ fi
 
 if type "zoxide" >/dev/null; then
     eval "$(zoxide init zsh)"
-fi
-
-if type "broot" >/dev/null; then
-    eval "$(broot --print-shell-function zsh)"
-fi
-
-if type "aws_completer" >/dev/null; then
-    complete -C "$(where aws_completer)" aws
 fi
 
 alias ks=kubectx

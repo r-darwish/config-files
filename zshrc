@@ -78,6 +78,7 @@ alias st="starship toggle"
 alias cj="bat -l json"
 alias c="bat"
 alias tidy="go mod tidy"
+alias psh="poetry shell"
 
 s() {
     (

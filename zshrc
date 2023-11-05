@@ -182,12 +182,8 @@ alias wip=checkout_wip
 
 export AWS_CLI_AUTO_PROMPT=on-partial
 
-t() {
-    tmux new-session -A -s "${1:-general}"
-}
-
-tm() {
-    tmux new-session -t "${1:-general}"
+zj() {
+    zellij --layout compact attach -c main
 }
 
 # shellcheck disable=SC2034

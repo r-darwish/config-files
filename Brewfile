@@ -1,5 +1,6 @@
 brew "topgrade"
 brew "tmux"
+brew "zellij"
 brew "bat"
 brew "fd"
 brew "sd"

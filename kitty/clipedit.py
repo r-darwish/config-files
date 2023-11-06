@@ -4,8 +4,7 @@ import tempfile
 import os
 
 from typing import List
-from kitty.boss import Boss
-from kittens.tui.loop import debug
+from kitty.boss import Boss  # type: ignore
 
 
 class Namespace(argparse.Namespace):
@@ -16,7 +15,7 @@ parser = argparse.ArgumentParser(description="Edit clipboard kitten")
 parser.add_argument("-e", "--empty", action="store_true", help="Start with an empty file")
 
 
-def main(args: List[str]) -> str:
+def main(args: List[str]) -> None:
     parsed_args = parser.parse_args(args=args[1:], namespace=Namespace)
 
     clipboard = ""

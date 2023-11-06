@@ -79,6 +79,8 @@ alias cj="bat -l json"
 alias c="bat"
 alias tidy="go mod tidy"
 alias psh="poetry shell"
+alias copy="kitten clipboard"
+alias paste="kitten clipboard --get-clipboard"
 
 s() {
     (

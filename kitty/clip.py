@@ -28,8 +28,10 @@ def main(args: List[str]) -> None:
         f.seek(0)
         new_clipboard = f.read()
 
-    if new_clipboard != clipboard:
-        subprocess.run("/usr/bin/pbcopy", shell=False, input=clipboard, encoding="utf-8", check=True)
+    if new_clipboard != clipboard and (new_clipboard.strip() != ""):
+        proc = subprocess.run("/usr/bin/pbcopy", shell=False, input=new_clipboard.strip(), encoding="utf-8", check=True)
+        if proc.returncode != 0:
+            input("pbcopy failed")
 
 
 def handle_result(args: List[str], answer: str, target_window_id: int, boss: Boss) -> None:

@@ -7,8 +7,7 @@ auto-format = true
 [[language]]
 name = "python"
 language-servers = [
-  { name = "pyright", only-features = ["format", "diagnostics"] },
-  { name = "python-lsp-server", except-features = ["format", "diagnostics"] },
+  { name = "pyright" },
 ]
 formatter = { command = "black", args = ["--quiet", "-"] }
 auto-format = true

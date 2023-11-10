@@ -48,8 +48,15 @@ unalias gcd
 git_checkout_default() {
     git checkout "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
 }
+
+git_merge_default() {
+    git fetch
+    git merge "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^origin/@@')"
+}
+
 alias gcd=git_checkout_default
-alias gcdu="gcd && gup"
+alias gcdu="gcd && gpr"
+alias gmd=git_merge_default
 
 compctl -K _es_completion es
 compdef _es_completion es
@@ -145,7 +152,7 @@ zle -N edit-command-line
 bindkey '^v' edit-command-line
 
 # shellcheck disable=SC2034
-[ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf 
+[ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf
 # shellcheck source=zsh/plugins-post.zsh
 source "$plugins_dir/plugins-post.zsh"
 setopt AUTO_PUSHD

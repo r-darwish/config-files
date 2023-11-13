@@ -192,7 +192,11 @@ alias wip=checkout_wip
 export AWS_CLI_AUTO_PROMPT=on-partial
 
 zj() {
-    zellij --layout compact attach -c main
+    zellij --layout compact attach -c "${1:-main}"
+}
+
+zl() {
+    zellij list-sessions
 }
 
 # shellcheck disable=SC2034

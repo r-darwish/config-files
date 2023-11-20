@@ -78,16 +78,14 @@ if type "zoxide" >/dev/null; then
 fi
 
 alias ks=kubectx
-alias choco="sudo.exe choco"
 alias lg=lazygit
-alias pf="fzf --preview='bat --color=always {}' --bind ctrl-p:preview-page-up,ctrl-n:preview-page-down --preview-window=70%,border-double,top"
 alias st="starship toggle"
-alias cj="bat -l json"
 alias c="bat"
 alias tidy="go mod tidy"
 alias psh="poetry shell"
 alias copy="kitten clipboard"
 alias paste="kitten clipboard --get-clipboard"
+alias n="nnn -e"
 
 s() {
     (
@@ -215,3 +213,17 @@ fix-git-completion() {
         ln -s ../../../Cellar/zsh/*/share/zsh/functions/_git _git
     )
 }
+
+export DEFAULT_COLOR=cyan
+export DEFAULT_MODEL=gpt-4
+_sgpt_zsh() {
+if [[ -n "$BUFFER" ]]; then
+    _sgpt_prev_cmd=$BUFFER
+    BUFFER+="⌛"
+    zle -I && zle redisplay
+    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd")
+    zle end-of-line
+fi
+}
+zle -N _sgpt_zsh
+bindkey '^h' _sgpt_zsh

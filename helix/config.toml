@@ -8,6 +8,9 @@ cursorline = true
 auto-save = true
 bufferline = "always"
 
+[editor.soft-wrap]
+enable = true
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -24,3 +27,8 @@ mode.select = "SELECT"
 
 [editor.file-picker]
 hidden = false
+
+[keys.normal]
+q = ":x"
+C-q = "replay_macro"
+C-r = ":reload-all"

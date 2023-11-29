@@ -85,7 +85,7 @@ alias tidy="go mod tidy"
 alias psh="poetry shell"
 alias copy="kitten clipboard"
 alias paste="kitten clipboard --get-clipboard"
-alias n="nnn -e"
+alias fqi="fq -i ."
 
 s() {
     (

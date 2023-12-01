@@ -183,7 +183,9 @@ zle -N _atuin_dir_search_widget _atuin_dir_search
 bindkey '\er' _atuin_dir_search_widget
 
 checkout_wip() {
-    git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview="git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" develop..{-1}" --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
+    local default_branch
+    default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') || return 1
+    git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview="git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" $default_branch..{-1}" --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
 }
 alias wip=checkout_wip
 

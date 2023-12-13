@@ -32,16 +32,11 @@ _es_completion() {
     compadd "${paths[@]}"
 }
 
-es() {
-    local script
-    script=$(which "$1" 2>/dev/null)
-
-    if [ ! -f "${script}" ]; then
-        script="$HOME/.local/bin/$1"
-        touch "$script" && chmod +x "$script" || return 1
-    fi
-
-    e "$script"
+ef() {
+    local f
+    f=$(whence -v odiag | sed 's,.*is a shell function from ,,') || return 1
+    $EDITOR "$f"
+    source "$f"
 }
 
 unalias gcd

@@ -39,6 +39,6 @@ done
 rm -f ~/.zshrc
 ln -s "$PWD/zshrc" ~/.zshrc
 git config --global include.path "$PWD/.gitconfig"
-test -f ~/.antidote || git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
+test -d ~/.antidote || git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
 make -C zsh
 brew bundle install

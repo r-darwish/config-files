@@ -140,9 +140,20 @@ ntfy() {
 }
 
 bindkey -e
+
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^v' edit-command-line
+
+edit-or-last-command-line() {
+    if [ -z "$BUFFER" ]; then
+        zle up-line-or-history
+    fi
+    zle edit-command-line
+    zle accept-line
+}
+
+zle -N edit-or-last-command-line
+bindkey '^v' edit-or-last-command-line
 
 # shellcheck disable=SC2034
 [ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf

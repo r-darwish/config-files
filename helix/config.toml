@@ -29,6 +29,9 @@ mode.select = "SELECT"
 hidden = false
 
 [keys.normal]
-q = ":x"
+q = ":x!"
 C-q = "replay_macro"
 C-r = ":reload-all"
+
+[keys.insert]
+C-c = ":x!"

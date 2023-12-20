@@ -30,4 +30,4 @@ for c in dynamic_config/*; do
 done
 
 rm -f ~/.zshrc; ln -s "$PWD/zshrc" ~/.zshrc
-#~/config-files/install-zsh-plugins.zsh
+git config --global include.path "$PWD/.gitconfig"

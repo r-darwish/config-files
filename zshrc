@@ -34,7 +34,7 @@ _es_completion() {
 
 ef() {
     local f
-    f=$(whence -v odiag | sed 's,.*is a shell function from ,,') || return 1
+    f=$(whence -v "$1"| sed 's,.*is a shell function from ,,') || return 1
     $EDITOR "$f"
     source "$f"
 }
@@ -56,13 +56,7 @@ alias gmd=git_merge_default
 compctl -K _es_completion es
 compdef _es_completion es
 
-e() {
-    if [[ "$TMUX" ]]; then
-        tmux split-window "$EDITOR $*"
-    else
-        kitten @launch --type window "$EDITOR" "$@"
-    fi
-}
+alias e=edit-in-kitty
 
 if type "starship" >/dev/null; then
     eval "$(starship init zsh)"

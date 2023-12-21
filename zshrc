@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit
+
 linuxbrew_dir="/home/linuxbrew/.linuxbrew"
 bin_dirs=("/usr/local/opt/coreutils/libexec/gnubin" "$linuxbrew_dir/bin" "${HOME}/.local/bin" "$(dirname "$(readlink -f "$HOME/.zshrc")")/bin")
 

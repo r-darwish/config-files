@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 set -e
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -39,6 +39,11 @@ done
 rm -f ~/.zshrc
 ln -s "$PWD/zshrc" ~/.zshrc
 git config --global include.path "$PWD/.gitconfig"
+
 test -d ~/.antidote || git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
-make -C zsh
+source ~/.antidote/antidote.zsh
+for c in zsh/*.txt; do
+    zsh_file="${c:r}.zsh"
+    antidote bundle <"$c" >"$zsh_file" || true
+done
 brew bundle install

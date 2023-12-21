@@ -229,3 +229,4 @@ fi
 }
 zle -N _sgpt_zsh
 bindkey '^h' _sgpt_zsh
+compinit

@@ -1,8 +1,3 @@
-belak/zsh-utils path:editor
-belak/zsh-utils path:history
-belak/zsh-utils path:utility
-belak/zsh-utils path:completion
-
 Aloxaf/fzf-tab
 
 ohmyzsh/ohmyzsh path:plugins/git

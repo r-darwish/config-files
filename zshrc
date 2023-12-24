@@ -137,6 +137,11 @@ ntfy() {
 }
 
 bindkey -e
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+bindkey "^[[H" beginning-of-line  # Home key
+bindkey "^[[F" end-of-line        # End key
+export WORDCHARS=${WORDCHARS//[-_]/}
 
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -191,8 +196,6 @@ checkout_wip() {
     git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview="git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" $default_branch..{-1}" --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
 }
 alias wip=checkout_wip
-
-export AWS_CLI_AUTO_PROMPT=on-partial
 
 zj() {
     zellij --layout compact attach -c "${1:-main}"

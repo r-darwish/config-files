@@ -42,7 +42,6 @@ ef() {
     source "$f"
 }
 
-unalias gcd
 git_checkout_default() {
     git checkout "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
 }
@@ -179,6 +178,22 @@ alias hgo="sgpt --chat go_code --role go"
 alias hpy="sgpt --chat py_code --role py"
 alias hsh="sgpt -s"
 alias gbsn="git bisect run"
+alias gpr="git pull --rebase"
+alias gs="git status"
+alias gd="git diff"
+
+
+grhh() {
+    local repo_name
+    git status -uno -s
+
+    repo_name=$(git rev-parse --show-toplevel) || return 1
+    repo_name=$(basename "$repo_name") || return 1
+
+    printf "\nRepository is \033[0;31m%s\033[0m\n" "$repo_name"
+    gum confirm --default=false "Reset changes" && git reset --hard "${1:-HEAD}"
+}
+
 
 _atuin_up_search() {
     _atuin_search --shell-up-key-binding --filter-mode session

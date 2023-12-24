@@ -1,5 +1,4 @@
 Aloxaf/fzf-tab
 
-ohmyzsh/ohmyzsh path:plugins/git
 zsh-users/zsh-autosuggestions
 kevinywlui/zlong_alert.zsh

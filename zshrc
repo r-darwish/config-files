@@ -140,7 +140,7 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey "^[[H" beginning-of-line  # Home key
 bindkey "^[[F" end-of-line        # End key
-export WORDCHARS=${WORDCHARS//[-_]/}
+export WORDCHARS=${WORDCHARS//[-_\/]/}
 
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -181,7 +181,11 @@ alias gbsn="git bisect run"
 alias gpr="git pull --rebase"
 alias gs="git status"
 alias gd="git diff"
-
+alias gc="git commit"
+alias gca="git commit --amend"
+alias gco="git checkout"
+alias ga="git add"
+alias gp="git push"
 
 grhh() {
     local repo_name

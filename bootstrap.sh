@@ -46,4 +46,11 @@ for c in zsh/*.txt; do
     zsh_file="${c:r}.zsh"
     antidote bundle <"$c" >"$zsh_file" || true
 done
-brew bundle install
+if [[ -n "$BACKGROUND" ]]; then
+    brew install starship atuin git-delta
+    echo "Running package installation in the background"
+    nohup brew bundle install > /tmp/brew.log 2>&1 &
+else
+    brew bundle install
+fi
+

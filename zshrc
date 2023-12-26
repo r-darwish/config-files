@@ -54,6 +54,7 @@ git_merge_default() {
 alias gcd=git_checkout_default
 alias gcdu="gcd && gpr"
 alias gmd=git_merge_default
+alias automerge="gh pr create -f && gh pr merge -s --auto"
 
 compctl -K _es_completion es
 compdef _es_completion es
@@ -181,6 +182,7 @@ alias gbsn="git bisect run"
 alias gpr="git pull --rebase"
 alias gs="git status"
 alias gd="git diff"
+alias gf="git fetch"
 alias gc="git commit"
 alias gca="git commit --amend"
 alias gco="git checkout"

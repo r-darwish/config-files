@@ -172,12 +172,6 @@ if type "lsd" >/dev/null; then
     alias ls="lsd --hyperlink=auto"
 fi
 
-alias hcode="sgpt --code --chat code"
-alias haws="sgpt --shell --role aws"
-alias haz="sgpt --shell --role az"
-alias hgo="sgpt --chat go_code --role go"
-alias hpy="sgpt --chat py_code --role py"
-alias hsh="sgpt -s"
 alias gbsn="git bisect run"
 alias gpr="git pull --rebase"
 alias gs="git status"
@@ -243,17 +237,5 @@ fix-git-completion() {
     )
 }
 
-export DEFAULT_COLOR=cyan
-export DEFAULT_MODEL=gpt-4
-_sgpt_zsh() {
-if [[ -n "$BUFFER" ]]; then
-    _sgpt_prev_cmd=$BUFFER
-    BUFFER+="⌛"
-    zle -I && zle redisplay
-    BUFFER=$(sgpt --shell <<< "$_sgpt_prev_cmd")
-    zle end-of-line
-fi
-}
-zle -N _sgpt_zsh
-bindkey '^h' _sgpt_zsh
 alias r="source ~/.zshrc"
+alias ec="\$EDITOR ~/.zshrc && source ~/.zshrc"

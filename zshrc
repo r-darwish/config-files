@@ -164,7 +164,7 @@ source "$plugins_dir/plugins-post.zsh"
 setopt AUTO_PUSHD
 setopt interactive_comments
 
-if type "atuin" >/dev/null; then
+if type "atuin" >/dev/null && test -z "$ATUIN_SESSION"; then
     eval "$(atuin init zsh)"
 fi
 
@@ -256,3 +256,4 @@ fi
 }
 zle -N _sgpt_zsh
 bindkey '^h' _sgpt_zsh
+alias r="source ~/.zshrc"

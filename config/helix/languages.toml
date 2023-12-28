@@ -1,4 +1,12 @@
 [[language]]
+name = "env"
+file-types = ["env"]
+
+[[language]]
+name = "ini"
+file-types = ["conf", "ini", ".okta_aws_login_config", { suffix = ".aws/config" }, { suffix = ".aws/credentials" }]
+
+[[language]]
 name = "bash"
 indent = { tab-width = 4, unit = "    " }
 formatter = { command = 'shfmt', args = ["-i", "4"] }
@@ -9,5 +17,5 @@ name = "python"
 language-servers = [
   { name = "pyright" },
 ]
-formatter = { command = "black", args = ["--quiet", "-"] }
+formatter = { command = "ruff", args = ["format", "-"] }
 auto-format = true

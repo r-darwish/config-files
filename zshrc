@@ -164,7 +164,7 @@ source "$plugins_dir/plugins-post.zsh"
 setopt AUTO_PUSHD
 setopt interactive_comments
 
-if type "atuin" >/dev/null && test -z "$ATUIN_SESSION"; then
+if type "atuin" >/dev/null; then
     eval "$(atuin init zsh)"
 fi
 
@@ -194,16 +194,6 @@ grhh() {
     gum confirm --default=false "Reset changes" && git reset --hard "${1:-HEAD}"
 }
 
-
-_atuin_up_search() {
-    _atuin_search --shell-up-key-binding --filter-mode session
-}
-
-_atuin_dir_search() {
-    _atuin_search --filter-mode directory
-}
-zle -N _atuin_dir_search_widget _atuin_dir_search
-bindkey '\er' _atuin_dir_search_widget
 
 checkout_wip() {
     local default_branch

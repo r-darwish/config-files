@@ -31,6 +31,12 @@ hidden = false
 [keys.normal]
 C-q = ":x!"
 C-r = ":reload-all"
+"}" = "goto_next_paragraph"
+"{" = "goto_prev_paragraph"
+
+[keys.select]
+"}" = "goto_next_paragraph"
+"{" = "goto_prev_paragraph"
 
 [keys.insert]
 C-q = ":x!"

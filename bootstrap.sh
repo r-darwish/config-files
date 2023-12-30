@@ -2,6 +2,7 @@
 
 set -e
 cd "$(dirname "${BASH_SOURCE[0]}")"
+source "common.zsh"
 
 mkdir -p ~/.config
 
@@ -11,22 +12,6 @@ if [[ "$(uname)" == "Linux" ]]; then
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
 fi
-
-link_config() {
-    local source target
-    source="$PWD/$1"
-    target="$HOME/.config/$(basename "$1")"
-
-    if link=$(readlink "$target"); then
-        if [[ "$link" == "$source" ]]; then
-            echo "Already linked $target"
-            return 0
-        fi
-    fi
-
-    rm -rf "$target"
-    ln -s "$source" "$target"
-}
 
 for c in config/*; do
     link_config "$c"
@@ -49,8 +34,7 @@ done
 if [[ -n "$BACKGROUND" ]]; then
     brew install starship atuin lsd
     echo "Running package installation in the background"
-    nohup brew bundle install > /tmp/brew.log 2>&1 &
+    nohup brew bundle install >/tmp/brew.log 2>&1 &
 else
     brew bundle install
 fi
-

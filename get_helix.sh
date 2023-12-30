@@ -5,7 +5,8 @@ set -e
 cd "$(dirname "${BASH_SOURCE[0]}")"
 source "common.zsh"
 
-brew install kitty font-comic-shanns-mono-nerd-font helix lazygit
+sudo add-apt-repository ppa:maveonair/helix-editor
+sudo apt update
+sudo apt install helix
 
-link_config config/kitty
 link_config config/helix

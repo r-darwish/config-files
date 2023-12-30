@@ -35,10 +35,15 @@ _es_completion() {
     compadd "${paths[@]}"
 }
 
+e() {
+    title "$(basename "$1")"
+    $EDITOR "$1"
+}
+
 ef() {
     local f
     f=$(whence -v "$1"| sed 's,.*is a shell function from ,,') || return 1
-    $EDITOR "$f"
+    e "$f"
     source "$f"
 }
 
@@ -59,7 +64,7 @@ alias automerge="gh pr create -f && gh pr merge -s --auto"
 compctl -K _es_completion es
 compdef _es_completion es
 
-alias e=edit-in-kitty
+alias ek=edit-in-kitty
 
 if type "starship" >/dev/null; then
     eval "$(starship init zsh)"
@@ -79,10 +84,19 @@ alias copy="kitten clipboard"
 alias paste="kitten clipboard --get-clipboard"
 alias fqi="fq -i ."
 
+pe () {
+    title "$(basename "$1")"
+    poetry run -C "$1" "$EDITOR" "$1"
+}
+
+title() {
+    echo -ne "\033]0;$1\007"
+}
+
 s() {
     (
         # shellcheck disable=SC2145
-        echo -ne "\033]0;📡 ${@[-1]}\007"
+        title "${@[-1]}"
         if type "kitty" >/dev/null; then
             exec kitty +kitten ssh "$@"
         fi

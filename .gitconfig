@@ -6,6 +6,7 @@
     sparseCheckout = true
     untrackedCache = true
     pager = delta
+    excludesfile = ~/.gitignore
 
 [commit]
     verbose = true

@@ -171,8 +171,14 @@ edit-or-last-command-line() {
 zle -N edit-or-last-command-line
 bindkey '^v' edit-or-last-command-line
 
-# shellcheck disable=SC2034
-[ -d $linuxbrew_dir ] && FZF_BASE=$linuxbrew_dir/opt/fzf
+if [[ -d $linuxbrew_dir ]]; then
+    FZF_BASE=$linuxbrew_dir/opt/fzf
+else
+    FZF_BASE=/usr/local/opt/fzf
+fi
+
+[[ -f "$FZF_BASE/shell/key-bindings.zsh" ]] && source "$FZF_BASE/shell/key-bindings.zsh"
+
 # shellcheck source=zsh/plugins-post.zsh
 source "$plugins_dir/plugins-post.zsh"
 setopt AUTO_PUSHD
@@ -243,3 +249,9 @@ fix-git-completion() {
 
 alias r="source ~/.zshrc"
 alias ec="\$EDITOR ~/.zshrc && source ~/.zshrc"
+
+lgf () {
+    local git_dir
+    git_dir="$(cd "$(dirname "$1")" && git rev-parse --show-toplevel)"
+    lg --filter "$(readlink -f "$1")" -p "$git_dir" || return 1
+}

@@ -65,15 +65,6 @@ compctl -K _es_completion es
 compdef _es_completion es
 
 alias ek=edit-in-kitty
-
-if type "starship" >/dev/null; then
-    eval "$(starship init zsh)"
-fi
-
-if type "zoxide" >/dev/null; then
-    eval "$(zoxide init zsh)"
-fi
-
 alias ks=kubectx
 alias lg=lazygit
 alias st="starship toggle"
@@ -184,10 +175,6 @@ source "$plugins_dir/plugins-post.zsh"
 setopt AUTO_PUSHD
 setopt interactive_comments
 
-if type "atuin" >/dev/null; then
-    eval "$(atuin init zsh)"
-fi
-
 if type "lsd" >/dev/null; then
     alias ls="lsd --hyperlink=auto"
 fi
@@ -255,3 +242,6 @@ lgf () {
     git_dir="$(cd "$(dirname "$1")" && git rev-parse --show-toplevel)"
     lg --filter "$(readlink -f "$1")" -p "$git_dir" || return 1
 }
+
+repo_dir="$(dirname "$(readlink -f ~/.zshrc)")"
+source "$repo_dir/gen.zsh"

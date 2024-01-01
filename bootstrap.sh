@@ -38,3 +38,18 @@ if [[ -n "$BACKGROUND" ]]; then
 else
     brew bundle install
 fi
+
+gen_zsh="gen.zsh"
+echo "" >"$gen_zsh"
+
+if type "starship" >/dev/null; then
+    starship init zsh >>"$gen_zsh"
+fi
+
+if type "zoxide" >/dev/null; then
+    zoxide init zsh >>"$gen_zsh"
+fi
+
+if type "atuin" >/dev/null; then
+    atuin init zsh >>"$gen_zsh"
+fi

@@ -12,10 +12,14 @@ indent = { tab-width = 4, unit = "    " }
 formatter = { command = 'shfmt', args = ["-i", "4"] }
 auto-format = true
 
+[language-server.ruff]
+command = "ruff-lsp"
+
 [[language]]
 name = "python"
 language-servers = [
   { name = "pyright" },
+  { name = "ruff"}
 ]
 formatter = { command = "ruff", args = ["format", "-"] }
 auto-format = true

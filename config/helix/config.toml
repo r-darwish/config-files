@@ -33,10 +33,14 @@ C-q = ":x!"
 C-r = ":reload-all"
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
+"C-n" = ["select_mode", "search_selection", "extend_search_next"]
+"C-p" = ["select_mode", "search_selection", "extend_search_prev"]
 
 [keys.select]
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
+"C-n" = ["search_selection", "extend_search_next"]
+"C-p" = ["search_selection", "extend_search_prev"]
 
 [keys.insert]
 C-q = ":x!"

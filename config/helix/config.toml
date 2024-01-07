@@ -29,12 +29,14 @@ mode.select = "SELECT"
 hidden = false
 
 [keys.normal]
-C-q = ":x!"
+C-q = ":x"
 C-r = ":reload-all"
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
 "C-n" = ["select_mode", "search_selection", "extend_search_next"]
 "C-p" = ["select_mode", "search_selection", "extend_search_prev"]
+"C-," = [":config-open"]
+"A-w" = [":buffer-close"]
 
 [keys.select]
 "}" = "goto_next_paragraph"
@@ -43,4 +45,4 @@ C-r = ":reload-all"
 "C-p" = ["search_selection", "extend_search_prev"]
 
 [keys.insert]
-C-q = ":x!"
+C-q = ":x"

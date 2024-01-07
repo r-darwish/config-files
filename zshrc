@@ -40,6 +40,13 @@ e() {
     $EDITOR "$1"
 }
 
+ed() {
+    local dir
+    dir=$(zoxide query --interactive -- "$@") || return 1
+    title "$(basename "$dir")"
+    $EDITOR "$dir"
+}
+
 ef() {
     local f
     f=$(whence -v "$1"| sed 's,.*is a shell function from ,,') || return 1

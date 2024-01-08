@@ -46,3 +46,4 @@ C-r = ":reload-all"
 
 [keys.insert]
 C-q = ":x"
+C-z = "undo"

@@ -2,3 +2,4 @@ Aloxaf/fzf-tab
 
 zsh-users/zsh-autosuggestions
 kevinywlui/zlong_alert.zsh
+Freed-Wu/fzf-tab-source

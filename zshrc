@@ -61,7 +61,7 @@ ed() {
 
 ef() {
     local f
-    f=$(whence -v "$dir"| sed 's,.*is a shell function from ,,') || return 1
+    f=$(whence -v "$1"| sed 's,.*is a shell function from ,,') || return 1
     e "$f"
     source "$f"
 }
@@ -95,12 +95,12 @@ alias paste="kitten clipboard --get-clipboard"
 alias fqi="fq -i ."
 
 pe () {
-    title "$(basename "$dir")"
-    poetry run -C "$dir" "$EDITOR" "$dir"
+    title "$(basename "$1")"
+    poetry run -C "$1" "$EDITOR" "$1"
 }
 
 title() {
-    echo -ne "\033]0;$dir\007"
+    echo -ne "\033]0;$1\007"
 }
 
 s() {
@@ -116,7 +116,7 @@ s() {
 }
 
 bi() {
-    local criteria=$dir
+    local criteria=$1
     if [[ -z "$criteria" ]]; then
         echo "No criteria provided" >&2
         return 1
@@ -126,11 +126,11 @@ bi() {
 }
 
 cdf() {
-    cd "$(dirname "$dir")" || return 1
+    cd "$(dirname "$1")" || return 1
 }
 
 gitroot() {
-    local dir=${dir:-.}
+    local dir=${1:-.}
     dir=$(readlink -f "$dir") || return 1
     [[ -f "$dir" ]] && dir=$(dirname "$dir")
 
@@ -138,11 +138,11 @@ gitroot() {
 }
 
 rcode() {
-    code --remote "ssh-remote+$dir" "$2"
+    code --remote "ssh-remote+$1" "$2"
 }
 
 gitback() {
-    git rev-list -n 1 --before="$dir" HEAD
+    git rev-list -n 1 --before="$1" HEAD
 }
 
 targs() {
@@ -155,7 +155,7 @@ targs() {
 
 ntfy() {
     curl \
-        -H "Title: $dir" \
+        -H "Title: $1" \
         -d "$2" \
         "ntfy.sh/$NTFY_TOPIC" >/dev/null 2>/dev/null
 }
@@ -217,7 +217,7 @@ grhh() {
     repo_name=$(basename "$repo_name") || return 1
 
     printf "\nRepository is \033[0;31m%s\033[0m\n" "$repo_name"
-    gum confirm --default=false "Reset changes" && git reset --hard "${dir:-HEAD}"
+    gum confirm --default=false "Reset changes" && git reset --hard "${1:-HEAD}"
 }
 
 
@@ -229,7 +229,7 @@ checkout_wip() {
 alias wip=checkout_wip
 
 zj() {
-    zellij --layout compact attach -c "${dir:-main}"
+    zellij --layout compact attach -c "${1:-main}"
 }
 
 zl() {
@@ -258,8 +258,8 @@ alias ec="\$EDITOR ~/.zshrc && source ~/.zshrc"
 
 lgf () {
     local git_dir
-    git_dir="$(cd "$(dirname "$dir")" && git rev-parse --show-toplevel)"
-    lg --filter "$(readlink -f "$dir")" -p "$git_dir" || return 1
+    git_dir="$(cd "$(dirname "$1")" && git rev-parse --show-toplevel)"
+    lg --filter "$(readlink -f "$1")" -p "$git_dir" || return 1
 }
 
 repo_dir="$(dirname "$(readlink -f ~/.zshrc)")"

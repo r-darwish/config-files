@@ -9,7 +9,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     type upterm >/dev/null 2>&1 || brew install owenthereal/upterm/upterm
 fi
 
-if ! grep uptermd.upterm.dev ~/.ssh/known_hosts; then
+if ! grep uptermd.upterm.dev ~/.ssh/known_hosts > /dev/null; then
     echo "@cert-authority uptermd.upterm.dev ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiecex8Dq718eSe1CCLgLvDmI7AagvCtax7brPFWkh4" >> ~/.ssh/known_hosts
 fi
 

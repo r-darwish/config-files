@@ -1,4 +1,4 @@
-theme = "catppuccin_mocha"
+theme = "gruvbox"
 
 [editor]
 true-color = true
@@ -37,6 +37,7 @@ C-r = ":reload-all"
 "C-p" = ["select_mode", "search_selection", "extend_search_prev"]
 "C-," = [":config-open"]
 "A-w" = [":buffer-close"]
+"'" = "repeat_last_motion"
 
 [keys.select]
 "}" = "goto_next_paragraph"

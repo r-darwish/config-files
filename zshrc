@@ -59,13 +59,6 @@ ed() {
     e "$dir"
 }
 
-ef() {
-    local f
-    f=$(whence -v "$1"| sed 's,.*is a shell function from ,,') || return 1
-    e "$f"
-    source "$f"
-}
-
 git_checkout_default() {
     git checkout "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
 }
@@ -263,4 +256,5 @@ lgf () {
 }
 
 repo_dir="$(dirname "$(readlink -f ~/.zshrc)")"
+# shellcheck disable=SC1094
 source "$repo_dir/gen.zsh"

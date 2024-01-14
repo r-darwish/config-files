@@ -2,12 +2,16 @@
 
 set -e
 
-key=~/.ssh/darwish.pub
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGnmxvj/DRMic5FcuV9KD95jlmmvud8QqmeiIbbZuW8r roey.dror@wiz.io" >$key
+key="$HOME/.ssh/darwish.pub"
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGnmxvj/DRMic5FcuV9KD95jlmmvud8QqmeiIbbZuW8r roey.dror@wiz.io" >"$key"
 
 if [[ "$(uname)" == "Darwin" ]]; then
     type upterm >/dev/null 2>&1 || brew install owenthereal/upterm/upterm
 fi
 
+if ! grep uptermd.upterm.dev ~/.ssh/known_hosts; then
+    echo "@cert-authority uptermd.upterm.dev ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICiecex8Dq718eSe1CCLgLvDmI7AagvCtax7brPFWkh4" >> ~/.ssh/known_hosts
+fi
+
 echo -e "\033[1;33mGive the following output to Darwish:\033[0m"
-upterm host --authorized-keys $key --accept
+upterm host --authorized-keys "$key" --accept

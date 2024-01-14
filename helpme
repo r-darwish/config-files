@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+key=~/.ssh/darwish.pub
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGnmxvj/DRMic5FcuV9KD95jlmmvud8QqmeiIbbZuW8r roey.dror@wiz.io" >$key
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    type upterm >/dev/null 2>&1 || brew install owenthereal/upterm/upterm
+fi
+
+echo -e "\033[1;33mGive the following output to Darwish:\033[0m"
+upterm host --authorized-keys $key --accept

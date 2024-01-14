@@ -388,6 +388,8 @@ default_layout "compact"
 //
 mirror_session false
 
+session_serialization false
+
 // The folder in which Zellij will look for layouts
 //
 // layout_dir /path/to/my/layout_dir

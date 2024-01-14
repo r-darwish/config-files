@@ -10,7 +10,7 @@ file-types = ["conf", "ini", ".okta_aws_login_config", { suffix = ".aws/config" 
 name = "bash"
 indent = { tab-width = 4, unit = "    " }
 formatter = { command = 'shfmt', args = ["-i", "4"] }
-auto-format = true
+auto-format = false
 
 [language-server.ruff]
 command = "ruff-lsp"

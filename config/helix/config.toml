@@ -1,4 +1,4 @@
-theme = "gruvbox"
+theme = "catppuccin_mocha"
 
 [editor]
 true-color = true
@@ -6,7 +6,13 @@ line-number = "relative"
 color-modes = true
 cursorline = true
 auto-save = true
-bufferline = "always"
+bufferline = "multiple"
+idle-timeout = 0
+
+[editor.indent-guides]
+render = true
+character = "╎"
+skip-levels = 1
 
 [editor.soft-wrap]
 enable = true

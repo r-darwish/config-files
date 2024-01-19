@@ -35,8 +35,7 @@ mode.select = "SELECT"
 hidden = false
 
 [keys.normal]
-C-q = ":x"
-C-r = ":reload-all"
+C-x = ":x"
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
 "C-n" = ["select_mode", "search_selection", "extend_search_next"]
@@ -52,5 +51,11 @@ C-r = ":reload-all"
 "C-p" = ["search_selection", "extend_search_prev"]
 
 [keys.insert]
-C-q = ":x"
+C-x = ":x"
 C-z = "undo"
+C-s = [":w", "normal_mode"]
+
+[keys.normal.z]
+"r" = ":reload"
+"R" = ":reload-all"
+"c" = ":config-reload"

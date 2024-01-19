@@ -246,6 +246,10 @@ fix-git-completion() {
     )
 }
 
+load-env() {
+    export "$(grep -vE "^(#.*|\s*)$" "$1")"
+}
+
 alias r="source ~/.zshrc"
 alias ec="\$EDITOR ~/.zshrc && source ~/.zshrc"
 

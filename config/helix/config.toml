@@ -35,7 +35,7 @@ mode.select = "SELECT"
 hidden = false
 
 [keys.normal]
-C-x = ":x"
+C-q = ":x"
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
 "C-n" = ["select_mode", "search_selection", "extend_search_next"]
@@ -43,6 +43,8 @@ C-x = ":x"
 "C-," = [":config-open"]
 "A-w" = [":buffer-close"]
 "'" = "repeat_last_motion"
+"A-h" = "move_parent_node_start"
+"A-l" = "move_parent_node_end"
 
 [keys.select]
 "}" = "goto_next_paragraph"
@@ -51,7 +53,7 @@ C-x = ":x"
 "C-p" = ["search_selection", "extend_search_prev"]
 
 [keys.insert]
-C-x = ":x"
+C-q = ":x"
 C-z = "undo"
 C-s = [":w", "normal_mode"]
 

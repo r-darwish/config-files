@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+import subprocess
+
+
+def main():
+    env = {}
+    with open(sys.argv[1], "r") as f:
+        for line in f.readlines():
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+
+            key, value = line.split("=", 1)
+
+            if value[0] == '"':
+                value = value[1:-1]
+
+            env[key] = value
+
+    if len(sys.argv) > 2:
+        cmd = sys.argv[2:]
+    else:
+        cmd = [os.environ["SHELL"], "-i"]
+
+    proc = subprocess.call(cmd, env=os.environ | env)
+    sys.exit(proc)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass

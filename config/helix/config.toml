@@ -56,6 +56,9 @@ C-q = ":x"
 C-q = ":x"
 C-z = "undo"
 C-s = [":w", "normal_mode"]
+C-e = "goto_line_end"
+C-a = "goto_first_nonwhitespace"
+A-d = "delete_word_forward"
 
 [keys.normal.z]
 "r" = ":reload"

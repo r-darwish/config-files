@@ -15,7 +15,7 @@ def main():
 
             key, value = line.split("=", 1)
 
-            if value[0] == '"':
+            if value and value[0] == '"':
                 value = value[1:-1]
 
             env[key] = value

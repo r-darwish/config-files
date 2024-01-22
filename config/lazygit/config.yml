@@ -1,9 +1,14 @@
 customCommands:
+  - key: 'j'
+    command: "get-tickets {{.SelectedFile.Name}}"
+    context: 'files'
+    description: 'Compare (difftool) with local copy'
+    subprocess: true
   - key: 'f'
     command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
     context: 'commitFiles'
     description: 'Compare (difftool) with local copy'
-  - key: "<c-r>"
+  - key: "<c-p>"
     command: "gh pr create --fill --web"
     context: "global"
     loadingText: "Creating pull request on GitHub"

@@ -1,8 +1,13 @@
 customCommands:
+  - key: 'J'
+    command: "get-tickets"
+    context: 'files'
+    description: 'Show my tickets'
+    subprocess: true
   - key: 'j'
     command: "get-tickets {{.SelectedFile.Name}}"
     context: 'files'
-    description: 'Compare (difftool) with local copy'
+    description: 'Show file tickets'
     subprocess: true
   - key: 'f'
     command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"

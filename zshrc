@@ -72,6 +72,7 @@ alias gcd=git_checkout_default
 alias gcdu="gcd && gpr"
 alias gmd=git_merge_default
 alias automerge="gh pr create -f && gh pr merge -s --auto"
+alias yt-mp3="yt-dlp -x --audio-format mp3"
 
 compctl -K _es_completion es
 compdef _es_completion es

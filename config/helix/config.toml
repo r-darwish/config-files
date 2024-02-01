@@ -65,3 +65,8 @@ C-d = "delete_char_forward"
 "r" = ":reload"
 "R" = ":reload-all"
 "c" = ":config-reload"
+
+[keys.normal.C-w]
+"o" = "rotate_view"
+"C-o" = "rotate_view"
+"c" = "wonly"

@@ -5,8 +5,19 @@
 [core]
     sparseCheckout = true
     untrackedCache = true
-    pager = delta
     excludesfile = ~/.gitignore
+
+[diff]
+    tool = difftastic
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+    difftool = true
 
 [commit]
     verbose = true

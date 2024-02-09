@@ -260,6 +260,10 @@ lgf () {
     lg --filter "$(readlink -f "$1")" -p "$git_dir" || return 1
 }
 
+mcd () {
+    mkdir -p "$1" && cd "$1"
+}
+
 repo_dir="$(dirname "$(readlink -f ~/.zshrc)")"
 # shellcheck disable=SC1094
 source "$repo_dir/gen.zsh"

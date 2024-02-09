@@ -1,4 +1,4 @@
-theme = "catppuccin_mocha"
+theme = "gruvbox_nobg"
 
 [editor]
 true-color = true
@@ -45,12 +45,14 @@ C-q = ":x"
 "'" = "repeat_last_motion"
 "A-h" = "move_parent_node_start"
 "A-l" = "move_parent_node_end"
+"Y" = "yank_joined"
 
 [keys.select]
 "}" = "goto_next_paragraph"
 "{" = "goto_prev_paragraph"
 "C-n" = ["search_selection", "extend_search_next"]
 "C-p" = ["search_selection", "extend_search_prev"]
+"Y" = "yank_joined"
 
 [keys.insert]
 C-q = ":x"

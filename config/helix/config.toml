@@ -46,6 +46,7 @@ C-q = ":x"
 "A-h" = "move_parent_node_start"
 "A-l" = "move_parent_node_end"
 "Y" = "yank_joined"
+"C-b" = [":pipe xargs gh browse"]
 
 [keys.select]
 "}" = "goto_next_paragraph"

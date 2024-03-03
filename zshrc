@@ -59,6 +59,12 @@ ed() {
     e "$dir"
 }
 
+yd() {
+    local dir
+    dir=$(zoxide query --interactive -- "$@") || return 1
+    yazi "$dir"
+}
+
 git_checkout_default() {
     git checkout "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
 }

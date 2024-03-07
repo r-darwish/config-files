@@ -8,7 +8,7 @@ file-types = ["conf", "ini", ".okta_aws_login_config", { suffix = ".aws/config" 
 
 [[language]]
 name = "gotmpl"
-file-types = ["tpl", "tmpl"]
+file-types = ["tpl", "tmpl", "gotmpl"]
 
 [[language]]
 name = "bash"

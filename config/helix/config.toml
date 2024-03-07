@@ -47,6 +47,8 @@ C-q = ":x"
 "A-l" = "move_parent_node_end"
 "Y" = "yank_joined"
 "C-b" = [":pipe xargs gh browse"]
+"pageup" = "half_page_up"
+"pagedown" = "half_page_down"
 
 [keys.select]
 "}" = "goto_next_paragraph"

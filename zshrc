@@ -44,13 +44,17 @@ e() {
         cd "$dir"
         [[ -f "$dir/go.mod" ]] && go mod tidy
         if [[ -f "$dir/pyproject.toml" ]]; then
-            poetry run "$EDITOR" "$dir"
+            PYTHONPATH="$(realpath "$dir")" poetry run "$EDITOR" "$dir"
             return $?
         fi
     fi
 
     $EDITOR "$dir"
     return $?
+}
+
+en() {
+    kitty @launch "$EDITOR" "$(realpath "$1")"
 }
 
 ed() {

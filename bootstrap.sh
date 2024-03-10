@@ -7,7 +7,7 @@ source "common.zsh"
 mkdir -p ~/.config
 
 if [[ "$(uname)" == "Linux" ]]; then
-    if ! command -v brew &>/dev/null; then
+    if [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
         curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
@@ -32,7 +32,7 @@ for c in zsh/*.txt; do
     antidote bundle <"$c" >"$zsh_file" || true
 done
 if [[ -n "$BACKGROUND" ]]; then
-    brew install starship atuin lsd
+    brew install starship atuin lsd || true
     echo "Running package installation in the background"
     nohup brew bundle install >/tmp/brew.log 2>&1 &
 else

@@ -35,6 +35,10 @@ _es_completion() {
     compadd "${paths[@]}"
 }
 
+dark() {
+    osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
+}
+
 e() {
     local dir
     dir=$(readlink -f "$1")

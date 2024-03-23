@@ -53,3 +53,7 @@ fi
 if type "atuin" >/dev/null; then
     atuin init zsh >>"$gen_zsh"
 fi
+
+if type "fzf" >/dev/null; then
+    fzf --zsh >>"$gen_zsh"
+fi

@@ -189,14 +189,6 @@ edit-or-last-command-line() {
 zle -N edit-or-last-command-line
 bindkey '^v' edit-or-last-command-line
 
-if [[ -d $linuxbrew_dir ]]; then
-    FZF_BASE=$linuxbrew_dir/opt/fzf
-else
-    FZF_BASE=/usr/local/opt/fzf
-fi
-
-[[ -f "$FZF_BASE/shell/key-bindings.zsh" ]] && source "$FZF_BASE/shell/key-bindings.zsh"
-
 # shellcheck source=zsh/plugins-post.zsh
 source "$plugins_dir/plugins-post.zsh"
 setopt AUTO_PUSHD

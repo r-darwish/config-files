@@ -4,7 +4,7 @@ file-types = ["env"]
 
 [[language]]
 name = "ini"
-file-types = ["conf", "ini", ".okta_aws_login_config", { suffix = ".aws/config" }, { suffix = ".aws/credentials" }]
+file-types = ["conf", "ini", ".okta_aws_login_config", { glob = ".aws/config" }, { glob = ".aws/credentials" }]
 
 [[language]]
 name = "gotmpl"

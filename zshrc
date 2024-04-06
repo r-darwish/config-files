@@ -120,7 +120,6 @@ s() {
         fi
         exec ssh "$@"
     )
-    tput reset
 }
 
 bi() {
@@ -198,7 +197,6 @@ if type "lsd" >/dev/null; then
     alias ls="lsd --hyperlink=auto"
 fi
 
-alias reset="tput reset"
 alias gbsn="git bisect run"
 alias gpr="git pull --rebase"
 alias gs="git status"

@@ -83,7 +83,7 @@ git_merge_default() {
 }
 
 alias gcd=git_checkout_default
-alias gcdu="gcd && gpr"
+alias gcdu="git stash && gcd && gpr && git stash pop"
 alias gmd=git_merge_default
 alias automerge="gh pr create -f && gh pr merge -s --auto"
 alias yt-mp3="yt-dlp -x --audio-format mp3"

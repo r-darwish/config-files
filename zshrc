@@ -74,7 +74,13 @@ yd() {
 }
 
 git_checkout_default() {
+    [[ -n "$(git diff --quiet --cached || git diff --quiet)" ]]
+    to_stash=$?
+
+    [[ $to_stash -eq 0 ]] && git stash
     git checkout "$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+    git pull --rebase
+    [[ $to_stash -eq 0 ]] && git pop
 }
 
 git_merge_default() {
@@ -83,7 +89,6 @@ git_merge_default() {
 }
 
 alias gcd=git_checkout_default
-alias gcdu="git stash && gcd && gpr && git stash pop"
 alias gmd=git_merge_default
 alias automerge="gh pr create -f && gh pr merge -s --auto"
 alias yt-mp3="yt-dlp -x --audio-format mp3"

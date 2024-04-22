@@ -261,6 +261,15 @@ load-env() {
     export "$(grep -vE "^(#.*|\s*)$" "$1")"
 }
 
+function yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 alias r="source ~/.zshrc"
 alias ec="\$EDITOR ~/.zshrc && source ~/.zshrc"
 

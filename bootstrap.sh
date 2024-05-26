@@ -9,8 +9,8 @@ mkdir -p ~/.config
 if [[ "$(uname)" == "Linux" ]]; then
     if [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
         curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 for c in config/*; do

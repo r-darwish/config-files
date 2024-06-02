@@ -32,7 +32,7 @@ for c in zsh/*.txt; do
     antidote bundle <"$c" >"$zsh_file" || true
 done
 if [[ -n "$BACKGROUND" ]]; then
-    brew install starship atuin lsd zellij yazi fzf zoxide helix || true
+    HOMEBREW_NO_INSTALL_CLEANUP=TRUE brew install starship atuin lsd zellij yazi fzf zoxide helix || true
     echo "Running package installation in the background"
     nohup brew bundle install >/tmp/brew.log 2>&1 &
 else

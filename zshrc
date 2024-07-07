@@ -294,8 +294,3 @@ mcd () {
 repo_dir="$(dirname "$(readlink -f ~/.zshrc)")"
 # shellcheck disable=SC1094
 source "$repo_dir/gen.zsh"
-
-ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
-ZSH_HIGHLIGHT_STYLES[command]='fg=cyan,bold'
-ZSH_HIGHLIGHT_STYLES[function]='fg=cyan,bold'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=cyan,bold'

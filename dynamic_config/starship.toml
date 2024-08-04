@@ -76,8 +76,8 @@ style = "red"
 
 [kubernetes]
 disabled = true
-format="[$symbol$context]($style) "
-style="yellow bold"
+format = "[$symbol$context]($style) "
+style = "yellow bold"
 
 [azure]
 disabled = true
@@ -87,3 +87,6 @@ disabled = false
 
 [git_status]
 disabled = true
+
+[character]
+vimcmd_symbol = '[V](bold green) '

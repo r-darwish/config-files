@@ -179,19 +179,8 @@ bindkey "^[[H" beginning-of-line  # Home key
 bindkey "^[[F" end-of-line        # End key
 export WORDCHARS=${WORDCHARS//[-_\/]/}
 
-autoload -U edit-command-line
-zle -N edit-command-line
-
-edit-or-last-command-line() {
-    if [ -z "$BUFFER" ]; then
-        zle up-line-or-history
-    fi
-    zle edit-command-line
-    zle accept-line
-}
-
-zle -N edit-or-last-command-line
-bindkey '^v' edit-or-last-command-line
+bindkey -M emacs "^v" vi-cmd-mode
+bindkey -M vicmd "^e" emacs-editing-mode
 
 # shellcheck source=zsh/plugins-post.zsh
 source "$plugins_dir/plugins-post.zsh"

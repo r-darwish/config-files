@@ -40,7 +40,7 @@ else
     brew bundle install
 fi
 
-gen_zsh="gen.zsh h"
+gen_zsh="gen.zsh"
 echo $gen_zsh
 echo "" >"$gen_zsh"
 

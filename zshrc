@@ -18,8 +18,8 @@ source "$plugins_dir/plugins.zsh"
 # shellcheck source=zsh/plugins-wiz.zsh
 [ -f "$wiz_plugins" ] && source "$wiz_plugins"
 
-if type "hx" >/dev/null; then
-    export EDITOR=hx
+if type "nvim" >/dev/null; then
+    export EDITOR=nvim
 else
     export EDITOR=vi
 fi

@@ -26,6 +26,7 @@ ln -s "$PWD/zshrc" ~/.zshrc
 git config --global include.path "$PWD/.gitconfig"
 
 test -d ~/.antidote || git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
+test -d ~/.config/nvim || git clone https://github.com/LazyVim/starter ~/.config/nvim
 source ~/.antidote/antidote.zsh
 for c in zsh/*.txt; do
     zsh_file="${c:r}.zsh"

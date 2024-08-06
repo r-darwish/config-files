@@ -180,7 +180,6 @@ bindkey "^[[F" end-of-line        # End key
 export WORDCHARS=${WORDCHARS//[-_\/]/}
 
 bindkey -M emacs "^v" vi-cmd-mode
-bindkey -M vicmd "^e" emacs-editing-mode
 
 # shellcheck source=zsh/plugins-post.zsh
 source "$plugins_dir/plugins-post.zsh"

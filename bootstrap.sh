@@ -7,6 +7,10 @@ source "common.zsh"
 mkdir -p ~/.config
 
 if [[ "$(uname)" == "Linux" ]]; then
+    if type -d "apt-get" >/dev/null; then
+        sudo apt-get update && sudo apt-get install -y build-essential
+    fi
+
     if [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
         curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
     fi

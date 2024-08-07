@@ -7,14 +7,14 @@ source "common.zsh"
 mkdir -p ~/.config
 
 if [[ "$(uname)" == "Linux" ]]; then
-    if type "apt-get" >/dev/null; then
+    if type "apt-get" >/dev/null && ! type "gcc" >/dev/null; then
         sudo apt-get update && sudo apt-get install -y build-essential
     fi
 
     if [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
         curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 for c in config/*; do

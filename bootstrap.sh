@@ -44,7 +44,6 @@ else
 fi
 
 gen_zsh="gen.zsh"
-echo $gen_zsh
 echo "" >"$gen_zsh"
 
 if type "starship" >/dev/null; then

@@ -20,7 +20,7 @@ return {
     },
     opts = {
       -- if you want to open yazi instead of netrw, see below for more info
-      open_for_directories = false,
+      open_for_directories = true,
 
       -- enable these if you are using the latest version of yazi
       use_ya_for_events_reading = true,

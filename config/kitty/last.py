@@ -12,7 +12,9 @@ class Namespace(argparse.Namespace):
 
 
 parser = argparse.ArgumentParser(description="Edit clipboard kitten")
-parser.add_argument("-c", "--copy", action="store_true", help="Start with an empty file")
+parser.add_argument(
+    "-c", "--copy", action="store_true", help="Start with an empty file"
+)
 
 
 def main(args: List[str]) -> None:
@@ -22,9 +24,11 @@ def main(args: List[str]) -> None:
         print("Text copied to clipboard")
         sleep(1)
     else:
-        subprocess.run(["/usr/local/bin/hx"], stdin=sys.stdin)
+        subprocess.run(["/usr/local/bin/nvim"], stdin=sys.stdin)
 
 
 @result_handler(type_of_input="output")
-def handle_result(args: List[str], stdin_data: str, target_window_id: int, boss: Boss) -> None:
+def handle_result(
+    args: List[str], stdin_data: str, target_window_id: int, boss: Boss
+) -> None:
     pass

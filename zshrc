@@ -232,10 +232,7 @@ zl() {
 # shellcheck disable=SC2034
 zlong_send_notifications=false zlong_duration=10 zlong_ignore_cmds="vim nvim hx ssh kitty"
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*:descriptions' format '[%d]'
-# shellcheck disable=SC2016
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -1 --color=always $realpath'
+zstyle ':completion:*' menu select
 
 fix-git-completion() {
     (

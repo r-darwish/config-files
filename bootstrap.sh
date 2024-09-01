@@ -58,6 +58,10 @@ if type "fzf" >/dev/null; then
     fzf --zsh >>"$gen_zsh"
 fi
 
-if type "atuin" >/dev/null; then
-    atuin init zsh >>"$gen_zsh"
+if type "carapace" >/dev/null; then
+    cat <<EOF >>"$gen_zsh"
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+EOF
+    carapace _carapace >>"$gen_zsh"
 fi

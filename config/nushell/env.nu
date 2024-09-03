@@ -73,9 +73,14 @@ def "git merge-default" [] {
     git merge (git default-branch)
 }
 
+def "gh automerge" [] {
+    gh pr create -f
+    gh pr merge -s --auto
+}
+
 alias gcd = git checkout-default
 alias gmd = git merge-default
-alias automerge = gh pr create -f; gh pr merge -s --auto
+alias gam = gh automerge
 alias yt-mp3 = yt-dlp -x --audio-format mp3
 alias lg = lazygit
 alias st = starship toggle

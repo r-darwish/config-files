@@ -891,3 +891,6 @@ $env.config = {
         }
     ]
 }
+
+source ([$nu.default-config-dir, my.nu] | path join)
+source ([$nu.home-path, '.gen.nu'] | path join)

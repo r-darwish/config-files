@@ -38,13 +38,14 @@ done
 if [[ -n "$BACKGROUND" ]]; then
     export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
     brew tap rsteube/homebrew-tap || true
-    brew install starship atuin lsd zellij yazi fzf zoxide neovim rsteube/tap/carapace || true
+    brew install nushell starship atuin lsd zellij yazi fzf zoxide neovim rsteube/tap/carapace || true
     echo "Running package installation in the background"
     nohup brew bundle install >/tmp/brew.log 2>&1 &
 else
     brew bundle install
 fi
 
+./bootstrap.nu
 gen_zsh="gen.zsh"
 echo "" >"$gen_zsh"
 

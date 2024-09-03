@@ -1,7 +1,11 @@
 link_config() {
-    local source target
+    local source target basename
     source="$PWD/$1"
-    target="$HOME/.config/$(basename "$1")"
+    basename=$(basename "$1")
+    target="$HOME/.config/$basename"
+    if [[ $basename == "nushell" && $(uname) == "Darwin" ]]; then
+      target="$HOME/Library/Application Support/$basename"
+    fi
 
     if link=$(readlink "$target"); then
         if [[ "$link" == "$source" ]]; then

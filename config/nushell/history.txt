@@ -1,0 +1,41 @@
+ls 
+ls
+z
+caparace
+echo $PATH
+echo $env.PATH
+carapace --help
+carapace nushell
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional<\n>mkdir ~/.cache/carapace<\n>carapace _carapace nushell | save --force ~/.cache/carapace/init.nu<\n><\n>#~/.config/nushell/config.nu<\n>source ~/.cache/carapace/init.nu
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional<\n>mkdir ~/.cache/carapace<\n>carapace _carapace nushell | save --force ~/.cache/carapace/init.nu<\n><\n>#~/.config/nushell/config.nu
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional<\n>mkdir ~/.cache/carapace<\n>carapace _carapace nushell | save --force ~/.cache/carapace/init.nu<\n><\n>#~/.config/nushell/config.nu<\n>source ~/.cache/carapace/init.nu
+ls
+cd src/work/wiz/
+ls
+open ~/bad.txt
+open ~/bad.txt | lines
+$env.config.edit_mode = "vim"
+$env.config.edit_mode = "vi"
+$nu.env
+$nu.env-path
+type
+type x
+./bootstrap.nu
+star
+./bootstrap.nu
+save x
+"" | save x
+./bootstrap.nu
+ls ~/.gen.nu
+cat ~/.gen.nu
+./bootstrap.nu
+fzf --nushell
+fzf --nu
+fzf
+fzf --help
+./bootstrap.nu
+$nu
+code ~/.gen.nu
+git checkout ls
+ls
+co

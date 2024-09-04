@@ -49,6 +49,10 @@ def "zellij attach-default" [session: string = "main"] {
     zellij --layout compact attach -c $session
 }
 
+def "brew interactive" [query: string] {
+    brew search $query | lines | where ($it | is-not-empty) | to text | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | lines | each { |p| brew install -q $p }
+}
+
 alias gcd = git checkout-default
 alias gmd = git merge-default
 alias gsb = git switch-branch
@@ -65,11 +69,13 @@ alias gd = git diff
 alias gf = git fetch
 alias gm = git merge
 alias gc = git commit
+alias gpr = git pull --rebase
 alias gco = git checkout
 alias ga = git add
 alias gp = git push
 alias zj = zellij attach-default
 alias zl = zellij list-sessions
+alias bi = brew interactive
 
 use std "path add"
 path add ([$nu.home-path, "wiz-sec", "oncall-scripts", "orchestrator"] | path join)

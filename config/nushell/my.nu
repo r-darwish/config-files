@@ -70,3 +70,6 @@ alias ga = git add
 alias gp = git push
 alias zj = zellij attach-default
 alias zl = zellij list-sessions
+
+use std "path add"
+path add ([$nu.home-path, "wiz-sec", "oncall-scripts", "orchestrator"] | path join)

@@ -45,6 +45,12 @@ else
     brew bundle install
 fi
 
+if [[ -d "$HOME/wiz-sec" ]]; then
+    if [[ ! -d "$HOME/wiz-sec/darwish" ]]; then
+        git clone https://github.com/wiz-sec/darwish "$HOME/wiz-sec/darwish"
+    fi
+fi
+
 ./bootstrap.nu
 gen_zsh="gen.zsh"
 echo "" >"$gen_zsh"

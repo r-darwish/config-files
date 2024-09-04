@@ -25,4 +25,9 @@ def main [] {
     mkdir ~/.cache/carapace
     carapace _carapace nushell | save -a $gen
   }
+
+  const wiz_config = ([$nu.home-path, "wiz-sec", "darwish"] | path join)
+  if ($wiz_config | path exists) {
+      $"source ([$wiz_config, "wiz.nu"] | path join)" | save -a $gen
+  }
 }

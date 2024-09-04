@@ -1,8 +1,7 @@
 #!/usr/bin/env nu
 
 def exists [path: string] -> bool {
-  let cmd = (type $path | complete)
-  return ($cmd.exit_code == 0)
+  return (which $path | is-not-empty)
 }
 
 def main [] {
@@ -36,6 +35,6 @@ def main [] {
   }
 
   if $env.SHELL != $nu.current-exe {
-    chsh -s $nu.current-exe
+    sudo chsh -s $nu.current-exe (whoami)
   }
 }

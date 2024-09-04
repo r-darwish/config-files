@@ -45,7 +45,11 @@ $env.NU_PLUGIN_DIRS = [
 # source ($nu.default-config-dir | path join 'custom.nu')
 
 use std "path add"
-let linuxbrew = "/home/linuxbrew/.linuxbrew/bin"
-if ($linuxbrew | path exists) {
-    path add $linuxbrew
+let brew =  match $nu.os-info.name {
+    "linux" => { "/home/linuxbrew/.linuxbrew/bin" }
+    "macos" => { "/opt/homebrew/bin" }
+}
+
+if ($brew | path exists) {
+    path add $brew
 }

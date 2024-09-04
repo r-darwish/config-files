@@ -39,8 +39,19 @@ def "git hard-reset" [target: string = "HEAD"] {
     git reset --hard $target
 }
 
+def "git switch-branch" [] {
+    let preview_command = "git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" " + (git default-branch) + "..{-1}"
+
+    git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview=($preview_command) --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
+}
+
+def "zellij attach-default" [session: string = "main"] {
+    zellij --layout compact attach -c $session
+}
+
 alias gcd = git checkout-default
 alias gmd = git merge-default
+alias gsb = git switch-branch
 alias gam = gh automerge
 alias ghr = git hard-reset
 alias yt-mp3 = yt-dlp -x --audio-format mp3
@@ -57,3 +68,5 @@ alias gc = git commit
 alias gco = git checkout
 alias ga = git add
 alias gp = git push
+alias zj = zellij attach-default
+alias zl = zellij list-sessions

@@ -49,12 +49,11 @@ let brew =  match $nu.os-info.name {
     "linux" => { "/home/linuxbrew/.linuxbrew/bin" }
     "macos" => { "/opt/homebrew/bin" }
 }
+let home_bin = ($nu.home-path | path join ".local" "bin")
+let local_bin = "/usr/local/bin"
 
-if ($brew | path exists) {
-    path add $brew
-}
-
-let localbin = ($nu.home-path | path join ".local" "bin")
-if ($localbin | path exists) {
-    path add $localbin
+for p in [$brew, $home_bin, $local_bin] {
+    if ($p | path exists) {
+        path add $p
+    }
 }

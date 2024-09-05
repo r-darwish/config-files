@@ -53,3 +53,8 @@ let brew =  match $nu.os-info.name {
 if ($brew | path exists) {
     path add $brew
 }
+
+let localbin = ($nu.home-path | path join ".local" "bin")
+if ($localbin | path exists) {
+    path add $localbin
+}

@@ -46,9 +46,8 @@ else
 fi
 
 if [[ -d "$HOME/wiz-sec" ]]; then
-    if [[ ! -d "$HOME/wiz-sec/darwish" ]]; then
-        git clone https://github.com/wiz-sec/darwish "$HOME/wiz-sec/darwish"
-    fi
+    [[ -d "$HOME/wiz-sec/darwish" ]] || git clone https://github.com/wiz-sec/darwish "$HOME/wiz-sec/darwish"
+    [[ -d "$HOME/wiz-sec/dotfiles" ]] || git clone https://github.com/wiz-sec/dotfiles "$HOME/wiz-sec/dotfiles"
 fi
 
 ./bootstrap.nu

@@ -76,6 +76,3 @@ alias gp = git push
 alias zj = zellij attach-default
 alias zl = zellij list-sessions
 alias bi = brew interactive
-
-use std "path add"
-path add ([$nu.home-path, "wiz-sec", "oncall-scripts", "orchestrator"] | path join)

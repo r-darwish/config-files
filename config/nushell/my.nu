@@ -25,5 +25,7 @@ alias gsb = git switch-branch
 alias gam = git auto-merge
 alias ghr = git hard-reset
 alias lg = lazygit
+alias gco = git checkout
+alias gb = git branch
 
 use docker

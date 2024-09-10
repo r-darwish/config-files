@@ -9,6 +9,12 @@ def "brew interactive" [query: string] {
     brew search $query | lines | where ($it | is-not-empty) | to text | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | lines | each { |p| brew install -q $p }
 }
 
+def "skopeo cp" [dest: string] {
+    for record in ($in | str replace "/" "!" | split column "!" registry image) {
+        skopeop copy -a $"docker://($record.registry)/($record.image)" $"docker://($dest)/($record.image)"
+    }
+}
+
 alias yt-mp3 = yt-dlp -x --audio-format mp3
 alias st = starship toggle
 alias tidy = go mod tidy
@@ -32,5 +38,6 @@ alias gpr = git pull --rebase
 alias ga = git add
 alias gst = git status
 alias gc = git commit
+alias gf = git fetch
 
 use docker

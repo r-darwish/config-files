@@ -27,5 +27,10 @@ alias ghr = git hard-reset
 alias lg = lazygit
 alias gco = git checkout
 alias gb = git branch
+alias gp = git push
+alias gpr = git pull --rebase
+alias ga = git add
+alias gst = git status
+alias gc = git commit
 
 use docker

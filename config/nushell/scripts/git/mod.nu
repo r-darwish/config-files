@@ -20,7 +20,7 @@ export def checkout-default [] {
 
 export def merge-default [] {
     git fetch
-    git merge (git default-branch)
+    git merge (default-branch)
 }
 
 export def auto-merge [] {

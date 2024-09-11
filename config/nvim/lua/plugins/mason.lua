@@ -8,6 +8,7 @@ return {
   { import = "lazyvim.plugins.extras.lang.docker" },
   { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.lang.yaml" },
+  { import = "lazyvim.plugins.extras.lang.markdown" },
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",

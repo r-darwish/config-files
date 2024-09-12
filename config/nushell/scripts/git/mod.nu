@@ -10,7 +10,7 @@ export def checkout-default [] {
         git stash
     }
 
-    git checkout (git default-branch)
+    git checkout (default-branch)
     git pull --rebase
 
     if $dirty {

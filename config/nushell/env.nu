@@ -57,3 +57,5 @@ for p in [$brew, $home_bin, $local_bin] {
         path add $p
     }
 }
+
+$env.EDITOR = "nvim"

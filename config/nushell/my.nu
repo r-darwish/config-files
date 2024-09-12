@@ -11,7 +11,7 @@ def "brew interactive" [query: string] {
 
 def "skopeo cp" [dest: string] {
     for record in ($in | str replace "/" "!" | split column "!" registry image) {
-        skopeop copy -a $"docker://($record.registry)/($record.image)" $"docker://($dest)/($record.image)"
+        skopeo copy -a $"docker://($record.registry)/($record.image)" $"docker://($dest)/($record.image)"
     }
 }
 

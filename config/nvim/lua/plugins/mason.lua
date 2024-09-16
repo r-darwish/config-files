@@ -11,6 +11,14 @@ return {
   { import = "lazyvim.plugins.extras.lang.markdown" },
   -- add any tools you want to have installed below
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = {
+        enabled = false
+      }
+    }
+  },
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {

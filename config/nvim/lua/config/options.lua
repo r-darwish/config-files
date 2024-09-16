@@ -4,3 +4,4 @@
 vim.opt.autochdir = true
 vim.opt.gdefault = true
 vim.opt.wrap = true
+vim.opt.formatoptions:remove({ 'r', 'o' })

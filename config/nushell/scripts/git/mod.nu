@@ -41,3 +41,11 @@ export def switch-branch [] {
 
     git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview=($preview_command) --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
 }
+
+export def branches [] {
+    git branch -vv | parse -r '^(?<checked_out>\* |  )(?<name>\S+)\s+(?<hash>\w+) (?:\[(?<remote>[^:]+)(?:: (?<remote_status>.*))?\] )?(?<message>.*)$' | update checked_out { str trim | is-not-empty }
+}
+
+export def gc-branches [] {
+    branches | where remote_status == 'gone' | each { git branch -D $in.name }
+}

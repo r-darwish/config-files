@@ -145,6 +145,8 @@ let light_theme = {
 #     carapace $spans.0 nushell ...$spans | from json
 # }
 
+mut _last_execution = date now
+mut _executed_command = false
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
     display_errors: {
@@ -282,8 +284,28 @@ $env.config = {
     }
 
     hooks: {
-        pre_prompt: [{ null }] # run before the prompt is shown
-        pre_execution: [{ null }] # run before the repl input is run
+        pre_prompt: [{
+            let last_execution = $env._last_execution?
+            if $last_execution == null {
+                return
+            }
+
+            let command = $env._last_command
+            if $command =~ '^(ssh|nvim|vim|htop|o10r|rde.py|k9s)' {
+                return
+            }
+
+            let duration = (date now) - $last_execution;
+            if $duration < 5sec {
+                return
+            }
+
+            print "\a"
+        }] # run before the prompt is shown
+        pre_execution: [{ 
+            $env._last_execution = date now 
+            $env._last_command = commandline
+        }] # run before the repl input is run
         env_change: {
             PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
         }

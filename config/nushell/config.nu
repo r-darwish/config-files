@@ -147,6 +147,10 @@ let light_theme = {
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
+    display_errors: {
+        exit_code: false
+        termination_signal: false
+    }
     show_banner: false # true or false to enable or disable the welcome banner at startup
 
     ls: {

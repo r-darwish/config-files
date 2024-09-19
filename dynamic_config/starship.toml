@@ -69,6 +69,8 @@ $status\
 $shell\
 $character"""
 
+add_newline = false
+
 [gcloud]
 disabled = true
 format = 'on [$symbol$account(@$domain)(/$project)(\($region\))]($style) '

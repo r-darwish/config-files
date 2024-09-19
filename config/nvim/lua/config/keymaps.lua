@@ -4,5 +4,5 @@
 
 local map = vim.keymap.set
 
-map("n", "<C-x>", ":%s/\\v")
-map("x", "<C-x>", ":s/\\v")
+map("n", "<C-f>", ":%s/\\v")
+map("x", "<C-f>", ":s/\\v")

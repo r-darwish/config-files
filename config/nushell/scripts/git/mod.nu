@@ -37,7 +37,7 @@ export def hard-reset [target: string = "HEAD"] {
 }
 
 export def switch-branch [] {
-    let preview_command = "git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" " + (git default-branch) + "..{-1}"
+    let preview_command = "git log --color --graph --abbrev-commit --pretty=format:\"%C(auto)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" " + (default-branch) + "..{-1}"
 
     git for-each-ref --sort="-authordate:iso8601" --format="[%(authordate:relative)] %(refname:short)" refs/heads | fzf --height 40% --reverse --nth=-1 --preview=($preview_command) --bind "enter:become(git switch {-1})" --prompt "Switch branch: "
 }

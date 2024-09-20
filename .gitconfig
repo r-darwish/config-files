@@ -43,11 +43,6 @@
 [merge]
     conflictstyle = diff3
 
+hi
 [diff]
     colorMoved = default
-
-[color "diff"]
-  new = cyan
-[color "status"]
-  added = yellow
-  changed = red

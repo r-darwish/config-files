@@ -36,6 +36,7 @@ alias kssh = kitty +kitten ssh
 
 use git
 alias gcd = git checkout-default
+alias gm = git merge
 alias gmd = git merge-default
 alias gsb = git switch-branch
 alias gam = git auto-merge

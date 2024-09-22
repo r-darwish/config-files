@@ -16,6 +16,7 @@ return {
     "scottmckendry/cyberdream.nvim",
     opts = {
       transparent = true,
+      borderless_telescope = false,
     },
   },
   {

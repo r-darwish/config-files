@@ -32,6 +32,7 @@ alias paste = kitten clipboard --get-clipboard
 alias zj = zellij attach-default
 alias zl = zellij list-sessions
 alias bi = brew interactive
+alias kssh = kitty +kitten ssh
 
 use git
 alias gcd = git checkout-default

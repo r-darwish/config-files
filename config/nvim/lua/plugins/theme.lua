@@ -14,15 +14,27 @@ return {
   },
   {
     "scottmckendry/cyberdream.nvim",
+    enabled = false,
     opts = {
       transparent = true,
       borderless_telescope = false,
     },
   },
   {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      variant = "moon",
+      dark_variant = "moon",
+      styles = {
+        transparency = true,
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberdream",
+      colorscheme = "rose-pine",
     },
   },
 }

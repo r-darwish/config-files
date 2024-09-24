@@ -6,3 +6,5 @@ local map = vim.keymap.set
 
 map("n", "<C-f>", ":%s/\\v")
 map("x", "<C-f>", ":s/\\v")
+map({ "n", "x" }, "gh", "^")
+map({ "n", "x" }, "gl", "$")

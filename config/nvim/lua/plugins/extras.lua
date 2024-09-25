@@ -8,6 +8,7 @@ return {
   { import = "lazyvim.plugins.extras.editor.illuminate" },
   { import = "lazyvim.plugins.extras.editor.navic" },
   { import = "lazyvim.plugins.extras.editor.overseer" },
+  { import = "lazyvim.plugins.extras.editor.refactoring" },
   { import = "lazyvim.plugins.extras.formatting.prettier" },
   { import = "lazyvim.plugins.extras.util.octo" },
   { import = "lazyvim.plugins.extras.dap.core" },

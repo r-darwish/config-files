@@ -35,6 +35,7 @@ alias bi = brew interactive
 alias kssh = kitty +kitten ssh
 
 use git
+use kubectl
 alias gcd = git checkout-default
 alias gm = git merge
 alias gmd = git merge-default

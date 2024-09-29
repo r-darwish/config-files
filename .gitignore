@@ -3,3 +3,4 @@ gen.zsh
 config/lazygit/state.yml
 history.txt
 plugin.msgpackz
+lazyvim.json

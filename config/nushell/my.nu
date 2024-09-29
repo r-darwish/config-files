@@ -24,6 +24,14 @@ def "from env" []: string -> record {
     | transpose -r -d
 }
 
+def "edit dir" [query?: string] {
+    let dir = zoxide query -i ($query | default "") | str trim
+    cd $dir
+    nvim
+}
+
+alias v = nvim
+alias vd = edit dir
 alias yt-mp3 = yt-dlp -x --audio-format mp3
 alias st = starship toggle
 alias tidy = go mod tidy

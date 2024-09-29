@@ -30,6 +30,11 @@ def "edit dir" [query?: string] {
     nvim
 }
 
+def "edit exec" [exec: string] {
+    let path = which $exec | get 0.path
+    nvim $path
+}
+
 alias v = nvim
 alias vd = edit dir
 alias yt-mp3 = yt-dlp -x --audio-format mp3

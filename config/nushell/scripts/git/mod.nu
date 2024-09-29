@@ -31,9 +31,15 @@ export def auto-merge [] {
 export def hard-reset [target: string = "HEAD"] {
     git status -uno -s
     let repo_name: string = (git rev-parse --show-toplevel | path basename)
-    print $"Repository is (ansi red)($repo_name)(ansi reset)"
+    print $"Repository is (ansi red)($repo_name)(ansi reset). Reset to (ansi red)($target)(ansi reset)?"
     gum confirm --default=false "Reset changes"
     git reset --hard $target
+}
+
+export def reset-default [] {
+    let default_branch = default-branch
+    git fetch
+    hard-reset $"origin/($default_branch)"
 }
 
 export def switch-branch [] {

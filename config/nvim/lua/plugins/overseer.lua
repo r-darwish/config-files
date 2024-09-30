@@ -3,6 +3,7 @@ return {
     "stevearc/overseer.nvim",
     opts = {
       strategy = "toggleterm",
+      templates = {"builtin", "custom.get_tickets"},
     },
     keys = {
       {

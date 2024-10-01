@@ -22,6 +22,7 @@ return {
   },
   {
     "rose-pine/neovim",
+    enabled = false,
     name = "rose-pine",
     opts = {
       variant = "moon",
@@ -34,7 +35,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      colorscheme = "tokyonight",
     },
   },
 }

@@ -27,3 +27,13 @@ map({ "n", "x" }, "<leader>fy", function()
 end, { desc = "Copy absolute path" })
 
 map({ "n", "x" }, "<c-z>", ":tabedit %<CR>", { desc = "Break the current buffer to a new tab" })
+
+map({ "n", "x" }, "<leader>gt", function()
+  local file = vim.fn.expand("%:p")
+  LazyVim.Terminal({ "get-tickets", file })
+end, { desc = "Get tickets (file)" })
+
+map({ "n", "x" }, "<leader>gT", function()
+  local file = vim.fn.expand("%:p:h")
+  LazyVim.Terminal({ "get-tickets", file })
+end, { desc = "Get tickets (directory)" })

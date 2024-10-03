@@ -7,7 +7,16 @@ from kitty.boss import Boss  # type: ignore
 
 
 def main(args: List[str]) -> None:
-    subprocess.run([os.environ.get("EDITOR", "/usr/local/bin/nvim")], stdin=sys.stdin)
+    subprocess.run(
+        [
+            os.environ.get(
+                "EDITOR",
+                "/usr/local/bin/nvim",
+            ),
+            "+set bt=nofile",
+        ],
+        stdin=sys.stdin,
+    )
 
 
 @result_handler(type_of_input="history")

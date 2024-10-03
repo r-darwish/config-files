@@ -11,3 +11,27 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.shiftwidth = 2
   end,
 })
+
+vim.api.nvim_create_autocmd({
+  "BufNewFile",
+  "BufRead",
+}, {
+  pattern = "*.yaml,*.yml",
+  callback = function()
+    if vim.fn.search("{{.\\+}}", "nw") ~= 0 then
+      local buf = vim.api.nvim_get_current_buf()
+      vim.api.nvim_set_option_value("filetype", "helm", { buf = buf })
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({
+  "BufNewFile",
+  "BufRead",
+}, {
+  pattern = ".okta_aws_login_config",
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_set_option_value("filetype", "confini", { buf = buf })
+  end,
+})

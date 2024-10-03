@@ -27,15 +27,6 @@ require("lazy").setup({
     },
     {
       "rcarriga/nvim-dap-ui",
-      keys = {
-        {
-          "<leader>dt",
-          function()
-            require("dap-go").debug_test()
-          end,
-          desc = "Debug go test",
-        },
-      },
       config = function(_, opts)
         local dap = require("dap")
         local dapui = require("dapui")

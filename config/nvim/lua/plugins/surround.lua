@@ -1,4 +1,5 @@
 return {
+  { import = "lazyvim.plugins.extras.coding.mini-surround" },
   {
     "echasnovski/mini.surround",
     opts = {
@@ -10,17 +11,6 @@ return {
         highlight = ";h",
         replace = ";r",
         update_n_lines = ";n",
-      },
-    },
-  },
-
-  {
-    "folke/flash.nvim",
-    opts = {
-      modes = {
-        char = {
-          keys = { "f", "F", "t", "T" },
-        },
       },
     },
   },

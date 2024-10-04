@@ -25,17 +25,6 @@ require("lazy").setup({
       branch = "fix-del-error",
       url = "https://github.com/r-darwish/nvim-cmp",
     },
-    {
-      "rcarriga/nvim-dap-ui",
-      config = function(_, opts)
-        local dap = require("dap")
-        local dapui = require("dapui")
-        dapui.setup(opts)
-        dap.listeners.after.event_initialized["dapui_config"] = function()
-          dapui.open({})
-        end
-      end,
-    },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

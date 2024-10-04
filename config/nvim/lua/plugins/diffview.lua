@@ -1,3 +1,5 @@
 return {
-  "sindrets/diffview.nvim",
+  { "sindrets/diffview.nvim", keys = {
+    { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>" },
+  } },
 }

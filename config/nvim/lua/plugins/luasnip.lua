@@ -10,7 +10,24 @@ return {
           value.group_index = 1
         end
       end
-      vim.print(opts.sources)
     end,
+  },
+  {
+    "benfowler/telescope-luasnip.nvim",
+    keys = {
+      {
+        "<leader>si",
+        function()
+          require("telescope").extensions.luasnip.luasnip()
+        end,
+      },
+      {
+        "<C-x>",
+        function()
+          require("telescope").extensions.luasnip.luasnip()
+        end,
+        mode = { "i" },
+      },
+    },
   },
 }

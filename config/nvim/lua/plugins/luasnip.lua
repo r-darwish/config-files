@@ -1,7 +1,6 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       for _, value in ipairs(opts.sources) do
@@ -20,13 +19,7 @@ return {
         function()
           require("telescope").extensions.luasnip.luasnip()
         end,
-      },
-      {
-        "<C-x>",
-        function()
-          require("telescope").extensions.luasnip.luasnip()
-        end,
-        mode = { "i" },
+        desc = "Search snippets",
       },
     },
   },

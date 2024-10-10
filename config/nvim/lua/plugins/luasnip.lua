@@ -19,7 +19,15 @@ return {
         function()
           require("telescope").extensions.luasnip.luasnip()
         end,
-        desc = "Search snippets",
+        desc = "Search Snippets",
+      },
+      {
+        "<C-x>",
+        function()
+          require("telescope").extensions.luasnip.luasnip()
+        end,
+        desc = "Search Snippets",
+        mode = { "i" },
       },
     },
   },

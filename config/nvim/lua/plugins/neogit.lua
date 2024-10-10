@@ -9,7 +9,7 @@ return {
       },
     },
     keys = {
-      { "<leader>gn", "<cmd>Neogit cwd=%:h<CR>", desc = "Neogit" },
+      { "<leader>gn", "<cmd>Neogit cwd=%:p:h<CR>", desc = "Neogit" },
     },
   },
 }

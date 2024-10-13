@@ -6,7 +6,12 @@ return {
       mc.setup()
 
       local set = vim.keymap.set
-
+      set({ "n", "v" }, "<C-[>", function()
+        mc.lineAddCursor(-1)
+      end)
+      set({ "n", "v" }, "<C-]>", function()
+        mc.lineAddCursor(1)
+      end)
       set({ "n", "v" }, "<C-n>", function()
         mc.matchAddCursor(1)
       end)

@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({
   "BufNewFile",
   "BufRead",
 }, {
-  pattern = "*.yaml,*.yml,*.tpl",
+  pattern = { "*.yaml", "*.yml", "*.tpl" },
   callback = function()
     if vim.fn.search("{{.\\+}}", "nw") ~= 0 then
       local buf = vim.api.nvim_get_current_buf()

@@ -6,10 +6,10 @@ return {
       mc.setup()
 
       local set = vim.keymap.set
-      set({ "n", "v" }, "<C-[>", function()
+      set({ "n", "v" }, "<leader>mk", function()
         mc.lineAddCursor(-1)
       end)
-      set({ "n", "v" }, "<C-]>", function()
+      set({ "n", "v" }, "<leader>mj", function()
         mc.lineAddCursor(1)
       end)
       set({ "n", "v" }, "<C-n>", function()

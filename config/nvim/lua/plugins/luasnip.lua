@@ -22,7 +22,7 @@ return {
         desc = "Search Snippets",
       },
       {
-        "<C-x>",
+        "<C-v>",
         function()
           require("telescope").extensions.luasnip.luasnip()
         end,

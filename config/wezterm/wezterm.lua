@@ -1,5 +1,8 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local mux = wezterm.mux
+local act = wezterm.action
+
 config.color_scheme = "Gruvbox dark, hard (base16)"
 
 local font = wezterm.font({ family = "BigBlueTerm437 Nerd Font" })
@@ -18,6 +21,14 @@ config.colors = {
 	background = "black",
 }
 
+wezterm.on("gui-startup", function(cmd)
+	local _, _, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
+end)
+wezterm.on("gui-attached", function(_)
+	mux.get_window():gui_window():maximize()
+end)
+
 local home = os.getenv("HOME")
 local background_image = home .. "/.local/share/wezterm.png"
 config.background = {
@@ -30,8 +41,11 @@ config.background = {
 		horizontal_align = "Left",
 	},
 }
+config.inactive_pane_hsb = {
+	saturation = 0.8,
+	brightness = 0.5,
+}
 
-local act = wezterm.action
 config.scrollback_lines = 3500
 config.leader = { key = "a", mods = "SUPER" }
 config.keys = {
@@ -44,9 +58,20 @@ config.keys = {
 	{ key = "RightArrow", mods = "SUPER", action = act.ActivatePaneDirection("Right") },
 	{ key = "UpArrow", mods = "SUPER", action = act.ActivatePaneDirection("Up") },
 	{ key = "DownArrow", mods = "SUPER", action = act.ActivatePaneDirection("Down") },
+	{ key = "`", mods = "CTRL", action = act.ActivatePaneDirection("Next") },
 
 	{ key = "p", mods = "SUPER", action = act.ActivateCommandPalette },
 	{ key = "d", mods = "SUPER", action = act.CloseCurrentPane({ confirm = true }) },
+
+	{ key = "s", mods = "SUPER", action = act.QuickSelect },
+	{
+		key = "n",
+		mods = "SUPER",
+		action = wezterm.action_callback(function()
+			local _, _, window = mux.spawn_window({})
+			window:gui_window():maximize()
+		end),
+	},
 
 	{ key = "[", mods = "SUPER", action = act.ActivateTabRelative(-1) },
 	{ key = "]", mods = "SUPER", action = act.ActivateTabRelative(1) },
@@ -69,6 +94,30 @@ config.keys = {
 		mods = "LEADER",
 		action = act.AdjustPaneSize({ "Right", 5 }),
 	},
+}
+
+local copy_mode = nil
+local search_mode = nil
+
+copy_mode = wezterm.gui.default_key_tables().copy_mode
+table.insert(
+	copy_mode,
+	{ key = "/", mods = "NONE", action = wezterm.action({ Search = { CaseInSensitiveString = "" } }) }
+)
+table.insert(
+	copy_mode,
+	{ key = "?", mods = "NONE", action = wezterm.action({ Search = { CaseInSensitiveString = "" } }) }
+)
+table.insert(copy_mode, { key = "n", mods = "NONE", action = wezterm.action({ CopyMode = "NextMatch" }) })
+table.insert(copy_mode, { key = "N", mods = "SHIFT", action = wezterm.action({ CopyMode = "PriorMatch" }) })
+
+search_mode = wezterm.gui.default_key_tables().search_mode
+table.insert(search_mode, { key = "Escape", mods = "NONE", action = wezterm.action({ CopyMode = "Close" }) })
+table.insert(search_mode, { key = "Enter", mods = "NONE", action = "ActivateCopyMode" })
+
+config.key_tables = {
+	copy_mode = copy_mode,
+	search_mode = search_mode,
 }
 
 return config

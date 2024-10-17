@@ -35,6 +35,13 @@ def "edit exec" [exec: string] {
     nvim $path
 }
 
+def "vj" [] {
+    let f = (mktemp --suffix ".json")
+    $in | jq | save -f $f
+    nvim $f
+    rm $f
+}
+
 alias v = nvim
 alias vd = edit dir
 alias yt-mp3 = yt-dlp -x --audio-format mp3
@@ -64,5 +71,7 @@ alias ga = git add
 alias gst = git status
 alias gc = git commit
 alias gf = git fetch
+
+$env.HOMEBREW_NO_AUTO_UPDATE = "1"
 
 use docker

@@ -94,6 +94,13 @@ config.keys = {
 		mods = "LEADER",
 		action = act.AdjustPaneSize({ "Right", 5 }),
 	},
+	{
+		key = "b",
+		mods = "SUPER",
+		action = wezterm.action_callback(function(win, pane)
+			local tab, window = pane:move_to_new_tab()
+		end),
+	},
 }
 
 local copy_mode = nil

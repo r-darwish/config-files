@@ -12,7 +12,6 @@ config.font = font
 config.font_size = font_size
 config.line_height = 1.5
 config.default_cursor_style = "BlinkingBar"
-
 config.window_decorations = "RESIZE"
 config.window_frame = {
 	font_size = 14,
@@ -20,6 +19,10 @@ config.window_frame = {
 
 config.colors = {
 	background = "black",
+}
+
+config.quick_select_patterns = {
+	"wiz-[a-z0-9-]+",
 }
 
 wezterm.on("gui-startup", function(cmd)

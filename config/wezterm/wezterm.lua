@@ -11,6 +11,7 @@ local font_size = 12
 config.font = font
 config.font_size = font_size
 config.line_height = 1.5
+config.default_cursor_style = "BlinkingBar"
 
 config.window_decorations = "RESIZE"
 config.window_frame = {

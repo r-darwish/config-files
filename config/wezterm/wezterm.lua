@@ -105,6 +105,16 @@ config.keys = {
 			local tab, window = pane:move_to_new_tab()
 		end),
 	},
+	{
+		key = "/",
+		mods = "SUPER",
+		action = act.SplitPane({
+			direction = "Down",
+			size = { Percent = 25 },
+			command = { args = { "aichat" } },
+			top_level = true,
+		}),
+	},
 }
 
 local copy_mode = nil

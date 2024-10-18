@@ -49,6 +49,8 @@ config.inactive_pane_hsb = {
 	saturation = 0.8,
 	brightness = 0.5,
 }
+config.audible_bell = "Disabled"
+config.notification_handling = "SuppressFromFocusedTab"
 
 config.scrollback_lines = 3500
 config.leader = { key = "a", mods = "SUPER" }

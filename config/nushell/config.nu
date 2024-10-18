@@ -285,7 +285,7 @@ $env.config = {
 
     hooks: {
         pre_prompt: [{
-            print -n "\a"
+            printf "\e]9;%s\e\\" "Process finished"
         }] # run before the prompt is shown
         pre_execution: [{ null }] # run before the repl input is run
         env_change: {

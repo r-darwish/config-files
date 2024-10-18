@@ -56,7 +56,7 @@ config.scrollback_lines = 3500
 config.leader = { key = "a", mods = "SUPER" }
 config.keys = {
 	{ key = "-", mods = "SHIFT|SUPER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "=", mods = "SHIFT|SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "\\", mods = "SHIFT|SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
 	{ key = "z", mods = "SUPER", action = act.TogglePaneZoomState },
 

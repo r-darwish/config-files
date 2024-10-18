@@ -40,5 +40,20 @@ return {
       set({ "v", "n" }, "<c-i>", mc.jumpForward)
       set({ "v", "n" }, "<c-o>", mc.jumpBackward)
     end,
+    keys = {
+      {
+        "<esc>",
+        function()
+          local mc = require("multicursor-nvim")
+          if not mc.cursorsEnabled() then
+            mc.enableCursors()
+          elseif mc.hasCursors() then
+            mc.clearCursors()
+          else
+            -- Default <esc> handler.
+          end
+        end,
+      },
+    },
   },
 }

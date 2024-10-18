@@ -111,7 +111,7 @@ config.keys = {
 		action = act.SplitPane({
 			direction = "Down",
 			size = { Percent = 25 },
-			command = { args = { "aichat" } },
+			command = { args = { "/opt/homebrew/bin/aichat" } },
 			top_level = true,
 		}),
 	},

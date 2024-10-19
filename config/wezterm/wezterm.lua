@@ -8,14 +8,19 @@ config.color_scheme = "Gruvbox dark, hard (base16)"
 local font = wezterm.font({ family = "BigBlueTerm437 Nerd Font" })
 local font_size = 12
 
-config.font = font
-config.font_size = font_size
-config.line_height = 1.5
+if not wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.font = font
+	config.font_size = font_size
+	config.line_height = 1.5
+	config.window_decorations = "RESIZE"
+	config.window_frame = {
+		font_size = 14,
+	}
+else
+	config.font_size = 10
+end
+
 config.default_cursor_style = "BlinkingBar"
-config.window_decorations = "RESIZE"
-config.window_frame = {
-	font_size = 14,
-}
 
 config.colors = {
 	background = "black",

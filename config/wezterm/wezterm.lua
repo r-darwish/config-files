@@ -33,7 +33,7 @@ wezterm.on("gui-attached", function(_)
 	mux.get_window():gui_window():maximize()
 end)
 
-local home = os.getenv("HOME")
+local home = wezterm.home_dir
 local background_image = home .. "/.local/share/wezterm.png"
 config.background = {
 	{

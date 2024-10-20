@@ -59,6 +59,7 @@ config.notification_handling = "SuppressFromFocusedTab"
 
 config.scrollback_lines = 3500
 config.leader = { key = "a", mods = "SUPER" }
+
 config.keys = {
 	{ key = "-", mods = "SHIFT|SUPER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "\\", mods = "SHIFT|SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
@@ -90,20 +91,12 @@ config.keys = {
 	{ key = "]", mods = "SHIFT|SUPER", action = act.MoveTabRelative(1) },
 
 	{
-		key = "h",
-		mods = "LEADER",
-		action = act.AdjustPaneSize({ "Left", 5 }),
-	},
-	{
-		key = "j",
-		mods = "LEADER",
-		action = act.AdjustPaneSize({ "Down", 5 }),
-	},
-	{ key = "k", mods = "LEADER", action = act.AdjustPaneSize({ "Up", 5 }) },
-	{
-		key = "l",
-		mods = "LEADER",
-		action = act.AdjustPaneSize({ "Right", 5 }),
+		key = "r",
+		mods = "SUPER",
+		action = act.ActivateKeyTable({
+			name = "resize_pane",
+			one_shot = false,
+		}),
 	},
 	{
 		key = "b",
@@ -146,6 +139,21 @@ table.insert(search_mode, { key = "Enter", mods = "NONE", action = "ActivateCopy
 config.key_tables = {
 	copy_mode = copy_mode,
 	search_mode = search_mode,
+	resize_pane = {
+		{ key = "LeftArrow", action = act.AdjustPaneSize({ "Left", 5 }) },
+		{ key = "h", action = act.AdjustPaneSize({ "Left", 5 }) },
+
+		{ key = "RightArrow", action = act.AdjustPaneSize({ "Right", 5 }) },
+		{ key = "l", action = act.AdjustPaneSize({ "Right", 5 }) },
+
+		{ key = "UpArrow", action = act.AdjustPaneSize({ "Up", 5 }) },
+		{ key = "k", action = act.AdjustPaneSize({ "Up", 5 }) },
+
+		{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", 5 }) },
+		{ key = "j", action = act.AdjustPaneSize({ "Down", 5 }) },
+
+		{ key = "Escape", action = "PopKeyTable" },
+	},
 }
 
 return config

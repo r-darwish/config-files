@@ -90,6 +90,16 @@ config.keys = {
 	{ key = "[", mods = "SHIFT|SUPER", action = act.MoveTabRelative(-1) },
 	{ key = "]", mods = "SHIFT|SUPER", action = act.MoveTabRelative(1) },
 
+	{ key = "h", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Left") },
+	{ key = "l", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Right") },
+	{ key = "k", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
+	{ key = "j", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
+
+	{ key = "h", mods = "SUPER", action = act.ActivatePaneDirection("Left") },
+	{ key = "l", mods = "SUPER", action = act.ActivatePaneDirection("Right") },
+	{ key = "k", mods = "SUPER", action = act.ActivatePaneDirection("Up") },
+	{ key = "j", mods = "SUPER", action = act.ActivatePaneDirection("Down") },
+
 	{
 		key = "r",
 		mods = "SUPER",
@@ -153,6 +163,7 @@ config.key_tables = {
 		{ key = "j", action = act.AdjustPaneSize({ "Down", 5 }) },
 
 		{ key = "Escape", action = "PopKeyTable" },
+		{ key = "Enter", action = "PopKeyTable" },
 	},
 }
 

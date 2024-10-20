@@ -20,6 +20,7 @@ fi
 for c in config/*; do
     link_config "$c"
 done
+ln -s "$PWD/tmux.conf" "$HOME/.tmux.conf"
 
 for c in dynamic_config/*; do
     cp -r "$c" ~/.config

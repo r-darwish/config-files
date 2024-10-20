@@ -8,7 +8,7 @@ config.color_scheme = "Gruvbox dark, hard (base16)"
 local font = wezterm.font({ family = "BigBlueTerm437 Nerd Font" })
 local font_size = 12
 
-if not wezterm.target_triple == "x86_64-pc-windows-msvc" then
+if not (wezterm.target_triple == "x86_64-pc-windows-msvc") then
 	config.font = font
 	config.font_size = font_size
 	config.line_height = 1.5

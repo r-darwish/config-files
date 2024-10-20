@@ -12,7 +12,7 @@ if not (wezterm.target_triple == "x86_64-pc-windows-msvc") then
 	config.font = font
 	config.font_size = font_size
 	config.line_height = 1.5
-	config.window_decorations = "RESIZE"
+	config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 	config.window_frame = {
 		font_size = 14,
 	}

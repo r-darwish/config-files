@@ -42,6 +42,18 @@ def "vj" [] {
     rm $f
 }
 
+def _wez_pane [] {
+    wezterm cli list --format json | from json | each {|| {value: $in.pane_id, description: $in.title} }
+}
+
+def _wez_direction [] {
+    ["left", "right", "top", "bottom"]
+}
+
+def "wezmove" [src: string@_wez_pane, dest: string@_wez_pane, --direction (-d): string@_wez_direction = "right"] {
+    wezterm cli split-pane --move-pane-id $src --pane-id $dest $"--($direction)"
+}
+
 alias v = nvim
 alias vd = edit dir
 alias yt-mp3 = yt-dlp -x --audio-format mp3

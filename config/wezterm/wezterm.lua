@@ -64,6 +64,15 @@ config.keys = {
 	{ key = "-", mods = "SHIFT|SUPER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "\\", mods = "SHIFT|SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
+	{
+		key = "o",
+		mods = "SUPER",
+		action = act.PaneSelect({
+			mode = "SwapWithActiveKeepFocus",
+			show_pane_ids = true,
+		}),
+	},
+
 	{ key = "z", mods = "SUPER", action = act.TogglePaneZoomState },
 
 	{ key = "LeftArrow", mods = "SUPER", action = act.ActivatePaneDirection("Left") },

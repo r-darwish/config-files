@@ -6,6 +6,11 @@ return {
     opts = {
       variant = "moon",
       dark_variant = "moon",
+      styles = {
+        bold = true,
+        italic = true,
+        transparency = true,
+      },
     },
   },
   {
@@ -25,9 +30,19 @@ return {
     },
   },
   {
+    "eldritch-theme/eldritch.nvim",
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "rose-pine",
     },
   },
 }

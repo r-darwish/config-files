@@ -3,18 +3,22 @@ local config = wezterm.config_builder()
 local mux = wezterm.mux
 local act = wezterm.action
 
-config.color_scheme = "Gruvbox dark, hard (base16)"
+config.color_scheme = "rose-pine-moon"
+config.enable_tab_bar = true
 
-local font = wezterm.font({ family = "BigBlueTerm437 Nerd Font" })
-local font_size = 12
+local font = wezterm.font({ family = "CaskaydiaCove Nerd Font", weight = "DemiBold" })
+local font_size = 13
 
 if not (wezterm.target_triple == "x86_64-pc-windows-msvc") then
 	config.font = font
 	config.font_size = font_size
-	config.line_height = 1.5
 	config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
+	config.native_macos_fullscreen_mode = true
+	config.line_height = 1.3
 	config.window_frame = {
 		font_size = 14,
+		active_titlebar_bg = "#393552",
+		inactive_titlebar_bg = "#393552",
 	}
 else
 	config.font_size = 10
@@ -45,14 +49,14 @@ config.background = {
 		source = {
 			File = background_image,
 		},
-		hsb = { brightness = 0.2 },
+		hsb = { brightness = 0.1 },
 		height = "Cover",
-		horizontal_align = "Left",
+		horizontal_align = "Center",
 	},
 }
 config.inactive_pane_hsb = {
 	saturation = 0.8,
-	brightness = 0.5,
+	brightness = 0.6,
 }
 config.audible_bell = "Disabled"
 config.notification_handling = "SuppressFromFocusedTab"

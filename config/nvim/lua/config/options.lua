@@ -10,3 +10,4 @@ vim.opt.shiftwidth = 4
 vim.opt.titlestring = [[%{v:progname} - %f%h%m%r%w]]
 vim.opt.title = true
 vim.opt.shada = "'1000,<1000,s100"
+vim.opt.cursorline = false

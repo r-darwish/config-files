@@ -6,18 +6,6 @@ return {
       mc.setup()
 
       local set = vim.keymap.set
-      set({ "n", "v" }, "<leader>mk", function()
-        mc.lineAddCursor(-1)
-      end)
-      set({ "n", "v" }, "<leader>mj", function()
-        mc.lineAddCursor(1)
-      end)
-      set({ "n", "v" }, "<C-n>", function()
-        mc.matchAddCursor(1)
-      end)
-      set({ "n", "v" }, "<C-p>", function()
-        mc.matchAddCursor(-1)
-      end)
 
       set({ "n", "v" }, "<leader>ma", mc.matchAllAddCursors, { desc = "Add cursors to all matches" })
 
@@ -41,6 +29,30 @@ return {
       set({ "v", "n" }, "<c-o>", mc.jumpBackward)
     end,
     keys = {
+      {
+        "<C-p>",
+        function()
+          require("mc").matchAddCursor(-1)
+        end,
+      },
+      {
+        "<C-n>",
+        function()
+          require("mc").matchAddCursor(1)
+        end,
+      },
+      {
+        "<C-up>",
+        function()
+          require("mc").lineAddCursor(-1)
+        end,
+      },
+      {
+        "<C-down>",
+        function()
+          require("mc").lineAddCursor(1)
+        end,
+      },
       {
         "<esc>",
         function()

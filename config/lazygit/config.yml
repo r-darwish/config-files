@@ -20,3 +20,6 @@ customCommands:
     command: "hub pr checkout {{index .PromptResponses 0}}"
     context: "localBranches"
     loadingText: "checking out PR"
+  - key: "G"
+    command: "nu -c 'use git; git gc-branches'"
+    context: "localBranches"

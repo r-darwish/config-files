@@ -7,11 +7,6 @@ return {
 
       local set = vim.keymap.set
 
-      set({ "n", "v" }, "<leader>ma", mc.matchAllAddCursors, { desc = "Add cursors to all matches" })
-
-      set({ "n", "v" }, "<C-A-n>", mc.nextCursor, { desc = "Move to next cursor" })
-      set({ "n", "v" }, "<C-A-p>", mc.prevCursor, { desc = "Move to previous cursor" })
-
       set({ "n", "v" }, "<A-d>", mc.deleteCursor, { desc = "Delete cursor" })
       set({ "n", "v" }, "<leader>mx", mc.clearCursors, { desc = "Clear all cursors" })
       set({ "n", "v" }, "<A-m>", mc.toggleCursor, { desc = "Toggle a cursor" })
@@ -56,6 +51,30 @@ return {
         function()
           require("multicursor-nvim").lineAddCursor(1)
         end,
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>ma",
+        function()
+          require("multicursor-nvim").matchAllAddCursors()
+        end,
+        desc = "Add cursors to all matches",
+        mode = { "n", "v" },
+      },
+      {
+        "<C-A-n>",
+        function()
+          require("multicursor-nvim").nextCursor()
+        end,
+        desc = "Move to next cursor",
+        mode = { "n", "v" },
+      },
+      {
+        "<C-A-p>",
+        function()
+          require("multicursor-nvim").prevCursor()
+        end,
+        desc = "Move to previous cursor",
         mode = { "n", "v" },
       },
       {

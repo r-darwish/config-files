@@ -32,11 +32,12 @@ def main [] {
         $"source ([$wiz_config, "wiz.nu"] | path join)" | save -a $gen
     }
 
-    if (open /etc/shells | lines | where  $it == $nu.current-exe | is-empty) {
-        echo $nu.current-exe | sudo tee -a /etc/shells
+    let nuexec = (which nu | get 0.path)
+    if (open /etc/shells | lines | where  $it == $nuexec | is-empty) {
+        echo $nuexec | sudo tee -a /etc/shells
     }
 
-    if $env.SHELL != $nu.current-exe {
-        sudo chsh -s $nu.current-exe (whoami)
+    if $env.SHELL != $nuexec {
+        sudo chsh -s $nuexec (whoami)
     }
 }

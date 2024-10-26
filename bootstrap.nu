@@ -27,6 +27,11 @@ def main [] {
         carapace _carapace nushell | save -a $gen
     }
 
+    const local = ([$nu.home-path, ".local.nu"] | path join)
+    if ($local | path exists) {
+        $"source ($local)" | save -a $gen
+    }
+
     const wiz_config = ([$nu.home-path, "wiz-sec", "darwish"] | path join)
     if ($wiz_config | path exists) {
         $"source ([$wiz_config, "wiz.nu"] | path join)" | save -a $gen
@@ -34,7 +39,7 @@ def main [] {
 
     let nuexec = (which nu | get 0.path)
     if (open /etc/shells | lines | where  $it == $nuexec | is-empty) {
-        echo $nuexec | sudo tee -a /etc/shells
+        echo ($nuexec + "\n") | sudo tee -a /etc/shells
     }
 
     if $env.SHELL != $nuexec {

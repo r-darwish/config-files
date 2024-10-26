@@ -28,30 +28,35 @@ return {
       set({ "v", "n" }, "<c-i>", mc.jumpForward)
       set({ "v", "n" }, "<c-o>", mc.jumpBackward)
     end,
+    priority = 1000,
     keys = {
       {
         "<C-p>",
         function()
-          require("mc").matchAddCursor(-1)
+          require("multicursor-nvim").matchAddCursor(-1)
         end,
+        mode = { "n", "v" },
       },
       {
         "<C-n>",
         function()
-          require("mc").matchAddCursor(1)
+          require("multicursor-nvim").matchAddCursor(1)
         end,
+        mode = { "n", "v" },
       },
       {
         "<C-up>",
         function()
-          require("mc").lineAddCursor(-1)
+          require("multicursor-nvim").lineAddCursor(-1)
         end,
+        mode = { "n", "v" },
       },
       {
         "<C-down>",
         function()
-          require("mc").lineAddCursor(1)
+          require("multicursor-nvim").lineAddCursor(1)
         end,
+        mode = { "n", "v" },
       },
       {
         "<esc>",

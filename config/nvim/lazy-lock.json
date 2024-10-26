@@ -43,7 +43,6 @@
   "minty": { "branch": "main", "commit": "157e91c04cce2f01643519338d6b854275a77547" },
   "multicursor.nvim": { "branch": "main", "commit": "e21abafacf167757d4b0b48d27a2c48badea73c2" },
   "neo-tree.nvim": { "branch": "main", "commit": "a77af2e764c5ed4038d27d1c463fa49cd4794e07" },
-  "neogit": { "branch": "master", "commit": "c41a654d6148e1858d98e37cea371993eac0b126" },
   "neotest": { "branch": "master", "commit": "6d3d22cdad49999ef774ebe1bc250a4994038964" },
   "neotest-golang": { "branch": "main", "commit": "ea1c3a77f147e29583cd756b44ee69d9007bebba" },
   "neotest-python": { "branch": "master", "commit": "a2861ab3c9a0bf75a56b11835c2bfc8270f5be7e" },

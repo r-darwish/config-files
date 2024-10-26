@@ -7,10 +7,6 @@ return {
 
       local set = vim.keymap.set
 
-      set({ "n", "v" }, "<A-d>", mc.deleteCursor, { desc = "Delete cursor" })
-      set({ "n", "v" }, "<leader>mx", mc.clearCursors, { desc = "Clear all cursors" })
-      set({ "n", "v" }, "<A-m>", mc.toggleCursor, { desc = "Toggle a cursor" })
-      set({ "n", "v" }, "<leader>mm", mc.enableCursors, { desc = "Enable cursors" })
       set("n", "<leader>mr", mc.restoreCursors)
 
       set("n", "<c-leftmouse>", mc.handleMouse)
@@ -76,6 +72,38 @@ return {
         end,
         desc = "Move to previous cursor",
         mode = { "n", "v" },
+      },
+      {
+        "<A-d>",
+        function()
+          require("multicursor-nvim").deleteCursor()
+        end,
+        mode = { "n", "v" },
+        desc = "Delete cursor",
+      },
+      {
+        "<leader>mx",
+        function()
+          require("multicursor-nvim").clearCursors()
+        end,
+        mode = { "n", "v" },
+        desc = "Clear all cursors",
+      },
+      {
+        "<A-m>",
+        function()
+          require("multicursor-nvim").toggleCursor()
+        end,
+        mode = { "n", "v" },
+        desc = "Toggle a cursor",
+      },
+      {
+        "<leader>mm",
+        function()
+          require("multicursor-nvim").enableCursors()
+        end,
+        mode = { "n", "v" },
+        desc = "Enable cursors",
       },
       {
         "<esc>",

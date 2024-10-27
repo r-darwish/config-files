@@ -29,12 +29,12 @@ def main [] {
 
     const local = ([$nu.home-path, ".local.nu"] | path join)
     if ($local | path exists) {
-        $"source ($local)" | save -a $gen
+        $"source ($local)\n" | save -a $gen
     }
 
     const wiz_config = ([$nu.home-path, "wiz-sec", "darwish"] | path join)
     if ($wiz_config | path exists) {
-        $"source ([$wiz_config, "wiz.nu"] | path join)" | save -a $gen
+        $"source ([$wiz_config, "wiz.nu"] | path join)\n" | save -a $gen
     }
 
     let nuexec = (which nu | get 0.path)

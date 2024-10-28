@@ -1,24 +1,7 @@
 return {
   {
     "jake-stewart/multicursor.nvim",
-    config = function()
-      local mc = require("multicursor-nvim")
-      mc.setup()
-
-      local set = vim.keymap.set
-
-      set("n", "<leader>mr", mc.restoreCursors)
-
-      set("n", "<c-leftmouse>", mc.handleMouse)
-
-      set("v", "<C-m>", mc.splitCursors)
-      set("v", "I", mc.insertVisual)
-      set("v", "A", mc.appendVisual)
-      set("v", "M", mc.matchCursors)
-
-      set({ "v", "n" }, "<c-i>", mc.jumpForward)
-      set({ "v", "n" }, "<c-o>", mc.jumpBackward)
-    end,
+    config = true,
     priority = 1000,
     keys = {
       {
@@ -104,6 +87,64 @@ return {
         end,
         mode = { "n", "v" },
         desc = "Enable cursors",
+      },
+      {
+        "<leader>mr",
+        function()
+          require("multicursor-nvim").restoreCursors()
+        end,
+        mode = { "n" },
+      },
+
+      {
+        "<c-leftmouse>",
+        function()
+          require("multicursor-nvim").handleMouse()
+        end,
+        mode = "n",
+      },
+
+      {
+        "<C-m>",
+        function()
+          require("multicursor-nvim").splitCursors()
+        end,
+        mode = "v",
+      },
+      {
+        "I",
+        function()
+          require("multicursor-nvim").insertVisual()
+        end,
+        mode = "v",
+      },
+      {
+        "A",
+        function()
+          require("multicursor-nvim").appendVisual()
+        end,
+        mode = "v",
+      },
+      {
+        "M",
+        function()
+          require("multicursor-nvim").matchCursors()
+        end,
+        mode = "v",
+      },
+      {
+        "<c-i>",
+        function()
+          require("multicursor-nvim").jumpForward()
+        end,
+        mode = { "v", "n" },
+      },
+      {
+        "<c-o>",
+        function()
+          require("multicursor-nvim").jumpBackward()
+        end,
+        mode = { "v", "n" },
       },
       {
         "<esc>",

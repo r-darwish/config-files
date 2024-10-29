@@ -9,6 +9,10 @@ return {
           value.group_index = 1
         end
       end
+
+      opts.experimental = {
+        ghost_text = nil,
+      }
     end,
   },
   {

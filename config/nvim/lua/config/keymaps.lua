@@ -7,6 +7,8 @@ local map = vim.keymap.set
 map({ "n", "x" }, "gh", "^")
 map({ "n", "x" }, "gl", "$")
 map({ "n", "x" }, "q:", "<nop>")
+map({ "n", "x" }, "Q", "q")
+map({ "n", "x" }, "q", "<nop>")
 
 map({ "n", "x" }, "<leader>fY", function()
   local path = vim.fn.expand("%:p")

@@ -1,10 +1,10 @@
 customCommands:
-  - key: 'J'
+  - key: '<c-J>'
     command: "get-tickets"
     context: 'files'
     description: 'Show my tickets'
     subprocess: true
-  - key: 'j'
+  - key: '<c-j>'
     command: "get-tickets {{.SelectedFile.Name}}"
     context: 'files'
     description: 'Show file tickets'

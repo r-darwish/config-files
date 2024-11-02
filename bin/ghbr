@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -e
-
-f=$(realpath "$1")
-cd "$(dirname "$f")"
-cd "$(git rev-parse --show-toplevel)"
-relative_path=$(realpath --relative-to="$(pwd)" "$f")
-gh browse "$relative_path"

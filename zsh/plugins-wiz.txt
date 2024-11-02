@@ -1,3 +1,0 @@
-wiz-sec/dotfiles path:oh-my-zsh-custom
-wiz-sec/darwish path:bin kind:path
-wiz-sec/darwish path:zsh

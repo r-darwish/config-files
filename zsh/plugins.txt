@@ -1,2 +1,0 @@
-zsh-users/zsh-autosuggestions
-kevinywlui/zlong_alert.zsh

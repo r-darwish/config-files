@@ -16,11 +16,7 @@ return {
   {
     "folke/tokyonight.nvim",
     opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
+      dim_inactive = true,
     },
   },
   {
@@ -30,19 +26,9 @@ return {
     },
   },
   {
-    "eldritch-theme/eldritch.nvim",
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
-  },
-  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "tokyonight-night",
     },
   },
 }

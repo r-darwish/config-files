@@ -1,5 +1,5 @@
 customCommands:
-  - key: '<c-J>'
+  - key: 'J'
     command: "get-tickets"
     context: 'files'
     description: 'Show my tickets'

@@ -1,21 +1,21 @@
 return {
   { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-  { "nvchad/volt", lazy = true },
+  { "nvzone/volt", lazy = true },
   {
-    "nvchad/minty",
+    "nvzone/minty",
     lazy = true,
     keys = {
       {
         "<leader>cc",
         function()
-          require("minty.huefy").open({ border = true })
+          require("minty.huefy").open()
         end,
         desc = "Minty Huefy",
       },
       {
         "<leader>cC",
         function()
-          require("minty.shades").open({ border = true })
+          require("minty.shades").open()
         end,
         desc = "Minty Shades",
       },

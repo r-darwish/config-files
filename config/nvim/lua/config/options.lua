@@ -25,3 +25,16 @@ if vim.fn.has("wsl") == 1 then
     cache_enabled = 0,
   }
 end
+
+vim.api.nvim_create_user_command("ChdirFile", function()
+  local file_dir = vim.fn.expand("%:p:h")
+  vim.cmd("cd " .. file_dir)
+end, {})
+
+vim.api.nvim_create_user_command("ChdirRoot", function()
+  vim.cmd("cd " .. LazyVim.root.get())
+end, {})
+
+vim.api.nvim_create_user_command("ChdirGit", function()
+  vim.cmd("cd " .. LazyVim.root.git())
+end, {})

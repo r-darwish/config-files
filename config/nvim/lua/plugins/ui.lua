@@ -1,9 +1,5 @@
 return {
   {
-    "nvimdev/dashboard-nvim",
-    enabled = false,
-  },
-  {
     "max397574/better-escape.nvim",
     opts = {
       mappings = {

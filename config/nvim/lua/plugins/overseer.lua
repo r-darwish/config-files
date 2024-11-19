@@ -28,6 +28,7 @@ return {
           if vim.tbl_isempty(tasks) then
             vim.notify("No tasks found", vim.log.levels.WARN)
           else
+            vim.cmd("cd " .. LazyVim.root.get())
             overseer.run_action(tasks[1], "open output in quickfix")
           end
         end,

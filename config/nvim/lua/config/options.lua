@@ -10,7 +10,12 @@ vim.opt.titlestring = [[%{v:progname} - %f%h%m%r%w]]
 vim.opt.title = true
 vim.opt.shada = "'1000,<1000,s100"
 vim.opt.cursorline = false
-
+vim.g.root_spec = {
+  { "values.yaml", "values.yml", ".lazyroot", "go.mod", "Dockerfile", "Taskfile.yaml", "Taskfile.yml" },
+  "lsp",
+  { ".git", "lua" },
+  "cwd",
+}
 if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
@@ -24,6 +29,16 @@ if vim.fn.has("wsl") == 1 then
     },
     cache_enabled = 0,
   }
+end
+
+if vim.g.neovide then
+  vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h14" -- text below applies for VimScript
+  vim.g.neovide_input_use_logo = 1
+
+  vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+  vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 end
 
 vim.api.nvim_create_user_command("ChdirFile", function()

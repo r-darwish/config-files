@@ -42,6 +42,15 @@ def "vj" [] {
     rm $f
 }
 
+def nvd [file: string] {
+    let sock = [$nu.home-path, ".local/share/nvim/neovide.sock"] | path join
+    if ($sock | path exists) {
+        nvim --server $sock --remote ($file | path expand)
+    } else {
+        neovide $file
+    }
+}
+
 def --env y [...args] {
     let tmp = (mktemp -t "yazi-cwd.XXXXXX")
     yazi ...$args --cwd-file $tmp

@@ -8,6 +8,14 @@ return {
           value.priority = 100
           value.group_index = 1
         end
+
+        if value.name == "buffer" then
+          value.option = {
+            get_bufnrs = function()
+              return vim.api.nvim_list_bufs()
+            end,
+          }
+        end
       end
 
       opts.experimental = {

@@ -15,6 +15,12 @@ return {
       desc = "Move to end of word",
     },
     {
+      "ge",
+      "<cmd>lua require('spider').motion('ge')<CR>",
+      mode = { "n", "o", "x" },
+      desc = "Move to prev end of word",
+    },
+    {
       "b",
       "<cmd>lua require('spider').motion('b')<CR>",
       mode = { "n", "o", "x" },

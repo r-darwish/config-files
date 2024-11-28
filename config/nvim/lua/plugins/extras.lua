@@ -14,4 +14,13 @@ return {
       parents = 2,
     },
   },
+  {
+    "echasnovski/mini.files",
+    opts = {
+      windows = {
+        width_nofocus = 25,
+        width_preview = 100,
+      },
+    },
+  },
 }

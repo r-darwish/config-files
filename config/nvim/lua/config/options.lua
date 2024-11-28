@@ -11,7 +11,17 @@ vim.opt.title = true
 vim.opt.shada = "'1000,<1000,s100"
 vim.opt.cursorline = false
 vim.g.root_spec = {
-  { "status", "values.yaml", "values.yml", ".lazyroot", "go.mod", "Dockerfile", "Taskfile.yaml", "Taskfile.yml" },
+  {
+    "status",
+    "config.yml",
+    "values.yaml",
+    "values.yml",
+    ".lazyroot",
+    "go.mod",
+    "Dockerfile",
+    "Taskfile.yaml",
+    "Taskfile.yml",
+  },
   "lsp",
   { ".git", "lua" },
   "cwd",

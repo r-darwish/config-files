@@ -15,6 +15,7 @@ end)
 map({ "n", "x", "i" }, "<D-s>", function()
   vim.cmd("wa")
 end)
+map({"n", "x"}, "<leader>ba", "<cmd>%bd<cr>")
 
 map({ "n", "x" }, "<leader>fY", function()
   local path = vim.fn.expand("%:p")

@@ -22,9 +22,9 @@ return {
         width_nofocus = 25,
         width_preview = 100,
       },
-    },
-    mappings = {
-      go_in_plus = "<CR>",
+      mappings = {
+        go_in_plus = "<CR>",
+      },
     },
   },
 }

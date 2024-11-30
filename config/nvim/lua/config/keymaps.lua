@@ -12,7 +12,7 @@ map({ "n", "x" }, "q", "<nop>")
 map({ "n", "x" }, "\\", function()
   require("telescope.builtin").buffers()
 end)
-map({ "n", "x", "i" }, "<D-s>", "<cmd>wa<cr>")
+map({ "n", "x", "i" }, "<D-s>", "<C-s>")
 map({ "n", "x", "i" }, "<D-d>", "<cmd>bd<cr>")
 map({ "n", "x" }, "<leader>ba", "<cmd>%bd<cr>")
 
@@ -37,10 +37,10 @@ map({ "n", "x" }, "<c-z>", ":tabedit %<CR>", { desc = "Break the current buffer 
 
 map({ "n", "x" }, "<leader>gt", function()
   local file = vim.fn.expand("%:p")
-  LazyVim.Terminal({ "get-tickets", file })
+  require("snacks.terminal").open({ "get-tickets", file })
 end, { desc = "Get tickets (file)" })
 
 map({ "n", "x" }, "<leader>gT", function()
   local file = vim.fn.expand("%:p:h")
-  LazyVim.Terminal({ "get-tickets", file })
+  require("snacks.terminal").open({ "get-tickets", file })
 end, { desc = "Get tickets (directory)" })

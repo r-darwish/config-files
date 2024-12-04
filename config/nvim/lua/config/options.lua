@@ -48,6 +48,7 @@ vim.g.neovide_cursor_trail_size = 0.6
 vim.g.neovide_cursor_animate_command_line = false
 vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.neovide_cursor_vfx_particle_density = 10.0
+vim.g.neovide_input_macos_option_key_is_meta = "only_left"
 
 vim.keymap.set("n", "<D-s>", function()
   vim.cmd("wa")

@@ -13,7 +13,7 @@ map({ "n", "x" }, "\\", function()
   require("telescope.builtin").buffers()
 end)
 map({ "n", "x", "i" }, "<D-s>", "<C-s>")
-map({ "n", "x", "i" }, "<D-d>", "<cmd>bd<cr>")
+map({ "n", "x", "i" }, "<M-d>", "<cmd>bd<cr>")
 map({ "n", "x" }, "<leader>ba", "<cmd>%bd<cr>")
 
 map({ "n", "x" }, "<leader>fY", function()

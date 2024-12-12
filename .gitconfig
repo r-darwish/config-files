@@ -43,6 +43,5 @@
 [merge]
     conflictstyle = diff3
 
-hi
 [diff]
     colorMoved = default

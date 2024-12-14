@@ -17,6 +17,9 @@ return {
     "folke/tokyonight.nvim",
     opts = {
       dim_inactive = true,
+      on_colors = function(colors)
+        colors.border = "teal"
+      end,
     },
   },
   {

@@ -20,18 +20,9 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
+    "ibhagwan/fzf-lua",
     opts = function(_, opts)
-      opts.defaults.layout_strategy = "vertical"
+      opts.winopts.preview.flip_columns = 160
     end,
-    keys = {
-      {
-        "<leader>fp",
-        function()
-          require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
-        end,
-        desc = "Find Plugin File",
-      },
-    },
   },
 }

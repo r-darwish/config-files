@@ -30,6 +30,7 @@ local function set_filetype(opts)
       vim.api.nvim_set_option_value("filetype", opts.ft, { buf = buf })
     end
   end
+  args.pattern = opts.pattern
 
   vim.api.nvim_create_autocmd({
     "BufNewFile",

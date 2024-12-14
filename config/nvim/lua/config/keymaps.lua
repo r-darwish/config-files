@@ -44,3 +44,27 @@ map({ "n", "x" }, "<leader>gT", function()
   local file = vim.fn.expand("%:p:h")
   require("snacks.terminal").open({ "get-tickets", file })
 end, { desc = "Get tickets (directory)" })
+
+local function chdir(dir)
+  vim.cmd("cd " .. dir)
+  vim.notify("Changed directory to " .. dir)
+end
+
+local function chdir_file()
+  chdir(vim.fn.expand("%:p:h"))
+end
+
+local function chdir_root()
+  chdir(LazyVim.root.get())
+end
+
+local function chdir_git()
+  chdir(LazyVim.root.git())
+end
+
+vim.api.nvim_create_user_command("ChdirFile", chdir_file, {})
+vim.api.nvim_create_user_command("ChdirRoot", chdir_root, {})
+vim.api.nvim_create_user_command("ChdirGit", chdir_git, {})
+map({ "n", "x" }, "<leader>rf", chdir_file, { desc = "Change directory to the one of the current file" })
+map({ "n", "x" }, "<leader>rr", chdir_root, { desc = "Change directory to current root directory" })
+map({ "n", "x" }, "<leader>rg", chdir_git, { desc = "Change directory to the git repository of the current file" })

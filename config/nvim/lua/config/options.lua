@@ -75,16 +75,3 @@ vim.api.nvim_set_keymap("t", "<D-v>", "<C-\\><C-n>+pi", { noremap = true, silent
 if vim.g.neovide then
   pcall(vim.fn.serverstart, vim.fn.stdpath("data") .. "/neovide.sock")
 end
-
-vim.api.nvim_create_user_command("ChdirFile", function()
-  local file_dir = vim.fn.expand("%:p:h")
-  vim.cmd("cd " .. file_dir)
-end, {})
-
-vim.api.nvim_create_user_command("ChdirRoot", function()
-  vim.cmd("cd " .. LazyVim.root.get())
-end, {})
-
-vim.api.nvim_create_user_command("ChdirGit", function()
-  vim.cmd("cd " .. LazyVim.root.git())
-end, {})

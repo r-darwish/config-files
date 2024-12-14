@@ -71,6 +71,7 @@ vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
 vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
 vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 vim.api.nvim_set_keymap("t", "<D-v>", "<C-\\><C-n>+pi", { noremap = true, silent = true })
+vim.g.snacks_animate = false
 if vim.g.neovide then
   pcall(vim.fn.serverstart, vim.fn.stdpath("data") .. "/neovide.sock")
 end

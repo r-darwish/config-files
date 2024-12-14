@@ -3,46 +3,49 @@
 -- Add any additional autocmds here
 
 -- wrap and check for spell in text filetypes
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("custom", {}),
-  pattern = { "lua", "javascript", "terraform", "yaml", "helm", "json" },
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-  end,
-})
 
-vim.api.nvim_create_autocmd({
-  "BufNewFile",
-  "BufRead",
-}, {
-  pattern = { "*.tpl" },
-  callback = function()
-    local buf = vim.api.nvim_get_current_buf()
-    vim.api.nvim_set_option_value("filetype", "helm", { buf = buf })
-  end,
-})
+local function set_opts(pattern, opts)
+  vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("custom", {}),
+    pattern = pattern,
+    callback = function()
+      for k, v in pairs(opts) do
+        vim.opt_local[k] = v
+      end
+    end,
+  })
+end
 
-vim.api.nvim_create_autocmd({
-  "BufNewFile",
-  "BufRead",
-}, {
+local function set_filetype(opts)
+  if type(opts.pattern) == "string" then
+    opts.pattern = { opts.pattern }
+  end
+
+  local args = {}
+  if opts.callback ~= nil then
+    args.callback = opts.callback
+  elseif opts.ft ~= nil then
+    args.callback = function()
+      local buf = vim.api.nvim_get_current_buf()
+      vim.api.nvim_set_option_value("filetype", opts.ft, { buf = buf })
+    end
+  end
+
+  vim.api.nvim_create_autocmd({
+    "BufNewFile",
+    "BufRead",
+  }, args)
+end
+
+set_opts({ "lua", "javascript", "terraform", "yaml", "helm", "json" }, { tabstop = 2, shiftwidth = 2 })
+set_filetype({ pattern = "*.tpl", ft = "helm" })
+set_filetype({ pattern = ".okta_aws_login_config", ft = "toml" })
+set_filetype({
   pattern = { "*.yaml", "*.yml" },
   callback = function()
     if vim.fn.search("{{.\\+}}", "nw") ~= 0 then
       local buf = vim.api.nvim_get_current_buf()
       vim.api.nvim_set_option_value("filetype", "helm", { buf = buf })
     end
-  end,
-})
-
-vim.api.nvim_create_autocmd({
-  "BufNewFile",
-  "BufRead",
-}, {
-  pattern = ".okta_aws_login_config",
-  callback = function()
-    local buf = vim.api.nvim_get_current_buf()
-    vim.api.nvim_set_option_value("filetype", "confini", { buf = buf })
   end,
 })

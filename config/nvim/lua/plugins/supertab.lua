@@ -26,9 +26,6 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<C-x>"] = cmp.mapping(function(fallback)
-          cmp.complete()
-        end, { "i", "s" }),
       })
     end,
   },

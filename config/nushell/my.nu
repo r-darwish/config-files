@@ -61,16 +61,8 @@ def --env y [...args] {
     rm -fp $tmp
 }
 
-def _wez_pane [] {
-    wezterm cli list --format json | from json | each {|| {value: $in.pane_id, description: $in.title} }
-}
-
-def _wez_direction [] {
-    ["left", "right", "top", "bottom"]
-}
-
-def "wezmove" [src: string@_wez_pane, dest: string@_wez_pane, --direction (-d): string@_wez_direction = "right"] {
-    wezterm cli split-pane --move-pane-id $src --pane-id $dest $"--($direction)"
+def godbg [...args] {
+    dlv debug --headless -l 127.0.0.1:31337 --accept-multiclient ...$args
 }
 
 alias v = nvim

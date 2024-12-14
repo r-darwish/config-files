@@ -1,5 +1,26 @@
+vim.debug_port = 31337
+vim.debug_host = "127.0.0.1"
+
 return {
   { import = "lazyvim.plugins.extras.dap.core" },
+  {
+    "leoluz/nvim-dap-go",
+
+    opts = {
+      dap_configurations = {
+        {
+          type = "go",
+          name = "Attach port",
+          mode = "remote",
+          request = "attach",
+        },
+      },
+      delve = {
+        port = vim.debug_port,
+        host = vim.debug_host,
+      },
+    },
+  },
   {
     "mfussenegger/nvim-dap",
     keys = {

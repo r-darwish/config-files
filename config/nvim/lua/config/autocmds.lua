@@ -40,6 +40,7 @@ end
 
 set_opts({ "lua", "javascript", "terraform", "yaml", "helm", "json" }, { tabstop = 2, shiftwidth = 2 })
 set_filetype({ pattern = "*.tpl", ft = "helm" })
+set_filetype({ pattern = "*.tf", ft = "terraform" })
 set_filetype({ pattern = ".okta_aws_login_config", ft = "toml" })
 set_filetype({
   pattern = { "*.yaml", "*.yml" },

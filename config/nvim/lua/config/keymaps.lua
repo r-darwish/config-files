@@ -62,6 +62,11 @@ local function chdir_git()
   chdir(LazyVim.root.git())
 end
 
+vim.api.nvim_create_user_command("GoLand", function()
+  local current_file = vim.fn.expand("%:p")
+  vim.fn.system("goland " .. current_file)
+end, {})
+
 vim.api.nvim_create_user_command("ChdirFile", chdir_file, {})
 vim.api.nvim_create_user_command("ChdirRoot", chdir_root, {})
 vim.api.nvim_create_user_command("ChdirGit", chdir_git, {})

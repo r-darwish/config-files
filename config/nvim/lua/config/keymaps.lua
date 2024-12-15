@@ -69,3 +69,16 @@ map({ "n", "x" }, "<leader>rf", chdir_file, { desc = "Change directory to the on
 map({ "n", "x" }, "<leader>rr", chdir_root, { desc = "Change directory to current root directory" })
 map({ "n", "x" }, "<leader>rg", chdir_git, { desc = "Change directory to the git repository of the current file" })
 map({ "i" }, "<c-v>", "<cmd>FzfLua registers<cr>", { desc = "Registers" })
+
+local function zoxide()
+  require("fzf-lua").fzf_live("zoxide query -l", {
+    prompt = "Zoxide > ",
+    actions = {
+      ["default"] = function(selected)
+        vim.notify(selected[1])
+        LazyVim.pick("files", { cwd = selected[1] })()
+      end,
+    },
+  })
+end
+map({ "n", "x" }, "<leader>fz", zoxide, { desc = "Change directory based on zoxide" })

@@ -103,7 +103,10 @@ map({ "n", "x" }, "<leader>gp", function()
 end, { desc = "Open pull request in browser" })
 
 map({ "n", "x" }, "<leader>gP", function()
-  require("snacks.terminal").open({ "gh", "pr", "view" }, { cwd = LazyVim.root.git(), interactive = false })
+  require("snacks.terminal").open(
+    { "sh", "-c", "gh pr view && gh pr diff" },
+    { cwd = LazyVim.root.git(), interactive = false }
+  )
 end, { desc = "Open pull request" })
 
 map({ "n", "x" }, "<leader>gi", function()

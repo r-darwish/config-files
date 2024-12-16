@@ -101,6 +101,11 @@ map({ "n", "x" }, "<leader>fp", find_plugin, { desc = "Find plugin" })
 map({ "n", "x" }, "<leader>gp", function()
   vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, nil)
 end, { desc = "Open pull request in browser" })
+
+map({ "n", "x" }, "<leader>gP", function()
+  require("snacks.terminal").open({ "gh", "pr", "view" }, { cwd = LazyVim.root.git(), interactive = false })
+end, { desc = "Open pull request" })
+
 map({ "n", "x" }, "<leader>gi", function()
   vim.system({ "nu", "-l", "-c", "circle" }, { cwd = LazyVim.root.git() }, nil)
 end, { desc = "Go to CircleCI" })

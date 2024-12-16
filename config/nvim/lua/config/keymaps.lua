@@ -83,6 +83,10 @@ local function zoxide()
         vim.notify(selected[1])
         LazyVim.pick("files", { cwd = selected[1] })()
       end,
+      ["ctrl-g"] = function(selected)
+        vim.notify(selected[1])
+        LazyVim.pick("live_grep", { cwd = selected[1] })()
+      end,
     },
   })
 end

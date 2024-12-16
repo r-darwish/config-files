@@ -86,4 +86,14 @@ local function zoxide()
     },
   })
 end
+
 map({ "n", "x" }, "<leader>fz", zoxide, { desc = "Change directory based on zoxide" })
+
+local function find_plugin()
+  LazyVim.pick("files", { cwd = require("lazy.core.config").options.root })()
+end
+map({ "n", "x" }, "<leader>fp", find_plugin, { desc = "Find plugin" })
+
+map({ "n", "x" }, "<leader>gp", function()
+  vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, nil)
+end, { desc = "Open pull request in browser" })

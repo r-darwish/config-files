@@ -97,3 +97,10 @@ map({ "n", "x" }, "<leader>fp", find_plugin, { desc = "Find plugin" })
 map({ "n", "x" }, "<leader>gp", function()
   vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, nil)
 end, { desc = "Open pull request in browser" })
+
+map(
+  { "n", "x" },
+  "<leader><space>",
+  "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
+  { desc = "Switch buffers" }
+)

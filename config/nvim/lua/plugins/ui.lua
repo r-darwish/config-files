@@ -21,8 +21,13 @@ return {
   },
   {
     "ibhagwan/fzf-lua",
-    opts = function(_, opts)
-      opts.winopts.preview.flip_columns = 160
-    end,
+    opts = {
+      winopts = {
+        preview = {
+          layout = "vertical",
+          vertical = "up:60%",
+        },
+      },
+    },
   },
 }

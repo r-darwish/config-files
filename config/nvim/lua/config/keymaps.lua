@@ -77,7 +77,8 @@ map({ "i" }, "<c-v>", "<cmd>FzfLua registers<cr>", { desc = "Registers" })
 
 local function zoxide()
   require("fzf-lua").fzf_live("zoxide query -l", {
-    prompt = "Zoxide > ",
+    prompt = false,
+    winopts = { title = " Zoxide ", title_pos = "center" },
     actions = {
       ["default"] = function(selected)
         vim.notify(selected[1])

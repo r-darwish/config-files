@@ -35,11 +35,6 @@ end, { desc = "Copy absolute path" })
 
 map({ "n", "x" }, "<c-z>", ":tabedit %<CR>", { desc = "Break the current buffer to a new tab" })
 
-map({ "n", "x" }, "<leader>gt", function()
-  local file = vim.fn.expand("%:p")
-  require("snacks.terminal").open({ "get-tickets", file })
-end, { desc = "Get tickets (file)" })
-
 map({ "n", "x" }, "<leader>gT", function()
   local file = vim.fn.expand("%:p:h")
   require("snacks.terminal").open({ "get-tickets", file })
@@ -92,6 +87,30 @@ local function zoxide()
   })
 end
 
+local function get_tickets(current_file)
+  return function()
+    local cmd = "get-tickets --raw"
+    if current_file then
+      cmd = cmd .. " " .. vim.fn.expand("%:p")
+    end
+
+    local split = function(t)
+      return vim.split(t, " - ")[1]
+    end
+
+    require("fzf-lua").fzf_exec(cmd, {
+      prompt = false,
+      winopts = { title = " Tickets ", title_pos = "center" },
+      actions = {
+        ["default"] = function(selected)
+          vim.fn.setreg("+", split(selected[1]))
+        end,
+      },
+    })
+  end
+end
+map({ "n", "x" }, "<leader>gt", get_tickets(true), { desc = "Get tickets (file)" })
+map({ "n", "x" }, "<leader>gT", get_tickets(false), { desc = "Get tickets" })
 map({ "n", "x" }, "<leader>fz", zoxide, { desc = "Change directory based on zoxide" })
 
 local function find_plugin()

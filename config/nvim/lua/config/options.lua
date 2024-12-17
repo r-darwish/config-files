@@ -14,7 +14,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.titlestring = [[%{v:progname} - %f%h%m%r%w]]
 vim.opt.title = true
-vim.opt.shada = "'1000,<1000,s100"
+vim.opt.shada = "'10000,<10000,s100"
 vim.opt.cursorline = false
 
 local nu = "/opt/homebrew/bin/nu"
@@ -71,7 +71,6 @@ vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
 vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
 vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 vim.api.nvim_set_keymap("t", "<D-v>", "<C-\\><C-n>+pi", { noremap = true, silent = true })
-vim.g.snacks_animate = false
 if vim.g.neovide then
   pcall(vim.fn.serverstart, vim.fn.stdpath("data") .. "/neovide.sock")
 end

@@ -125,3 +125,5 @@ map({ "n", "x" }, "<leader>gb", function()
 end, {
   desc = "Branches",
 })
+
+map({ "n", "x" }, "<leader>gu", "<cmd>!git pull --rebase<CR>", { desc = "Pull" })

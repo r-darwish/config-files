@@ -119,3 +119,9 @@ map(
   "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
   { desc = "Switch buffers" }
 )
+
+map({ "n", "x" }, "<leader>gb", function()
+  require("fzf-lua.providers.git").branches({ cwd = LazyVim.root.git() })
+end, {
+  desc = "Branches",
+})

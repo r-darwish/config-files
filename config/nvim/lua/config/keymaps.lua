@@ -68,55 +68,6 @@ vim.api.nvim_create_user_command("ChdirGit", chdir_git, {})
 map({ "n", "x" }, "<leader>rf", chdir_file, { desc = "Change directory to the one of the current file" })
 map({ "n", "x" }, "<leader>rr", chdir_root, { desc = "Change directory to current root directory" })
 map({ "n", "x" }, "<leader>rg", chdir_git, { desc = "Change directory to the git repository of the current file" })
-map({ "i" }, "<c-v>", "<cmd>FzfLua registers<cr>", { desc = "Registers" })
-
-local function zoxide()
-  require("fzf-lua").fzf_live("zoxide query -l", {
-    prompt = false,
-    winopts = { title = " Zoxide ", title_pos = "center" },
-    actions = {
-      ["default"] = function(selected)
-        vim.notify(selected[1])
-        LazyVim.pick("files", { cwd = selected[1] })()
-      end,
-      ["ctrl-g"] = function(selected)
-        vim.notify(selected[1])
-        LazyVim.pick("live_grep", { cwd = selected[1] })()
-      end,
-    },
-  })
-end
-
-local function get_tickets(current_file)
-  return function()
-    local cmd = "get-tickets --raw"
-    if current_file then
-      cmd = cmd .. " " .. vim.fn.expand("%:p")
-    end
-
-    local split = function(t)
-      return vim.split(t, " - ")[1]
-    end
-
-    require("fzf-lua").fzf_exec(cmd, {
-      prompt = false,
-      winopts = { title = " Tickets ", title_pos = "center" },
-      actions = {
-        ["default"] = function(selected)
-          vim.fn.setreg("+", split(selected[1]))
-        end,
-      },
-    })
-  end
-end
-map({ "n", "x" }, "<leader>gt", get_tickets(true), { desc = "Get tickets (file)" })
-map({ "n", "x" }, "<leader>gT", get_tickets(false), { desc = "Get tickets" })
-map({ "n", "x" }, "<leader>fz", zoxide, { desc = "Change directory based on zoxide" })
-
-local function find_plugin()
-  LazyVim.pick("files", { cwd = require("lazy.core.config").options.root })()
-end
-map({ "n", "x" }, "<leader>fp", find_plugin, { desc = "Find plugin" })
 
 map({ "n", "x" }, "<leader>gp", function()
   vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, nil)
@@ -132,17 +83,5 @@ end, { desc = "Open pull request" })
 map({ "n", "x" }, "<leader>gi", function()
   vim.system({ "nu", "-l", "-c", "circle" }, { cwd = LazyVim.root.git() }, nil)
 end, { desc = "Go to CircleCI" })
-map(
-  { "n", "x" },
-  "<leader><space>",
-  "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
-  { desc = "Switch buffers" }
-)
-
-map({ "n", "x" }, "<leader>gb", function()
-  require("fzf-lua.providers.git").branches({ cwd = LazyVim.root.git() })
-end, {
-  desc = "Branches",
-})
 
 map({ "n", "x" }, "<leader>gu", "<cmd>!git pull --rebase<CR>", { desc = "Pull" })

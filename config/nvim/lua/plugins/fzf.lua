@@ -42,6 +42,14 @@ local function find_plugin()
   LazyVim.pick("files", { cwd = require("lazy.core.config").options.root })()
 end
 
+local function goto_circle(selected)
+  vim.system({ "nu", "-l", "-c", "circle -b " .. selected[1]:sub(2) }, { cwd = LazyVim.root.git() }, nil)
+end
+
+local function goto_github(selected)
+  vim.system({ "gh", "pr", "view", "--web", vim.trim(selected[1]:sub(2)) }, { cwd = LazyVim.root.git() }, nil)
+end
+
 return {
   "ibhagwan/fzf-lua",
   keys = {
@@ -53,7 +61,13 @@ return {
     {
       "<leader>gb",
       function()
-        require("fzf-lua.providers.git").branches({ cwd = LazyVim.root.git() })
+        require("fzf-lua.providers.git").branches({
+          cwd = LazyVim.root.git(),
+          actions = {
+            ["ctrl-i"] = { fn = goto_circle, desc = "Go to CircleCI" },
+            ["alt-i"] = { fn = goto_github, desc = "Go to PR" },
+          },
+        })
       end,
       {
         desc = "Branches",

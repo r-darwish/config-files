@@ -36,11 +36,6 @@ end, { desc = "Copy absolute path" })
 
 map({ "n", "x" }, "<c-z>", ":tabedit %<CR>", { desc = "Break the current buffer to a new tab" })
 
-map({ "n", "x" }, "<leader>gT", function()
-  local file = vim.fn.expand("%:p:h")
-  require("snacks.terminal").open({ "get-tickets", file })
-end, { desc = "Get tickets (directory)" })
-
 local function chdir(dir)
   vim.cmd("cd " .. dir)
   vim.notify("Changed directory to " .. dir)

@@ -1,3 +1,17 @@
+local function create_branch_from_origin(name)
+  vim.system(
+    { "git", "checkout", "-b", name, "origin/develop" },
+    { cwd = LazyVim.root.git(), text = true },
+    function(obj)
+      if obj.code == 0 then
+        vim.notify("Branch " .. name .. " created successfully")
+      else
+        vim.notify("Branch " .. name .. " creation error: " .. obj.stderr, "error")
+      end
+    end
+  )
+end
+
 local function zoxide()
   require("fzf-lua").fzf_live("zoxide query -l", {
     prompt = false,
@@ -30,8 +44,13 @@ local function get_tickets(current_file)
       prompt = false,
       winopts = { title = " Tickets ", title_pos = "center" },
       actions = {
-        ["default"] = function(selected)
+        ["ctrl-y"] = function(selected)
           vim.fn.setreg("+", split(selected[1]))
+        end,
+        ["default"] = function(selected)
+          local ticket = split(selected[1])
+          local branch_name = vim.fn.input("Branch name", "darwish/" .. ticket .. "/")
+          create_branch_from_origin(branch_name)
         end,
       },
     })

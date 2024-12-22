@@ -58,6 +58,7 @@ return {
     { "<leader>gT", get_tickets(false), { desc = "Get tickets" } },
     { "<leader>fp", find_plugin, { desc = "Find plugin" } },
     { "<c-v>", "<cmd>FzfLua registers<cr>", mode = { "i" }, { desc = "Registers" } },
+    { "<leader>gC", "<cmd>FzfLua git_bcommits<cr>", { desc = "Buffer commits" } },
     {
       "<leader>gb",
       function()

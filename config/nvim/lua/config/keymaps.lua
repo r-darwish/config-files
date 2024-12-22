@@ -6,6 +6,7 @@ local map = vim.keymap.set
 
 map({ "n", "x" }, "gh", "^")
 map({ "n", "x" }, "gl", "$")
+map({ "n" }, "gp", "`[v`]")
 map({ "n", "x" }, "q:", "<nop>")
 map({ "n", "x" }, "Q", "q")
 map({ "n", "x" }, "q", "<nop>")
@@ -84,4 +85,13 @@ map({ "n", "x" }, "<leader>gi", function()
   vim.system({ "nu", "-l", "-c", "circle" }, { cwd = LazyVim.root.git() }, nil)
 end, { desc = "Go to CircleCI" })
 
-map({ "n", "x" }, "<leader>gu", "<cmd>!git pull --rebase<CR>", { desc = "Pull" })
+map({ "n", "x" }, "<leader>gu", function()
+  vim.notify("Pulling repository", "info")
+  vim.system({ "git", "pull", "--rebase" }, { text = true, cwd = LazyVim.root.git() }, function(out)
+    if out.code ~= 0 then
+      vim.notify("Pull failed: " .. out.stderr, "error")
+    else
+      vim.notify("Pulled", "info")
+    end
+  end)
+end, { desc = "Pull" })

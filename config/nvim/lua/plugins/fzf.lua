@@ -4,7 +4,7 @@ local function create_branch_from_origin(name)
   end
 
   vim.system(
-    { "git", "checkout", "-b", name, "origin/develop" },
+    { "git", "checkout", "--no-track", "-b", name, "origin/develop" },
     { cwd = LazyVim.root.git(), text = true },
     function(obj)
       if obj.code == 0 then

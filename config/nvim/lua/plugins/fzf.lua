@@ -1,4 +1,8 @@
 local function create_branch_from_origin(name)
+  if name == "" then
+    return
+  end
+
   vim.system(
     { "git", "checkout", "-b", name, "origin/develop" },
     { cwd = LazyVim.root.git(), text = true },
@@ -30,6 +34,7 @@ local function zoxide()
 end
 
 local function get_tickets(current_file)
+  local delimiter = " - "
   return function()
     local cmd = "get-tickets --raw"
     if current_file then
@@ -37,13 +42,24 @@ local function get_tickets(current_file)
     end
 
     local split = function(t)
-      return vim.split(t, " - ")[1]
+      return vim.split(t, delimiter)[1]
     end
 
     require("fzf-lua").fzf_exec(cmd, {
       prompt = false,
       winopts = { title = " Tickets ", title_pos = "center" },
+      fzf_opts = {
+        ["--delimiter"] = delimiter,
+        ["--nth"] = 2,
+      },
+      preview = "jira issue view {1}",
       actions = {
+        ["ctrl-o"] = {
+          fn = function(selected)
+            vim.system({ "open", "https://wiz-io.atlassian.net/browse/" .. split(selected[1]) })
+          end,
+          exec_silent = true,
+        },
         ["ctrl-y"] = function(selected)
           vim.fn.setreg("+", split(selected[1]))
         end,

@@ -88,12 +88,12 @@ end
 return {
   "ibhagwan/fzf-lua",
   keys = {
-    { "<leader>fz", zoxide, { noremap = true, silent = true, desc = "Change directory based on zoxide" } },
-    { "<leader>gt", get_tickets(true), { desc = "Get tickets (file)" } },
-    { "<leader>gT", get_tickets(false), { desc = "Get tickets" } },
-    { "<leader>fp", find_plugin, { desc = "Find plugin" } },
-    { "<c-v>", "<cmd>FzfLua registers<cr>", mode = { "i" }, { desc = "Registers" } },
-    { "<leader>gC", "<cmd>FzfLua git_bcommits<cr>", { desc = "Buffer commits" } },
+    { "<leader>fz", zoxide, desc = "Change directory based on zoxide" },
+    { "<leader>gt", get_tickets(true), desc = "Show file tickets" },
+    { "<leader>gT", get_tickets(false), desc = "Show my tickets" },
+    { "<leader>fp", find_plugin, desc = "Find plugin" },
+    { "<c-v>", "<cmd>FzfLua registers<cr>", mode = { "i" }, desc = "Registers" },
+    { "<leader>gC", "<cmd>FzfLua git_bcommits<cr>", desc = "Buffer commits" },
     {
       "<leader>gb",
       function()
@@ -105,9 +105,7 @@ return {
           },
         })
       end,
-      {
-        desc = "Branches",
-      },
+      desc = "Branches",
     },
   },
   opts = {

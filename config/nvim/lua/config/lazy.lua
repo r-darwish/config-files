@@ -14,7 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+local config = {
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
@@ -50,4 +50,11 @@ require("lazy").setup({
       },
     },
   },
-})
+}
+
+local wiz_dir = vim.env.HOME .. "/wiz-sec/darwish/nvim"
+if (vim.uv or vim.loop).fs_stat(wiz_dir) then
+  table.insert(config.spec, { import = "wiz" })
+  config.performance.rtp.paths = { wiz_dir }
+end
+require("lazy").setup(config)

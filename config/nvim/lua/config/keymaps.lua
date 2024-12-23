@@ -76,10 +76,6 @@ map({ "n", "x" }, "<leader>gP", function()
   )
 end, { desc = "Open pull request" })
 
-map({ "n", "x" }, "<leader>gi", function()
-  vim.system({ "nu", "-l", "-c", "circle" }, { cwd = LazyVim.root.git() }, nil)
-end, { desc = "Go to CircleCI" })
-
 map({ "n", "x" }, "<leader>gu", function()
   vim.notify("Pulling repository", "info")
   vim.system({ "git", "pull", "--rebase" }, { text = true, cwd = LazyVim.root.git() }, function(out)

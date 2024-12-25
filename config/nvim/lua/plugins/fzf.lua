@@ -30,6 +30,27 @@ end
 return {
   "ibhagwan/fzf-lua",
   keys = {
+    {
+      "<leader>fg",
+      function()
+        require("fzf-lua.providers.git").files({ cwd = LazyVim.root.git() })
+      end,
+      desc = "Find Files (git-files)",
+    },
+    {
+      "<leader>gc",
+      function()
+        require("fzf-lua.providers.git").commits({ cwd = LazyVim.root.git() })
+      end,
+      desc = "Commits",
+    },
+    {
+      "<leader>gs",
+      function()
+        require("fzf-lua.providers.git").status({ cwd = LazyVim.root.git() })
+      end,
+      desc = "Status",
+    },
     { "<leader>fz", zoxide, desc = "Change directory based on zoxide" },
     { "<leader>fp", find_plugin, desc = "Find plugin" },
     { "<c-v>", "<cmd>FzfLua registers<cr>", mode = { "i" }, desc = "Registers" },

@@ -70,19 +70,27 @@ return {
       desc = "Branches",
     },
   },
-  opts = {
-    oldfiles = {
-      include_current_session = true,
-    },
-    previewers = {
-      builtin = {
-        syntax_limit_b = 1024 * 100,
+  opts = function(_, opts)
+    local config = require("fzf-lua.config")
+    config.defaults.keymap.fzf["ctrl-u"] = "unix-line-discard"
+
+    local my_opts = {
+      oldfiles = {
+        include_current_session = true,
       },
-    },
-    grep = {
-      rg_glob = true,
-      glob_flag = "--iglob",
-      glob_separator = "%s%-%-",
-    },
-  },
+      previewers = {
+        builtin = {
+          syntax_limit_b = 1024 * 100,
+        },
+      },
+      grep = {
+        rg_glob = true,
+        glob_flag = "--iglob",
+        glob_separator = "%s%-%-",
+      },
+    }
+
+    vim.tbl_deep_extend("force", opts, my_opts)
+    return opts
+  end,
 }

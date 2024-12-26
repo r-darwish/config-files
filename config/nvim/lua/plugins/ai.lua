@@ -10,9 +10,11 @@ return {
     event = nil,
     opts = {
       suggestion = {
+        enabled = true,
         keymap = {
           next = "<M-]>",
           prev = "<M-[>",
+          accept = "<M-l>",
         },
       },
       panel = { enabled = false },

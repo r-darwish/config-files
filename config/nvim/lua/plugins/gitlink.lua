@@ -1,22 +1,11 @@
 return {
   {
-    "ruifm/gitlinker.nvim",
+    "linrongbin16/gitlinker.nvim",
+    cmd = "GitLink",
+    opts = {},
     keys = {
-      {
-        "<leader>gy",
-        function()
-          require("gitlinker").get_buf_range_url("n", nil)
-        end,
-        desc = "Git Link",
-      },
-      {
-        "<leader>gy",
-        mode = { "v" },
-        function()
-          require("gitlinker").get_buf_range_url("v", nil)
-        end,
-        desc = "Git Link",
-      },
+      { "<leader>gy", "<cmd>GitLink<cr>", mode = { "n", "v" }, desc = "Yank git link" },
+      { "<leader>gY", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git link" },
     },
   },
 }

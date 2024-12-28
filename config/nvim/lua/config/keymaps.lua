@@ -4,11 +4,21 @@
 
 local map = vim.keymap.set
 
+local function toggle_macro_recording()
+  if vim.fn.reg_recording() ~= "" then
+    vim.cmd("normal! q")
+  else
+    vim.cmd("normal! qq")
+  end
+end
+
 map({ "n", "x" }, "gh", "^")
 map({ "n", "x" }, "gl", "$")
 map({ "n" }, "gp", "`[v`]")
 map({ "n", "x" }, "q:", "<nop>")
 map({ "n", "x" }, "Q", "q")
+map({ "n", "x" }, "<f2>", toggle_macro_recording)
+map({ "n", "x" }, "<f3>", "@q")
 map({ "n", "x" }, "q", "<nop>")
 map({ "n", "x" }, "\\", function()
   require("telescope.builtin").buffers()

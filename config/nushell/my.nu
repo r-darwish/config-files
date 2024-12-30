@@ -65,6 +65,10 @@ def godbg [...args] {
     dlv debug --headless -l 127.0.0.1:31337 --accept-multiclient ...$args
 }
 
+def lgl [path: string] {
+    lazygit log --filter ($path | path expand)
+}
+
 alias v = nvim
 alias vd = edit dir
 alias yt-mp3 = yt-dlp -x --audio-format mp3

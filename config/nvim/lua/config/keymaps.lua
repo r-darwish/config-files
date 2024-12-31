@@ -96,3 +96,10 @@ map({ "n", "x" }, "<leader>gu", function()
     end
   end)
 end, { desc = "Pull" })
+
+local function open_file_in_same_dir()
+  local current_file = vim.fn.expand("%:p:h")
+  local file_to_open = vim.fn.input("Enter file name: ", current_file .. "/", "file")
+  vim.cmd("edit " .. file_to_open)
+end
+map({ "n", "v" }, "<leader>fn", open_file_in_same_dir)

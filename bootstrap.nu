@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-def exists [path: string] -> bool {
+def exists [path: string] : any -> bool {
     return (which $path | is-not-empty)
 }
 

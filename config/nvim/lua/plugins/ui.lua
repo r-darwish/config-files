@@ -12,6 +12,7 @@ return {
       require("better_escape").setup(opts)
     end,
   },
+  { "akinsho/bufferline.nvim", enabled = false },
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)

@@ -20,10 +20,9 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "MiniFilesBufferCreate",
   callback = function(args)
     local buf_id = args.data.buf_id
-    vim.notify("hi")
     vim.keymap.set("n", "s", function()
       require("flash").jump({
-        search = { mode = "search", max_length = 0 },
+        search = { mode = "search", max_length = 0, multi_window = false },
         label = { after = { 0, 0 } },
         pattern = "^",
       })

@@ -17,14 +17,34 @@ local function set_mark(m, id, path, desc)
 end
 
 vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesBufferCreate",
+  callback = function(args)
+    local buf_id = args.data.buf_id
+    vim.notify("hi")
+    vim.keymap.set("n", "s", function()
+      require("flash").jump({
+        search = { mode = "search", max_length = 0 },
+        label = { after = { 0, 0 } },
+        pattern = "^",
+      })
+    end, { buffer = buf_id, desc = "Toggle hidden files" })
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
   pattern = "MiniFilesExplorerOpen",
   callback = function()
     local m = require("mini.files")
     set_mark(m, "h", "~", "Home directory")
     set_mark(m, "s", "~/src", "Source directory")
     set_mark(m, "w", "~/wiz-sec", "Wiz directory")
+    set_mark(m, "W", "~/OneDrive - Wiz", "Wiz OneDrive")
     set_mark(m, "g", LazyVim.root.git, "Git directory")
     set_mark(m, "r", LazyVim.root.get, "Root directory")
+    set_mark(m, "v", vim.fn.stdpath("data"), "Neovim data dir")
+    set_mark(m, "t", function()
+      return os.getenv("TMPDIR") or "/tmp"
+    end, "Temp dir")
   end,
 })
 

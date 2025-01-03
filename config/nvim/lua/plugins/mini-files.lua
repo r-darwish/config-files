@@ -30,14 +30,30 @@ vim.api.nvim_create_autocmd("User", {
 
 return {
   {
+    "neo-tree.nvim",
+    enabled = false,
+  },
+  {
     "echasnovski/mini.files",
+    lazy = false,
     opts = {
+      options = {
+        use_as_default_explorer = true,
+      },
       windows = {
         width_nofocus = 25,
         width_preview = 100,
       },
       mappings = {
         go_in_plus = "<CR>",
+      },
+    },
+    keys = {
+      {
+        "<leader>e",
+        function()
+          require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        end,
       },
     },
   },

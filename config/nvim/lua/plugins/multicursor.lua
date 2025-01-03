@@ -19,14 +19,14 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<C-up>",
+        "<C-k>",
         function()
           require("multicursor-nvim").lineAddCursor(-1)
         end,
         mode = { "n", "v" },
       },
       {
-        "<C-down>",
+        "<C-",
         function()
           require("multicursor-nvim").lineAddCursor(1)
         end,

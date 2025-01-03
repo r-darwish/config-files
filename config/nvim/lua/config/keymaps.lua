@@ -34,8 +34,7 @@ map({ "n", "x" }, "<leader>fY", function()
 end, { desc = "Copy absolute path" })
 
 map({ "n", "x" }, "<leader>fy", function()
-  local git = require("gitlinker.git")
-  local root = git.get_git_root() .. "/"
+  local root = LazyVim.root.git()
   local path = vim.fn.expand("%:p")
 
   path = path:gsub(root, "")

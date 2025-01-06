@@ -69,7 +69,15 @@ def lgl [path: string] {
     lazygit log --filter ($path | path expand)
 }
 
-alias v = nvim
+def v [file: string] {
+    let nvim_sock = ($env | get "NVIM")
+    if ($nvim_sock | is-not-empty) {
+        nvim --server $nvim_sock --remote ($file | path expand)
+    } else {
+        nvim $file
+    }
+}
+
 alias vd = edit dir
 alias yt-mp3 = yt-dlp -x --audio-format mp3
 alias st = starship toggle

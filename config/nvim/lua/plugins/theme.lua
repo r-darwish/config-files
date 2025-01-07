@@ -17,8 +17,14 @@ return {
     "folke/tokyonight.nvim",
     opts = {
       dim_inactive = true,
+      on_highlights = function(hl, c)
+        hl.DiagnosticUnnecessary = {
+          fg = c.dark3,
+        }
+      end,
       on_colors = function(colors)
         colors.border = "teal"
+        colors.comment = colors.fg_dark
       end,
     },
   },

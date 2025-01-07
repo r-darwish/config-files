@@ -87,7 +87,7 @@ end, { desc = "Open pull request" })
 
 map({ "n", "x" }, "<leader>gu", function()
   vim.notify("Pulling repository", "info")
-  vim.system({ "git", "pull", "--rebase" }, { text = true, cwd = LazyVim.root.git() }, function(out)
+  vim.system({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = LazyVim.root.git() }, function(out)
     if out.code ~= 0 then
       vim.notify("Pull failed: " .. out.stderr, "error")
     else

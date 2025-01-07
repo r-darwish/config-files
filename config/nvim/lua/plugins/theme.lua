@@ -21,10 +21,14 @@ return {
         hl.DiagnosticUnnecessary = {
           fg = c.dark3,
         }
+        hl.CopilotSuggestion = {
+          fg = c.blue,
+          italic = true,
+        }
       end,
       on_colors = function(colors)
         colors.border = "teal"
-        colors.comment = colors.fg_dark
+        colors.comment = colors.dark3
       end,
     },
   },

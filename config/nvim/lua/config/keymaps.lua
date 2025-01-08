@@ -26,7 +26,7 @@ end)
 map({ "n", "x", "i" }, "<D-s>", "<C-s>")
 map({ "n", "x", "i" }, "<M-d>", "<cmd>bd<cr>")
 map({ "n", "x" }, "<leader>ba", "<cmd>%bd<cr>")
-
+map({ "n" }, "<tab>", ":edit #<cr>", { silent = true })
 map({ "n", "x" }, "<leader>fY", function()
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", path)

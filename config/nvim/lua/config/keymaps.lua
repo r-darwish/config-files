@@ -85,16 +85,26 @@ map({ "n", "x" }, "<leader>gP", function()
   )
 end, { desc = "Open pull request" })
 
-map({ "n", "x" }, "<leader>gu", function()
-  vim.notify("Pulling repository", "info")
+local function git_pull()
+  local main_branch = require("utils").get_main_branch():gsub("^origin/", "")
+
+  vim.notify("Switching to " .. main_branch .. " and pulling", "info")
+  local proc = vim.system({ "git", "switch", "--merge", main_branch }, { text = true, cwd = LazyVim.root.git() }):wait()
+  if proc.code ~= 0 then
+    vim.notify("Switch failed: " .. proc.stderr, "error")
+    return
+  end
+
   vim.system({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = LazyVim.root.git() }, function(out)
     if out.code ~= 0 then
       vim.notify("Pull failed: " .. out.stderr, "error")
     else
-      vim.notify("Pulled", "info")
+      vim.notify("Switched to branch " .. main_branch, "info")
     end
   end)
-end, { desc = "Pull" })
+end
+
+map({ "n", "x" }, "<leader>gu", git_pull, { desc = "Switch to the main branch and pull" })
 
 local function open_file_in_same_dir()
   local current_file = vim.fn.expand("%:p:h")

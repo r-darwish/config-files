@@ -22,7 +22,7 @@ return {
           fg = c.dark3,
         }
         hl.CopilotSuggestion = {
-          fg = c.blue,
+          fg = c.magenta2,
           italic = true,
         }
       end,

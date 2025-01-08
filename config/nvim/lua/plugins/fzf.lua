@@ -38,6 +38,20 @@ return {
       desc = "Find Files (git-files)",
     },
     {
+      "<leader>fc",
+      function()
+        require("fzf-lua.providers.files").files({ cwd = "~/config-files" })
+      end,
+      desc = "Find a config file",
+    },
+    {
+      "<leader>fs",
+      function()
+        require("fzf-lua.providers.files").files({ cwd = "~/src" })
+      end,
+      desc = "Find a source file",
+    },
+    {
       "<leader>gc",
       function()
         require("fzf-lua.providers.git").commits({ cwd = LazyVim.root.git() })

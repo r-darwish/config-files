@@ -15,7 +15,7 @@ vim.opt.shiftwidth = 4
 vim.opt.titlestring = [[%{v:progname} - %f%h%m%r%w]]
 vim.opt.title = true
 vim.opt.shada = "'10000,<10000,s100"
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 local nu = "/opt/homebrew/bin/nu"
 if file_exists(nu) then

@@ -6,6 +6,19 @@ local function get_main_branch()
   return main_branch
 end
 
+local function extract_quotes(str)
+  local expressions = { [["(.-)"]], [[%'(.-)%']], [[`(.-)`]] }
+  for _, exp in ipairs(expressions) do
+    local match = string.match(str, exp)
+    if match then
+      return match
+    end
+  end
+
+  return str
+end
+
 return {
   get_main_branch = get_main_branch,
+  extract_quotes = extract_quotes,
 }

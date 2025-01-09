@@ -4,12 +4,13 @@ local function zoxide()
     winopts = { title = " Zoxide ", title_pos = "center" },
     actions = {
       ["default"] = function(selected)
-        vim.notify(selected[1])
         LazyVim.pick("files", { cwd = selected[1] })()
       end,
-      ["ctrl-g"] = function(selected)
-        vim.notify(selected[1])
+      ["ctrl-/"] = function(selected)
         LazyVim.pick("live_grep", { cwd = selected[1] })()
+      end,
+      ["ctrl-g"] = function(selected)
+        require("snacks.lazygit").open({ cwd = selected[1] })
       end,
     },
   })

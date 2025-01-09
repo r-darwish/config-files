@@ -18,7 +18,12 @@ local function extract_quotes(str)
   return str
 end
 
+local function strip(s)
+  return s:match("^(.-)%s*$")
+end
+
 return {
   get_main_branch = get_main_branch,
   extract_quotes = extract_quotes,
+  strip = strip,
 }

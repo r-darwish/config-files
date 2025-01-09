@@ -112,3 +112,17 @@ local function open_file_in_same_dir()
   vim.cmd("edit " .. file_to_open)
 end
 map({ "n", "v" }, "<leader>fn", open_file_in_same_dir)
+
+local function browse_commit()
+  local commit = require("utils").extract_quotes(vim.fn.expand("<cWORD>"))
+  local proc = vim.system({ "git", "rev-parse", commit }, { text = true, cwd = LazyVim.root.git() }):wait()
+  if proc.code ~= 0 then
+    vim.notify("Bad commit: " .. proc.stderr, "error")
+    return
+  end
+
+  commit = require("utils").strip(proc.stdout)
+  local cmd = { "gh", "browse", commit }
+  vim.system(cmd, { cd = LazyVim.root.git() })
+end
+map({ "n", "x" }, "<leader>gx", browse_commit, { desc = "Browse the current commit" })

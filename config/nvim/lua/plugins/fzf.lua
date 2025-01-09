@@ -9,7 +9,7 @@ local function zoxide()
       ["ctrl-/"] = function(selected)
         LazyVim.pick("live_grep", { cwd = selected[1] })()
       end,
-      ["ctrl-g"] = function(selected)
+      ["ctrl-l"] = function(selected)
         require("snacks.lazygit").open({ cwd = selected[1] })
       end,
     },

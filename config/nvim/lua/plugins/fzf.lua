@@ -86,9 +86,6 @@ return {
     },
   },
   opts = function(_, opts)
-    local config = require("fzf-lua.config")
-    config.defaults.keymap.fzf["ctrl-u"] = "unix-line-discard"
-
     local my_opts = {
       oldfiles = {
         include_current_session = true,

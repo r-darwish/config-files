@@ -9,7 +9,6 @@ end
 
 vim.opt.gdefault = true
 vim.opt.wrap = true
-vim.opt.formatoptions:remove({ "r", "o" })
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.titlestring = [[%{v:progname} - %f%h%m%r%w]]

@@ -19,7 +19,7 @@ return {
       dim_inactive = true,
       on_highlights = function(hl, c)
         hl.DiagnosticUnnecessary = {
-          fg = c.dark3,
+          fg = c.comment,
         }
         hl.CopilotSuggestion = {
           fg = c.magenta2,
@@ -28,7 +28,6 @@ return {
       end,
       on_colors = function(colors)
         colors.border = "teal"
-        colors.comment = colors.dark3
       end,
     },
   },

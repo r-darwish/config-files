@@ -4,6 +4,10 @@
 
 -- wrap and check for spell in text filetypes
 
+vim.api.nvim_create_autocmd("FileType", {
+  command = "set formatoptions-=cro",
+})
+
 local function set_opts(pattern, opts)
   vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("custom", {}),

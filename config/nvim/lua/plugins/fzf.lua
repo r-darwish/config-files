@@ -41,7 +41,8 @@ return {
     {
       "<leader>fc",
       function()
-        require("fzf-lua.providers.files").files({ cwd = "~/config-files" })
+        local config_dir = vim.fn.stdpath("config")
+        require("fzf-lua.providers.git").files({ cwd = config_dir })
       end,
       desc = "Find a config file",
     },

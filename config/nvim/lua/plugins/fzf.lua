@@ -102,7 +102,7 @@ return {
       },
     }
 
-    vim.tbl_deep_extend("force", opts, my_opts)
+    opts = vim.tbl_deep_extend("force", opts, my_opts)
     return opts
   end,
 }

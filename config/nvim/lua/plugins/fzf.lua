@@ -6,7 +6,7 @@ local function zoxide()
       ["default"] = function(selected)
         LazyVim.pick("files", { cwd = selected[1] })()
       end,
-      ["ctrl-/"] = function(selected)
+      ["ctrl-s"] = function(selected)
         LazyVim.pick("live_grep", { cwd = selected[1] })()
       end,
       ["ctrl-l"] = function(selected)

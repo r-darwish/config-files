@@ -12,6 +12,10 @@ local function toggle_macro_recording()
   end
 end
 
+map({ "t" }, "<C-z>", "<C-\\><C-n>")
+map({ "n", "x" }, "<C-z>", "i")
+map({ "i" }, "<C-z>", "<esc>")
+
 map({ "n", "x" }, "gh", "^")
 map({ "n", "x" }, "gl", "$")
 map({ "n" }, "gp", "`[v`]")
@@ -45,8 +49,6 @@ map({ "n", "x" }, "<leader>fy", function()
   vim.fn.setreg("+", path)
   vim.notify('Copied "' .. path .. '" to the clipboard')
 end, { desc = "Copy absolute path" })
-
-map({ "n", "x" }, "<c-z>", ":tabedit %<CR>", { desc = "Break the current buffer to a new tab" })
 
 local function chdir(dir)
   vim.cmd("cd " .. dir)

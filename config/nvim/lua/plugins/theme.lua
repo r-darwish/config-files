@@ -1,3 +1,5 @@
+local transparency = true
+
 return {
   {
     "rose-pine/neovim",
@@ -9,7 +11,7 @@ return {
       styles = {
         bold = true,
         italic = true,
-        transparency = true,
+        transparency = transparency,
       },
     },
   },
@@ -17,6 +19,7 @@ return {
     "folke/tokyonight.nvim",
     opts = {
       dim_inactive = true,
+      transparent = transparency,
       on_highlights = function(hl, c)
         hl.DiagnosticUnnecessary = {
           fg = c.comment,
@@ -32,15 +35,29 @@ return {
     },
   },
   {
-    "ellisonleao/gruvbox.nvim",
-    opts = {
-      transparent_mode = true,
-    },
+    "sainnhe/gruvbox-material",
+    config = function()
+      vim.g.gruvbox_material_enable_italic = true
+      vim.g.gruvbox_material_transparent_background = transparency and 2 or 0
+
+      if transparency then
+        local function set_normal_float_highlight()
+          vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "FloatTitle", { bg = "NONE" })
+        end
+
+        vim.api.nvim_create_autocmd("ColorScheme", {
+          pattern = "*",
+          callback = set_normal_float_highlight,
+        })
+      end
+    end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-moon",
+      colorscheme = "gruvbox-material",
     },
   },
 }

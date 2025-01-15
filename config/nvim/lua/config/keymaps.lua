@@ -153,3 +153,7 @@ local function browse_commit()
   vim.system(cmd, { cd = LazyVim.root.git() })
 end
 map({ "n", "x" }, "<leader>gx", browse_commit, { desc = "Browse the current commit" })
+
+map({ "n", "x" }, "<C-g>", function()
+  require("snacks.terminal").open({ "lazygit" }, { cwd = LazyVim.root.git() })
+end, { desc = "Open lazygit" })

@@ -1,5 +1,4 @@
 return {
-  { import = "lazyvim.plugins.extras.coding.luasnip" },
   { import = "lazyvim.plugins.extras.editor.aerial" },
   { import = "lazyvim.plugins.extras.editor.illuminate" },
   { import = "lazyvim.plugins.extras.editor.mini-files" },

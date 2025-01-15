@@ -4,6 +4,7 @@ local HyperShortcuts = {
 	{ "T", "Kitty" },
 	{ "W", "WhatsApp" },
 	{ "M", "Spotify" },
+	{ "G", "Signal" },
 }
 
 for _, shortcut in ipairs(HyperShortcuts) do

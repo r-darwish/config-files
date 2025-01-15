@@ -1,3 +1,7 @@
+if os.getenv("TERMUX_VERSION") ~= nil then
+  return {}
+end
+
 vim.api.nvim_create_user_command("CopilotSplit", function()
   require("CopilotChat").toggle({ window = { layout = "horizontal", height = 0.3 } })
 end, {})

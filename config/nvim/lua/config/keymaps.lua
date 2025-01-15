@@ -90,6 +90,28 @@ map({ "n", "x" }, "<leader>gP", function()
   )
 end, { desc = "Open pull request" })
 
+local function git_merge_with_origin()
+  local main_branch = require("utils").get_main_branch()
+
+  vim.notify("Fetching repository", "info")
+  local root = LazyVim.root.git()
+  vim.system({ "git", "fetch" }, { text = true, cwd = root }, function(out)
+    if out.code ~= 0 then
+      vim.notify("Fetch failed: " .. out.stderr, "error")
+    else
+      vim.system({ "git", "merge", main_branch }, { text = true, cwd = root }, function(innerOut)
+        if innerOut.code ~= 0 then
+          vim.notify("Merge failed: " .. innerOut.stderr, "error")
+        else
+          vim.notify("Merged with " .. main_branch, "info")
+        end
+      end)
+    end
+  end)
+end
+
+map({ "n", "x" }, "<leader>gm", git_merge_with_origin, { desc = "Merge with origin's main branch" })
+
 local function git_pull()
   local main_branch = require("utils").get_main_branch():gsub("^origin/", "")
 

@@ -1,3 +1,7 @@
+if os.getenv("TERMUX_VERSION") ~= nil then
+  return {}
+end
+
 return {
   { import = "lazyvim.plugins.extras.lang.nushell" },
   { import = "lazyvim.plugins.extras.lang.go" },

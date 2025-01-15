@@ -5,7 +5,11 @@ def exists [path: string] : any -> bool {
 }
 
 def main [] {
-    $nu.current-exe | path dirname | path join "nu_plugin_formats" | plugin add $in
+    let plugin_path = $nu.current-exe | path dirname | path join "nu_plugin_formats"
+
+    if (exists $plugin_path) {
+        plugin add $plugin_path
+    }
 
     let gen = $nu.home-path | path join ".gen.nu"
     "" | save -f $gen

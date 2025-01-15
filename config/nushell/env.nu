@@ -53,7 +53,7 @@ let home_bin = ($nu.home-path | path join ".local" "bin")
 let local_bin = "/usr/local/bin"
 
 for p in [$brew, $home_bin, $local_bin] {
-    if ($p | path exists) {
+    if (($p != null) and ($p | path exists)) {
         path add $p
     }
 }

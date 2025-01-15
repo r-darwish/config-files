@@ -107,6 +107,7 @@ alias gst = git status
 alias gc = git commit
 alias gf = git fetch
 alias gd = gh dash
+alias ur = uv run
 
 $env.HOMEBREW_NO_AUTO_UPDATE = "1"
 

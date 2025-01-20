@@ -2,11 +2,6 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-local function file_exists(filepath)
-  local stat = vim.uv.fs_stat(filepath)
-  return stat and stat.type == "file"
-end
-
 vim.opt.gdefault = true
 vim.opt.wrap = true
 vim.opt.tabstop = 4
@@ -16,6 +11,7 @@ vim.opt.title = true
 vim.opt.shada = "'10000,<10000,s100"
 vim.opt.cursorline = false
 vim.opt.shell = vim.fn.stdpath("config") .. "/shell"
+vim.opt.hlsearch = false
 
 vim.g.root_spec = {
   {

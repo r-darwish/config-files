@@ -53,6 +53,37 @@ return {
         desc = "Step Over",
       },
     },
+    opts = function(opts)
+      local dap = require("dap")
+      dap.adapters.lldb = {
+        type = "executable",
+        command = "lldb-dap",
+        name = "lldb",
+      }
+
+      dap.configurations.zig = {
+        {
+          name = "Launch",
+          type = "lldb",
+          request = "launch",
+          cwd = LazyVim.root.get,
+          program = function()
+            local root = LazyVim.root.get()
+
+            local build = vim.system({ "zig", "build" }, { text = true, cwd = root }):wait()
+            if build.code ~= 0 then
+              vim.notify("Failed to build zig project:" .. build.stdout .. build.stderr, "error")
+              return nil
+            end
+
+            return root .. "/zig-out/bin/" .. vim.fn.fnamemodify(root, ":t")
+          end,
+          args = {},
+        },
+      }
+
+      return opts
+    end,
   },
   {
     "rcarriga/nvim-dap-ui",

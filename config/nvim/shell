@@ -1,7 +1,11 @@
 #!/bin/bash
 
 if [ -t 1 ]; then
-    exec nu
+    if [ "$#" -eq 1 ]; then
+        exec bash
+    else
+        exec nu "$@"
+    fi
 else
     exec bash "$@"
 fi

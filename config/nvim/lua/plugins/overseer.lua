@@ -3,7 +3,15 @@ return {
   {
     "stevearc/overseer.nvim",
     opts = {
-      templates = { "builtin", "custom.create_pr", "custom.docker_build", "custom.compose_up" },
+      templates = {
+        "builtin",
+        "custom.create_pr",
+        "custom.docker_build",
+        "custom.compose_up",
+        "custom.zig_run",
+        "custom.zig_build",
+        "custom.zig_test_file",
+      },
       task_list = {
         max_height = { 1000, 0.4 },
       },

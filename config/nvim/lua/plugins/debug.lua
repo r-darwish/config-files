@@ -67,15 +67,9 @@ return {
           type = "lldb",
           request = "launch",
           cwd = LazyVim.root.get,
+          preLaunchTask = "zig build",
           program = function()
             local root = LazyVim.root.get()
-
-            local build = vim.system({ "zig", "build" }, { text = true, cwd = root }):wait()
-            if build.code ~= 0 then
-              vim.notify("Failed to build zig project:" .. build.stdout .. build.stderr, "error")
-              return nil
-            end
-
             return root .. "/zig-out/bin/" .. vim.fn.fnamemodify(root, ":t")
           end,
           args = {},

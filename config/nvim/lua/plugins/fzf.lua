@@ -71,6 +71,7 @@ return {
     { "<leader>fp", find_plugin, desc = "Find plugin" },
     { "<c-v>", "<cmd>FzfLua registers<cr>", mode = { "i" }, desc = "Registers" },
     { "<leader>sl", "<cmd>FzfLua lines<cr>", desc = "Lines" },
+    { "<leader>s;", "<cmd>FzfLua changes<cr>", desc = "Changes" },
     { "<leader>gC", "<cmd>FzfLua git_bcommits<cr>", desc = "Buffer commits" },
     {
       "<leader>gb",

@@ -10,10 +10,6 @@ customCommands:
     context: 'files'
     description: 'Show file tickets'
     subprocess: true
-  - key: "<c-p>"
-    command: "gh pr create --fill --web"
-    context: "global"
-    loadingText: "Creating pull request on GitHub"
   - key: "v"
     prompts:
       - type: 'input'

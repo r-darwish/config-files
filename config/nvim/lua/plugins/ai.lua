@@ -10,16 +10,22 @@ return {
   { import = "lazyvim.plugins.extras.ai.copilot" },
   { import = "lazyvim.plugins.extras.ai.copilot-chat" },
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    opts = {
-      window = {
-        layout = "float",
-        relative = "cursor",
-        width = 1,
-        height = 0.4,
-        row = 1,
-      },
-    },
+    "giuxtaposition/blink-cmp-copilot",
+    enable = false,
+  },
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = { "giuxtaposition/blink-cmp-copilot" },
+    opts = function(_, opts)
+      for i, v in ipairs(opts.sources.default) do
+        if v == "copilot" then
+          table.remove(opts.sources.default, i)
+          break
+        end
+      end
+      opts.sources.providers.copilot = nil
+    end,
   },
   {
     "zbirenbaum/copilot.lua",
@@ -31,10 +37,12 @@ return {
     opts = {
       suggestion = {
         enabled = true,
+        auto_trigger = false,
         keymap = {
           next = "<M-]>",
           prev = "<M-[>",
-          accept = "<M-l>",
+          accept_word = "<M-w>",
+          accept_line = "<M-l>",
         },
       },
       panel = { enabled = false },

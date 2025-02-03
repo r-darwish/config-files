@@ -11,6 +11,13 @@ return {
     },
     keymaps = {
       ["q"] = { "actions.close", mode = "n" },
+      ["<bs>"] = { "actions.parent", mode = "n" },
+      ["<C-p>"] = { "actions.preview_scroll_up", mode = "n" },
+      ["<C-n>"] = { "actions.preview_scroll_down", mode = "n" },
+      ["t"] = { "actions.open_terminal", mode = "n" },
+      ["gd"] = function()
+        require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+      end,
     },
   },
   -- Optional dependencies

@@ -13,6 +13,7 @@ local function toggle_macro_recording()
 end
 
 map({ "t" }, "<C-z>", "<C-\\><C-n>")
+map({ "t" }, "<C-v>", "<C-\\><C-n>pi")
 map({ "n", "x" }, "<C-z>", "i")
 map({ "i" }, "<C-z>", "<esc>")
 

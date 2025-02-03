@@ -9,6 +9,9 @@ return {
       show_hidden = true,
       case_insensitive = true,
     },
+    keymaps = {
+      ["q"] = { "actions.close", mode = "n" },
+    },
   },
   -- Optional dependencies
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
@@ -18,7 +21,6 @@ return {
       "<leader>e",
       function()
         local o = require("oil")
-
         o.open_float(o.get_current_dir(0), { preview = {} })
       end,
     },

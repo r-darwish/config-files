@@ -12,6 +12,9 @@ local function zoxide()
       ["ctrl-l"] = function(selected)
         require("snacks.lazygit").open({ cwd = selected[1] })
       end,
+      ["ctrl-o"] = function(selected)
+        require("oil").open(selected[1])
+      end,
     },
   })
 end

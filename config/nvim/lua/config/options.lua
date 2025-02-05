@@ -45,7 +45,7 @@ if vim.fn.has("wsl") == 1 then
   }
 end
 
-vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h14" -- text below applies for VimScript
+vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h12" -- text below applies for VimScript
 vim.g.neovide_input_use_logo = 1
 vim.g.neovide_cursor_trail_size = 0.6
 vim.g.neovide_cursor_animate_command_line = false

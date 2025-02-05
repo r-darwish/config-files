@@ -154,3 +154,9 @@ local function browse_commit()
   vim.system(cmd, { cd = LazyVim.root.git() })
 end
 map({ "n", "x" }, "<leader>gx", browse_commit, { desc = "Browse the current commit" })
+
+if vim.g.neovide then
+  vim.keymap.set({ "n", "v" }, "<D-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
+  vim.keymap.set({ "n", "v" }, "<D-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
+  vim.keymap.set({ "n", "v" }, "<D-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
+end

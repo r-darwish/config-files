@@ -1,4 +1,4 @@
-local transparency = true
+local transparency = not vim.g.neovide
 
 return {
   {

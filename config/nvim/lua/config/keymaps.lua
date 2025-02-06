@@ -34,7 +34,6 @@ map({ "n", "x", "i" }, "<M-d>", "<cmd>bd<cr>")
 map({ "n", "x" }, "<leader>ba", function()
   require("snacks.bufdelete").all()
 end)
-map({ "n" }, "<tab>", ":edit #<cr>", { silent = true })
 map({ "n", "x" }, "<leader>fY", function()
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", path)
@@ -142,8 +141,9 @@ end
 map({ "n", "v" }, "<leader>fn", open_file_in_same_dir)
 
 local function browse_commit()
+  local cwd = LazyVim.root.git() or vim.fn.getcwd()
   local commit = require("utils").extract_quotes(vim.fn.expand("<cWORD>"))
-  local proc = vim.system({ "git", "rev-parse", commit }, { text = true, cwd = LazyVim.root.git() }):wait()
+  local proc = vim.system({ "git", "rev-parse", commit }, { text = true, cwd = cwd }):wait()
   if proc.code ~= 0 then
     vim.notify("Bad commit: " .. proc.stderr, "error")
     return
@@ -151,7 +151,7 @@ local function browse_commit()
 
   commit = require("utils").strip(proc.stdout)
   local cmd = { "gh", "browse", commit }
-  vim.system(cmd, { cd = LazyVim.root.git() })
+  vim.system(cmd, { cd = cwd })
 end
 map({ "n", "x" }, "<leader>gx", browse_commit, { desc = "Browse the current commit" })
 

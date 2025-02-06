@@ -14,6 +14,7 @@ return {
       ["<bs>"] = { "actions.parent", mode = "n" },
       ["<C-p>"] = { "actions.preview_scroll_up", mode = "n" },
       ["<C-n>"] = { "actions.preview_scroll_down", mode = "n" },
+      ["<C-v>"] = "actions.preview",
       ["t"] = { "actions.open_terminal", mode = "n" },
       ["gd"] = function()
         require("oil").set_columns({ "icon", "permissions", "size", "mtime" })

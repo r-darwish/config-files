@@ -11,7 +11,6 @@ vim.opt.title = true
 vim.opt.shada = "'10000,<10000,s100"
 vim.opt.cursorline = false
 vim.opt.shell = vim.fn.stdpath("config") .. "/shell"
-vim.opt.hlsearch = false
 
 vim.g.root_spec = {
   {

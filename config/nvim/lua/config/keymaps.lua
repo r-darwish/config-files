@@ -155,6 +155,10 @@ local function browse_commit()
 end
 map({ "n", "x" }, "<leader>gx", browse_commit, { desc = "Browse the current commit" })
 
+map("n", "<leader>gf", function()
+  Snacks.lazygit.log_file()
+end, { desc = "Git Current File History" })
+
 if vim.g.neovide then
   vim.keymap.set({ "n", "v" }, "<D-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
   vim.keymap.set({ "n", "v" }, "<D-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")

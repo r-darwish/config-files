@@ -1,4 +1,4 @@
-local transparency = not vim.g.neovide
+local transparency = os.getenv("TERM") == "xterm-kitty"
 
 return {
   {

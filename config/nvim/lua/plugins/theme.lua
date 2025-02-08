@@ -57,7 +57,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = vim.g.neovide and "tokyonight-moon" or "gruvbox-material",
+      colorscheme = "gruvbox-material",
     },
   },
 }

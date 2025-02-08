@@ -63,4 +63,5 @@ vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 vim.api.nvim_set_keymap("t", "<D-v>", "<C-\\><C-n>+pi", { noremap = true, silent = true })
 if vim.g.neovide then
   pcall(vim.fn.serverstart, vim.fn.stdpath("data") .. "/neovide.sock")
+  vim.fn.chdir(os.getenv("HOME"))
 end

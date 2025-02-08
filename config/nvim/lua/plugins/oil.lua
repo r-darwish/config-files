@@ -5,6 +5,9 @@ return {
   opts = {
     default_file_explorer = true,
     watch_for_changes = true,
+    buf_options = {
+      buflisted = true,
+    },
     view_options = {
       show_hidden = true,
       case_insensitive = true,
@@ -29,7 +32,7 @@ return {
       "<leader>e",
       function()
         local o = require("oil")
-        o.open_float(o.get_current_dir(0), { preview = {} })
+        o.open(o.get_current_dir(0), { preview = {} })
       end,
     },
   },

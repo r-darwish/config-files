@@ -39,6 +39,7 @@ return {
     config = function()
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = transparency and 2 or 0
+      vim.g.gruvbox_material_background = "hard"
 
       if transparency then
         local function set_normal_float_highlight()

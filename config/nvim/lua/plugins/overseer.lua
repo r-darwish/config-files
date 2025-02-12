@@ -2,20 +2,30 @@ return {
   { import = "lazyvim.plugins.extras.editor.overseer" },
   {
     "stevearc/overseer.nvim",
-    opts = {
-      templates = {
-        "builtin",
-        "custom.create_pr",
-        "custom.docker_build",
-        "custom.compose_up",
-        "custom.zig_run",
-        "custom.zig_build",
-        "custom.zig_test_file",
-      },
-      task_list = {
-        max_height = { 1000, 0.4 },
-      },
-    },
+    opts = function(_, opts)
+      local o = {
+        templates = {
+          "builtin",
+          "custom.create_pr",
+          "custom.docker_build",
+          "custom.compose_up",
+          "custom.zig_run",
+          "custom.zig_build",
+          "custom.zig_test_file",
+        },
+        task_list = {
+          max_height = { 1000, 0.4 },
+        },
+      }
+
+      local overseer = require("overseer")
+      overseer.add_template_hook({ module = "^task$" }, function(task_defn, util)
+        util.add_component(task_defn, { "on_output_quickfix", open = true })
+      end)
+
+      opts = vim.tbl_deep_extend("force", opts, o)
+      return opts
+    end,
     keys = {
       {
         "<leader>ol",

@@ -110,5 +110,3 @@ alias gd = gh dash
 alias ur = uv run
 
 $env.HOMEBREW_NO_AUTO_UPDATE = "1"
-
-use docker

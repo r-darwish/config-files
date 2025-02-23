@@ -13,6 +13,7 @@ return {
       require("better_escape").setup(opts)
     end,
   },
+  { "akinsho/bufferline.nvim", enabled = false },
   {
     "arkav/lualine-lsp-progress",
   },

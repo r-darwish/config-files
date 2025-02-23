@@ -18,11 +18,6 @@ return {
         },
       }
 
-      local overseer = require("overseer")
-      overseer.add_template_hook({ module = "^task$" }, function(task_defn, util)
-        util.add_component(task_defn, { "on_output_quickfix", open = true })
-      end)
-
       opts = vim.tbl_deep_extend("force", opts, o)
       return opts
     end,

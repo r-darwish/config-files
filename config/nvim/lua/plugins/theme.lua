@@ -1,4 +1,5 @@
 local transparency = os.getenv("TERM") == "xterm-kitty"
+vim.opt.cursorline = not transparency
 
 return {
   {

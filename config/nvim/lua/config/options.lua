@@ -12,6 +12,7 @@ vim.opt.shada = "'1000,<1000,s100"
 vim.opt.shell = vim.fn.stdpath("config") .. "/shell"
 vim.opt.autochdir = true
 vim.opt.relativenumber = false
+vim.fn.setenv("EDITOR", "nvim")
 
 vim.g.root_spec = {
   {

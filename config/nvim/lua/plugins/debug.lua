@@ -2,7 +2,6 @@ vim.debug_port = 31337
 vim.debug_host = "127.0.0.1"
 
 return {
-  { import = "lazyvim.plugins.extras.dap.core" },
   {
     "leoluz/nvim-dap-go",
 

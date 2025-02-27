@@ -1,5 +1,4 @@
 return {
-  { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
   { "nvzone/volt", lazy = true },
   {
     "nvzone/minty",

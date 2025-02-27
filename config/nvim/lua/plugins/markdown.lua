@@ -1,5 +1,4 @@
 return {
-  { import = "lazyvim.plugins.extras.lang.markdown" },
   {
     "jghauser/follow-md-links.nvim",
   },

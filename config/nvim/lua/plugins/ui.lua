@@ -43,15 +43,4 @@ return {
       opts.options.section_separators.component_separators = { left = "", right = "" }
     end,
   },
-  {
-    "ibhagwan/fzf-lua",
-    opts = {
-      winopts = {
-        preview = {
-          layout = "vertical",
-          vertical = "up:60%",
-        },
-      },
-    },
-  },
 }

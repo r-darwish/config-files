@@ -31,6 +31,13 @@ return {
         end,
         desc = "Zoxide",
       },
+      {
+        "<leader>fs",
+        function()
+          Snacks.picker.files({ cwd = "~/src" })
+        end,
+        desc = "Zoxide",
+      },
     },
   },
 }

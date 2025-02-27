@@ -18,11 +18,11 @@ return {
       ["t"] = { "actions.open_terminal", mode = "n" },
       ["<c-f>"] = function()
         local dir = require("oil").get_current_dir()
-        require("fzf-lua.providers.files").files({ cwd = dir })
+        Snacks.picker.files({ cwd = dir })
       end,
       ["<c-g>"] = function()
         local dir = require("oil").get_current_dir()
-        require("fzf-lua.providers.grep").live_grep({ cwd = dir })
+        Snacks.picker.grep({ cwd = dir })
       end,
       ["gd"] = function()
         require("oil").set_columns({ "icon", "permissions", "size", "mtime" })

@@ -27,7 +27,17 @@ return {
       {
         "<leader>fz",
         function()
-          Snacks.picker.zoxide()
+          Snacks.picker.zoxide({ confirm = "picker_files" })
+        end,
+        desc = "Zoxide",
+      },
+      {
+        "<leader>fp",
+        function()
+          Snacks.picker.projects({
+            confirm = "picker_files",
+            dev = "~/src",
+          })
         end,
         desc = "Zoxide",
       },

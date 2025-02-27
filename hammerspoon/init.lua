@@ -8,6 +8,7 @@ local HyperShortcuts = {
 	{ "G", "Signal" },
 	{ "Z", "zoom.us" },
 	{ "N", "Neovide" },
+	{ "O", "Obsidian" },
 }
 
 for _, shortcut in ipairs(HyperShortcuts) do

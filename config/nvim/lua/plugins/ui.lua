@@ -39,6 +39,7 @@ return {
         end
         return string.format("%s 󰑮 %s", "%#Orange#", table.concat(linters, ", "))
       end)
+      opts.sections.lualine_c[4] = { require("lazyvim.util.lualine").pretty_path({ relative = "root" }) }
       opts.options.section_separators = { left = "", right = "" }
       opts.options.section_separators.component_separators = { left = "", right = "" }
     end,

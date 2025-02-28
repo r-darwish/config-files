@@ -49,10 +49,6 @@ vim.api.nvim_create_autocmd("User", {
 
 return {
   {
-    "neo-tree.nvim",
-    enabled = false,
-  },
-  {
     "echasnovski/mini.files",
     enabled = false,
     opts = {

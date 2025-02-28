@@ -4,8 +4,8 @@ vim.opt.cursorline = not transparency
 return {
   {
     "rose-pine/neovim",
-    enabled = true,
     name = "rose-pine",
+    enabled = false,
     opts = {
       variant = "moon",
       dark_variant = "moon",
@@ -18,6 +18,7 @@ return {
   },
   {
     "folke/tokyonight.nvim",
+    enabled = false,
     opts = {
       dim_inactive = true,
       transparent = transparency,

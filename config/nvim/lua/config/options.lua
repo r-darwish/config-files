@@ -13,6 +13,7 @@ vim.opt.shell = vim.fn.stdpath("config") .. "/shell"
 vim.opt.autochdir = true
 vim.opt.relativenumber = false
 vim.fn.setenv("EDITOR", "nvim")
+vim.g.snacks_animate = false
 
 vim.g.root_spec = {
   {

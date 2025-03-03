@@ -31,7 +31,7 @@ return {
           end
           require("CopilotChat").toggle({ window = win })
         end,
-        { desc = "Toggle Copilot" },
+        desc = "Copilot Chat",
       },
     },
   },

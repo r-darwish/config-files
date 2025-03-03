@@ -48,6 +48,19 @@ map({ "n", "x" }, "<c-x>", function()
   end
 end)
 
+require("snacks.toggle")
+  .new({
+    id = "autochdir",
+    name = "Auto Change Directory",
+    get = function()
+      return vim.api.nvim_get_option_value("autochdir", {})
+    end,
+    set = function(state)
+      vim.api.nvim_set_option_value("autochdir", state, {})
+    end,
+  })
+  :map("<leader>uc")
+
 map({ "n", "x" }, "<leader>fy", function()
   local root = LazyVim.root.git()
   local path = vim.fn.expand("%:p")

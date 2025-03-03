@@ -1,8 +1,5 @@
 return {
   {
-    "jghauser/follow-md-links.nvim",
-  },
-  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {

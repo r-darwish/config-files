@@ -1,18 +1,4 @@
 return {
-  {
-    "max397574/better-escape.nvim",
-    enabled = false,
-    opts = {
-      mappings = {
-        t = {
-          j = { k = false },
-        },
-      },
-    },
-    config = function(_, opts)
-      require("better_escape").setup(opts)
-    end,
-  },
   { "akinsho/bufferline.nvim", enabled = false },
   {
     "arkav/lualine-lsp-progress",

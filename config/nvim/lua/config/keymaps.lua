@@ -41,7 +41,6 @@ map({ "n", "x" }, "<leader>fY", function()
 end, { desc = "Copy absolute path" })
 
 map({ "n", "x" }, "<c-x>", function()
-  local win = { layout = "horizontal", height = 0.3 }
   if (vim.api.nvim_win_get_height(0) / vim.api.nvim_win_get_width(0)) < 0.5 then
     vim.cmd("vsplit")
   else

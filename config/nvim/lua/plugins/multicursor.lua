@@ -65,6 +65,14 @@ return {
         desc = "Delete cursor",
       },
       {
+        "<leader>ml",
+        function()
+          require("multicursor-nvim").alignCursors()
+        end,
+        mode = { "n", "v" },
+        desc = "Align the cursors",
+      },
+      {
         "<leader>mx",
         function()
           require("multicursor-nvim").clearCursors()
@@ -145,19 +153,6 @@ return {
           require("multicursor-nvim").jumpBackward()
         end,
         mode = { "v", "n" },
-      },
-      {
-        "<esc>",
-        function()
-          local mc = require("multicursor-nvim")
-          if not mc.cursorsEnabled() then
-            mc.enableCursors()
-          elseif mc.hasCursors() then
-            mc.clearCursors()
-          else
-            -- Default <esc> handler.
-          end
-        end,
       },
     },
   },

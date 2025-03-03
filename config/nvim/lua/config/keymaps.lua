@@ -40,6 +40,15 @@ map({ "n", "x" }, "<leader>fY", function()
   vim.notify('Copied "' .. path .. '" to the clipboard')
 end, { desc = "Copy absolute path" })
 
+map({ "n", "x" }, "<c-x>", function()
+  local win = { layout = "horizontal", height = 0.3 }
+  if (vim.api.nvim_win_get_height(0) / vim.api.nvim_win_get_width(0)) < 0.5 then
+    vim.cmd("vsplit")
+  else
+    vim.cmd("split")
+  end
+end)
+
 map({ "n", "x" }, "<leader>fy", function()
   local root = LazyVim.root.git()
   local path = vim.fn.expand("%:p")
@@ -177,11 +186,8 @@ end
 
 -- Copliot
 map({ "n", "x" }, "<leader>aa", function()
-  local width = vim.api.nvim_win_get_width(0)
-  local height = vim.api.nvim_win_get_height(0)
   local win = { layout = "horizontal", height = 0.3 }
-
-  if (height / width) < 0.5 then
+  if (vim.api.nvim_win_get_height(0) / vim.api.nvim_win_get_width(0)) < 0.5 then
     win = { layout = "vertical", width = 0.3 }
   end
   require("CopilotChat").toggle({ window = win })

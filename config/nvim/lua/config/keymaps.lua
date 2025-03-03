@@ -101,18 +101,6 @@ map({ "n", "x" }, "<leader>fdf", chdir_file, { desc = "Change directory to the o
 map({ "n", "x" }, "<leader>fdr", chdir_root, { desc = "Change directory to current root directory" })
 map({ "n", "x" }, "<leader>fdg", chdir_git, { desc = "Change directory to the git repository of the current file" })
 
--- Git
-map({ "n", "x" }, "<leader>gp", function()
-  vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, nil)
-end, { desc = "Open pull request in browser" })
-
-map({ "n", "x" }, "<leader>gP", function()
-  require("snacks.terminal").open(
-    { "sh", "-c", "gh pr view && gh pr diff" },
-    { cwd = LazyVim.root.git(), interactive = false }
-  )
-end, { desc = "Open pull request" })
-
 local function git_merge_with_origin()
   local main_branch = require("utils").get_main_branch()
 

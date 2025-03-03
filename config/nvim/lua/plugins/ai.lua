@@ -2,6 +2,25 @@ vim.api.nvim_create_user_command("CopilotSplit", function()
   require("CopilotChat").toggle({ window = { layout = "horizontal", height = 0.3 } })
 end, {})
 
+local toggle = nil
+
+local function create_toggle()
+  if toggle == nil then
+    toggle = require("snacks.toggle").new({
+      id = "copilot_auto_trigger",
+      name = "Copilot Auto Trigger",
+      get = function()
+        return vim.b.copilot_suggestion_auto_trigger
+      end,
+      set = function(state)
+        vim.b.copilot_suggestion_auto_trigger = state
+      end,
+    })
+  end
+
+  return toggle
+end
+
 return {
   {
     "giuxtaposition/blink-cmp-copilot",
@@ -10,7 +29,7 @@ return {
   {
     "saghen/blink.cmp",
     optional = true,
-    dependencies = { "giuxtaposition/blink-cmp-copilot" },
+    dependencies = { "giuxtaposition/blink-cmp-copilot", "folke/snacks.nvim" },
     opts = function(_, opts)
       for i, v in ipairs(opts.sources.default) do
         if v == "copilot" then
@@ -24,7 +43,12 @@ return {
   {
     "zbirenbaum/copilot.lua",
     keys = {
-      { "<leader>at", "<cmd>Copilot toggle<CR>" },
+      {
+        "<leader>at",
+        function()
+          create_toggle():toggle()
+        end,
+      },
     },
     build = nil,
     event = nil,

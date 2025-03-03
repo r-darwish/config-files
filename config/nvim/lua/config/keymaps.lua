@@ -197,10 +197,10 @@ if vim.g.neovide then
 end
 
 -- Copliot
-Snacks.toggle
+require("snacks.toggle")
   .new({
     id = "copilot_auto_trigger",
-    name = "Copilot Auto Trigger",
+    name = "Copilot Auto Suggestion",
     get = function()
       return vim.b.copilot_suggestion_auto_trigger
     end,

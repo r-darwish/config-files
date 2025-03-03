@@ -20,12 +20,25 @@ return {
     end,
   },
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    keys = {
+      {
+        "<leader>aa",
+        function()
+          local win = { layout = "horizontal", height = 0.3 }
+          if (vim.api.nvim_win_get_height(0) / vim.api.nvim_win_get_width(0)) < 0.5 then
+            win = { layout = "vertical", width = 0.3 }
+          end
+          require("CopilotChat").toggle({ window = win })
+        end,
+        { desc = "Toggle Copilot" },
+      },
+    },
+  },
+  {
     "zbirenbaum/copilot.lua",
     build = nil,
     event = nil,
-    keys = {
-      { "<leader>aa", nil },
-    },
     opts = {
       suggestion = {
         enabled = true,

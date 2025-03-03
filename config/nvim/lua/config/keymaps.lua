@@ -184,14 +184,6 @@ if vim.g.neovide then
 end
 
 -- Copliot
-map({ "n", "x" }, "<leader>aa", function()
-  local win = { layout = "horizontal", height = 0.3 }
-  if (vim.api.nvim_win_get_height(0) / vim.api.nvim_win_get_width(0)) < 0.5 then
-    win = { layout = "vertical", width = 0.3 }
-  end
-  require("CopilotChat").toggle({ window = win })
-end, { desc = "Toggle Copliot Chat" })
-
 Snacks.toggle
   .new({
     id = "copilot_auto_trigger",

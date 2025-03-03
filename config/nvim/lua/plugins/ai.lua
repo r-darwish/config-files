@@ -1,25 +1,4 @@
-vim.api.nvim_create_user_command("CopilotSplit", function()
-  require("CopilotChat").toggle({ window = { layout = "horizontal", height = 0.3 } })
-end, {})
-
-local toggle = nil
-
-local function create_toggle()
-  if toggle == nil then
-    toggle = require("snacks.toggle").new({
-      id = "copilot_auto_trigger",
-      name = "Copilot Auto Trigger",
-      get = function()
-        return vim.b.copilot_suggestion_auto_trigger
-      end,
-      set = function(state)
-        vim.b.copilot_suggestion_auto_trigger = state
-      end,
-    })
-  end
-
-  return toggle
-end
+vim.api.nvim_create_user_command("CopilotSplit", function() end, {})
 
 return {
   {
@@ -42,16 +21,11 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    keys = {
-      {
-        "<leader>at",
-        function()
-          create_toggle():toggle()
-        end,
-      },
-    },
     build = nil,
     event = nil,
+    keys = {
+      { "<leader>aa", nil },
+    },
     opts = {
       suggestion = {
         enabled = true,

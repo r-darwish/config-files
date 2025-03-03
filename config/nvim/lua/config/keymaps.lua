@@ -50,6 +50,12 @@ map({ "n", "x" }, "<leader>fy", function()
   vim.notify('Copied "' .. path .. '" to the clipboard')
 end, { desc = "Copy absolute path" })
 
+vim.api.nvim_create_user_command("GoLand", function()
+  local current_file = vim.fn.expand("%:p")
+  vim.fn.system("goland " .. current_file)
+end, {})
+
+-- chdir
 local function chdir(dir)
   vim.cmd("cd " .. dir)
   vim.notify("Changed directory to " .. dir)
@@ -67,11 +73,6 @@ local function chdir_git()
   chdir(LazyVim.root.git())
 end
 
-vim.api.nvim_create_user_command("GoLand", function()
-  local current_file = vim.fn.expand("%:p")
-  vim.fn.system("goland " .. current_file)
-end, {})
-
 vim.api.nvim_create_user_command("ChdirFile", chdir_file, {})
 vim.api.nvim_create_user_command("ChdirRoot", chdir_root, {})
 vim.api.nvim_create_user_command("ChdirGit", chdir_git, {})
@@ -79,6 +80,7 @@ map({ "n", "x" }, "<leader>fdf", chdir_file, { desc = "Change directory to the o
 map({ "n", "x" }, "<leader>fdr", chdir_root, { desc = "Change directory to current root directory" })
 map({ "n", "x" }, "<leader>fdg", chdir_git, { desc = "Change directory to the git repository of the current file" })
 
+-- Git
 map({ "n", "x" }, "<leader>gp", function()
   vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, nil)
 end, { desc = "Open pull request in browser" })
@@ -159,6 +161,7 @@ map("n", "<leader>gf", function()
   Snacks.lazygit.log_file()
 end, { desc = "Git Current File History" })
 
+-- Neovide
 if vim.g.neovide then
   vim.keymap.set({ "n", "v" }, "<D-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
   vim.keymap.set({ "n", "v" }, "<D-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
@@ -171,3 +174,28 @@ if vim.g.neovide then
   vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
   vim.keymap.set("i", "<D-v>", '<ESC>"+pi') -- Paste insert mode
 end
+
+-- Copliot
+map({ "n", "x" }, "<leader>aa", function()
+  local width = vim.api.nvim_win_get_width(0)
+  local height = vim.api.nvim_win_get_height(0)
+  local win = { layout = "horizontal", height = 0.3 }
+
+  if (height / width) < 0.5 then
+    win = { layout = "vertical", width = 0.3 }
+  end
+  require("CopilotChat").toggle({ window = win })
+end, { desc = "Toggle Copliot Chat" })
+
+Snacks.toggle
+  .new({
+    id = "copilot_auto_trigger",
+    name = "Copilot Auto Trigger",
+    get = function()
+      return vim.b.copilot_suggestion_auto_trigger
+    end,
+    set = function(state)
+      vim.b.copilot_suggestion_auto_trigger = state
+    end,
+  })
+  :map("<leader>at")

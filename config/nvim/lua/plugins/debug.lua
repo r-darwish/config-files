@@ -4,7 +4,7 @@ vim.debug_host = "127.0.0.1"
 return {
   {
     "leoluz/nvim-dap-go",
-
+    lazy = true,
     opts = {
       dap_configurations = {
         {

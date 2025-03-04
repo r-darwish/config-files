@@ -78,7 +78,10 @@ local config = {
 
 local wiz_dir = vim.env.HOME .. "/wiz-sec/darwish/nvim"
 if (vim.uv or vim.loop).fs_stat(wiz_dir) then
-  table.insert(config.spec, { import = "wiz" })
+  table.insert(config.spec, { import = "wiz.plugins" })
   config.performance.rtp.paths = { wiz_dir }
+  vim.opt.rtp:prepend(wiz_dir)
+  require("wiz")
 end
+
 require("lazy").setup(config)

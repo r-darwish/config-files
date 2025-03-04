@@ -36,4 +36,18 @@ function M.remove_suffix(str, suffix)
   return string.sub(str, 1, pos - 1)
 end
 
+---Returns true if it makes sense to split vertically
+---@return boolean
+function M.should_split_vertically()
+  return (vim.api.nvim_win_get_height(0) / vim.api.nvim_win_get_width(0)) < 0.5
+end
+
+---Split in the direction that makes the most sense
+function M.smart_split()
+  if M.should_split_vertically() then
+    vim.cmd("vsplit")
+  else
+    vim.cmd("split")
+  end
+end
 return M

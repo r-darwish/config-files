@@ -33,13 +33,8 @@ map({ "n", "x" }, "<leader>fY", function()
   vim.notify('Copied "' .. path .. '" to the clipboard')
 end, { desc = "Copy absolute path" })
 
-map({ "n", "x" }, "<c-x>", function()
-  if (vim.api.nvim_win_get_height(0) / vim.api.nvim_win_get_width(0)) < 0.5 then
-    vim.cmd("vsplit")
-  else
-    vim.cmd("split")
-  end
-end)
+local utils = require("darwish.utils")
+map({ "n", "x" }, "<c-x>", utils.smart_split)
 
 local toggle = require("snacks.toggle")
 

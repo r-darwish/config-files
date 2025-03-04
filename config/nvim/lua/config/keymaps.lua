@@ -69,73 +69,18 @@ vim.api.nvim_create_user_command("GoLand", function()
   vim.fn.system("goland " .. current_file)
 end, {})
 
--- chdir
-local function chdir(dir)
-  vim.cmd("cd " .. dir)
-  vim.notify("Changed directory to " .. dir)
-end
+local chdir = require("darwish.chdir")
+vim.api.nvim_create_user_command("ChdirFile", chdir.file, {})
+vim.api.nvim_create_user_command("ChdirRoot", chdir.root, {})
+vim.api.nvim_create_user_command("ChdirGit", chdir.git, {})
+map({ "n", "x" }, "<leader>fdf", chdir.file, { desc = "Change directory to the one of the current file" })
+map({ "n", "x" }, "<leader>fdr", chdir.root, { desc = "Change directory to current root directory" })
+map({ "n", "x" }, "<leader>fdg", chdir.git, { desc = "Change directory to the git repository of the current file" })
 
-local function chdir_file()
-  chdir(vim.fn.expand("%:p:h"))
-end
-
-local function chdir_root()
-  chdir(LazyVim.root.get())
-end
-
-local function chdir_git()
-  chdir(LazyVim.root.git())
-end
-
-vim.api.nvim_create_user_command("ChdirFile", chdir_file, {})
-vim.api.nvim_create_user_command("ChdirRoot", chdir_root, {})
-vim.api.nvim_create_user_command("ChdirGit", chdir_git, {})
-map({ "n", "x" }, "<leader>fdf", chdir_file, { desc = "Change directory to the one of the current file" })
-map({ "n", "x" }, "<leader>fdr", chdir_root, { desc = "Change directory to current root directory" })
-map({ "n", "x" }, "<leader>fdg", chdir_git, { desc = "Change directory to the git repository of the current file" })
-
-local function git_merge_with_origin()
-  local main_branch = require("darwish.utils").get_main_branch()
-
-  vim.notify("Fetching repository", "info")
-  local root = LazyVim.root.git()
-  vim.system({ "git", "fetch" }, { text = true, cwd = root }, function(out)
-    if out.code ~= 0 then
-      vim.notify("Fetch failed: " .. out.stderr, "error")
-    else
-      vim.system({ "git", "merge", main_branch }, { text = true, cwd = root }, function(innerOut)
-        if innerOut.code ~= 0 then
-          vim.notify("Merge failed: " .. innerOut.stderr, "error")
-        else
-          vim.notify("Merged with " .. main_branch, "info")
-        end
-      end)
-    end
-  end)
-end
-
-map({ "n", "x" }, "<leader>gm", git_merge_with_origin, { desc = "Merge with origin's main branch" })
-
-local function git_pull()
-  local main_branch = require("darwish.utils").get_main_branch():gsub("^origin/", "")
-
-  vim.notify("Switching to " .. main_branch .. " and pulling", "info")
-  local proc = vim.system({ "git", "switch", "--merge", main_branch }, { text = true, cwd = LazyVim.root.git() }):wait()
-  if proc.code ~= 0 then
-    vim.notify("Switch failed: " .. proc.stderr, "error")
-    return
-  end
-
-  vim.system({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = LazyVim.root.git() }, function(out)
-    if out.code ~= 0 then
-      vim.notify("Pull failed: " .. out.stderr, "error")
-    else
-      vim.notify("Switched to branch " .. main_branch, "info")
-    end
-  end)
-end
-
-map({ "n", "x" }, "<leader>gu", git_pull, { desc = "Switch to the main branch and pull" })
+local git = require("darwish.git")
+map({ "n", "x" }, "<leader>gm", git.merge_with_origin, { desc = "Merge with origin's main branch" })
+map({ "n", "x" }, "<leader>gu", git.pull, { desc = "Switch to the main branch and pull" })
+map({ "n", "x" }, "<leader>gx", git.browse_commit, { desc = "Browse the current commit" })
 
 local function open_file_in_same_dir()
   local current_file = vim.fn.expand("%:p:h")
@@ -144,37 +89,12 @@ local function open_file_in_same_dir()
 end
 map({ "n", "v" }, "<leader>fn", open_file_in_same_dir)
 
-local function browse_commit()
-  local cwd = LazyVim.root.git() or vim.fn.getcwd()
-  local commit = require("darwish.utils").extract_quotes(vim.fn.expand("<cWORD>"))
-  local proc = vim.system({ "git", "rev-parse", commit }, { text = true, cwd = cwd }):wait()
-  if proc.code ~= 0 then
-    vim.notify("Bad commit: " .. proc.stderr, "error")
-    return
-  end
-
-  commit = require("darwish.utils").strip(proc.stdout)
-  local cmd = { "gh", "browse", commit }
-  vim.system(cmd, { cd = cwd })
-end
-map({ "n", "x" }, "<leader>gx", browse_commit, { desc = "Browse the current commit" })
-
 map("n", "<leader>gf", function()
   Snacks.lazygit.log_file()
 end, { desc = "Git Current File History" })
 
--- Neovide
 if vim.g.neovide then
-  vim.keymap.set({ "n", "v" }, "<D-=>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>")
-  vim.keymap.set({ "n", "v" }, "<D-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>")
-  vim.keymap.set({ "n", "v" }, "<D-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
-
-  vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
-  vim.keymap.set("v", "<D-c>", '"+y') -- Copy
-  vim.keymap.set("n", "<D-v>", '"+p') -- Paste normal mode
-  vim.keymap.set("v", "<D-v>", '"+p') -- Paste visual mode
-  vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
-  vim.keymap.set("i", "<D-v>", '<ESC>"+pi') -- Paste insert mode
+  require("darwish.neovide")
 end
 
 -- Copliot

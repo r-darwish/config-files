@@ -95,7 +95,7 @@ map({ "n", "x" }, "<leader>fdr", chdir_root, { desc = "Change directory to curre
 map({ "n", "x" }, "<leader>fdg", chdir_git, { desc = "Change directory to the git repository of the current file" })
 
 local function git_merge_with_origin()
-  local main_branch = require("utils").get_main_branch()
+  local main_branch = require("darwish.utils").get_main_branch()
 
   vim.notify("Fetching repository", "info")
   local root = LazyVim.root.git()
@@ -117,7 +117,7 @@ end
 map({ "n", "x" }, "<leader>gm", git_merge_with_origin, { desc = "Merge with origin's main branch" })
 
 local function git_pull()
-  local main_branch = require("utils").get_main_branch():gsub("^origin/", "")
+  local main_branch = require("darwish.utils").get_main_branch():gsub("^origin/", "")
 
   vim.notify("Switching to " .. main_branch .. " and pulling", "info")
   local proc = vim.system({ "git", "switch", "--merge", main_branch }, { text = true, cwd = LazyVim.root.git() }):wait()
@@ -146,14 +146,14 @@ map({ "n", "v" }, "<leader>fn", open_file_in_same_dir)
 
 local function browse_commit()
   local cwd = LazyVim.root.git() or vim.fn.getcwd()
-  local commit = require("utils").extract_quotes(vim.fn.expand("<cWORD>"))
+  local commit = require("darwish.utils").extract_quotes(vim.fn.expand("<cWORD>"))
   local proc = vim.system({ "git", "rev-parse", commit }, { text = true, cwd = cwd }):wait()
   if proc.code ~= 0 then
     vim.notify("Bad commit: " .. proc.stderr, "error")
     return
   end
 
-  commit = require("utils").strip(proc.stdout)
+  commit = require("darwish.utils").strip(proc.stdout)
   local cmd = { "gh", "browse", commit }
   vim.system(cmd, { cd = cwd })
 end

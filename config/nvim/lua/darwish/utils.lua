@@ -1,5 +1,7 @@
+local M = {}
+
 ---@return string
-local function get_main_branch()
+function M.get_main_branch()
   local result = vim
     .system({ "git", "symbolic-ref", "refs/remotes/origin/HEAD" }, { text = true, cwd = LazyVim.root.git() })
     :wait()
@@ -9,7 +11,7 @@ end
 
 ---@param str string
 ---@return string
-local function extract_quotes(str)
+function M.extract_quotes(str)
   local expressions = { [["(.-)"]], [[%'(.-)%']], [[`(.-)`]] }
   for _, exp in ipairs(expressions) do
     local match = string.match(str, exp)
@@ -23,12 +25,8 @@ end
 
 ---@param s string
 ---@return string
-local function strip(s)
+function M.strip(s)
   return s:match("^(.-)%s*$")
 end
 
-return {
-  get_main_branch = get_main_branch,
-  extract_quotes = extract_quotes,
-  strip = strip,
-}
+return M

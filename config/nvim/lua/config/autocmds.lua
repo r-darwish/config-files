@@ -4,50 +4,25 @@
 
 -- wrap and check for spell in text filetypes
 
+local autocmds = require("darwish.autocmds")
+
 vim.api.nvim_create_autocmd("FileType", {
+  group = autocmds.augroup,
   command = "set formatoptions-=cro",
 })
 
-local function set_opts(pattern, opts)
-  vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("custom", {}),
-    pattern = pattern,
-    callback = function()
-      for k, v in pairs(opts) do
-        vim.opt_local[k] = v
-      end
-    end,
-  })
-end
+autocmds.set_opts({ "lua", "javascript", "terraform", "yaml", "helm", "json" }, { tabstop = 2, shiftwidth = 2 })
+autocmds.set_filetype("*.tpl", "helm")
+autocmds.set_filetype("*.tf", "terraform")
+autocmds.set_filetype(".okta_aws_login_config", "toml")
 
-local function set_filetype(opts)
-  if type(opts.pattern) == "string" then
-    opts.pattern = { opts.pattern }
-  end
-
-  local args = {}
-  if opts.callback ~= nil then
-    args.callback = opts.callback
-  elseif opts.ft ~= nil then
-    args.callback = function()
-      local buf = vim.api.nvim_get_current_buf()
-      vim.api.nvim_set_option_value("filetype", opts.ft, { buf = buf })
-    end
-  end
-  args.pattern = opts.pattern
-
-  vim.api.nvim_create_autocmd({
-    "BufNewFile",
-    "BufRead",
-  }, args)
-end
-
-set_opts({ "lua", "javascript", "terraform", "yaml", "helm", "json" }, { tabstop = 2, shiftwidth = 2 })
-set_filetype({ pattern = "*.tpl", ft = "helm" })
-set_filetype({ pattern = "*.tf", ft = "terraform" })
-set_filetype({ pattern = ".okta_aws_login_config", ft = "toml" })
-set_filetype({
+-- Set the filetype to helm in yaml files that seems like a go template
+vim.api.nvim_create_autocmd({
+  "BufNewFile",
+  "BufRead",
+}, {
   pattern = { "*.yaml", "*.yml" },
+  group = autocmds.augroup,
   callback = function()
     if vim.fn.search("{{.\\+}}", "nw") ~= 0 then
       local buf = vim.api.nvim_get_current_buf()

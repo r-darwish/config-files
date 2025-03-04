@@ -41,7 +41,9 @@ map({ "n", "x" }, "<c-x>", function()
   end
 end)
 
-require("snacks.toggle")
+local toggle = require("snacks.toggle")
+
+toggle
   .new({
     id = "autochdir",
     name = "Auto Change Directory",
@@ -98,7 +100,7 @@ if vim.g.neovide then
 end
 
 -- Copliot
-require("snacks.toggle")
+toggle
   .new({
     id = "copilot_auto_trigger",
     name = "Copilot Auto Suggestion",

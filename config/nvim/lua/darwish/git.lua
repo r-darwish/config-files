@@ -2,7 +2,7 @@ local M = {}
 
 ---Merge the current branch with origin
 function M.merge_with_origin()
-  local main_branch = require("darwish.utils").get_main_branch()
+  local main_branch = M.get_main_branch()
 
   vim.notify("Fetching repository", "info")
   local root = LazyVim.root.git()
@@ -23,7 +23,7 @@ end
 
 ---Pull the current branch
 function M.pull()
-  local main_branch = require("darwish.utils").get_main_branch():gsub("^origin/", "")
+  local main_branch = M.get_main_branch():gsub("^origin/", "")
 
   vim.notify("Switching to " .. main_branch .. " and pulling", "info")
   local proc = vim.system({ "git", "switch", "--merge", main_branch }, { text = true, cwd = LazyVim.root.git() }):wait()
@@ -61,4 +61,36 @@ function M.browse_commit(commit)
   vim.system(cmd, { cd = cwd })
 end
 
+---Get the main git branch
+---@param dir string?
+---@return string
+function M.get_main_branch(dir)
+  local result = vim
+    .system({ "git", "symbolic-ref", "refs/remotes/origin/HEAD" }, { text = true, cwd = dir or LazyVim.root.git() })
+    :wait()
+  local main_branch = result.stdout:match("refs/remotes/([%w-_/]+)")
+  return main_branch
+end
+
+---Create a new branch from origin
+---@param name string
+---@return nil
+function M.create_branch_from_origin(name)
+  if name == "" then
+    return
+  end
+
+  local utils = require("darwish.utils")
+
+  local proc = vim
+    .system(
+      { "git", "switch", "--create", name, "--merge", "--no-track", utils.get_main_branch() },
+      { cwd = LazyVim.root.git(), text = true }
+    )
+    :wait()
+
+  if proc.code ~= 0 then
+    require("snacks.notify").error("Branch " .. name .. " creation error: " .. proc.stderr)
+  end
+end
 return M

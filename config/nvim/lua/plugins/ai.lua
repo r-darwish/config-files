@@ -21,6 +21,7 @@ return {
           prompt = "Review the following paragraph: ",
           system_prompt = "You're an English teacher reviewing the given paragraphs. Point out any spelling or grammar mistakes. No need to change the phrasing unless the phrasing is very unclear. After explaining all the mistakes, write down the corrected version of the sentence",
           description = "English Review",
+          mapping = "<leader>ae",
         },
       },
     },

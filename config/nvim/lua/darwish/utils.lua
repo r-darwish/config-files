@@ -50,4 +50,19 @@ function M.smart_split()
     vim.cmd("split")
   end
 end
+
+---Get the visual selection
+---@return string
+function M.get_visual_selection()
+  local start_pos = vim.fn.getpos("'<")
+  local end_pos = vim.fn.getpos("'>")
+
+  local lines = vim.fn.getline(start_pos[2], end_pos[2])
+
+  lines[1] = string.sub(lines[1], start_pos[3])
+  lines[#lines] = string.sub(lines[#lines], 1, end_pos[3] - 1)
+
+  -- Join the lines into a single string
+  return table.concat(lines, "\n")
+end
 return M

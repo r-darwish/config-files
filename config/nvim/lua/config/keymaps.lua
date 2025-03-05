@@ -77,7 +77,6 @@ map({ "n", "x" }, "<leader>fdg", chdir.git, { desc = "Change directory to the gi
 local git = require("darwish.git")
 map({ "n", "x" }, "<leader>gm", git.merge_with_origin, { desc = "Merge with origin's main branch" })
 map({ "n", "x" }, "<leader>gu", git.pull, { desc = "Switch to the main branch and pull" })
-map({ "n", "x" }, "<leader>gx", git.browse_commit, { desc = "Browse the current commit" })
 
 local function open_file_in_same_dir()
   local current_file = vim.fn.expand("%:p:h")
@@ -93,6 +92,14 @@ end, { desc = "Git Current File History" })
 if vim.g.neovide then
   require("darwish.neovide")
 end
+
+require("darwish.go").register_callback("p", function()
+  vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, nil)
+end, "Browse current pull request")
+
+require("darwish.go").register_callback("c", function(commit)
+  git.browse_commit(commit)
+end, "Browse commit")
 
 -- Copliot
 toggle

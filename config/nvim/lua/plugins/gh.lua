@@ -42,10 +42,12 @@ return {
       function()
         checkout_pr(vim.fn.input("Enter PR number"))
       end,
+      desc = "Open a specifc PR",
     },
     {
       "<leader>gP",
       checkout_pr,
+      desc = "Open a PR",
     },
   },
   config = function()

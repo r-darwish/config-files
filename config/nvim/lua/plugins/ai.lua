@@ -21,6 +21,16 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    ---@type CopilotChat.config
+    opts = {
+      mappings = {
+        ---@diagnostic disable-next-line: missing-fields
+        reset = {
+          normal = "<M-l>",
+          insert = "<M-l>",
+        },
+      },
+    },
     keys = {
       {
         "<leader>aa",

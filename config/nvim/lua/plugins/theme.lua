@@ -3,6 +3,10 @@ vim.opt.cursorline = not transparency
 
 return {
   {
+    "catppuccin/nvim",
+    enabled = false,
+  },
+  {
     "rose-pine/neovim",
     name = "rose-pine",
     enabled = false,

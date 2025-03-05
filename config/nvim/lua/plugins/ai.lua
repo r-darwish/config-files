@@ -11,7 +11,7 @@ local english_prompt = {
 return {
   {
     "giuxtaposition/blink-cmp-copilot",
-    enable = false,
+    enabled = false,
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",

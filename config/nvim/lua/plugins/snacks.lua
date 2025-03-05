@@ -8,6 +8,18 @@ return {
           input = {
             keys = {
               ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ["<C-l>"] = { "focus_preview", mode = { "n", "i" } },
+              ["<C-x>"] = { "focus_list", mode = { "n", "i" } },
+            },
+          },
+          list = {
+            keys = {
+              ["<C-l>"] = { "focus_preview", mode = { "n" } },
+            },
+          },
+          preview = {
+            keys = {
+              ["<C-h>"] = { "focus_list", mode = { "n" } },
             },
           },
         },

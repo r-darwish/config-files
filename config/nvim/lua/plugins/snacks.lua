@@ -57,6 +57,23 @@ return {
         end,
         desc = "Zoxide",
       },
+      {
+        "<leader>gb",
+        function()
+          Snacks.picker.git_log_line({
+            actions = {
+              browse_commit = function(_, item)
+                if not item then
+                  return
+                end
+
+                require("darwish.git").browse_commit(item.commit)
+              end,
+            },
+            win = { input = { keys = { ["<c-o>"] = { "browse_commit", mode = { "n", "i" } } } } },
+          })
+        end,
+      },
     },
   },
 }

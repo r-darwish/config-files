@@ -1,5 +1,13 @@
 vim.api.nvim_create_user_command("CopilotSplit", function() end, {})
 
+---@type CopilotChat.config.prompt
+local english_prompt = {
+  prompt = "Review the following sentences: ",
+  system_prompt = "You're an English teacher reviewing the given sentences. Point out any spelling or grammar mistakes. No need to change the phrasing unless the phrasing is very unclear. After explaining all the mistakes, write down the corrected version of the sentence",
+  description = "English Review",
+  window = { layout = "float" },
+}
+
 return {
   {
     "giuxtaposition/blink-cmp-copilot",
@@ -17,12 +25,7 @@ return {
         },
       },
       prompts = {
-        English = {
-          prompt = "Review the following paragraph: ",
-          system_prompt = "You're an English teacher reviewing the given paragraphs. Point out any spelling or grammar mistakes. No need to change the phrasing unless the phrasing is very unclear. After explaining all the mistakes, write down the corrected version of the sentence",
-          description = "English Review",
-          mapping = "<leader>ae",
-        },
+        English = english_prompt,
       },
     },
     keys = {
@@ -35,6 +38,15 @@ return {
           })
         end,
         desc = "Copilot Chat",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>ae",
+        function()
+          require("CopilotChat").ask(english_prompt.prompt, english_prompt)
+        end,
+        desc = "English Review",
+        mode = { "n", "v" },
       },
     },
   },

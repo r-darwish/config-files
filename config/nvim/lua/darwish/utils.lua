@@ -82,4 +82,20 @@ function M.launch_kitty(command)
     end
   end)
 end
+
+---comment Remove an element from a table
+---@generic T
+---@param tbl T[]
+---@param value T
+---@return boolean
+function M.remove_value(tbl, value)
+  for i, v in ipairs(tbl) do
+    if v == value then
+      table.remove(tbl, i)
+      return true
+    end
+  end
+  return false
+end
+
 return M

@@ -6,20 +6,6 @@ return {
     enable = false,
   },
   {
-    "saghen/blink.cmp",
-    optional = true,
-    dependencies = { "giuxtaposition/blink-cmp-copilot", "folke/snacks.nvim" },
-    opts = function(_, opts)
-      for i, v in ipairs(opts.sources.default) do
-        if v == "copilot" then
-          table.remove(opts.sources.default, i)
-          break
-        end
-      end
-      opts.sources.providers.copilot = nil
-    end,
-  },
-  {
     "CopilotC-Nvim/CopilotChat.nvim",
     ---@type CopilotChat.config
     opts = {
@@ -28,6 +14,13 @@ return {
         reset = {
           normal = "<M-l>",
           insert = "<M-l>",
+        },
+      },
+      prompts = {
+        English = {
+          prompt = "Review the following paragraph: ",
+          system_prompt = "You're an English teacher reviewing the given paragraphs. Point out any spelling or grammar mistakes. No need to change the phrasing unless the phrasing is very unclear. After explaining all the mistakes, write down the corrected version of the sentence",
+          description = "English Review",
         },
       },
     },

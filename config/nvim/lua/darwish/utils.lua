@@ -58,11 +58,28 @@ function M.get_visual_selection()
   local end_pos = vim.fn.getpos("'>")
 
   local lines = vim.fn.getline(start_pos[2], end_pos[2])
+  ---@cast lines string[]
 
   lines[1] = string.sub(lines[1], start_pos[3])
   lines[#lines] = string.sub(lines[#lines], 1, end_pos[3] - 1)
 
   -- Join the lines into a single string
   return table.concat(lines, "\n")
+end
+
+function M.launch_kitty(command)
+  local cmd = {
+    "kitten",
+    "@launch",
+    "--hold",
+    "--type=tab",
+  }
+  vim.list_extend(cmd, command)
+
+  vim.system(cmd, nil, function(obj)
+    if obj.code ~= 0 then
+      vim.notify("Error launching Kitty: " .. obj.stderr, vim.log.levels.ERROR)
+    end
+  end)
 end
 return M

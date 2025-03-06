@@ -22,7 +22,7 @@ return {
   },
   {
     "folke/tokyonight.nvim",
-    enabled = false,
+    enabled = true,
     opts = {
       dim_inactive = true,
       transparent = transparency,
@@ -42,6 +42,7 @@ return {
   },
   {
     "sainnhe/gruvbox-material",
+    enabled = false,
     config = function()
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = transparency and 2 or 0
@@ -64,7 +65,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "tokyonight-night",
     },
   },
 }

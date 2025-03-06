@@ -10,6 +10,23 @@ local english_prompt = {
 
 return {
   {
+    "yetone/avante.nvim",
+    lazy = true,
+    build = "make",
+    opts = {
+      provider = "copilot",
+    },
+    keys = {
+      {
+        "<leader>aa",
+        function()
+          require("avante").toggle_sidebar()
+        end,
+        desc = "Avante",
+      },
+    },
+  },
+  {
     "giuxtaposition/blink-cmp-copilot",
     enabled = false,
   },
@@ -28,27 +45,36 @@ return {
         English = english_prompt,
       },
     },
-    keys = {
-      {
-        "<leader>aa",
-        function()
-          local utils = require("darwish.utils")
-          require("CopilotChat").toggle({
-            window = { layout = utils.should_split_vertically() and "vertical" or "horizontal", height = 0.4 },
-          })
-        end,
-        desc = "Copilot Chat",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ae",
-        function()
-          require("CopilotChat").ask(english_prompt.prompt, english_prompt)
-        end,
-        desc = "English Review",
-        mode = { "n", "v" },
-      },
-    },
+    keys = function(_, keys)
+      for i, k in ipairs(keys) do
+        if k[1] == "<leader>aa" then
+          table.remove(keys, i)
+          break
+        end
+      end
+
+      return vim.tbl_extend("force", keys, {
+        {
+          "<leader>ap",
+          function()
+            local utils = require("darwish.utils")
+            require("CopilotChat").toggle({
+              window = { layout = utils.should_split_vertically() and "vertical" or "horizontal", height = 0.4 },
+            })
+          end,
+          desc = "Copilot Chat",
+          mode = { "n", "v" },
+        },
+        {
+          "<leader>aP",
+          function()
+            require("CopilotChat").ask(english_prompt.prompt, english_prompt)
+          end,
+          desc = "English Review",
+          mode = { "n", "v" },
+        },
+      })
+    end,
   },
   {
     "zbirenbaum/copilot.lua",

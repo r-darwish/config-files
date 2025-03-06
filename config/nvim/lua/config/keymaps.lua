@@ -94,7 +94,11 @@ if vim.g.neovide then
 end
 
 require("darwish.go").register_callback("p", function()
-  vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, nil)
+  vim.system({ "gh", "pr", "view", "--web" }, { cwd = LazyVim.root.git() }, function(obj)
+    if obj.code ~= 0 then
+      Snacks.notify.error("Error checking pull request: " .. obj.stderr)
+    end
+  end)
 end, "Browse current pull request")
 
 require("darwish.go").register_callback("c", function(commit)

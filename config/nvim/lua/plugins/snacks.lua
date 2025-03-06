@@ -3,6 +3,9 @@ return {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
+      gitbrowse = {
+        what = "permalink",
+      },
       picker = {
         win = {
           input = {

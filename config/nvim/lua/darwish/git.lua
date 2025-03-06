@@ -80,11 +80,9 @@ function M.create_branch_from_origin(name)
     return
   end
 
-  local utils = require("darwish.utils")
-
   local proc = vim
     .system(
-      { "git", "switch", "--create", name, "--merge", "--no-track", utils.get_main_branch() },
+      { "git", "switch", "--create", name, "--merge", "--no-track", M.get_main_branch() },
       { cwd = LazyVim.root.git(), text = true }
     )
     :wait()
@@ -93,4 +91,5 @@ function M.create_branch_from_origin(name)
     require("snacks.notify").error("Branch " .. name .. " creation error: " .. proc.stderr)
   end
 end
+
 return M

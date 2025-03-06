@@ -1,7 +1,7 @@
 ---Check if linter are running
 ---@return string
 local function lint_checker()
-  local linters = require("lint").get_running()
+  local linters = require("lint").get_running(vim.fn.bufnr("%"))
   if #linters == 0 then
     return ""
   end

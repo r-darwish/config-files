@@ -17,7 +17,9 @@ local function lsp_checker()
 end
 
 return {
-  { "akinsho/bufferline.nvim", enabled = false },
+  { "akinsho/bufferline.nvim", opts = { options = {
+    mode = "tabs",
+  } } },
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)

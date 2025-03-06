@@ -13,9 +13,19 @@ return {
     "yetone/avante.nvim",
     lazy = true,
     build = "make",
-    opts = {
-      provider = "copilot",
-    },
+    opts = function(_, opts)
+      opts.provider = "copilot"
+      opts.file_selector = { provider = "snacks" }
+
+      local api_key_file = vim.fn.expand("~/.tavily")
+      if vim.fn.filereadable(api_key_file) == 1 then
+        local api_key = vim.fn.readfile(api_key_file)[1]
+        if api_key then
+          vim.env.TAVILY_API_KEY = api_key
+        end
+      end
+      return opts
+    end,
     keys = {
       {
         "<leader>aa",

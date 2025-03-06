@@ -1,22 +1,12 @@
 return {
   { "akinsho/bufferline.nvim", enabled = false },
   {
-    "arkav/lualine-lsp-progress",
-  },
-  {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
       table.remove(opts.sections.lualine_x, 2)
       table.remove(opts.sections.lualine_x, 2)
       table.insert(opts.sections.lualine_x, {
         "overseer",
-      })
-      table.insert(opts.sections.lualine_x, {
-        "lsp_progress",
-        colors = {
-          use = true,
-        },
-        spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
       })
       table.insert(opts.sections.lualine_x, function()
         local linters = require("lint").get_running()

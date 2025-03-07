@@ -47,7 +47,7 @@ if vim.fn.has("wsl") == 1 then
   }
 end
 
-vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h12" -- text below applies for VimScript
+vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h12"
 vim.g.neovide_input_use_logo = 1
 vim.g.neovide_cursor_trail_size = 0.6
 vim.g.neovide_cursor_animate_command_line = false
@@ -55,16 +55,7 @@ vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.neovide_cursor_vfx_particle_density = 10.0
 vim.g.neovide_input_macos_option_key_is_meta = "only_left"
 
-vim.keymap.set("n", "<D-s>", function()
-  vim.cmd("wa")
-end) -- Save
-vim.keymap.set("v", "<D-c>", '"+y') -- Copy
-vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
-vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
-vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
-vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
-vim.api.nvim_set_keymap("t", "<D-v>", "<C-\\><C-n>+pi", { noremap = true, silent = true })
 if vim.g.neovide then
   pcall(vim.fn.serverstart, vim.fn.stdpath("data") .. "/neovide.sock")
-  vim.fn.chdir(os.getenv("HOME"))
+  vim.fn.chdir(vim.fn.expand("~"))
 end

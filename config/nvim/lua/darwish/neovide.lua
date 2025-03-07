@@ -17,3 +17,4 @@ vim.keymap.set("n", paste_key, '"+p') -- Paste normal mode
 vim.keymap.set("v", paste_key, '"+p') -- Paste visual mode
 vim.keymap.set("c", paste_key, "<C-R>+") -- Paste command mode
 vim.keymap.set("i", paste_key, '<ESC>"+pi') -- Paste insert mode
+vim.keymap.set("t", paste_key, "<C-\\><C-n>+pi", { noremap = true, silent = true })

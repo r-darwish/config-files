@@ -44,7 +44,16 @@ return {
             dev = "~/src",
           })
         end,
-        desc = "Zoxide",
+        desc = "Projects",
+      },
+      {
+        "<leader>fP",
+        function()
+          Snacks.picker.files({
+            cwd = vim.fn.stdpath("data") .. "/lazy",
+          })
+        end,
+        desc = "Plugins",
       },
       {
         "<leader>fs",

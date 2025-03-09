@@ -36,6 +36,17 @@ return {
     },
     keys = {
       {
+        "<leader>/",
+        function()
+          require("snacks.picker").grep({
+            cwd = require("lazyvim.util.root").git(),
+            search = require("darwish.utils").get_visual_selection(),
+          })
+        end,
+        mode = { "x" },
+        desc = "Grep the selected value",
+      },
+      {
         "<leader>fz",
         function()
           Snacks.picker.zoxide({ confirm = "picker_files" })

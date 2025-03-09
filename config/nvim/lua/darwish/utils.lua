@@ -54,17 +54,24 @@ end
 ---Get the visual selection
 ---@return string
 function M.get_visual_selection()
-  local start_pos = vim.fn.getpos("'<")
-  local end_pos = vim.fn.getpos("'>")
+  local start_pos = vim.fn.getpos("v")
+  local end_pos = vim.fn.getpos(".")
 
   local lines = vim.fn.getline(start_pos[2], end_pos[2])
   ---@cast lines string[]
 
-  lines[1] = string.sub(lines[1], start_pos[3])
-  lines[#lines] = string.sub(lines[#lines], 1, end_pos[3] - 1)
+  if #lines == 1 then
+    return string.sub(lines[1], start_pos[3], end_pos[3])
+  else
+    lines[1] = string.sub(lines[1], start_pos[3])
+    lines[#lines] = string.sub(lines[#lines], 1, end_pos[3] - 1)
+    return table.concat(lines, "\n")
+  end
+end
 
-  -- Join the lines into a single string
-  return table.concat(lines, "\n")
+---Send the Esc key
+function M.esc()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
 end
 
 function M.launch_kitty(command)

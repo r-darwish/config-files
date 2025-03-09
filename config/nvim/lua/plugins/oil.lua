@@ -16,17 +16,32 @@ return {
       ["<C-n>"] = { "actions.preview_scroll_down", mode = "n" },
       ["<C-v>"] = "actions.preview",
       ["t"] = { "actions.open_terminal", mode = "n" },
-      ["<c-f>"] = function()
-        local dir = require("oil").get_current_dir()
-        Snacks.picker.files({ cwd = dir })
-      end,
-      ["<c-g>"] = function()
-        local dir = require("oil").get_current_dir()
-        Snacks.picker.grep({ cwd = dir })
-      end,
-      ["gd"] = function()
-        require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-      end,
+      ["<c-f>"] = {
+        function()
+          local dir = require("oil").get_current_dir()
+          Snacks.picker.files({ cwd = dir })
+        end,
+        desc = "Find files in the current directory",
+      },
+      ["<c-g>"] = {
+        function()
+          local dir = require("oil").get_current_dir()
+          Snacks.picker.grep({ cwd = dir })
+        end,
+        desc = "Initiate grep in the current directory",
+      },
+      ["gd"] = {
+        function()
+          require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+        end,
+        desc = "Toggle more fields",
+      },
+      ["<leader>gg"] = {
+        function()
+          require("snacks.lazygit").open({ cwd = require("oil").get_current_dir() })
+        end,
+        desc = "Launch LazyGit",
+      },
     },
   },
   -- Optional dependencies

@@ -36,6 +36,9 @@ return {
         "<leader>ma",
         function()
           require("multicursor-nvim").matchAllAddCursors()
+          if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+          end
         end,
         desc = "Add cursors to all matches",
         mode = { "n", "v" },

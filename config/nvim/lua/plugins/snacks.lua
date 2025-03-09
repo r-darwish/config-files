@@ -47,6 +47,15 @@ return {
         desc = "Projects",
       },
       {
+        "<leader>sg",
+        function()
+          Snacks.picker.grep({
+            cwd = require("lazyvim.util.root").git(),
+          })
+        end,
+        desc = "Grep (Git Dir)",
+      },
+      {
         "<leader>fP",
         function()
           Snacks.picker.files({

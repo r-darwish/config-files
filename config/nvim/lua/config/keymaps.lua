@@ -35,7 +35,7 @@ map({ "n", "x" }, "<leader>fY", function()
 end, { desc = "Copy absolute path" })
 
 local utils = require("darwish.utils")
-map({ "n", "x" }, "<c-x>", utils.smart_split)
+map({ "n", "x" }, "<c-x>", utils.smart_split, { desc = "Smart split" })
 
 local toggle = require("snacks.toggle")
 

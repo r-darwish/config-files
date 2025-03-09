@@ -54,8 +54,18 @@ end
 ---Get the visual selection
 ---@return string
 function M.get_visual_selection()
-  local start_pos = vim.fn.getpos("v")
-  local end_pos = vim.fn.getpos(".")
+  local selection_start_pos = vim.fn.getpos("v")
+  local cusrsor_pos = vim.fn.getpos(".")
+
+  local start_pos = selection_start_pos
+  local end_pos = cusrsor_pos
+  if
+    cusrsor_pos[2] < selection_start_pos[2]
+    or (cusrsor_pos[2] == selection_start_pos[2] and cusrsor_pos[3] < selection_start_pos[3])
+  then
+    start_pos = cusrsor_pos
+    end_pos = selection_start_pos
+  end
 
   local lines = vim.fn.getline(start_pos[2], end_pos[2])
   ---@cast lines string[]

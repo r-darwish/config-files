@@ -9,28 +9,28 @@ return {
         function()
           require("multicursor-nvim").matchAddCursor(-1)
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
       },
       {
         "<C-n>",
         function()
           require("multicursor-nvim").matchAddCursor(1)
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
       },
       {
         "<A-k>",
         function()
           require("multicursor-nvim").lineAddCursor(-1)
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
       },
       {
         "<A-j>",
         function()
           require("multicursor-nvim").lineAddCursor(1)
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
       },
       {
         "<leader>ma",
@@ -41,7 +41,7 @@ return {
           end
         end,
         desc = "Add cursors to all matches",
-        mode = { "n", "v" },
+        mode = { "n", "x" },
       },
       {
         "<C-A-n>",
@@ -49,7 +49,7 @@ return {
           require("multicursor-nvim").nextCursor()
         end,
         desc = "Move to next cursor",
-        mode = { "n", "v" },
+        mode = { "n", "x" },
       },
       {
         "<C-A-p>",
@@ -57,14 +57,14 @@ return {
           require("multicursor-nvim").prevCursor()
         end,
         desc = "Move to previous cursor",
-        mode = { "n", "v" },
+        mode = { "n", "x" },
       },
       {
         "<A-d>",
         function()
           require("multicursor-nvim").deleteCursor()
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Delete cursor",
       },
       {
@@ -72,7 +72,7 @@ return {
         function()
           require("multicursor-nvim").alignCursors()
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Align the cursors",
       },
       {
@@ -80,7 +80,7 @@ return {
         function()
           require("multicursor-nvim").clearCursors()
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Clear all cursors",
       },
       {
@@ -88,7 +88,7 @@ return {
         function()
           require("multicursor-nvim").toggleCursor()
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Toggle a cursor",
       },
       {
@@ -96,7 +96,7 @@ return {
         function()
           require("multicursor-nvim").enableCursors()
         end,
-        mode = { "n", "v" },
+        mode = { "n", "x" },
         desc = "Enable cursors",
       },
       {
@@ -120,42 +120,42 @@ return {
         function()
           require("multicursor-nvim").splitCursors()
         end,
-        mode = "v",
+        mode = "x",
       },
       {
         "I",
         function()
           require("multicursor-nvim").insertVisual()
         end,
-        mode = "v",
+        mode = "x",
       },
       {
         "A",
         function()
           require("multicursor-nvim").appendVisual()
         end,
-        mode = "v",
+        mode = "x",
       },
       {
         "M",
         function()
           require("multicursor-nvim").matchCursors()
         end,
-        mode = "v",
+        mode = "x",
       },
       {
         "<c-i>",
         function()
           require("multicursor-nvim").jumpForward()
         end,
-        mode = { "v", "n" },
+        mode = { "x", "n" },
       },
       {
         "<c-o>",
         function()
           require("multicursor-nvim").jumpBackward()
         end,
-        mode = { "v", "n" },
+        mode = { "x", "n" },
       },
     },
   },

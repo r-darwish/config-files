@@ -7,6 +7,12 @@ return {
         what = "permalink",
       },
       picker = {
+        formatters = {
+          file = {
+            truncate = 120,
+            filename_first = true,
+          },
+        },
         win = {
           input = {
             keys = {

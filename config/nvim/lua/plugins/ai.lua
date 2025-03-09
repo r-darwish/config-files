@@ -73,7 +73,7 @@ return {
             })
           end,
           desc = "Copilot Chat",
-          mode = { "n", "v" },
+          mode = { "n", "x" },
         },
         {
           "<leader>aP",
@@ -81,7 +81,7 @@ return {
             require("CopilotChat").ask(english_prompt.prompt, english_prompt)
           end,
           desc = "English Review",
-          mode = { "n", "v" },
+          mode = { "n", "x" },
         },
       })
     end,

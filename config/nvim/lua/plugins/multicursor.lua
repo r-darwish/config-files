@@ -36,7 +36,7 @@ return {
         "<leader>ma",
         function()
           require("multicursor-nvim").matchAllAddCursors()
-          if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+          if require("darwish.utils").in_visual_mode() then
             require("darwish.utils").esc()
           end
         end,

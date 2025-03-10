@@ -39,7 +39,7 @@ return {
         "<leader>/",
         function()
           require("snacks.picker").grep({
-            cwd = require("lazyvim.util.root").git(),
+            cwd = require("lazyvim.util.root").get(),
             search = require("darwish.utils").get_visual_selection(),
           })
         end,
@@ -66,11 +66,19 @@ return {
       {
         "<leader>sg",
         function()
+          local search = nil
+          local utils = require("darwish.utils")
+
+          if utils.in_visual_mode() then
+            search = utils.get_visual_selection()
+          end
           Snacks.picker.grep({
             cwd = require("lazyvim.util.root").git(),
+            search = search,
           })
         end,
         desc = "Grep (Git Dir)",
+        mode = { "x", "n" },
       },
       {
         "<leader>fP",

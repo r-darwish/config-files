@@ -84,6 +84,12 @@ function M.esc()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
 end
 
+---Returns whether we're in visual mode
+---@return boolean
+function M.in_visual_mode()
+  return vim.fn.mode() == "v" or vim.fn.mode() == "V"
+end
+
 function M.launch_kitty(command)
   local cmd = {
     "kitten",

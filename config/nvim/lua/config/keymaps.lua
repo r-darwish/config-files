@@ -119,3 +119,5 @@ toggle
     end,
   })
   :map("<leader>at")
+
+require("darwish.python")

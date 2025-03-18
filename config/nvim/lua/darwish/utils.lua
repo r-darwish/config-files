@@ -121,4 +121,27 @@ function M.remove_value(tbl, value)
   return false
 end
 
+---@class UserCommandCallbackOpts
+---@field name string Command name
+---@field args string? The args passed to the command, if any
+---@field fargs table? The args split by unescaped whitespace
+---@field nargs string? Number of arguments |:command-nargs|
+---@field bang boolean? "true" if the command was executed with a ! modifier <bang>
+---@field line1 number? The starting line of the command range <line1>
+---@field line2 number? The final line of the command range <line2>
+---@field range number? The number of items in the command range: 0, 1, or 2 <range>
+---@field count number? Any count supplied <count>
+---@field reg string? The optional register, if specified <reg>
+---@field mods string? Command modifiers, if any <mods>
+---@field smods table? Command modifiers in a structured format.
+
+---Create a user command
+---@param name string
+---@param command string|fun (opts: UserCommandCallbackOpts)
+---@param opts vim.api.keyset.user_command
+---@return nil
+function M.create_command(name, command, opts)
+  return vim.api.nvim_create_user_command(name, command, opts)
+end
+
 return M

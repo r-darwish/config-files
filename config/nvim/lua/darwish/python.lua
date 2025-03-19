@@ -3,7 +3,7 @@ local M = {}
 ---Activate a virtual environment
 ---@param venv string Path to the virtual environment
 function M.activate_venv(venv)
-  local path = vim.fn.getenv("PATH")
+  local path = os.getenv("PATH")
   local venv_bin = venv .. "/bin"
   vim.fn.setenv("PATH", venv_bin .. ":" .. path)
   vim.fn.setenv("VIRTUAL_ENV", venv)

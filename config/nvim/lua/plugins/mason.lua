@@ -11,6 +11,7 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    cond = os.getenv("NIX_PROFILES") == nil,
     opts = {
       ensure_installed = {
         "shellcheck",

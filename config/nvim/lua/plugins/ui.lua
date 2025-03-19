@@ -20,12 +20,12 @@ local function linux_name()
 
   if _linux_name == nil then
     _linux_name = (function()
-      local wsl_distro = vim.fn.getenv("WSL_DISTRO_NAME")
+      local wsl_distro = os.getenv("WSL_DISTRO_NAME")
       if wsl_distro ~= nil then
         return wsl_distro
       end
 
-      if vim.fn.getenv("SSH_CONNECTION") ~= nil then
+      if os.getenv("SSH_CONNECTION") ~= nil then
         return vim.system({ "hostname" }, { text = true }):wait().stdout
       end
     end)()

@@ -1,33 +1,23 @@
 { pkgs, ... }: {
+  imports = [ ./cloud.nix ./go.nix ./python.nix ./kubernetes.nix ./shell.nix ];
+
   home.packages = with pkgs; [
-    atuin
-    bash-language-server
-    carapace
     fd
     fzf
     gcc
     gh
     git
-    go
-    gopls
+    gnumake
     go-task
+    jq
     lazygit
     lua-language-server
-    gnumake
     neovim
     nil
     nixfmt-classic
     nodejs
-    nushell
-    pyright
-    python3
     ripgrep
-    ruff
-    shfmt
-    starship
     stylua
-    uv
     yazi
-    zoxide
   ];
 }

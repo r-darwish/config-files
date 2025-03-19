@@ -1,0 +1,32 @@
+{ pkgs, ... }: {
+  home.packages = with pkgs; [
+    atuin
+    bash-language-server
+    carapace
+    fd
+    fzf
+    gcc
+    gh
+    git
+    go
+    go-task
+    gopls
+    lazygit
+    lua-language-server
+    neovim
+    nil
+    nixfmt-classic
+    nodejs
+    nushell
+    pyright
+    python3
+    ripgrep
+    ruff
+    shfmt
+    starship
+    stylua
+    uv
+    yazi
+    zoxide
+  ];
+}

@@ -11,7 +11,7 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    cond = os.getenv("NIX_PROFILES") == nil,
+    cond = not require("darwish.utils").path_exists("~/.nix-profile"),
     opts = {
       ensure_installed = {
         "shellcheck",

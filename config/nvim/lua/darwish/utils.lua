@@ -144,4 +144,12 @@ function M.create_command(name, command, opts)
   return vim.api.nvim_create_user_command(name, command, opts)
 end
 
+---Check if a path exists, expanding ~ to home directory
+---@param path string
+---@return boolean
+function M.path_exists(path)
+  local expanded_path = vim.fn.expand(path)
+  return vim.uv.fs_stat(expanded_path) ~= nil
+end
+
 return M

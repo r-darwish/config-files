@@ -40,13 +40,4 @@ def main [] {
     if ($wiz_config | path exists) {
         $"source ([$wiz_config, "wiz.nu"] | path join)\n" | save -a $gen
     }
-
-    let nuexec = (which nu | get 0.path)
-    if (open /etc/shells | lines | where  $it == $nuexec | is-empty) {
-        echo ($nuexec + "\n") | sudo tee -a /etc/shells
-    }
-
-    if $env.SHELL != $nuexec {
-        sudo chsh -s $nuexec (whoami)
-    }
 }

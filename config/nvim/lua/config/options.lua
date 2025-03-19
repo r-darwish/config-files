@@ -9,7 +9,6 @@ vim.opt.shiftwidth = 4
 vim.opt.titlestring = [[%{v:progname} - %f%h%m%r%w]]
 vim.opt.title = true
 vim.opt.shada = "'1000,<1000,s100"
-vim.opt.shell = vim.fn.stdpath("config") .. "/shell"
 vim.opt.autochdir = true
 vim.opt.relativenumber = false
 vim.fn.setenv("EDITOR", "nvim")

@@ -10,9 +10,12 @@ in {
     home.packages = with pkgs; [
       awscli2
       azure-cli
+      gimme-aws-creds
       google-cloud-sdk
-      pkgsUnstable.pulumi
       pkgsUnstable.mirrord
+      pkgsUnstable.pulumi
+      terraform
+      terraform-ls
     ];
   };
 }

@@ -10,10 +10,11 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      kubectl
-      k9s
-      helm
+      helm-ls
       helmfile
+      k9s
+      kubectl
+      kubernetes-helm
       pkgsUnstable.mirrord
     ];
   };

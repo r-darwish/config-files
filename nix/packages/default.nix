@@ -18,6 +18,7 @@
     nodejs
     ripgrep
     stylua
+    tmux
     yazi
   ];
 }

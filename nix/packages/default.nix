@@ -9,10 +9,11 @@
     gh
     git
     go
-    go-task
     gopls
+    go-task
     lazygit
     lua-language-server
+    gnumake
     neovim
     nil
     nixfmt-classic

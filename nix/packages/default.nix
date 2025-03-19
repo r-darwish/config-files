@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     fd
     fzf
+    dua
     gcc
     gh
     git

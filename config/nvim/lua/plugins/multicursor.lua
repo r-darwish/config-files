@@ -144,6 +144,13 @@ return {
         mode = "x",
       },
       {
+        "s",
+        function()
+          require("multicursor-nvim").splitCursors()
+        end,
+        mode = "x",
+      },
+      {
         "<c-i>",
         function()
           require("multicursor-nvim").jumpForward()

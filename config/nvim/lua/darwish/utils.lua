@@ -152,4 +152,25 @@ function M.path_exists(path)
   return vim.uv.fs_stat(expanded_path) ~= nil
 end
 
+---Add a path to the system path if it exists and not already there
+---@param path string
+function M.add_to_path(path)
+  path = vim.fn.expand(path)
+
+  local syspath = os.getenv("PATH")
+  if syspath == nil then
+    return
+  end
+
+  if string.find(syspath, path) then
+    return
+  end
+
+  if not M.path_exists(path) then
+    return
+  end
+
+  vim.env.PATH = path .. ":" .. syspath
+end
+
 return M

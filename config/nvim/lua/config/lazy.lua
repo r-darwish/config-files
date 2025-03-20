@@ -82,12 +82,8 @@ if (vim.uv or vim.loop).fs_stat(wiz_dir) then
   require("wiz")
 end
 
-if vim.fn.has("linux") == 1 and vim.fn.executable("brew") == 0 then
-  local linuxbrew_dir = "/home/linuxbrew/.linuxbrew/bin"
-  vim.notify(linuxbrew_dir)
-  if (vim.uv or vim.loop).fs_stat(linuxbrew_dir) then
-    vim.env.PATH = linuxbrew_dir .. ":" .. vim.env.PATH
-  end
-end
+local utils = require("darwish.utils")
+utils.add_to_path("/home/linuxbrew/.linuxbrew/bin")
+utils.add_to_path("~/.nix-profile/bin")
 
 require("lazy").setup(config)

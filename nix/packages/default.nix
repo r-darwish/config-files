@@ -1,5 +1,13 @@
 { pkgs, ... }: {
-  imports = [ ./cloud.nix ./go.nix ./python.nix ./kubernetes.nix ./shell.nix ];
+  imports = [
+    ./cloud.nix
+    ./go.nix
+    ./kubernetes.nix
+    ./python.nix
+    ./rust.nix
+    ./shell.nix
+    ./zig.nix
+  ];
 
   home.packages = with pkgs; [
     dua

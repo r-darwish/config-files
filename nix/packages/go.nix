@@ -5,6 +5,14 @@ in {
   options.darwish.go = { enable = mkEnableOption "Go packages"; };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ go gopls delve golangci-lint ];
+    home.packages = with pkgs; [
+      flyway
+      grpcurl
+      grpcui
+      go
+      gopls
+      delve
+      golangci-lint
+    ];
   };
 }

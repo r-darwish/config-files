@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     dua
+    entr
     fastfetch
     fd
     fzf
@@ -32,5 +33,6 @@
     stylua
     tmux
     yazi
+    yt-dlp
   ];
 }

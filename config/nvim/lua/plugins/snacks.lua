@@ -54,6 +54,13 @@ return {
         desc = "Zoxide",
       },
       {
+        "<leader>fl",
+        function()
+          Snacks.picker.lines()
+        end,
+        desc = "Lines",
+      },
+      {
         "<leader>fp",
         function()
           Snacks.picker.projects({

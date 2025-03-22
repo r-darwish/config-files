@@ -2,6 +2,7 @@
   imports = [
     ./cloud.nix
     ./go.nix
+    ./grpc.nix
     ./kubernetes.nix
     ./python.nix
     ./rust.nix

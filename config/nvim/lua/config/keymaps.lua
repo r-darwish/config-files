@@ -19,6 +19,7 @@ map({ "i" }, "<C-z>", "<esc>")
 
 map({ "n", "x" }, "gh", "^", { desc = "Line start" })
 map({ "n", "x" }, "gl", "$", { desc = "Line end" })
+map({ "n", "x" }, "<leader>wb", "<cmd>tabnew %<CR>", { desc = "Break the current window to a new tab" })
 map({ "n" }, "gp", "`[v`]", { desc = "Last paste" })
 map({ "n", "x" }, "q:", "<nop>")
 map({ "n", "x" }, "Q", "q", { desc = "Record a macro" })
@@ -84,7 +85,7 @@ local function open_file_in_same_dir()
   local file_to_open = vim.fn.input("Enter file name: ", current_file .. "/", "file")
   vim.cmd("edit " .. file_to_open)
 end
-map({ "n", "x" }, "<leader>fn", open_file_in_same_dir)
+map({ "n", "x" }, "<leader>fn", open_file_in_same_dir, { desc = "Open a file in the same directory" })
 
 map("n", "<leader>gf", function()
   Snacks.lazygit.log_file()

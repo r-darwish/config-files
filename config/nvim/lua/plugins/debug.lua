@@ -3,6 +3,12 @@ vim.debug_host = "127.0.0.1"
 
 return {
   {
+    "mfussenegger/nvim-dap-python",
+    config = function()
+      require("dap-python").setup("uv")
+    end,
+  },
+  {
     "leoluz/nvim-dap-go",
     lazy = true,
     opts = {

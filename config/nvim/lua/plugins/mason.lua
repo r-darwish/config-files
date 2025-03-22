@@ -1,6 +1,6 @@
+local enable_mason = not require("darwish.utils").path_exists("~/.nix-profile")
+
 return {
-  { "lawrence-laz/neotest-zig", tag = "1.3.1", priority = 1000 },
-  -- add any tools you want to have installed below
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -10,8 +10,12 @@ return {
     },
   },
   {
+    "jay-babu/mason-nvim-dap.nvim",
+    cond = enable_mason,
+  },
+  {
     "williamboman/mason.nvim",
-    cond = not require("darwish.utils").path_exists("~/.nix-profile"),
+    cond = enable_mason,
     opts = {
       ensure_installed = {
         "shellcheck",

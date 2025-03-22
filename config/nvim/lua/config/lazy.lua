@@ -36,6 +36,7 @@ local config = {
     { import = "lazyvim.plugins.extras.lang.terraform" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
     { import = "lazyvim.plugins.extras.lang.nix" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.zig" },
     { import = "lazyvim.plugins.extras.test" },
     { import = "lazyvim.plugins.extras.util.dot" },

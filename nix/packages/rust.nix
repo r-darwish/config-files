@@ -5,6 +5,13 @@ in {
   options.darwish.rust = { enable = mkEnableOption "Rust packages"; };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ rustc rustfmt rust-analyzer clippy ];
+    home.packages = with pkgs; [
+      cargo
+      clippy
+      rust-analyzer
+      rustc
+      rustfmt
+      vscode-extensions.vadimcn.vscode-lldb.adapter
+    ];
   };
 }

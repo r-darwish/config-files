@@ -1,4 +1,6 @@
 local transparency = os.getenv("TERM") == "xterm-kitty"
+local theme = os.getenv("NVIM_THEME") or "tokyonight-night"
+
 vim.opt.cursorline = not transparency
 
 return {
@@ -9,7 +11,7 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    enabled = false,
+    cond = string.find(theme, "rose"),
     opts = {
       variant = "moon",
       dark_variant = "moon",
@@ -22,7 +24,7 @@ return {
   },
   {
     "folke/tokyonight.nvim",
-    enabled = true,
+    cond = string.find(theme, "tokyonight"),
     opts = {
       dim_inactive = true,
       transparent = transparency,
@@ -42,7 +44,7 @@ return {
   },
   {
     "sainnhe/gruvbox-material",
-    enabled = false,
+    cond = string.find(theme, "gruvbox"),
     config = function()
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = transparency and 2 or 0
@@ -65,7 +67,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-night",
+      colorscheme = theme,
     },
   },
 }

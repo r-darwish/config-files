@@ -19,7 +19,7 @@ map({ "i" }, "<C-z>", "<esc>")
 
 map({ "n", "x" }, "gh", "^", { desc = "Line start" })
 map({ "n", "x" }, "gl", "$", { desc = "Line end" })
-map({ "n", "x" }, "<leader>wb", "<cmd>tabnew %<CR>", { desc = "Break the current window to a new tab" })
+map({ "n", "x" }, "<leader>wb", "<C-w>T", { desc = "Break the current window to a new tab" })
 map({ "n" }, "gp", "`[v`]", { desc = "Last paste" })
 map({ "n", "x" }, "q:", "<nop>")
 map({ "n", "x" }, "Q", "q", { desc = "Record a macro" })

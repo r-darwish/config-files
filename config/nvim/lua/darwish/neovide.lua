@@ -11,6 +11,8 @@ else
   vim.keymap.set({ "n", "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>")
 end
 
+vim.keymap.set({ "n", "v" }, "<D-t>", "<C-w>T")
+vim.keymap.set({ "n", "v", "t" }, "<C-tab>", "gt")
 vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
 vim.keymap.set("v", "<D-c>", '"+y') -- Copy
 vim.keymap.set("n", paste_key, '"+p') -- Paste normal mode

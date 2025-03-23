@@ -14,6 +14,7 @@
     dua
     entr
     fastfetch
+    fblog
     fd
     fzf
     gcc
@@ -27,8 +28,8 @@
     lua-language-server
     neovim
     nil
-    nix-tree
     nixfmt-classic
+    nix-tree
     nodejs
     ripgrep
     stylua

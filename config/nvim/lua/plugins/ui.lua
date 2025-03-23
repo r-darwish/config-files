@@ -14,7 +14,7 @@ local _linux_name = nil
 ---Return the name of the Linux system
 ---@return string
 local function linux_name()
-  if not vim.fn.has("linux") then
+  if vim.fn.has("linux") == 0 then
     return ""
   end
 

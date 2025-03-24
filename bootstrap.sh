@@ -7,13 +7,15 @@ source "common.zsh"
 mkdir -p ~/.config
 
 if [[ "$(uname)" == "Linux" ]]; then
-    if type "apt-get" >/dev/null && ! type "gcc" >/dev/null; then
-        sudo apt-get update && sudo apt-get install -y build-essential
-    fi
+    if type "apt-get" >/dev/null; then
+        if ! type "gcc" >/dev/null; then
+            sudo apt-get update && sudo apt-get install -y build-essential
+        fi
 
-    if [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        if [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+            curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        fi
     fi
 fi
 
@@ -28,14 +30,16 @@ done
 
 git config --global include.path "$PWD/.gitconfig"
 
-if [[ -n "$BACKGROUND" ]]; then
-    export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
-    brew tap rsteube/homebrew-tap || true
-      brew install nushell starship atuin zoxide neovim rsteube/tap/carapace || true
-    echo "Running package installation in the background"
-    nohup brew bundle install >/tmp/brew.log 2>&1 &
-else
-    brew bundle install
+if type "brew" >/dev/null; then
+    if [[ -n "$BACKGROUND" ]]; then
+        export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
+        brew tap rsteube/homebrew-tap || true
+        brew install nushell starship atuin zoxide neovim rsteube/tap/carapace || true
+        echo "Running package installation in the background"
+        nohup brew bundle install >/tmp/brew.log 2>&1 &
+    else
+        brew bundle install
+    fi
 fi
 
 if [[ -d "$HOME/wiz-sec" ]]; then

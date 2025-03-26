@@ -38,6 +38,10 @@ def "ncd" [] {
     nvim --server $nvim --remote-send ("<C-\\><C-N>:set noautochdir<CR>:cd " + (pwd | path expand) + "<CR>")
 }
 
+def "pacman fix" [] {
+    sudo pacman -Sy --needed archlinux-keyring ; sudo pacman -Su
+}
+
 def "edit dir" [query?: string] {
     let dir = zoxide query -i ($query | default "") | str trim
     cd $dir

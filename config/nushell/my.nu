@@ -24,6 +24,20 @@ def "from env" []: string -> record {
     | transpose -r -d
 }
 
+def "e" [file: string] {
+    let nvim = $env | get -i nvim
+    if nvim != null {
+        nvim --server $nvim --remote-tab ($file | path expand)
+    } else {
+        nvim $file
+    }
+}
+
+def "ncd" [] {
+    let nvim = $env | get -i nvim
+    nvim --server $nvim --remote-send ("<C-\\><C-N>:set noautochdir<CR>:cd " + (pwd | path expand) + "<CR>")
+}
+
 def "edit dir" [query?: string] {
     let dir = zoxide query -i ($query | default "") | str trim
     cd $dir

@@ -79,6 +79,7 @@ map({ "n", "x" }, "<leader>fdg", chdir.git, { desc = "Change directory to the gi
 local git = require("darwish.git")
 map({ "n", "x" }, "<leader>gm", git.merge_with_origin, { desc = "Merge with origin's main branch" })
 map({ "n", "x" }, "<leader>gu", git.pull, { desc = "Switch to the main branch and pull" })
+map({ "n", "x" }, "<leader>cx", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 
 local function open_file_in_same_dir()
   local current_file = vim.fn.expand("%:p:h")

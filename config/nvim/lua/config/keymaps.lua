@@ -12,6 +12,11 @@ local function toggle_macro_recording()
   end
 end
 
+map({ "t" }, "<C-tab>", "<C-\\><C-n>gt")
+map({ "n", "x" }, "<C-tab>", "gt")
+map({ "t" }, "<C-S-tab>", "<C-\\><C-n>gT")
+map({ "n", "x" }, "<C-S-tab>", "gT")
+
 map({ "t" }, "<C-z>", "<C-\\><C-n>")
 map({ "t" }, "<C-v>", "<C-\\><C-n>pi")
 map({ "n", "x" }, "<C-z>", "i")

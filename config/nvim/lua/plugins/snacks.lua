@@ -1,5 +1,9 @@
 return {
   {
+    "echasnovski/mini.pairs",
+    enabled = false,
+  },
+  {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {

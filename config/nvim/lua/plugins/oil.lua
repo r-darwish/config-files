@@ -13,6 +13,27 @@ return {
       ["q"] = { "actions.close", mode = "n" },
       ["<bs>"] = { "actions.parent", mode = "n" },
       ["<C-p>"] = { "actions.preview_scroll_up", mode = "n" },
+      ["<C-h>"] = { "<C-w>h", mode = "n" },
+      ["<C-l>"] = { "<C-w>l", mode = "n" },
+      ["S"] = {
+        function()
+          ---@type oil.SelectOpts
+          local args = {}
+          if require("darwish.utils").should_split_vertically() then
+            args.vertical = true
+          else
+            args.horizontal = true
+          end
+          require("oil").select(args)
+        end,
+        mode = { "n" },
+      },
+      ["<C-s>"] = {
+        function()
+          require("oil").save()
+        end,
+        mode = "n",
+      },
       ["<C-n>"] = { "actions.preview_scroll_down", mode = "n" },
       ["<C-v>"] = "actions.preview",
       ["t"] = { "actions.open_terminal", mode = "n" },

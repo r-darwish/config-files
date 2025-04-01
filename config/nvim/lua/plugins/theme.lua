@@ -43,6 +43,7 @@ return {
       end,
       on_colors = function(colors)
         colors.border = "teal"
+        colors.comment = colors.fg_dark
       end,
     },
   },

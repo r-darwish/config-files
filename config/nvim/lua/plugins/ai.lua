@@ -10,6 +10,32 @@ local english_prompt = {
 
 return {
   {
+    "augmentcode/augment.vim",
+    dependencies = { "folke/snacks.nvim" },
+    event = "VeryLazy",
+    config = function()
+      require("snacks.toggle")
+        .new({
+          id = "augment",
+          name = "Augment completions",
+          get = function()
+            return not vim.g.augment_disable_completions
+          end,
+          set = function(state)
+            vim.g.augment_disable_completions = not state
+          end,
+        })
+        :map("<leader>aG")
+    end,
+    keys = {
+      {
+        "<leader>ag",
+        "<cmd>Augment chat<CR>",
+        desc = "Augment Chat",
+      },
+    },
+  },
+  {
     "yetone/avante.nvim",
     lazy = true,
     build = "make",

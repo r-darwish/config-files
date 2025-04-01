@@ -36,6 +36,10 @@ return {
           fg = c.magenta2,
           italic = true,
         }
+        hl.AugmentSuggestionHighlight = {
+          fg = c.magenta2,
+          italic = true,
+        }
       end,
       on_colors = function(colors)
         colors.border = "teal"

@@ -12,7 +12,8 @@ else
 end
 
 vim.keymap.set({ "n", "x" }, "<D-t>", "<C-w>T")
-vim.keymap.set({ "n", "x" }, "<D-d>", "<C-w>d")
+vim.keymap.set({ "n", "x" }, "<D-d>", "<C-w>q")
+vim.keymap.set({ "n", "x" }, "<D-S-d>", "<cmd>tabclose<CR>")
 vim.keymap.set({ "n", "x" }, "<C-tab>", "gt")
 vim.keymap.set({ "t" }, "<C-tab>", "<C-\\><C-n>gt")
 vim.keymap.set("n", "<D-s>", ":w<CR>")

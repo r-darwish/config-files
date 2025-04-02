@@ -12,11 +12,12 @@ else
 end
 
 vim.keymap.set({ "n", "v" }, "<D-t>", "<C-w>T")
-vim.keymap.set({ "n", "v", "t" }, "<C-tab>", "gt")
+vim.keymap.set({ "n", "v" }, "<C-tab>", "gt")
+vim.keymap.set({ "t" }, "<C-tab>", "<C-\\><C-n>gt")
 vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
 vim.keymap.set("v", "<D-c>", '"+y') -- Copy
 vim.keymap.set("n", paste_key, '"+p') -- Paste normal mode
 vim.keymap.set("v", paste_key, '"+p') -- Paste visual mode
 vim.keymap.set("c", paste_key, "<C-R>+") -- Paste command mode
 vim.keymap.set("i", paste_key, '<ESC>"+pi') -- Paste insert mode
-vim.keymap.set("t", paste_key, "<C-\\><C-n>+pi", { noremap = true, silent = true })
+vim.keymap.set("t", paste_key, '<C-\\><C-n>"+pi', { noremap = true, silent = true })

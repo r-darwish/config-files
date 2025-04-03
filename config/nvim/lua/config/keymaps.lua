@@ -12,33 +12,41 @@ local function toggle_macro_recording()
   end
 end
 
+-- Tab control
 map({ "t" }, "<C-tab>", "<C-\\><C-n>gt")
 map({ "n", "x" }, "<C-tab>", "gt")
 map({ "t" }, "<C-S-tab>", "<C-\\><C-n>gT")
 map({ "n", "x" }, "<C-S-tab>", "gT")
+map({ "n", "x" }, "<leader>wb", "<C-w>T", { desc = "Break the current window to a new tab" })
 
+-- Insert/Normal mode toggle
 map({ "t" }, "<C-z>", "<C-\\><C-n>")
 map({ "t" }, "<C-v>", "<C-\\><C-n>pi")
 map({ "n", "x" }, "<C-z>", "i")
 map({ "i" }, "<C-z>", "<esc>")
 
+-- Line start and end
 map({ "i", "c" }, "<C-a>", "<Home>")
 map({ "i", "c" }, "<C-e>", "<End>")
-
 map({ "n", "x" }, "gh", "^", { desc = "Line start" })
 map({ "n", "x" }, "gl", "$", { desc = "Line end" })
+
+-- Folding
 map({ "n", "x" }, "<C-->", "zm", { desc = "Fold more" })
 map({ "n", "x" }, "<C-=>", "zr", { desc = "Fold less" })
-map({ "n", "x" }, "<leader>wb", "<C-w>T", { desc = "Break the current window to a new tab" })
+
+-- Pasting
 map({ "n" }, "gp", "`[v`]", { desc = "Last paste" })
-map({ "n", "x" }, "q:", "<nop>")
-map({ "n", "x" }, "Q", "q", { desc = "Record a macro" })
 map({ "x" }, "p", "P`]", { desc = "Paste" })
 map({ "n" }, "p", "p`]", { desc = "Paste" })
+
+-- Macros
+map({ "n", "x" }, "q:", "<nop>")
+map({ "n", "x" }, "Q", "q", { desc = "Record a macro" })
 map({ "n", "x" }, "<f2>", toggle_macro_recording)
 map({ "n", "x" }, "<f3>", "@q", { desc = "Play macro" })
 map({ "n", "x" }, "q", "<nop>")
-map({ "n", "x", "i" }, "<D-s>", "<C-s>", { desc = "Save" })
+
 map({ "n", "x" }, "<leader>fY", function()
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", path)
@@ -78,6 +86,7 @@ vim.api.nvim_create_user_command("GoLand", function()
   vim.fn.system("goland " .. current_file)
 end, {})
 
+-- chdir commands and keys
 local chdir = require("darwish.chdir")
 vim.api.nvim_create_user_command("ChdirFile", chdir.file, {})
 vim.api.nvim_create_user_command("ChdirRoot", chdir.root, {})
@@ -89,6 +98,7 @@ map({ "n", "x" }, "<leader>fdg", chdir.git, { desc = "Change directory to the gi
 local git = require("darwish.git")
 map({ "n", "x" }, "<leader>gm", git.merge_with_origin, { desc = "Merge with origin's main branch" })
 map({ "n", "x" }, "<leader>gu", git.pull, { desc = "Switch to the main branch and pull" })
+
 map({ "n", "x" }, "<leader>cx", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 
 local function open_file_in_same_dir()

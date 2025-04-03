@@ -59,6 +59,7 @@ return {
       table.insert(opts.sections.lualine_x, lsp_checker)
       table.insert(opts.sections.lualine_c, 1, linux_name)
       opts.sections.lualine_c[4] = { require("lazyvim.util.lualine").pretty_path({ relative = "root", length = 10 }) }
+      table.remove(opts.sections.lualine_c, 5)
       opts.options.section_separators = { left = "", right = "" }
       opts.options.section_separators.component_separators = { left = "", right = "" }
     end,

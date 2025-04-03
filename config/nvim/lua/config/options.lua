@@ -51,7 +51,6 @@ end
 
 vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h12"
 vim.g.neovide_input_use_logo = 1
-vim.g.neovide_cursor_trail_size = 0.6
 vim.g.neovide_cursor_animate_command_line = false
 vim.g.neovide_cursor_vfx_mode = "railgun"
 vim.g.neovide_cursor_vfx_particle_density = 10.0

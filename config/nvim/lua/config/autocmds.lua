@@ -24,8 +24,14 @@ vim.api.nvim_create_autocmd({
   pattern = { "*.yaml", "*.yml" },
   group = autocmds.augroup,
   callback = function()
+    -- Disable auto formatting by default
+    local buf = vim.api.nvim_get_current_buf()
+    if LazyVim.format.enabled(buf) then
+      LazyVim.format.enable(false, true)
+    end
+
+    -- If the file contains a go template, set the filetype to helm
     if vim.fn.search("{{.\\+}}", "nw") ~= 0 then
-      local buf = vim.api.nvim_get_current_buf()
       vim.api.nvim_set_option_value("filetype", "helm", { buf = buf })
     end
   end,

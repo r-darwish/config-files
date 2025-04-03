@@ -22,6 +22,9 @@ map({ "t" }, "<C-v>", "<C-\\><C-n>pi")
 map({ "n", "x" }, "<C-z>", "i")
 map({ "i" }, "<C-z>", "<esc>")
 
+map({ "i", "c" }, "<C-a>", "<Home>")
+map({ "i", "c" }, "<C-e>", "<End>")
+
 map({ "n", "x" }, "gh", "^", { desc = "Line start" })
 map({ "n", "x" }, "gl", "$", { desc = "Line end" })
 map({ "n", "x" }, "<C-->", "zm", { desc = "Fold more" })

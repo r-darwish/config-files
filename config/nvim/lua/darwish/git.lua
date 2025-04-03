@@ -88,8 +88,41 @@ function M.create_branch_from_origin(name)
     :wait()
 
   if proc.code ~= 0 then
-    require("snacks.notify").error("Branch " .. name .. " creation error: " .. proc.stderr)
+    error("Branch " .. name .. " creation error: " .. proc.stderr)
   end
+end
+
+--- Perform git reset HEAD --hard
+---@param repo_path string Path to the repo
+function M.hard_reset(repo_path)
+  local proc = vim.system({ "git", "reset", "HEAD", "--hard" }, { cwd = repo_path, text = true }):wait()
+  if proc.code ~= 0 then
+    error("Git reset failed: " .. proc.stderr)
+  end
+end
+
+--- Checkout a PR in the given repo path
+---@param pr string PR number or URL
+---@param repo_path string path to the repo
+function M.checkout_pr(pr, repo_path)
+  local proc = vim.system({ "gh", "pr", "checkout", pr }, { cwd = repo_path, text = true }):wait()
+  if proc.code ~= 0 then
+    error("Checkout failed: " .. proc.stderr)
+  end
+end
+
+--- Checkout a PR in the given repo path. Git reset hard will be performed
+---@param pr string PR number or URL
+---@param repo_path string path to the repo
+function M.review_pull_request(pr, repo_path)
+  local chdir = require("darwish.chdir")
+
+  chdir.chdir(repo_path)
+  M.hard_reset(repo_path)
+  M.checkout_pr(pr, repo_path)
+
+  vim.cmd("edit " .. repo_path)
+  vim.cmd("Octo review")
 end
 
 return M

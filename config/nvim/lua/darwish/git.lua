@@ -10,7 +10,7 @@ function M.merge_with_origin()
     if out.code ~= 0 then
       vim.notify("Fetch failed: " .. out.stderr, "error")
     else
-      vim.system({ "git", "merge", main_branch }, { text = true, cwd = root }, function(innerOut)
+      vim.system({ "git", "merge", "--autostash", main_branch }, { text = true, cwd = root }, function(innerOut)
         if innerOut.code ~= 0 then
           vim.notify("Merge failed: " .. innerOut.stderr, "error")
         else

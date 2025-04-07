@@ -25,11 +25,12 @@ map({ "t" }, "<C-v>", "<C-\\><C-n>pi")
 map({ "n", "x" }, "<C-z>", "i")
 map({ "i" }, "<C-z>", "<esc>")
 
--- Line start and end
+-- Lines
 map({ "i", "c" }, "<C-a>", "<Home>")
 map({ "i", "c" }, "<C-e>", "<End>")
 map({ "n", "x" }, "gh", "^", { desc = "Line start" })
 map({ "n", "x" }, "gl", "$", { desc = "Line end" })
+map({ "n", "x" }, "Z", "zz", { desc = "Center line" })
 
 -- Folding
 map({ "n", "x" }, "<C-->", "zm", { desc = "Fold more" })
@@ -141,5 +142,18 @@ toggle
     end,
   })
   :map("<leader>at")
+
+-- Env vars
+vim.api.nvim_create_user_command("SetEnv", function(opts)
+  local kv = vim.split(opts.args, "=")
+
+  local env = kv[1]
+  local value = #kv == 2 and kv[2] or ""
+  vim.fn.setenv(env, value)
+end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("GetEnv", function(opts)
+  Snacks.debug.inspect(vim.fn.getenv(opts.args))
+end, { nargs = 1 })
 
 require("darwish.python")

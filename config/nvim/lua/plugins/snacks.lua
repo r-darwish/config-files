@@ -40,6 +40,24 @@ return {
     },
     keys = {
       {
+        "<A-z>",
+        function()
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), "t", true)
+          vim.schedule(function()
+            require("snacks.zen").zoom()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "n", true)
+          end)
+        end,
+        mode = { "t" },
+      },
+      {
+        "<A-z>",
+        function()
+          require("snacks.zen").zoom()
+        end,
+        mode = { "n", "v" },
+      },
+      {
         "<leader>/",
         function()
           require("snacks.picker").grep({

@@ -10,59 +10,6 @@ local english_prompt = {
 
 return {
   {
-    "augmentcode/augment.vim",
-    dependencies = { "folke/snacks.nvim" },
-    event = "VeryLazy",
-    config = function()
-      require("snacks.toggle")
-        .new({
-          id = "augment",
-          name = "Augment completions",
-          get = function()
-            return not vim.g.augment_disable_completions
-          end,
-          set = function(state)
-            vim.g.augment_disable_completions = not state
-          end,
-        })
-        :map("<leader>aG")
-    end,
-    keys = {
-      {
-        "<leader>ag",
-        "<cmd>Augment chat<CR>",
-        desc = "Augment Chat",
-      },
-    },
-  },
-  {
-    "yetone/avante.nvim",
-    lazy = true,
-    build = "make",
-    opts = function(_, opts)
-      opts.provider = "copilot"
-      opts.file_selector = { provider = "snacks" }
-
-      local api_key_file = vim.fn.expand("~/.tavily")
-      if vim.fn.filereadable(api_key_file) == 1 then
-        local api_key = vim.fn.readfile(api_key_file)[1]
-        if api_key then
-          vim.env.TAVILY_API_KEY = api_key
-        end
-      end
-      return opts
-    end,
-    keys = {
-      {
-        "<leader>aa",
-        function()
-          require("avante").toggle_sidebar()
-        end,
-        desc = "Avante",
-      },
-    },
-  },
-  {
     "giuxtaposition/blink-cmp-copilot",
     enabled = false,
   },
@@ -81,36 +28,27 @@ return {
         English = english_prompt,
       },
     },
-    keys = function(_, keys)
-      for i, k in ipairs(keys) do
-        if k[1] == "<leader>aa" then
-          table.remove(keys, i)
-          break
-        end
-      end
-
-      return vim.tbl_extend("force", keys, {
-        {
-          "<leader>ap",
-          function()
-            local utils = require("darwish.utils")
-            require("CopilotChat").toggle({
-              window = { layout = utils.should_split_vertically() and "vertical" or "horizontal", height = 0.4 },
-            })
-          end,
-          desc = "Copilot Chat",
-          mode = { "n", "x" },
-        },
-        {
-          "<leader>aP",
-          function()
-            require("CopilotChat").ask(english_prompt.prompt, english_prompt)
-          end,
-          desc = "English Review",
-          mode = { "n", "x" },
-        },
-      })
-    end,
+    keys = {
+      {
+        "<leader>aa",
+        function()
+          local utils = require("darwish.utils")
+          require("CopilotChat").toggle({
+            window = { layout = utils.should_split_vertically() and "vertical" or "horizontal", height = 0.4 },
+          })
+        end,
+        desc = "Copilot Chat",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>ae",
+        function()
+          require("CopilotChat").ask(english_prompt.prompt, english_prompt)
+        end,
+        desc = "English Review",
+        mode = { "n", "x" },
+      },
+    },
   },
   {
     "zbirenbaum/copilot.lua",

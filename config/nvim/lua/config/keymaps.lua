@@ -31,6 +31,13 @@ map({ "i", "c" }, "<C-e>", "<End>")
 map({ "n", "x" }, "gh", "^", { desc = "Line start" })
 map({ "n", "x" }, "gl", "$", { desc = "Line end" })
 map({ "n", "x" }, "Z", "zz", { desc = "Center line" })
+map({ "n" }, "k", function()
+  return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
+end, { expr = true })
+
+map({ "n" }, "j", function()
+  return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
+end, { expr = true })
 
 -- Folding
 map({ "n", "x" }, "<C-->", "zm", { desc = "Fold more" })
@@ -142,6 +149,20 @@ toggle
     end,
   })
   :map("<leader>at")
+
+-- hlsearch
+toggle
+  .new({
+    id = "hlsearch_trigger",
+    name = "Search Highlight",
+    get = function()
+      return vim.api.nvim_get_option_value("hlsearch", {})
+    end,
+    set = function(state)
+      vim.opt.hlsearch = state
+    end,
+  })
+  :map("<leader>uS")
 
 -- Env vars
 vim.api.nvim_create_user_command("SetEnv", function(opts)

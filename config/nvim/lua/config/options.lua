@@ -12,7 +12,7 @@ vim.opt.titlestring = [[%{v:progname} - %f%h%m%r%w]]
 vim.opt.title = true
 vim.opt.shada = "'1000,<1000,s100"
 vim.opt.autochdir = true
-vim.opt.relativenumber = false
+vim.opt.hlsearch = false
 vim.fn.setenv("EDITOR", "nvim")
 vim.g.snacks_animate = false
 vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { link = "DiagnosticUnnecessary" })

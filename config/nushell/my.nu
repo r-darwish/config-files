@@ -15,6 +15,12 @@ def "skopeo cp" [dest: string] {
     }
 }
 
+def "zn" [query: string = ""] {
+    let dir = (zoxide query -i $query)
+    cd $dir
+    nvim $dir
+}
+
 def "from env" []: string -> record {
   lines
     | split column '#' # remove comments

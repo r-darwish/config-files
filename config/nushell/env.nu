@@ -58,7 +58,7 @@ for p in [$brew, $home_bin, $local_bin] {
     }
 }
 
-$env.EDITOR = "nvim"
+$env.EDITOR = (which nvim | get 0.path)
 $env.FZF_DEFAULT_OPTS = "--highlight-line
   --info=inline-right
   --ansi

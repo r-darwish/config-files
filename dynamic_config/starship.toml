@@ -92,3 +92,6 @@ disabled = true
 
 [character]
 vimcmd_symbol = '[V](bold green) '
+
+[hostname]
+trim_at = ""

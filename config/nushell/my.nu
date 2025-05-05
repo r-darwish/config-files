@@ -15,10 +15,15 @@ def "skopeo cp" [dest: string] {
     }
 }
 
-def "zn" [query: string = ""] {
+def "ez" [query: string = ""] {
     let dir = (zoxide query -i $query)
     cd $dir
     nvim $dir
+}
+
+def "ew" [query: string] {
+    let bin = (which $query | get 0.path)
+    nvim $bin
 }
 
 def "from env" []: string -> record {

@@ -35,6 +35,18 @@ local function linux_name()
   return string.format("%s  %s", "%#WarningMsg#", _linux_name)
 end
 
+--- Display the git worktree if in one
+---@return string
+local function worktree_name()
+  local worktree = require("darwish.git").worktree()
+
+  if worktree == "" then
+    return ""
+  end
+
+  return string.format("󰙅 %s", worktree)
+end
+
 ---Check if the LSP is ready
 ---@return string
 local function lsp_checker()
@@ -58,6 +70,7 @@ return {
       table.insert(opts.sections.lualine_x, lint_checker)
       table.insert(opts.sections.lualine_x, lsp_checker)
       table.insert(opts.sections.lualine_c, 1, linux_name)
+      table.insert(opts.sections.lualine_b, 1, worktree_name)
       opts.sections.lualine_c[4] = { require("lazyvim.util.lualine").pretty_path({ relative = "root", length = 10 }) }
       table.remove(opts.sections.lualine_c, 5)
       opts.options.section_separators = { left = "", right = "" }

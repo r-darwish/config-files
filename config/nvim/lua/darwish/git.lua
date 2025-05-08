@@ -125,4 +125,23 @@ function M.review_pull_request(pr, repo_path)
   vim.cmd("Octo review")
 end
 
+--- Checks if we're in a worktree
+---@return string the name of the git directory if it's a worktree, otherwise return an empty string
+function M.worktree()
+  local repo_path = LazyVim.root.git()
+  local stat = vim.uv.fs_stat(repo_path .. "/.git")
+  if stat == nil then
+    return ""
+  end
+
+  if stat.type ~= "file" then
+    return ""
+  end
+
+  local p = require("plenary.path"):new(repo_path)
+  return p:make_relative(p:parent().filename)
+end
+
+M.worktree()
+
 return M

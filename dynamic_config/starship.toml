@@ -95,3 +95,4 @@ vimcmd_symbol = '[V](bold green) '
 
 [hostname]
 trim_at = ""
+style = "red"

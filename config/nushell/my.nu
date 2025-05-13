@@ -18,7 +18,12 @@ def "skopeo cp" [dest: string] {
 def "ez" [query: string = ""] {
     let dir = (zoxide query -i $query)
     cd $dir
-    nvim $dir
+    nvim (fzf)
+}
+
+def "es" [query: string = ""] {
+    cd ~/src
+    nvim (fzf)
 }
 
 def "ew" [query: string] {
@@ -51,12 +56,6 @@ def "ncd" [] {
 
 def "pacman fix" [] {
     sudo pacman -Sy --needed archlinux-keyring ; sudo pacman -Su
-}
-
-def "edit dir" [query?: string] {
-    let dir = zoxide query -i ($query | default "") | str trim
-    cd $dir
-    nvim
 }
 
 def "edit exec" [exec: string] {

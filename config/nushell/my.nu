@@ -21,6 +21,10 @@ def "ez" [query: string = ""] {
     nvim (fzf)
 }
 
+def "ef" [] {
+    nvim (fzf)
+}
+
 def "es" [query: string = ""] {
     cd ~/src
     nvim (fzf)

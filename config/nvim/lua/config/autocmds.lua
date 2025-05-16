@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
 autocmds.set_opts({ "lua", "javascript", "terraform", "yaml", "helm", "json", "nix" }, { tabstop = 2, shiftwidth = 2 })
 autocmds.set_filetype("*.tpl", "helm")
 autocmds.set_filetype("*.tf", "terraform")
+autocmds.set_filetype("*.wsb", "xml")
 autocmds.set_filetype(".okta_aws_login_config", "toml")
 
 -- Set the filetype to helm in yaml files that seems like a go template
@@ -33,12 +34,12 @@ vim.api.nvim_create_autocmd({
 
 -- Disable auto format
 vim.api.nvim_create_autocmd({
-    "BufNewFile",
-    "BufRead",
+  "BufNewFile",
+  "BufRead",
 }, {
-    pattern = { "*.yaml", "*.yml", "*.sh", "*.bash" },
-    group = autocmds.augroup,
-    callback = function()
-      vim.b.autoformat = false
+  pattern = { "*.yaml", "*.yml", "*.sh", "*.bash" },
+  group = autocmds.augroup,
+  callback = function()
+    vim.b.autoformat = false
   end,
-  })
+})

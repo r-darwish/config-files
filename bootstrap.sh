@@ -7,8 +7,8 @@ source "common.zsh"
 mkdir -p ~/.config
 
 if [[ "$(uname)" == "Linux" ]]; then
-    if type "apt-get" >/dev/null; then
-        if ! type "gcc" >/dev/null; then
+    if type "apt-get" >/dev/null 2>&1; then
+        if ! type "gcc" >/dev/null 2>&1 2>&1; then
             sudo apt-get update && sudo apt-get install -y build-essential
         fi
 
@@ -30,7 +30,7 @@ done
 
 git config --global include.path "$PWD/.gitconfig"
 
-if type "brew" >/dev/null; then
+if type "brew" >/dev/null 2>&1; then
     if [[ -n "$BACKGROUND" ]]; then
         export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
         brew tap rsteube/homebrew-tap || true
@@ -45,6 +45,10 @@ fi
 if [[ -d "$HOME/wiz-sec" ]]; then
     [[ -d "$HOME/wiz-sec/darwish" ]] || git clone https://github.com/wiz-sec/darwish "$HOME/wiz-sec/darwish"
     [[ -d "$HOME/wiz-sec/dotfiles" ]] || git clone https://github.com/wiz-sec/dotfiles "$HOME/wiz-sec/dotfiles"
+fi
+
+if type "pacman" >/dev/null 2>&1; then
+    sudo pacman -S --needed atuin base-devel fd fzf git github-cli go htop lazygit neovim nodejs npm nushell python starship termscp tmux unzip uv yazi zoxide
 fi
 
 ./bootstrap.nu

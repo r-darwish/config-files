@@ -48,7 +48,7 @@ if vim.fn.has("wsl") == 1 then
     },
     cache_enabled = 0,
   }
-elseif vim.fn.has("linux") == 0 then
+elseif vim.fn.has("linux") == 1 then
   vim.opt.clipboard = "unnamedplus"
   vim.g.clipboard = {
     name = "OSC 52",

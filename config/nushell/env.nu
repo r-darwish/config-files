@@ -58,6 +58,12 @@ for p in [$brew, $home_bin, $local_bin] {
     }
 }
 
+let ssh_sock_symlink = ($nu.home-path | path join ".ssh-auth.sock")
+if $env.SSH_AUTH_SOCK != null and $env.SSH_AUTH_SOCK != $ssh_sock_symlink {
+    ln -fs $env.SSH_AUTH_SOCK $ssh_sock_symlink
+    $env.SSH_AUTH_SOCK = $ssh_sock_symlink
+}
+
 $env.EDITOR = (which nvim | get 0.path)
 $env.FZF_DEFAULT_OPTS = "--highlight-line
   --info=inline-right

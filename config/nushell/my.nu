@@ -140,5 +140,8 @@ alias gc = git commit
 alias gf = git fetch
 alias gd = gh dash
 alias ur = uv run
+alias sc = sudo systemctl
+alias sce = sudo systemctl enable --now
+alias scs = systemctl status
 
 $env.HOMEBREW_NO_AUTO_UPDATE = "1"

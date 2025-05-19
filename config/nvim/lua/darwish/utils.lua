@@ -173,4 +173,19 @@ function M.add_to_path(path)
   vim.env.PATH = path .. ":" .. syspath
 end
 
+--- Read the content of a file
+---@param name string file name
+---@return nil | string
+function M.read_file(name)
+  local file = io.open(name)
+  if file == nil then
+    return nil
+  end
+
+  local content = file:read("*a")
+  file:close()
+
+  return content
+end
+
 return M

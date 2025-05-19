@@ -27,7 +27,8 @@ local function linux_name()
 
       if os.getenv("SSH_CONNECTION") ~= nil then
         local utils = require("darwish.utils")
-        return utils.strip(vim.system({ "hostname" }, { text = true }):wait().stdout)
+        local host = utils.read_file("/proc/sys/kernel/hostname")
+        return host and utils.strip(host) or ""
       end
     end)()
   end

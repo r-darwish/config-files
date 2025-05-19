@@ -56,6 +56,8 @@ map({ "n", "x" }, "<f2>", toggle_macro_recording)
 map({ "n", "x" }, "<f3>", "@q", { desc = "Play macro" })
 map({ "n", "x" }, "q", "<nop>")
 
+map({ "t" }, "<M-l>", "<C-l>")
+
 map({ "n", "x" }, "<leader>fY", function()
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", path)

@@ -179,23 +179,36 @@ end
 
 function M.switch_worktree()
   local worktrees = M.worktrees()
+  worktrees = vim.tbl_filter(
+    ---@param value Worktree
+    function(value)
+      return not value.current
+    end,
+    worktrees
+  )
   local cwd = LazyVim.root.git() or vim.fn.getcwd()
   local file = vim.fn.expand("%:p"):sub(#cwd + 1)
 
-  vim.ui.select(
-    worktrees,
-    {
-      prompt = "Switch worktree",
-      ---@param item Worktree
-      format_item = function(item)
-        return item.directory
-      end,
-    },
-    ---@param choice Worktree
-    function(choice)
-      vim.cmd("edit " .. choice.directory .. file)
-    end
-  )
+  if #worktrees == 0 then
+    return
+  end
+
+  ---@param choice Worktree
+  local open = function(choice)
+    vim.cmd("edit " .. choice.directory .. file)
+  end
+
+  if #worktrees == 1 then
+    open(worktrees[1])
+  end
+
+  vim.ui.select(worktrees, {
+    prompt = "Switch worktree",
+    ---@param item Worktree
+    format_item = function(item)
+      return item.directory
+    end,
+  }, open)
 end
 
 return M

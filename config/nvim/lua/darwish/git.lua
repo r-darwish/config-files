@@ -74,17 +74,26 @@ end
 
 ---Create a new branch from origin
 ---@param name string
+---@param worktree string?
 ---@return nil
-function M.create_branch_from_origin(name)
+function M.create_branch_from_origin(name, worktree)
   if name == "" then
     return
   end
 
+  local cwd = LazyVim.root.git()
+  if worktree ~= nil then
+    if not require("darwish.utils").path_exists(worktree) then
+      local proc = vim.system({ "git", "worktree", "add", "--detach", worktree }, { cwd = cwd }):wait()
+      if proc.code ~= 0 then
+        error("Error adding a worktree: " .. proc.stderr)
+      end
+    end
+    cwd = worktree
+  end
+
   local proc = vim
-    .system(
-      { "git", "switch", "--create", name, "--merge", "--no-track", M.get_main_branch() },
-      { cwd = LazyVim.root.git(), text = true }
-    )
+    .system({ "git", "switch", "--create", name, "--merge", "--no-track", M.get_main_branch() }, { cwd = cwd, text = true })
     :wait()
 
   if proc.code ~= 0 then
@@ -177,6 +186,15 @@ function M.worktrees()
   return result
 end
 
+--- Open the current file in another worktree
+---@param worktree string
+function M.open_in_worktree(worktree)
+  local cwd = LazyVim.root.git() or vim.fn.getcwd()
+  local file = vim.fn.expand("%:p"):sub(#cwd + 1)
+  vim.cmd("edit " .. worktree .. "/" .. file)
+end
+
+--- Show a picker to select another worktree. Open the current file in the selected worktree.
 function M.switch_worktree()
   local worktrees = M.worktrees()
   worktrees = vim.tbl_filter(
@@ -186,29 +204,29 @@ function M.switch_worktree()
     end,
     worktrees
   )
-  local cwd = LazyVim.root.git() or vim.fn.getcwd()
-  local file = vim.fn.expand("%:p"):sub(#cwd + 1)
 
   if #worktrees == 0 then
     return
   end
 
-  ---@param choice Worktree
-  local open = function(choice)
-    vim.cmd("edit " .. choice.directory .. file)
-  end
-
   if #worktrees == 1 then
-    open(worktrees[1])
+    M.open_in_worktree(worktrees[1].directory)
   end
 
-  vim.ui.select(worktrees, {
-    prompt = "Switch worktree",
-    ---@param item Worktree
-    format_item = function(item)
-      return item.directory
-    end,
-  }, open)
+  vim.ui.select(
+    worktrees,
+    {
+      prompt = "Switch worktree",
+      ---@param item Worktree
+      format_item = function(item)
+        return item.directory
+      end,
+    },
+    ---@param choice Worktree
+    function(choice)
+      M.open_in_worktree(choice.directory)
+    end
+  )
 end
 
 return M

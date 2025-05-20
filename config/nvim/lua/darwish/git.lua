@@ -177,4 +177,25 @@ function M.worktrees()
   return result
 end
 
+function M.switch_worktree()
+  local worktrees = M.worktrees()
+  local cwd = LazyVim.root.git() or vim.fn.getcwd()
+  local file = vim.fn.expand("%:p"):sub(#cwd + 1)
+
+  vim.ui.select(
+    worktrees,
+    {
+      prompt = "Switch worktree",
+      ---@param item Worktree
+      format_item = function(item)
+        return item.directory
+      end,
+    },
+    ---@param choice Worktree
+    function(choice)
+      vim.cmd("edit " .. choice.directory .. file)
+    end
+  )
+end
+
 return M

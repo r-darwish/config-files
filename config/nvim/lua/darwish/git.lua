@@ -142,6 +142,39 @@ function M.worktree()
   return p:make_relative(p:parent().filename)
 end
 
-M.worktree()
+---@class Worktree
+---@field directory string
+---@field head string
+---@field branch string
+---@field current boolean
+
+--- Return the list of git workgrees
+---@return Worktree[]
+function M.worktrees()
+  ---@type Worktree[]
+  local result = {}
+  local worktree = {}
+
+  local cwd = LazyVim.root.git() or vim.fn.getcwd()
+  local output = vim.system({ "git", "worktree", "list", "--porcelain" }, { text = true, cwd = cwd }):wait()
+  local lines = vim.split(output.stdout, "\n", { trim = true })
+
+  for _, line in ipairs(lines) do
+    local parts = vim.split(line, " ", { trim = true })
+    if parts[1] == "worktree" then
+      worktree.directory = parts[2]
+    elseif parts[1] == "HEAD" then
+      worktree.head = parts[2]
+    elseif parts[1] == "branch" then
+      worktree.branch = parts[2]
+    elseif parts[1] == "" and worktree.directory ~= nil then
+      worktree.current = worktree.directory == cwd
+      table.insert(result, worktree)
+      worktree = {}
+    end
+  end
+
+  return result
+end
 
 return M

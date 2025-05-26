@@ -76,11 +76,9 @@ end
 ---@param dir string?
 ---@return string
 function M.get_main_branch(dir)
-  vim.notify("main")
   local result = vim
     .system({ "git", "symbolic-ref", "refs/remotes/origin/HEAD" }, { text = true, cwd = dir or LazyVim.root.git() })
     :wait()
-  vim.notify("maindone")
   local main_branch = result.stdout:match("refs/remotes/([%w-_/]+)")
   return main_branch
 end
@@ -109,12 +107,11 @@ function M.create_branch_from_origin_co(name, worktree)
 
   local cwd = worktree or git_root
 
-  Snacks.notify.info("Creating branch " .. cwd, perm_notif)
+  Snacks.notify.info("Creating branch " .. name, perm_notif)
   local proc = utils.system_co(
     { "git", "switch", "--create", name, "--merge", "--no-track", main_branch },
-    { cwd = git_root, text = true }
+    { cwd = cwd, text = true }
   )
-  Snacks.notify.info("zzCreating branch " .. cwd, perm_notif)
 
   if not proc:succeeded() then
     Snacks.notify.error("Error creating branch " .. name .. ": " .. proc:error(), temp_notif)

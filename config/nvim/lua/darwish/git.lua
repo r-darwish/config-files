@@ -1,5 +1,10 @@
 local M = {}
 
+---@type snacks.notifier.Notif.opts
+local temp_notif = { id = "pull", icon = "", title = "git", style = "minimal" }
+---@type snacks.notifier.Notif.opts
+local perm_notif = vim.tbl_extend("force", temp_notif, { timeout = 0 })
+
 ---Merge the current branch with origin
 function M.merge_with_origin()
   local main_branch = M.get_main_branch()
@@ -22,30 +27,27 @@ function M.merge_with_origin()
 end
 
 ---Pull the current branch
-function M.pull()
+function M.pull_co()
   local main_branch = M.get_main_branch():gsub("^origin/", "")
 
-  ---@type snacks.notifier.Notif.opts
-  local notification_params = { id = "pull", icon = "" }
   local cwd = LazyVim.root.git()
+  local utils = require("darwish.utils")
 
-  Snacks.notify.info("Switching to " .. main_branch, notification_params)
-  vim.system({ "git", "switch", "--merge", main_branch }, { text = true, cwd = cwd }, function(switch_proc)
-    if switch_proc.code ~= 0 then
-      Snacks.notify.error("Switch failed: " .. switch_proc.stderr, notification_params)
-      return
-    end
+  Snacks.notify.info("Switching to " .. main_branch, perm_notif)
+  local switch_proc = utils.system_co({ "git", "switch", "--merge", main_branch }, { text = true, cwd = cwd })
+  if switch_proc.code ~= 0 then
+    Snacks.notify.error("Switch failed: " .. switch_proc.stderr, temp_notif)
+    return
+  end
 
-    Snacks.notify.info("Pulling " .. main_branch, notification_params)
-    vim.system({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = cwd }, function(pull_proc)
-      if pull_proc.code ~= 0 then
-        Snacks.notify.error("Pull failed: " .. pull_proc.stderr, notification_params)
-        return
-      end
+  Snacks.notify.info("Pulling " .. main_branch, perm_notif)
+  local pull_proc = utils.system_co({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = cwd })
+  if pull_proc.code ~= 0 then
+    Snacks.notify.error("Pull failed: " .. pull_proc.stderr, temp_notif)
+    return
+  end
 
-      Snacks.notify.info("Switched to branch " .. main_branch, notification_params)
-    end)
-  end)
+  Snacks.notify.info("Switched to branch " .. main_branch, temp_notif)
 end
 
 ---Browse commit at cursor

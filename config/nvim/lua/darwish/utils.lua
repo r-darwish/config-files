@@ -188,4 +188,37 @@ function M.read_file(name)
   return content
 end
 
+--- A coroutine version of system
+---@param cmd string[]
+---@param opts vim.SystemOpts
+---@return vim.SystemCompleted
+function M.system_co(cmd, opts)
+  local this = coroutine.running()
+  assert(this ~= nil, "The result of cb_to_co must be called within a coroutine.")
+
+  local proc = nil
+  vim.system(cmd, opts, function(l_proc)
+    proc = l_proc
+    coroutine.resume(this)
+  end)
+
+  coroutine.yield()
+  assert(proc ~= nil)
+  return proc
+end
+
+---@param co fun(...)
+function M.fire(co)
+  coroutine.resume(coroutine.create(co))
+end
+
+--- Turn a coroutine to a callback
+---@param co fun(...)
+---@return fun()
+function M.co_callback(co)
+  return function()
+    M.fire(co)
+  end
+end
+
 return M

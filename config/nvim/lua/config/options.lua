@@ -26,6 +26,7 @@ vim.g.root_spec = {
     ".lazyroot",
     "go.mod",
     "Dockerfile",
+    "Dockerfile.wiz",
     "Taskfile.yaml",
     "Taskfile.yml",
     "README.md",

@@ -223,7 +223,10 @@ function M.system_co(cmd, opts)
 
   result.success, result.errorObj = pcall(vim.system, cmd, opts, function(l_proc)
     result.proc = l_proc
-    coroutine.resume(this)
+    local success, err = coroutine.resume(this)
+    if not success then
+      Snacks.notify.error(err, { title = "Coroutine failed" })
+    end
   end)
 
   if not result.success then

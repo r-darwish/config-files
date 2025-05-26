@@ -188,32 +188,58 @@ function M.read_file(name)
   return content
 end
 
+---@class SystemCompletedCo
+---@field success boolean
+---@field errorObj any?
+---@field proc vim.SystemCompleted?
+local SystemCompletedCo = {}
+
+function SystemCompletedCo:new()
+  local o = {}
+  setmetatable(o, self)
+  self.__index = self
+  return o
+end
+
+function SystemCompletedCo:succeeded()
+  return self.proc ~= nil and self.proc.code == 0
+end
+
+--- Return an error
+---@return string?
+function SystemCompletedCo:error()
+  return self.success and self.proc.stderr or self.errorObj
+end
+
 --- A coroutine version of system
 ---@param cmd string[]
 ---@param opts vim.SystemOpts
----@return vim.SystemCompleted?
+---@return SystemCompletedCo
 function M.system_co(cmd, opts)
   local this = coroutine.running()
+
+  local result = SystemCompletedCo:new()
   assert(this ~= nil, "The result of cb_to_co must be called within a coroutine.")
 
-  local proc = nil
-  local success, obj = pcall(vim.system, cmd, opts, function(l_proc)
-    proc = l_proc
+  result.success, result.errorObj = pcall(vim.system, cmd, opts, function(l_proc)
+    result.proc = l_proc
     coroutine.resume(this)
   end)
 
-  if not success then
-    Snacks.notify.error("Command failed: " .. obj)
-    return
+  if not result.success then
+    return result
   end
 
   coroutine.yield()
-  return proc
+  return result
 end
 
 ---@param co fun(...)
 function M.fire(co)
-  coroutine.resume(coroutine.create(co))
+  local success, err = coroutine.resume(coroutine.create(co))
+  if not success then
+    Snacks.notify.error(err, { title = "Coroutine failed" })
+  end
 end
 
 --- Turn a coroutine to a callback

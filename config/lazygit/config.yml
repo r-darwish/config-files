@@ -31,12 +31,12 @@ customCommands:
     command: "get-tickets"
     context: 'files'
     description: 'Show my tickets'
-    subprocess: true
+    output: terminal
   - key: '<c-j>'
     command: "get-tickets {{.SelectedFile.Name}}"
     context: 'files'
     description: 'Show file tickets'
-    subprocess: true
+    output: terminal
   - key: "G"
     command: "nu -c 'use git; git gc-branches'"
     context: "localBranches"

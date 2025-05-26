@@ -6,24 +6,26 @@ local temp_notif = { id = "pull", icon = "", title = "git", style = "minimal"
 local perm_notif = vim.tbl_extend("force", temp_notif, { timeout = 0 })
 
 ---Merge the current branch with origin
-function M.merge_with_origin()
+function M.merge_with_origin_co()
   local main_branch = M.get_main_branch()
+  local utils = require("darwish.utils")
 
-  vim.notify("Fetching repository", "info")
+  Snacks.notify.info("Fetching repository", perm_notif)
   local root = LazyVim.root.git()
-  vim.system({ "git", "fetch" }, { text = true, cwd = root }, function(out)
-    if out.code ~= 0 then
-      vim.notify("Fetch failed: " .. out.stderr, "error")
-    else
-      vim.system({ "git", "merge", "--autostash", main_branch }, { text = true, cwd = root }, function(innerOut)
-        if innerOut.code ~= 0 then
-          vim.notify("Merge failed: " .. innerOut.stderr, "error")
-        else
-          vim.notify("Merged with " .. main_branch, "info")
-        end
-      end)
-    end
-  end)
+  local out = utils.system_co({ "git", "fetch" }, { text = true, cwd = root })
+
+  if out.code ~= 0 then
+    Snacks.notify.error("Fetch failed: " .. out.stderr, temp_notif)
+    return
+  end
+
+  Snacks.notify.info("Merging with " .. main_branch, perm_notif)
+  out = utils.system_co({ "git", "merge", "--autostash", main_branch }, { text = true, cwd = root })
+  if out.code ~= 0 then
+    Snacks.notify.error("Merge failed: " .. out.stderr, temp_notif)
+  else
+    Snacks.notify.info("Merged with " .. main_branch, temp_notif)
+  end
 end
 
 ---Pull the current branch

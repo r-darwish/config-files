@@ -107,7 +107,12 @@ map({ "n", "x" }, "<leader>fdr", chdir.root, { desc = "Change directory to curre
 map({ "n", "x" }, "<leader>fdg", chdir.git, { desc = "Change directory to the git repository of the current file" })
 
 local git = require("darwish.git")
-map({ "n", "x" }, "<leader>gm", git.merge_with_origin, { desc = "Merge with origin's main branch" })
+map(
+  { "n", "x" },
+  "<leader>gm",
+  utils.co_callback(git.merge_with_origin_co),
+  { desc = "Merge with origin's main branch" }
+)
 map({ "n", "x" }, "<leader>gu", utils.co_callback(git.pull_co), { desc = "Switch to the main branch and pull" })
 map({ "n", "x" }, "<leader>gw", git.switch_worktree, { desc = "Switch worktree" })
 

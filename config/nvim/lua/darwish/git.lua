@@ -25,19 +25,26 @@ end
 function M.pull()
   local main_branch = M.get_main_branch():gsub("^origin/", "")
 
-  Snacks.notify.info("Switching to " .. main_branch .. " and pulling", { id = "pull", icon = "" })
-  local proc = vim.system({ "git", "switch", "--merge", main_branch }, { text = true, cwd = LazyVim.root.git() }):wait()
-  if proc.code ~= 0 then
-    Snacks.notify.error("Switch failed: " .. proc.stderr, { id = "pull", icon = "" })
-    return
-  end
+  ---@type snacks.notifier.Notif.opts
+  local notification_params = { id = "pull", icon = "" }
+  local cwd = LazyVim.root.git()
 
-  vim.system({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = LazyVim.root.git() }, function(out)
-    if out.code ~= 0 then
-      Snacks.notify.error("Pull failed: " .. out.stderr, { id = "pull", icon = "" })
-    else
-      Snacks.notify.info("Switched to branch " .. main_branch, { id = "pull", icon = "" })
+  Snacks.notify.info("Switching to " .. main_branch, notification_params)
+  vim.system({ "git", "switch", "--merge", main_branch }, { text = true, cwd = cwd }, function(switch_proc)
+    if switch_proc.code ~= 0 then
+      Snacks.notify.error("Switch failed: " .. switch_proc.stderr, notification_params)
+      return
     end
+
+    Snacks.notify.info("Pulling " .. main_branch, notification_params)
+    vim.system({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = cwd }, function(pull_proc)
+      if pull_proc.code ~= 0 then
+        Snacks.notify.error("Pull failed: " .. pull_proc.stderr, notification_params)
+        return
+      end
+
+      Snacks.notify.info("Switched to branch " .. main_branch, notification_params)
+    end)
   end)
 end
 

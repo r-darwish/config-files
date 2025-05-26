@@ -191,19 +191,23 @@ end
 --- A coroutine version of system
 ---@param cmd string[]
 ---@param opts vim.SystemOpts
----@return vim.SystemCompleted
+---@return vim.SystemCompleted?
 function M.system_co(cmd, opts)
   local this = coroutine.running()
   assert(this ~= nil, "The result of cb_to_co must be called within a coroutine.")
 
   local proc = nil
-  vim.system(cmd, opts, function(l_proc)
+  local success, obj = pcall(vim.system, cmd, opts, function(l_proc)
     proc = l_proc
     coroutine.resume(this)
   end)
 
+  if not success then
+    Snacks.notify.error("Command failed: " .. obj)
+    return
+  end
+
   coroutine.yield()
-  assert(proc ~= nil)
   return proc
 end
 

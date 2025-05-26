@@ -14,14 +14,18 @@ function M.merge_with_origin_co()
   local root = LazyVim.root.git()
   local out = utils.system_co({ "git", "fetch" }, { text = true, cwd = root })
 
-  if out.code ~= 0 then
+  if out == nil then
+    return
+  elseif out.code ~= 0 then
     Snacks.notify.error("Fetch failed: " .. out.stderr, temp_notif)
     return
   end
 
   Snacks.notify.info("Merging with " .. main_branch, perm_notif)
   out = utils.system_co({ "git", "merge", "--autostash", main_branch }, { text = true, cwd = root })
-  if out.code ~= 0 then
+  if out == nil then
+    return
+  elseif out.code ~= 0 then
     Snacks.notify.error("Merge failed: " .. out.stderr, temp_notif)
   else
     Snacks.notify.info("Merged with " .. main_branch, temp_notif)
@@ -37,14 +41,18 @@ function M.pull_co()
 
   Snacks.notify.info("Switching to " .. main_branch, perm_notif)
   local switch_proc = utils.system_co({ "git", "switch", "--merge", main_branch }, { text = true, cwd = cwd })
-  if switch_proc.code ~= 0 then
+  if switch_proc == nil then
+    return
+  elseif switch_proc.code ~= 0 then
     Snacks.notify.error("Switch failed: " .. switch_proc.stderr, temp_notif)
     return
   end
 
   Snacks.notify.info("Pulling " .. main_branch, perm_notif)
   local pull_proc = utils.system_co({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = cwd })
-  if pull_proc.code ~= 0 then
+  if pull_proc == nil then
+    return
+  elseif pull_proc.code ~= 0 then
     Snacks.notify.error("Pull failed: " .. pull_proc.stderr, temp_notif)
     return
   end
@@ -87,29 +95,41 @@ end
 ---@param name string
 ---@param worktree string?
 ---@return nil
-function M.create_branch_from_origin(name, worktree)
+function M.create_branch_from_origin_co(name, worktree)
   if name == "" then
     return
   end
 
-  local cwd = LazyVim.root.git()
-  if worktree ~= nil then
-    if not require("darwish.utils").path_exists(worktree) then
-      local proc = vim.system({ "git", "worktree", "add", "--detach", worktree }, { cwd = cwd }):wait()
-      if proc.code ~= 0 then
-        error("Error adding a worktree: " .. proc.stderr)
-      end
+  local utils = require("darwish.utils")
+  if worktree ~= nil and not require("darwish.utils").path_exists(worktree) then
+    Snacks.notify.info("Creating worktree", perm_notif)
+    local proc = utils.system_co({ "git", "worktree", "add", "--detach", worktree }, { cwd = LazyVim.root.git() })
+    if proc == nil then
+      Snacks.notify.error("Error adding a worktree", temp_notif)
+      return
+    elseif proc.code ~= 0 then
+      Snacks.notify.error("Error adding a worktree: " .. proc.stderr, temp_notif)
+      return
     end
-    cwd = worktree
   end
 
-  local proc = vim
-    .system({ "git", "switch", "--create", name, "--merge", "--no-track", M.get_main_branch() }, { cwd = cwd, text = true })
-    :wait()
+  local cwd = worktree or LazyVim.root.git()
 
-  if proc.code ~= 0 then
-    error("Branch " .. name .. " creation error: " .. proc.stderr)
+  Snacks.notify.info("Creating branch " .. name, perm_notif)
+  local proc = utils.system_co(
+    { "git", "switch", "--create", name, "--merge", "--no-track", M.get_main_branch() },
+    { cwd = cwd, text = true }
+  )
+
+  if proc == nil then
+    Snacks.notify.error("Error creating branch " .. name .. ": ", temp_notif)
+    return
+  elseif proc.code ~= 0 then
+    Snacks.notify.error("Error creating branch " .. name .. ": " .. proc.stderr, temp_notif)
+    return
   end
+
+  Snacks.notify.info("Created branch " .. name, temp_notif)
 end
 
 --- Perform git reset HEAD --hard

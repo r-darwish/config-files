@@ -217,6 +217,7 @@ function M.switch_worktree()
 
   if #worktrees == 1 then
     M.open_in_worktree(worktrees[1].directory)
+    return
   end
 
   vim.ui.select(
@@ -230,7 +231,9 @@ function M.switch_worktree()
     },
     ---@param choice Worktree
     function(choice)
-      M.open_in_worktree(choice.directory)
+      if choice ~= nil then
+        M.open_in_worktree(choice.directory)
+      end
     end
   )
 end

@@ -25,18 +25,18 @@ end
 function M.pull()
   local main_branch = M.get_main_branch():gsub("^origin/", "")
 
-  vim.notify("Switching to " .. main_branch .. " and pulling", "info")
+  Snacks.notify.info("Switching to " .. main_branch .. " and pulling", { id = "pull", icon = "" })
   local proc = vim.system({ "git", "switch", "--merge", main_branch }, { text = true, cwd = LazyVim.root.git() }):wait()
   if proc.code ~= 0 then
-    vim.notify("Switch failed: " .. proc.stderr, "error")
+    Snacks.notify.error("Switch failed: " .. proc.stderr, { id = "pull", icon = "" })
     return
   end
 
   vim.system({ "git", "pull", "--rebase", "--autostash" }, { text = true, cwd = LazyVim.root.git() }, function(out)
     if out.code ~= 0 then
-      vim.notify("Pull failed: " .. out.stderr, "error")
+      Snacks.notify.error("Pull failed: " .. out.stderr, { id = "pull", icon = "" })
     else
-      vim.notify("Switched to branch " .. main_branch, "info")
+      Snacks.notify.info("Switched to branch " .. main_branch, { id = "pull", icon = "" })
     end
   end)
 end

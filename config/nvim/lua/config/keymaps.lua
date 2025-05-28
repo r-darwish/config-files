@@ -115,6 +115,15 @@ map(
 )
 map({ "n", "x" }, "<leader>gu", utils.co_callback(git.pull_co), { desc = "Switch to the main branch and pull" })
 map({ "n", "x" }, "<leader>gw", git.switch_worktree, { desc = "Switch worktree" })
+map({ "n", "x" }, "<leader>gy", function()
+  Snacks.notify.info("Git link copied to the clipboard", { style = "minimal", icon = "" })
+  Snacks.gitbrowse({
+    open = function(url)
+      vim.fn.setreg("+", url)
+    end,
+    notify = false,
+  })
+end, { desc = "Git Browse (copy)" })
 
 map({ "n", "x" }, "<leader>cx", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 

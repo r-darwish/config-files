@@ -158,6 +158,15 @@ keybinds clear-defaults=true {
         bind "Alt l" { MoveFocusOrTab "right"; }
         bind "Alt n" { NewPane; }
         bind "Alt o" { MoveTab "right"; }
+        bind "Alt t" { NewTab; }
+        bind "Alt z" { ToggleFocusFullscreen; }
+        bind "Alt w" { ToggleFocusFullscreen; }
+        bind "Alt s" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            }
+        }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }
@@ -255,7 +264,7 @@ simplified_ui false
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "tokyo-night-dark"
+theme "rose-pine-moon"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -274,12 +283,12 @@ default_shell "nu"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-default_layout "compact"
+// default_layout "compact-up"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-// layout_dir "/tmp"
+// layout_dir "~/.config/zellij/layouts"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
@@ -300,7 +309,7 @@ default_layout "compact"
 //   - true (default, enabled)
 //   - false
 // 
-pane_frames false
+// pane_frames false
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
@@ -436,3 +445,19 @@ show_startup_tips false
 // Default: true
 // 
 // show_release_notes false
+
+themes {
+	rose-pine-moon {
+		bg "#44415a"
+		fg "#e0def4"
+		red "#eb6f92"
+		green "#3e8fb0"
+		blue "#9ccfd8"
+		yellow "#f6c177"
+		magenta "#c4a7e7"
+		orange "#fe640b"
+		cyan "#ea9a97"
+		black "#393552"
+		white "#e0def4"
+	}
+}

@@ -141,10 +141,7 @@ keybinds clear-defaults=true {
         }
     }
     shared_among "normal" "locked" {
-        bind "Alt left" { MoveFocusOrTab "left"; }
-        bind "Alt down" { MoveFocus "down"; }
-        bind "Alt up" { MoveFocus "up"; }
-        bind "Alt right" { MoveFocusOrTab "right"; }
+        // default keys
         bind "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt =" { Resize "Increase"; }
@@ -159,7 +156,6 @@ keybinds clear-defaults=true {
         bind "Alt n" { NewPane; }
         bind "Alt o" { MoveTab "right"; }
         bind "Alt t" { NewTab; }
-        bind "Alt z" { ToggleFocusFullscreen; }
         bind "Alt w" { ToggleFocusFullscreen; }
         bind "Alt s" {
             LaunchOrFocusPlugin "session-manager" {

@@ -117,7 +117,7 @@ alias tidy = go mod tidy
 alias copy = kitten clipboard
 alias paste = kitten clipboard --get-clipboard
 alias zj = zellij
-alias zl = zellij list-sessions
+alias za = zellij attach -c
 alias bi = brew interactive
 alias kssh = kitty +kitten ssh
 

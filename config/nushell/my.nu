@@ -1,10 +1,6 @@
 
 use std log
 
-def "zellij attach-default" [session: string = "main"] {
-    zellij --layout compact attach -c $session
-}
-
 def "brew interactive" [query: string] {
     brew search $query | lines | where ($it | is-not-empty) | to text | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | lines | each { |p| brew install -q $p }
 }

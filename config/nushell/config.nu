@@ -279,9 +279,6 @@ $env.config = {
     }
 
     hooks: {
-        pre_prompt: [{
-            print "\a"
-        }] # run before the prompt is shown
         pre_execution: [{ null }] # run before the repl input is run
         env_change: {
             PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input

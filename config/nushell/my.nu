@@ -46,7 +46,11 @@ def "from env" []: string -> record {
 
 def "e" [file: string] {
     let nvim = ($env | get -i nvim)
-    if $nvim == null {
+    let zellij = ($env | get -i ZELLIJ)
+
+    if $zellij != null {
+        zellij edit $file
+    } else if $nvim == null {
         nvim $file
     } else {
         nvim --server $nvim --remote-tab ($file | path expand)

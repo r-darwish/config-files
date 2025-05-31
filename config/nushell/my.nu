@@ -45,7 +45,7 @@ def "e" [file: string] {
     let zellij = ($env | get -i ZELLIJ)
 
     if $zellij != null {
-        zellij edit $file
+        zellij edit ($file | path expand)
     } else if $nvim == null {
         nvim $file
     } else {

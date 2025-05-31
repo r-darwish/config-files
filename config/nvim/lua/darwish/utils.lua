@@ -90,6 +90,26 @@ function M.in_visual_mode()
   return vim.fn.mode() == "v" or vim.fn.mode() == "V"
 end
 
+--- Launch a command in a new Zellij pane
+---@param command string[] command to run
+function M.launch_zellij(command)
+  local cmd = {
+    "zellij",
+    "run",
+    "-c",
+    "--",
+  }
+  vim.list_extend(cmd, command)
+
+  vim.system(cmd, nil, function(obj)
+    if obj.code ~= 0 then
+      vim.notify("Error launching Zellij: " .. obj.stderr, vim.log.levels.ERROR)
+    end
+  end)
+end
+
+--- Launch a command in a new Kitty pane
+---@param command string[] command to run
 function M.launch_kitty(command)
   local cmd = {
     "kitten",
@@ -104,6 +124,12 @@ function M.launch_kitty(command)
       vim.notify("Error launching Kitty: " .. obj.stderr, vim.log.levels.ERROR)
     end
   end)
+end
+
+--- Launch a command in a new Kitty or Zellij pane
+---@param command string[] command to run
+function M.launch_external(command)
+  return vim.fn.getenv("ZELLIJ") == nil and M.launch_kitty(command) or M.launch_zellij(command)
 end
 
 ---comment Remove an element from a table

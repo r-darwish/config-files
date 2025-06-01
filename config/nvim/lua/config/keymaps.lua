@@ -57,6 +57,12 @@ map({ "n", "x" }, "<f3>", "@q", { desc = "Play macro" })
 map({ "n", "x" }, "q", "<nop>")
 
 map({ "t" }, "<M-l>", "<C-l>")
+map({ "n", "x" }, "<leader>tz", function()
+  vim.fn.system({ "zellij", "action", "new-pane", "--cwd", vim.fn.expand("%:p:h"), "-c", "--", "nu" })
+end, { desc = "Open Zellij at the file's directory" })
+map({ "n", "x" }, "<leader>tZ", function()
+  vim.fn.system({ "zellij", "action", "new-pane", "--cwd", LazyVim.root.get(), "-c", "--", "nu" })
+end, { desc = "Open Zellij at the project's root" })
 
 map({ "n", "x" }, "<leader>fY", function()
   local path = vim.fn.expand("%:p")

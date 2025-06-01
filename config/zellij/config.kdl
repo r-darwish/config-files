@@ -226,6 +226,7 @@ keybinds clear-defaults=true {
         bind "esc" { UndoRenamePane; SwitchToMode "pane"; }
     }
     normal {
+        bind "e" { EditScrollback; SwitchToMode "locked"; }
         bind "h" {
             Run "htop" {
                 close_on_exit true

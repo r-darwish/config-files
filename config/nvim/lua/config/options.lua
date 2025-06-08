@@ -11,7 +11,7 @@ vim.opt.shiftwidth = 4
 vim.opt.titlestring = [[%{v:progname} - %f%h%m%r%w]]
 vim.opt.title = true
 vim.opt.shada = "'1000,<1000,s100"
-vim.opt.autochdir = true
+vim.opt.autochdir = false
 vim.opt.hlsearch = false
 vim.fn.setenv("EDITOR", "nvim")
 vim.g.snacks_animate = false

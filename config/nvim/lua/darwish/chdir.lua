@@ -4,7 +4,7 @@ local M = {}
 ---@param dir string
 function M.chdir(dir)
   vim.cmd("cd " .. dir)
-  vim.opt.autochdir = false
+  vim.autochroot = false
   vim.notify("Changed directory to " .. dir)
 end
 

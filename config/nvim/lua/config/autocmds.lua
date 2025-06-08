@@ -43,3 +43,17 @@ vim.api.nvim_create_autocmd({
     vim.b.autoformat = false
   end,
 })
+
+vim.autochroot = true
+vim.api.nvim_create_autocmd({
+  "BufEnter",
+}, {
+  group = autocmds.augroup,
+  callback = function()
+    if not vim.autochroot then
+      return
+    end
+
+    vim.fn.chdir(LazyVim.root.get())
+  end,
+})

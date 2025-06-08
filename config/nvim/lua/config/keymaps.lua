@@ -77,13 +77,13 @@ local toggle = require("snacks.toggle")
 
 toggle
   .new({
-    id = "autochdir",
+    id = "autochroot",
     name = "Auto Change Directory",
     get = function()
-      return vim.api.nvim_get_option_value("autochdir", {})
+      return vim.autochroot
     end,
     set = function(state)
-      vim.api.nvim_set_option_value("autochdir", state, {})
+      vim.autochroot = state
     end,
   })
   :map("<leader>uc")

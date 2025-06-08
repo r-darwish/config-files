@@ -159,7 +159,7 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
         bind "Alt t" { NewTab; }
         bind "Alt w" { ToggleFocusFullscreen; }
-        bind "Alt s" {
+        bind "Alt m" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true
@@ -222,7 +222,7 @@ keybinds clear-defaults=true {
     shared_among "renametab" "renamepane" {
         bind "Ctrl c" { SwitchToMode "locked"; }
     }
-    renamepane {
+   renamepane {
         bind "esc" { UndoRenamePane; SwitchToMode "pane"; }
     }
     normal {

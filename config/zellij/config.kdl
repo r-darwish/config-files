@@ -159,6 +159,12 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
         bind "Alt t" { NewTab; }
         bind "Alt w" { ToggleFocusFullscreen; }
+        bind "Alt p" {
+            Run "bash" "-c" "pbpaste | nvim" {
+                close_on_exit true
+                floating true
+            };
+        }
         bind "Alt m" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
@@ -232,7 +238,6 @@ keybinds clear-defaults=true {
                 close_on_exit true
                 floating true
             };
-            TogglePaneEmbedOrFloating;
             SwitchToMode "locked"
         }
     }

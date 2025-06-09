@@ -196,8 +196,10 @@ end
 ---@param worktree string
 function M.open_in_worktree(worktree)
   local cwd = LazyVim.root.git() or vim.fn.getcwd()
+  local pos = vim.api.nvim_win_get_cursor(0)
   local file = vim.fn.expand("%:p"):sub(#cwd + 1)
   vim.cmd("edit " .. worktree .. "/" .. file)
+  vim.api.nvim_win_set_cursor(0, pos)
 end
 
 --- Show a picker to select another worktree. Open the current file in the selected worktree.

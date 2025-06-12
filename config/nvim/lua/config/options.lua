@@ -51,7 +51,7 @@ if vim.fn.has("wsl") == 1 then
   }
 elseif vim.fn.has("linux") == 1 then
   vim.opt.clipboard = "unnamedplus"
-  vim.g.clipboard = {
+  local clip = {
     name = "OSC 52",
     copy = {
       ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
@@ -62,6 +62,12 @@ elseif vim.fn.has("linux") == 1 then
       ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
     },
   }
+
+  if os.getenv("ZELLIJ") ~= nil then
+    clip.paste = nil
+  end
+
+  vim.g.clipboard = clip
 end
 
 vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h12"

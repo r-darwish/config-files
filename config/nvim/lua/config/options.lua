@@ -50,7 +50,15 @@ if vim.fn.has("wsl") == 1 then
     cache_enabled = 0,
   }
 elseif vim.fn.has("linux") == 1 then
+  local function paste()
+    return {
+      vim.fn.split(vim.fn.getreg(""), "\n"),
+      vim.fn.getregtype(""),
+    }
+  end
+
   vim.opt.clipboard = "unnamedplus"
+
   local clip = {
     name = "OSC 52",
     copy = {
@@ -58,14 +66,10 @@ elseif vim.fn.has("linux") == 1 then
       ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
     },
     paste = {
-      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+      ["+"] = os.getenv("ZELLIJ") ~= nil and paste or require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = os.getenv("ZELLIJ") ~= nil and paste or require("vim.ui.clipboard.osc52").paste("*"),
     },
   }
-
-  if os.getenv("ZELLIJ") ~= nil then
-    clip.paste = nil
-  end
 
   vim.g.clipboard = clip
 end

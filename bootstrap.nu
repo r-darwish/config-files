@@ -26,11 +26,6 @@ def main [] {
         atuin init nu | save -a $gen
     }
 
-    if (exists "carapace")  {
-        mkdir ~/.cache/carapace
-        carapace _carapace nushell | save -a $gen
-    }
-
     const local = ([$nu.home-path, ".local.nu"] | path join)
     if ($local | path exists) {
         $"source ($local)\n" | save -a $gen

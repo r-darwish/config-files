@@ -34,7 +34,7 @@ if type "brew" >/dev/null 2>&1; then
     if [[ -n "$BACKGROUND" ]]; then
         export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
         brew tap rsteube/homebrew-tap || true
-        brew install nushell starship atuin zoxide neovim rsteube/tap/carapace || true
+        brew install nushell starship atuin zoxide neovim || true
         echo "Running package installation in the background"
         nohup brew bundle install >/tmp/brew.log 2>&1 &
     else

@@ -6,6 +6,51 @@
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
 # https://github.com/nushell/nu_scripts/tree/main/themes
+
+let duskfox_theme = {
+   binary: "#ea9a97"
+   block: "#cdcbe0"
+   bool: "#f0a4a2"
+   cellpath: "#e0def4"
+   date: "#a3be8c"
+   duration: "#a3be8c"
+   filesize: "#ea9a97"
+   float: "#ea9a97"
+   int: "#ea9a97"
+   list: "#cdcbe0"
+   nothing: "#e0def4"
+   range: "#e0def4"
+   record: "#e0def4"
+   string: "#a3be8c"
+
+   leading_trailing_space_bg: "#373354"
+   header: "#cdcbe0"
+   empty: "#569fba"
+   row_index: "#6e6a86"
+   hints: "#6e6a86"
+   separator: "#817c9c"
+
+   shape_block: "#cdcbe0"
+   shape_bool: "#f0a4a2"
+   shape_external: "#c4a7e7"
+   shape_externalarg: "#e0def4"
+   shape_filepath: "#e0def4"
+   shape_flag: "#9ccfd8"
+   shape_float: "#ea9a97"
+   shape_globpattern: "#f9cb8c"
+   shape_int: "#ea9a97"
+   shape_internalcall: "#c4a7e7"
+   shape_list: "#cdcbe0"
+   shape_literal: "#a3be8c"
+   shape_nothing: "#a6dae3"
+   shape_operator: "#cdcbe0"
+   shape_record: "#cdcbe0"
+   shape_string: "#a3be8c"
+   shape_string_interpolation: "#f9cb8c"
+   shape_table: "#cdcbe0"
+   shape_variable: "#e0def4"
+}
+
 let dark_theme = {
     # color for nushell primitives
     separator: white
@@ -221,7 +266,7 @@ $env.config = {
         use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
     }
 
-    color_config: $dark_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
+    color_config: $duskfox_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
     footer_mode: 25 # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: null # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL

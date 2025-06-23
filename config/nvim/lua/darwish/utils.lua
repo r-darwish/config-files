@@ -92,13 +92,25 @@ end
 
 --- Launch a command in a new Zellij pane
 ---@param command string[] command to run
-function M.launch_zellij(command)
+---@param floating boolean? whether to use a floating pane
+---@param cwd string? Set the working directory
+function M.launch_zellij(command, floating, cwd)
   local cmd = {
     "zellij",
     "run",
     "-c",
-    "--",
   }
+
+  if floating then
+    table.insert(cmd, "-f")
+  end
+
+  if cwd then
+    table.insert(cmd, "--cwd")
+    table.insert(cmd, cwd)
+  end
+
+  table.insert(cmd, "--")
   vim.list_extend(cmd, command)
 
   vim.system(cmd, nil, function(obj)

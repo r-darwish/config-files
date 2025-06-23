@@ -11,7 +11,7 @@ layout {
                 hide_frame_for_single_pane "false"
 
                 mode_normal  "#[bg=yellow] "
-                mode_locked        "#[bg=green] "
+                mode_locked        "#[bg=blue] "
                 mode_resize        "#[bg=red] {name} "
                 mode_pane          "#[bg=red] {name} "
                 mode_tab           "#[bg=red] {name} "

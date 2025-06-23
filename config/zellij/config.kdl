@@ -150,6 +150,12 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt N" {
+        LaunchPlugin "filepicker" {
+            floating true
+            close_on_selection true
+        };
+    }
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt i" { MoveTab "left"; }
         bind "Alt j" { MoveFocus "down"; }
@@ -534,6 +540,22 @@ themes {
     cyan "#9ccfd8"
     black "#373354"
     white "#cdcbe0"
+    frame_selected {
+        base "#569fba"
+        background 0
+        emphasis_0 "#c4a7e7"
+        emphasis_1 "#9ccfd8"
+        emphasis_2 "#f6c177"
+        emphasis_3 0
+    }
+    frame_unselected {
+        base "#625c87"
+        background 0
+        emphasis_0 "#625c87"
+        emphasis_1 "#625c87"
+        emphasis_2 "#625c87"
+        emphasis_3 0
+    }
   }
   nightfox {
     bg "#2b3b51"

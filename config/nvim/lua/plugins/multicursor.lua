@@ -108,11 +108,11 @@ return {
       },
 
       {
-        "<c-leftmouse>",
+        "<leftmouse>",
         function()
           require("multicursor-nvim").handleMouse()
         end,
-        mode = "n",
+        mode = "x",
       },
 
       {

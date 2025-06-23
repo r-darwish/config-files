@@ -1,0 +1,32 @@
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+                format_left   "{mode} #[fg=#blue,bold]{session}"
+                format_center "{tabs}"
+                format_right  "{swap_layout}"
+                format_space  ""
+
+                hide_frame_for_single_pane "false"
+
+                mode_normal  "#[bg=yellow] "
+                mode_locked        "#[bg=green] "
+                mode_resize        "#[bg=red] {name} "
+                mode_pane          "#[bg=red] {name} "
+                mode_tab           "#[bg=red] {name} "
+                mode_scroll        "#[bg=red] {name} "
+                mode_enter_search  "#[bg=red] {name} "
+                mode_search        "#[bg=red] {name} "
+                mode_rename_tab    "#[bg=red] {name} "
+                mode_rename_pane   "#[bg=red] {name} "
+                mode_session       "#[bg=red] {name} "
+                mode_move          "#[bg=red] {name} "
+                mode_prompt        "#[bg=red] {name} "
+
+                tab_normal   "#[fg=#6C7086] {name} "
+                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+            }
+        }
+    }
+}

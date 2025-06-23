@@ -90,24 +90,33 @@ function M.in_visual_mode()
   return vim.fn.mode() == "v" or vim.fn.mode() == "V"
 end
 
+---@class ZellijLaunchOpts
+---@field floating boolean? whether to use a floating pane
+---@field cwd string? set the working directory
+---@field name string? name of the panel
+
 --- Launch a command in a new Zellij pane
 ---@param command string[] command to run
----@param floating boolean? whether to use a floating pane
----@param cwd string? Set the working directory
-function M.launch_zellij(command, floating, cwd)
+---@param opts ZellijLaunchOpts options
+function M.launch_zellij(command, opts)
   local cmd = {
     "zellij",
     "run",
     "-c",
   }
 
-  if floating then
+  if opts.floating then
     table.insert(cmd, "-f")
   end
 
-  if cwd then
+  if opts.cwd then
     table.insert(cmd, "--cwd")
-    table.insert(cmd, cwd)
+    table.insert(cmd, opts.cwd)
+  end
+
+  if opts.name then
+    table.insert(cmd, "-n")
+    table.insert(cmd, opts.name)
   end
 
   table.insert(cmd, "--")

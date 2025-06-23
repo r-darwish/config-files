@@ -1,3 +1,4 @@
+local lazygit = require("snacks.lazygit")
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -59,13 +60,13 @@ map({ "n", "x" }, "q", "<nop>")
 local utils = require("darwish.utils")
 map({ "t" }, "<M-l>", "<C-l>")
 map({ "n", "x" }, "<leader>zt", function()
-  utils.launch_zellij({ "nu" }, false, vim.fn.expand("%:p:h"))
+  utils.launch_zellij({ "nu" }, { cwd = vim.fn.expand("%:p:h") })
 end, { desc = "Open Zellij at the file's directory" })
 map({ "n", "x" }, "<leader>zT", function()
-  utils.launch_zellij({ "nu" }, false, LazyVim.root.get())
+  utils.launch_zellij({ "nu" }, { cwd = LazyVim.root.get() })
 end, { desc = "Open Zellij at the project's root" })
 map({ "n", "x" }, "<leader>zg", function()
-  utils.launch_zellij({ "lazygit" }, true, LazyVim.root.get())
+  utils.launch_zellij({ "lazygit" }, { floating = true, cwd = LazyVim.root.get(), nme = "lazygit" })
 end, { desc = "Launch Lazygit from zellij" })
 
 map({ "n", "x" }, "<leader>fY", function()

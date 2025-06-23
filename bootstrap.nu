@@ -35,4 +35,7 @@ def main [] {
     if ($wiz_config | path exists) {
         $"source ([$wiz_config, "wiz.nu"] | path join)\n" | save -a $gen
     }
+
+    let zellij_config = ([$env.FILE_PWD, "config", "zellij"] | path join)
+    $"$env.ZELLIJ_CONFIG_DIR = \"($zellij_config)\"\n" | save -a $gen
 }

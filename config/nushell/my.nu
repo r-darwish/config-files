@@ -11,6 +11,11 @@ def "skopeo cp" [dest: string] {
     }
 }
 
+def --env "cdf" [] {
+    let dir = (fd --type d | fzf)
+    cd $dir
+}
+
 def "ez" [query: string = ""] {
     let dir = (zoxide query -i $query)
     cd $dir

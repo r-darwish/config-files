@@ -58,18 +58,8 @@ def "e" [file: string] {
     }
 }
 
-def "ncd" [] {
-    let nvim = $env | get -i nvim
-    nvim --server $nvim --remote-send ("<C-\\><C-N>:set noautochdir<CR>:cd " + (pwd | path expand) + "<CR>")
-}
-
 def "pacman fix" [] {
     sudo pacman -Sy --needed archlinux-keyring ; sudo pacman -Su
-}
-
-def "edit exec" [exec: string] {
-    let path = which $exec | get 0.path
-    nvim $path
 }
 
 def "vj" [] {
@@ -77,15 +67,6 @@ def "vj" [] {
     $in | jq | save -f $f
     nvim $f
     rm $f
-}
-
-def nvd [file: string] {
-    let sock = [$nu.home-path, ".local/share/nvim/neovide.sock"] | path join
-    if ($sock | path exists) {
-        nvim --server $sock --remote ($file | path expand)
-    } else {
-        neovide $file
-    }
 }
 
 def --env y [...args] {
@@ -100,19 +81,6 @@ def --env y [...args] {
 
 def godbg [...args] {
     dlv debug --headless -l 127.0.0.1:31337 --accept-multiclient ...$args
-}
-
-def lgl [path: string] {
-    lazygit log --filter ($path | path expand)
-}
-
-def v [file: string] {
-    let nvim_sock = ($env | get "NVIM")
-    if ($nvim_sock | is-not-empty) {
-        nvim --server $nvim_sock --remote ($file | path expand)
-    } else {
-        nvim $file
-    }
 }
 
 alias vd = edit dir

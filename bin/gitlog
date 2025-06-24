@@ -55,7 +55,7 @@ def gitlog(*args: str) -> None:
         "--bind",
         "ctrl-w:track+clear-query",
         "--bind",
-        "ctrl-m:execute:(echo {} | grep -o \"[a-f0-9]\\{7\\}\" | head -1 | xargs -I @ sh -c 'git show --color=always @ | delta --paging always')",
+        "ctrl-m:execute:(echo {} | grep -o \"[a-f0-9]\\{7\\}\" | head -1 | xargs -I @ sh -c 'git show @ | nvim')",
         "--bind",
         'ctrl-b:execute:(echo {} | grep -o "[a-f0-9]\\{7\\}" | head -1 | xargs -I @ gh browse @)',
         "--bind",

@@ -58,6 +58,8 @@ def gitlog(*args: str) -> None:
         "ctrl-m:execute:(echo {} | grep -o \"[a-f0-9]\\{7\\}\" | head -1 | xargs -I @ sh -c 'git show --color=always @ | command bat --number')",
         "--bind",
         'ctrl-b:execute:(echo {} | grep -o "[a-f0-9]\\{7\\}" | head -1 | xargs -I @ gh browse @)',
+        "--bind",
+        'ctrl-y:execute:(echo {} | grep -o "[a-f0-9]\\{7\\}" | head -1 | clip)',
     ]
 
     # Run git log command and pipe to fzf

@@ -23,6 +23,13 @@ link_config() {
     ln -s "$source" "$target"
 }
 
+link_bin() {
+    local source target basename
+    source="$PWD/$1"
+    basename=$(basename "$1")
+    target="$HOME/.local/bin/$basename"
+    ln -fs "$source" "$target"
+}
 mkdir -p ~/.config
 
 if [[ "$(uname)" == "Linux" ]]; then
@@ -41,6 +48,10 @@ fi
 for c in config/*; do
     link_config "$c"
 done
+for c in bin/*; do
+    link_bin "$c"
+done
+
 test -f "$HOME/.tmux.conf" || ln -s "$PWD/tmux.conf" "$HOME/.tmux.conf"
 
 for c in dynamic_config/*; do

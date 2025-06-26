@@ -66,7 +66,7 @@ map({ "n", "x" }, "<leader>zT", function()
   utils.launch_zellij({ "nu" }, { cwd = LazyVim.root.get() })
 end, { desc = "Open Zellij at the project's root" })
 map({ "n", "x" }, "<leader>zg", function()
-  utils.launch_zellij({ "lazygit" }, { floating = true, cwd = LazyVim.root.get(), nme = "lazygit" })
+  utils.launch_zellij({ "lazygit" }, { floating = true, cwd = LazyVim.root.get(), name = "lazygit", keep = true })
 end, { desc = "Launch Lazygit from zellij" })
 
 map({ "n", "x" }, "<leader>fY", function()

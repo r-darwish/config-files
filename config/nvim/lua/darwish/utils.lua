@@ -94,6 +94,7 @@ end
 ---@field floating boolean? whether to use a floating pane
 ---@field cwd string? set the working directory
 ---@field name string? name of the panel
+---@field keep boolean? keep the pane when closing the app
 
 --- Launch a command in a new Zellij pane
 ---@param command string[] command to run
@@ -102,8 +103,11 @@ function M.launch_zellij(command, opts)
   local cmd = {
     "zellij",
     "run",
-    "-c",
   }
+
+  if not opts.keep then
+    table.insert(cmd, "-c")
+  end
 
   if opts.floating then
     table.insert(cmd, "-f")

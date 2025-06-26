@@ -84,7 +84,7 @@ def godbg [...args] {
 }
 
 alias vd = edit dir
-alias yt-mp3 = yt-dlp -x --audio-format mp3
+alias yt-mp3 = yt-dlp -x --audio-format mp3 --no-playlist
 alias st = starship toggle
 alias tidy = go mod tidy
 alias copy = kitten clipboard
@@ -119,3 +119,9 @@ alias sce = sudo systemctl enable --now
 alias scs = systemctl status
 
 $env.HOMEBREW_NO_AUTO_UPDATE = "1"
+
+def listen [url: string] {
+    cd /tmp
+    yt-dlp -x --audio-format mp3 --no-playlist $url
+    job spawn { vlc (ls *.mp3 | sort-by --reverse modified | get 0.name)  e+o> /dev/null }
+}

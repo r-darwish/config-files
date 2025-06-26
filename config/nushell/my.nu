@@ -123,5 +123,5 @@ $env.HOMEBREW_NO_AUTO_UPDATE = "1"
 def listen [url: string] {
     cd /tmp
     yt-dlp -x --audio-format mp3 --no-playlist $url
-    job spawn { vlc (ls *.mp3 | sort-by --reverse modified | get 0.name)  e+o> /dev/null }
+    vlc (ls *.mp3 | sort-by --reverse modified | get 0.name)
 }

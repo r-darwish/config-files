@@ -10,10 +10,16 @@ return {
     config = function()
       require("nightfox").setup({
         options = {
+          dim_inactive = true,
           styles = {
             comments = "italic",
             keywords = "bold",
             types = "italic,bold",
+          },
+        },
+        groups = {
+          all = {
+            SnacksPickerDir = { fg = "palette.orange.dim" },
           },
         },
       })

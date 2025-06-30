@@ -105,6 +105,7 @@ keybinds clear-defaults=true {
     search {
         bind "c" { SearchToggleOption "CaseSensitivity"; }
         bind "n" { Search "down"; }
+        bind "N" { Search "up"; }
         bind "o" { SearchToggleOption "WholeWord"; }
         bind "p" { Search "up"; }
         bind "w" { SearchToggleOption "Wrap"; }
@@ -151,6 +152,7 @@ keybinds clear-defaults=true {
         bind "Alt r" { SwitchToMode "renamepane"; PaneNameInput 0; }
         bind "Alt R" { SwitchToMode "renametab"; TabNameInput 0; }
         bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt F" { TogglePaneEmbedOrFloating; }
         bind "Alt N" {
         LaunchPlugin "filepicker" {
             floating true

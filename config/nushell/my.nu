@@ -121,7 +121,8 @@ alias scs = systemctl status
 $env.HOMEBREW_NO_AUTO_UPDATE = "1"
 
 def listen [url: string] {
-    cd /tmp
-    yt-dlp -x --audio-format mp3 --no-playlist $url
-    vlc (ls *.mp3 | sort-by --reverse modified | get 0.name)
+    let dir =  (mktemp -d)
+    cd $dir
+    yt-dlp -x --no-playlist $url
+    vlc (ls *.opus | get 0.name)
 }

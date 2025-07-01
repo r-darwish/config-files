@@ -124,5 +124,7 @@ def listen [url: string] {
     let dir =  (mktemp -d)
     cd $dir
     yt-dlp -x --no-playlist $url
-    vlc (ls *.opus | get 0.name)
+    let file = (ls * | get 0.name)
+    vlc $file o+e >/dev/null
+    rm $file
 }

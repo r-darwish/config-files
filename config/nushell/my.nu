@@ -125,6 +125,6 @@ def listen [url: string] {
     cd $dir
     yt-dlp -x --no-playlist $url
     let file = (ls * | get 0.name)
-    vlc $file o+e >/dev/null
+    vlc $file o+e> /dev/null
     rm $file
 }

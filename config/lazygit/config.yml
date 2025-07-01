@@ -37,6 +37,9 @@ customCommands:
     context: 'files'
     description: 'Show file tickets'
     output: terminal
+  - key: "<c-p>"
+    command: "bash -c 'git push && gh pr create --fill --web'"
+    context: "localBranches"
   - key: "G"
     command: "nu -c 'use git; git gc-branches'"
     context: "localBranches"

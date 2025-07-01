@@ -24,8 +24,10 @@ layout {
                 mode_move          "#[bg=red] {name} "
                 mode_prompt        "#[bg=red] {name} "
 
-                tab_normal   "#[fg=#6C7086] {name} "
-                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+                tab_normal   "#[fg=#6C7086] {index}: {name}"
+                tab_normal_fullscreen   "#[fg=#6C7086] [{index}: {name}]"
+                tab_active   "#[fg=#9399B2,bold,italic] {index}: {name}"
+                tab_active_fullscreen   "#[fg=#9399B2,bold,italic] [{index}: {name}]"
             }
         }
     }

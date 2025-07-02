@@ -192,6 +192,7 @@ keybinds clear-defaults=true {
                 move_to_focused_tab true
             }
         }
+        bind "Alt Q" { CloseTab; }
         bind "Alt q" { CloseFocus; }
     }
     shared_except "locked" "renametab" "renamepane" {

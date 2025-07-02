@@ -105,7 +105,7 @@ function M.launch_zellij(command, opts)
     "run",
   }
 
-  if not opts.keep then
+  if opts.keep ~= true then
     table.insert(cmd, "-c")
   end
 

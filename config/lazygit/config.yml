@@ -1,6 +1,7 @@
 quitOnTopLevelReturn: true
 gui:
   nerdFontsVersion: "3"
+  skipStashWarning: true
   theme:
     activeBorderColor:
       - "#a3be8c"

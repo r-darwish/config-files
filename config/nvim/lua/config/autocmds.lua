@@ -15,6 +15,7 @@ autocmds.set_opts({ "lua", "javascript", "terraform", "yaml", "helm", "json", "n
 autocmds.set_filetype("*.tpl", "helm")
 autocmds.set_filetype("*.tf", "terraform")
 autocmds.set_filetype("*.wsb", "xml")
+autocmds.set_filetype("*ghostty/config", "confini")
 autocmds.set_filetype(".okta_aws_login_config", "toml")
 
 -- Set the filetype to helm in yaml files that seems like a go template

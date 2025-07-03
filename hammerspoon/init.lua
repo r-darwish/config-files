@@ -2,7 +2,7 @@ local HyperShortcuts = {
 	{ "S", "Slack" },
 	{ "B", "Vivaldi" },
 	{ "H", "Gemini" },
-	{ "T", "Kitty" },
+	{ "T", "Ghostty" },
 	{ "W", "WhatsApp" },
 	{ "M", "Spotify" },
 	{ "G", "Signal" },

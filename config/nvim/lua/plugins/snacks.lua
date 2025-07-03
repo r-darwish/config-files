@@ -19,6 +19,7 @@ return {
               ["<Esc>"] = { "close", mode = { "n", "i" } },
               ["<C-v>"] = { "focus_preview", mode = { "n", "i" } },
               ["<C-x>"] = { "focus_list", mode = { "n", "i" } },
+              ["<C-h>"] = { "toggle_hidden", mode = { "n", "i" } },
             },
           },
           list = {

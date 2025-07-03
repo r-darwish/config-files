@@ -8,8 +8,8 @@ link_config() {
     source="$PWD/$1"
     basename=$(basename "$1")
     target="$HOME/.config/$basename"
-    if [[ $basename == "nushell" && $(uname) == "Darwin" ]]; then
-      target="$HOME/Library/Application Support/$basename"
+    if [[ -f "$source/.macconfig" && $(uname) == "Darwin" ]]; then
+        target="$HOME/$(sed 's/\n$//' <"$source/.macconfig")"
     fi
 
     if link=$(readlink "$target"); then

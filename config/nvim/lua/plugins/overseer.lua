@@ -8,6 +8,8 @@ return {
           "custom.create_pr",
           "custom.docker_build",
           "custom.compose_up",
+          "custom.go_lint",
+          "custom.gen_gql",
           "custom.zig_run",
           "custom.zig_build",
           "custom.zig_test_file",

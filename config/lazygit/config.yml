@@ -51,6 +51,8 @@ customCommands:
     command: "nu -l -c 'circle -a'"
     context: "global"
 git:
+  autoFetch: false
+  autoRefresh: false
   commitPrefix:
     - pattern: "^darwish/(\\w+-\\w+)/.*"
       replace: '$1: '

@@ -1,6 +1,10 @@
+---@module "blink.cmp"
+
 return {
   "saghen/blink.cmp",
+  ---@param opts blink.cmp.Config
   opts = function(_, opts)
+    ---@type blink.cmp.Config
     local my_opts = {
       enabled = function()
         return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
@@ -16,9 +20,7 @@ return {
       },
     }
 
-    local utils = require("darwish.utils")
-    utils.remove_value(opts.sources.default, "copilot")
-    utils.remove_value(opts.sources.default, "path")
-    opts.sources.providers.copilot = nil
+    vim.tbl_deep_extend("force", opts, my_opts)
+    return opts
   end,
 }

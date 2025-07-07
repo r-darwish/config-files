@@ -58,6 +58,7 @@ return {
         desc = "Step Over",
       },
     },
+    ---@param opts dap.Configuration
     opts = function(opts)
       local dap = require("dap")
       dap.adapters.lldb = {
@@ -86,6 +87,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    ---@param opts dapui.Config
     config = function(_, opts)
       local dap = require("dap")
       local dapui = require("dapui")
@@ -94,6 +96,8 @@ return {
         dapui.open({})
       end
     end,
+    ---@type dapui.Config
+    ---@diagnostic disable-next-line: missing-fields
     opts = {
       layouts = {
         {

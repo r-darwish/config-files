@@ -1,7 +1,18 @@
 #!/usr/bin/env python3
 
 import subprocess
+from pathlib import Path
 import re
+
+
+def _get_main_branch() -> str:
+    return (
+        subprocess.check_output(
+            ["git", "symbolic-ref", "refs/remotes/origin/HEAD"], encoding="utf-8"
+        )
+        .strip()
+        .removeprefix("refs/remotes/origin/")
+    )
 
 
 def main():
@@ -26,11 +37,19 @@ def main():
             if not m:
                 raise Exception(f"Failed deleting {branch_name}: {e.stderr}")
 
-            worktree = m.group(1)
-            assert isinstance(worktree, str)
+            worktree = Path(m.group(1))
             print(f"Deleting worktree {worktree}")
 
-            subprocess.check_call(["git", "worktree", "remove", "--force", worktree])
+            if (worktree / ".git").is_file():
+                subprocess.check_call(
+                    ["git", "worktree", "remove", "--force", worktree.as_posix()]
+                )
+            else:
+                subprocess.check_call(["git", "reset", "HEAD", "--hard"], cwd=worktree)
+                subprocess.check_call(
+                    ["git", "checkout", _get_main_branch()], cwd=worktree
+                )
+
             subprocess.check_call(
                 ["git", "branch", "-D", branch_name],
                 stderr=subprocess.PIPE,

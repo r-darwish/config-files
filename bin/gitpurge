@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+import subprocess
+import re
+
+
+def main():
+    branches = subprocess.check_output(["git", "branch", "-v"], encoding="utf-8").split(
+        "\n"
+    )
+    for branch_line in branches:
+        if "[gone]" not in branch_line:
+            continue
+
+        index = 0 if branch_line[0] == " " else 1
+        branch_name = branch_line.split()[index]
+        print(f"Deleting {branch_name}")
+        try:
+            subprocess.check_output(
+                ["git", "branch", "-D", branch_name],
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+            )
+        except subprocess.CalledProcessError as e:
+            m = re.search(r"used by worktree at '(.*?)'", e.stderr)
+            if not m:
+                raise Exception(f"Failed deleting {branch_name}: {e.stderr}")
+
+            worktree = m.group(1)
+            assert isinstance(worktree, str)
+            print(f"Deleting worktree {worktree}")
+
+            subprocess.check_call(["git", "worktree", "remove", "--force", worktree])
+            subprocess.check_call(
+                ["git", "branch", "-D", branch_name],
+                stderr=subprocess.PIPE,
+                encoding="utf-8",
+            )
+
+
+if __name__ == "__main__":
+    main()

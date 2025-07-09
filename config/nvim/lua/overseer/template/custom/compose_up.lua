@@ -12,8 +12,7 @@ return {
   end,
   condition = {
     callback = function(opts)
-      return #vim.fs.find("docker-compose.yml", { upward = true, type = "file", path = opts.dir })[1] > 0
+      return #vim.fs.find("docker-compose.yml", { upward = true, type = "file", path = opts.dir }) > 0
     end,
   },
 }
-

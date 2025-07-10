@@ -48,3 +48,6 @@
 
 [diff]
     colorMoved = default
+
+[status]
+    showUntrackedFiles = no

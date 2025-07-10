@@ -30,6 +30,7 @@ link_bin() {
     target="$HOME/.local/bin/$basename"
     ln -fs "$source" "$target"
 }
+mkdir -p ~/.local/bin
 mkdir -p ~/.config
 
 if [[ "$(uname)" == "Linux" ]]; then

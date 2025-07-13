@@ -131,7 +131,7 @@ def listen [url: string] {
     yt-dlp -x --no-playlist $url
     let file = (ls * | get 0.name)
     vlc $file o+e> /dev/null
-    
+
     if (confirm "Visit URL?") {
         ^open $url
     }

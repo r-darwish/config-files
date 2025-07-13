@@ -120,11 +120,27 @@ alias scs = systemctl status
 
 $env.HOMEBREW_NO_AUTO_UPDATE = "1"
 
+def confirm [prompt: string]: nothing -> bool {
+    do { gum confirm $prompt }
+    return ($env.LAST_EXIT_CODE == 0)
+}
+
 def listen [url: string] {
     let dir =  (mktemp -d)
     cd $dir
     yt-dlp -x --no-playlist $url
     let file = (ls * | get 0.name)
     vlc $file o+e> /dev/null
-    rm $file
+    
+    if (confirm "Visit URL?") {
+        ^open $url
+    }
+
+    if (confirm "Keep this song?") {
+        mv $file ~/Music
+    } else {
+        rm $file
+    }
+
+    rmdir $dir
 }

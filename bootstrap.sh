@@ -80,7 +80,7 @@ if [[ -d "$HOME/wiz-sec" ]]; then
 fi
 
 if type "pacman" >/dev/null 2>&1; then
-    sudo pacman -S --needed atuin base-devel fd fzf git github-cli go htop lazygit neovim nodejs npm nushell python ripgrep starship tmux unzip uv yazi zoxide zellij vivid
+    sudo pacman -S --needed atuin base-devel fd fzf git github-cli go htop lazygit neovim nodejs npm nushell python ripgrep starship tmux unzip uv yazi zoxide zellij vivid ghostty-terminfo
 fi
 
 ./bootstrap.nu

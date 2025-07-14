@@ -6,29 +6,29 @@ gui:
   skipStashWarning: true
   theme:
     activeBorderColor:
-      - "#a3be8c"
+      - "#ff9e64"
       - "bold"
     inactiveBorderColor:
-      - "#817c9c"
+      - "#27a1b9"
     searchingActiveBorderColor:
       - "#ff9e64"
       - "bold"
     optionsTextColor:
-      - "#569fba"
+      - "#7aa2f7"
     selectedLineBgColor:
       - "#283457"
     cherryPickedCommitFgColor:
-      - "#569fba"
+      - "#7aa2f7"
     cherryPickedCommitBgColor:
-      - "#c4a7e7"
+      - "#bb9af7"
     markedBaseCommitFgColor:
-      - "#569fba"
+      - "#7aa2f7"
     markedBaseCommitBgColor:
-      - "#f6c177"
+      - "#e0af68"
     unstagedChangesColor:
-      - "#eb6f92"
+      - "#db4b4b"
     defaultFgColor:
-      - "#e0def4"
+      - "#c0caf5"
 customCommands:
   - key: 'J'
     command: "get-tickets"

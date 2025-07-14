@@ -98,12 +98,16 @@ end
 
 --- Launch a command in a new Zellij pane
 ---@param command string[] command to run
----@param opts ZellijLaunchOpts options
+---@param opts? ZellijLaunchOpts options
 function M.launch_zellij(command, opts)
   local cmd = {
     "zellij",
     "run",
   }
+
+  if opts == nil then
+    opts = {}
+  end
 
   if opts.keep ~= true then
     table.insert(cmd, "-c")

@@ -1,0 +1,16 @@
+{
+    "runtime.version": "LuaJIT",
+    "diagnostics.globals": [
+        "it",
+        "describe",
+        "before_each",
+        "after_each",
+        "setup",
+        "teardown"
+    ],
+    "diagnostics.ignoredFiles": "Disable",
+    "diagnostics.libraryFiles": "Disable",
+    "workspace.library": [
+        "/opt/homebrew/share/nvim/runtime/lua",
+    ]
+}

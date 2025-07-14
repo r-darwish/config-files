@@ -38,4 +38,8 @@ def main [] {
 
     let zellij_config = ([$env.FILE_PWD, "config", "zellij"] | path join)
     $"$env.ZELLIJ_CONFIG_DIR = \"($zellij_config)\"\n" | save -a $gen
+
+    if (exists "vivid")  {
+        $"$env.LS_COLORS = \"(vivid generate tokyonight-night)\"\n" | save -a $gen
+    }
 }

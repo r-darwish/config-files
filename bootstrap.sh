@@ -65,7 +65,7 @@ if type "brew" >/dev/null 2>&1; then
     if [[ -n "$BACKGROUND" ]]; then
         export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
         brew tap rsteube/homebrew-tap || true
-        brew install nushell starship atuin zoxide neovim || true
+        brew install nushell starship atuin zoxide neovim vivid || true
         echo "Running package installation in the background"
         nohup brew bundle install >/tmp/brew.log 2>&1 &
     else
@@ -79,7 +79,7 @@ if [[ -d "$HOME/wiz-sec" ]]; then
 fi
 
 if type "pacman" >/dev/null 2>&1; then
-    sudo pacman -S --needed atuin base-devel fd fzf git github-cli go htop lazygit neovim nodejs npm nushell python ripgrep starship tmux unzip uv yazi zoxide zellij
+    sudo pacman -S --needed atuin base-devel fd fzf git github-cli go htop lazygit neovim nodejs npm nushell python ripgrep starship tmux unzip uv yazi zoxide zellij vivid
 fi
 
 ./bootstrap.nu

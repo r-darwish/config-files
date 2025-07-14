@@ -1,6 +1,7 @@
 local HyperShortcuts = {
 	{ "S", "Slack" },
-	{ "B", "Vivaldi" },
+	{ "V", "Vivaldi" },
+	{ "B", "Mullvad Browser" },
 	{ "H", "Gemini" },
 	{ "T", "Ghostty" },
 	{ "W", "WhatsApp" },

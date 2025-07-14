@@ -42,9 +42,10 @@ if [[ "$(uname)" == "Linux" ]]; then
         if [[ ! -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
             curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash -
         fi
+
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
 fi
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 for c in config/*; do
     link_config "$c"

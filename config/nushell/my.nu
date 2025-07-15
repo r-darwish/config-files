@@ -19,16 +19,16 @@ def --env "cdf" [] {
 def "ez" [query: string = ""] {
     let dir = (zoxide query -i $query)
     cd $dir
-    nvim (fzf)
+    nvim (fd | fzf)
 }
 
 def "ef" [] {
-    nvim (fzf)
+    nvim (fd | fzf)
 }
 
 def "es" [query: string = ""] {
     cd ~/src
-    nvim (fzf)
+    nvim (fd | fzf)
 }
 
 def "ew" [query: string] {

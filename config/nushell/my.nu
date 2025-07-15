@@ -121,7 +121,7 @@ alias scs = systemctl status
 $env.HOMEBREW_NO_AUTO_UPDATE = "1"
 
 def confirm [prompt: string]: nothing -> bool {
-    do { gum confirm $prompt }
+    do -i { gum confirm $prompt }
     return ($env.LAST_EXIT_CODE == 0)
 }
 

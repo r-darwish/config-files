@@ -3,10 +3,15 @@ layout {
         children
         pane size=1 borderless=true {
             plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
-                format_left   "{mode} #[fg=#blue,bold]{session}"
+                command_hostname_command "cat /etc/hostname"
+                command_hostname_format   "#[fg=yellow]󰍹 {stdout}"
+                command_hostname_internal 0
+
+                format_left   "{mode} {command_hostname} #[fg=green] {session}"
                 format_center "{tabs}"
-                format_right  "{swap_layout}"
+                format_right  "#[fg=magenta]{swap_layout}"
                 format_space  ""
+
 
                 hide_frame_for_single_pane "false"
 
@@ -25,9 +30,9 @@ layout {
                 mode_prompt        "#[bg=red] {name} "
 
                 tab_normal   "#[fg=#6C7086] {index}: {name}"
-                tab_normal_fullscreen   "#[fg=#6C7086]  {index}: {name}"
+                tab_normal_fullscreen   "#[fg=#6C7086]  {index}:  {name}"
                 tab_active   "#[fg=#9399B2,bold,italic] {index}: {name}"
-                tab_active_fullscreen   "#[fg=#9399B2,bold,italic]  {index}: {name}"
+                tab_active_fullscreen   "#[fg=#9399B2,bold,italic]  {index}:  {name}"
             }
         }
     }

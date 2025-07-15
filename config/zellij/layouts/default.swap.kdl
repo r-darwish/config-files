@@ -1,3 +1,21 @@
+swap_tiled_layout name="horizontal" {
+    tab max_panes=8 {
+        pane {
+            pane split_direction="vertical" { children; }
+            pane split_direction="vertical" { pane; pane; pane; pane; }
+        }
+    }
+    tab max_panes=12 {
+        pane {
+            pane split_direction="vertical" { children; }
+            pane split_direction="vertical" { pane; pane; pane; pane; }
+            pane split_direction="vertical" { pane; pane; pane; pane; }
+        }
+    }
+}
+
+
+
 swap_tiled_layout name="vertical" {
     tab max_panes=5 {
         pane split_direction="vertical" {
@@ -20,28 +38,8 @@ swap_tiled_layout name="vertical" {
     }
 }
 
-swap_tiled_layout name="horizontal" {
-    tab max_panes=4 {
-        pane
-        pane
-    }
-    tab max_panes=8 {
-        pane {
-            pane split_direction="vertical" { children; }
-            pane split_direction="vertical" { pane; pane; pane; pane; }
-        }
-    }
-    tab max_panes=12 {
-        pane {
-            pane split_direction="vertical" { children; }
-            pane split_direction="vertical" { pane; pane; pane; pane; }
-            pane split_direction="vertical" { pane; pane; pane; pane; }
-        }
-    }
-}
-
 swap_tiled_layout name="stacked" {
-    tab min_panes=5 {
+    tab min_panes=3 {
         pane split_direction="vertical" {
             pane
             pane stacked=true { children; }

@@ -120,8 +120,6 @@ alias scs = systemctl status
 
 $env.HOMEBREW_NO_AUTO_UPDATE = "1"
 
-alias dark = osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
-
 def confirm [prompt: string]: nothing -> bool {
     do -i { gum confirm $prompt }
     return ($env.LAST_EXIT_CODE == 0)

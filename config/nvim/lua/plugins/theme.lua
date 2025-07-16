@@ -1,23 +1,10 @@
 local transparency = false -- os.getenv("TERM") == "xterm-kitty"
-local default_theme = "tokyonight"
+local default_theme = os.getenv("SSH_CONNECTION") and "rose-pine-moon" or "tokyonight-night"
 local theme = os.getenv("NVIM_THEME") or default_theme
 
 vim.opt.cursorline = not transparency
 
 return {
-  {
-    "f-person/auto-dark-mode.nvim",
-    opts = {
-      set_dark_mode = function()
-        vim.cmd("colorscheme tokyonight-night")
-      end,
-      set_light_mode = function()
-        vim.cmd("colorscheme tokyonight-day")
-      end,
-      update_interval = 5000,
-      fallback = "dark",
-    },
-  },
   {
     "EdenEast/nightfox.nvim",
     config = function()

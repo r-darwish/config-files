@@ -21,6 +21,7 @@ return {
         "shellcheck",
         "shfmt",
         "bash-language-server",
+        "gci",
       },
     },
   },

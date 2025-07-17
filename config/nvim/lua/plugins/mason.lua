@@ -21,7 +21,6 @@ return {
         "shellcheck",
         "shfmt",
         "bash-language-server",
-        "golangci-lint",
       },
     },
   },

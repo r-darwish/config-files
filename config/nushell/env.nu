@@ -65,6 +65,7 @@ if $env.SSH_AUTH_SOCK? != null and $env.SSH_AUTH_SOCK != $ssh_sock_symlink {
 }
 
 $env.EDITOR = (which nvim | get 0.path)
+$env.COLORTERM = "truecolor"
 $env.FZF_DEFAULT_OPTS = "--highlight-line
   --info=inline-right
   --ansi

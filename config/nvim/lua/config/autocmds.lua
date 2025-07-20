@@ -58,3 +58,25 @@ vim.api.nvim_create_autocmd({
     vim.fn.chdir(LazyVim.root.get())
   end,
 })
+
+vim.api.nvim_create_autocmd({
+  "BufWritePre",
+}, {
+  group = autocmds.augroup,
+  callback = function()
+    local autofmt = require("lazyvim.util.format")
+    if not autofmt.enabled(0) then
+      return
+    end
+
+    local clients = vim.lsp.get_clients({ bufnr = 0, name = "ruff" })
+    if #clients > 0 then
+      vim.lsp.buf.code_action({
+        ---@diagnostic disable-next-line: missing-fields
+        context = { only = { "source.organizeImports" } },
+        apply = true,
+        buffer = 0,
+      })
+    end
+  end,
+})

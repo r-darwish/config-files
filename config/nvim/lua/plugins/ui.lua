@@ -57,10 +57,6 @@ local function lsp_checker()
 end
 
 return {
-  "kevinhwang91/nvim-ufo",
-  dependencies = {
-    { "kevinhwang91/promise-async" },
-  },
   { "akinsho/bufferline.nvim", opts = { options = {
     mode = "tabs",
   } } },

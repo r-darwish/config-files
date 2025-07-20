@@ -1,5 +1,5 @@
 local transparency = false -- os.getenv("TERM") == "xterm-kitty"
-local default_theme = os.getenv("SSH_CONNECTION") and "rose-pine-moon" or "tokyonight-night"
+local default_theme = "tokyonight-night"
 local theme = os.getenv("NVIM_THEME") or default_theme
 
 vim.opt.cursorline = not transparency
@@ -7,6 +7,7 @@ vim.opt.cursorline = not transparency
 return {
   {
     "EdenEast/nightfox.nvim",
+    cond = string.find(theme, "fox") ~= nil,
     config = function()
       require("nightfox").setup({
         options = {
@@ -32,7 +33,7 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    cond = string.find(theme, "rose"),
+    cond = string.find(theme, "rose") ~= nil,
     opts = {
       variant = "moon",
       dark_variant = "moon",
@@ -45,7 +46,7 @@ return {
   },
   {
     "folke/tokyonight.nvim",
-    cond = string.find(theme, "tokyonight"),
+    cond = string.find(theme, "tokyonight") ~= nil,
     opts = {
       dim_inactive = true,
       transparent = transparency,
@@ -70,7 +71,7 @@ return {
   },
   {
     "sainnhe/gruvbox-material",
-    cond = string.find(theme, "gruvbox"),
+    cond = string.find(theme, "gruvbox") ~= nil,
     config = function()
       vim.g.gruvbox_material_enable_italic = true
       vim.g.gruvbox_material_transparent_background = transparency and 2 or 0

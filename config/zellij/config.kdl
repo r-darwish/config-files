@@ -186,7 +186,8 @@ keybinds clear-defaults=true {
                 floating true
             };
         }
-        bind "Alt s" {
+        bind "Alt s" { SwitchToMode "entersearch"; SearchInput 0; }
+        bind "Alt S" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true

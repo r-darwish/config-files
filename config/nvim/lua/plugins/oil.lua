@@ -74,6 +74,7 @@ return {
         local o = require("oil")
         o.open(o.get_current_dir(0), {})
       end,
+      { desc = "Oil" },
     },
   },
 }

@@ -169,6 +169,7 @@ keybinds clear-defaults=true {
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
 
+        bind "Alt e" { EditScrollback; }
         bind "Alt H" { GoToPreviousTab; }
         bind "Alt L" { GoToNextTab; }
         bind "Alt h" { MoveFocusOrTab "left"; }
@@ -311,7 +312,7 @@ simplified_ui false
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "duskfox"
+theme "tokyo-night"
  
 // Choose the base input mode of zellij.
 // Default: normal

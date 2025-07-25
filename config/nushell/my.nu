@@ -17,7 +17,7 @@ def --env "cdf" [] {
 }
 
 def "ez" [query: string = ""] {
-    let dir = (zoxide query -i $query)
+    let dir = (zoxide query -o $query)
     cd $dir
     nvim (fd | fzf)
 }
@@ -46,8 +46,8 @@ def "from env" []: string -> record {
 }
 
 def "e" [file: string] {
-    let nvim = ($env | get -i nvim)
-    let zellij = ($env | get -i ZELLIJ)
+    let nvim = ($env | get -o nvim)
+    let zellij = ($env | get -o ZELLIJ)
 
     if $zellij != null {
         zellij edit ($file | path expand)

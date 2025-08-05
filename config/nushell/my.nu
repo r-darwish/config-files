@@ -17,7 +17,7 @@ def --env "cdf" [] {
 }
 
 def "ez" [query: string = ""] {
-    let dir = (zoxide query -o $query)
+    let dir = (zoxide query -i $query)
     cd $dir
     nvim (fd | fzf)
 }
@@ -80,7 +80,7 @@ def --env y [...args] {
 }
 
 def godbg [...args] {
-    dlv debug --headless -l 127.0.0.1:31337 --accept-multiclient ...$args
+    dlv debug --headless -l 127.0.0.1:31337 ...$args
 }
 
 alias vd = edit dir

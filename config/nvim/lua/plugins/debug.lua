@@ -2,6 +2,7 @@ vim.debug_port = 31337
 vim.debug_host = "127.0.0.1"
 
 return {
+  { "theHamsta/nvim-dap-virtual-text", enabled = false },
   {
     "mfussenegger/nvim-dap-python",
     config = function()
@@ -15,7 +16,7 @@ return {
       dap_configurations = {
         {
           type = "go",
-          name = "Attach port",
+          name = "Remote Debugging",
           mode = "remote",
           request = "attach",
         },

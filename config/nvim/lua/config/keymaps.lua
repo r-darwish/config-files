@@ -44,12 +44,6 @@ end, { expr = true })
 map({ "n", "x" }, "<C-->", "zm", { desc = "Fold more" })
 map({ "n", "x" }, "<C-=>", "zr", { desc = "Fold less" })
 
--- Copy & Paste
-map({ "n" }, "gp", "`[v`]", { desc = "Last paste" })
-map({ "x" }, "p", "P`]", { desc = "Paste" })
-map({ "n" }, "p", "p`]", { desc = "Paste" })
-map({ "x" }, "y", "y`>", { desc = "Yank and go to selection end" })
-
 -- Macros
 map({ "n", "x" }, "q:", "<nop>")
 map({ "n", "x" }, "Q", "q", { desc = "Record a macro" })

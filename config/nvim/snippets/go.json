@@ -1,0 +1,17 @@
+{
+  "error wrap": {
+    "prefix": ["iw"],
+    "body": [
+      "if err != nil {",
+      "\treturn ${1:nil}, errorlib.Wrap(err, \"$2\")",
+      "}",
+      "$0"
+    ],
+    "description": "Wiz error wrap"
+  },
+  "log": {
+    "prefix": ["lg"],
+    "body": ["log := loglib.G(ctx)"],
+    "description": "Wiz loglib"
+  }
+}

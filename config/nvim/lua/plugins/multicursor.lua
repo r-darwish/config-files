@@ -107,13 +107,6 @@ return {
         mode = { "n" },
       },
       {
-        "<C-m>",
-        function()
-          require("multicursor-nvim").splitCursors()
-        end,
-        mode = "x",
-      },
-      {
         "I",
         function()
           require("multicursor-nvim").insertVisual()

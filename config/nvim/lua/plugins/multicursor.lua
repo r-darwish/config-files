@@ -128,7 +128,7 @@ return {
         mode = "x",
       },
       {
-        "M",
+        "m",
         function()
           require("multicursor-nvim").matchCursors()
         end,

@@ -22,7 +22,6 @@ return {
         "shfmt",
         "bash-language-server",
         "gci",
-        "fish-lsp",
       },
     },
   },

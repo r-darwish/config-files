@@ -83,8 +83,14 @@ return {
         "<leader>fp",
         function()
           Snacks.picker.projects({
-            confirm = "picker_files",
             dev = "~/src",
+            win = {
+              input = {
+                keys = {
+                  ["<c-/>"] = { { "tcd", "picker_grep" }, mode = { "n", "i" } },
+                },
+              },
+            },
           })
         end,
         desc = "Projects",

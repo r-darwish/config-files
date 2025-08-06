@@ -12,4 +12,4 @@ font-thicken-strength = 130
 maximize = true
 clipboard-write = allow
 
-theme = dark:tokyonight,light:tokyonight-day
+theme = dark:tokyonight_moon,light:tokyonight-day

@@ -312,7 +312,7 @@ simplified_ui false
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "tokyo-night"
+theme "tokyonight_moon"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -495,6 +495,21 @@ show_startup_tips false
 // show_release_notes false
 
 themes {
+    tokyonight_moon {
+        fg "#c8d3f5"
+        bg "#2f334d"
+        // Black should match the terminal background color
+        // This ensures the top and bottom bars are transparent
+        black "#222436"
+        red "#ff757f"
+        green "#c3e88d"
+        yellow "#ffc777"
+        blue "#82aaff"
+        magenta "#c099ff"
+        cyan "#86e1fc"
+        white "#828bb8"
+        orange "#ff966c"
+    }
 	rose-pine-moon {
 		bg "#44415a"
 		fg "#e0def4"

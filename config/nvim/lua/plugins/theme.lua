@@ -1,5 +1,5 @@
 local transparency = false -- os.getenv("TERM") == "xterm-kitty"
-local default_theme = "tokyonight-night"
+local default_theme = "tokyonight-moon"
 local theme = os.getenv("NVIM_THEME") or default_theme
 
 vim.opt.cursorline = not transparency

@@ -28,10 +28,7 @@ return {
       adapters = {
         ["neotest-golang"] = {
           dap_go_enabled = true,
-          go_test_args = {
-            "-race",
-            "-count=1",
-          },
+          testify_enabled = true,
         },
       },
     },

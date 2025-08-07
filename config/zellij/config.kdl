@@ -14,6 +14,7 @@ keybinds clear-defaults=true {
         bind "right" { MoveFocus "right"; }
         bind "r" { SwitchToMode "renamepane"; PaneNameInput 0; }
         bind "d" { NewPane "down"; SwitchToMode "locked"; }
+        bind "s" { NewPane "stacked"; SwitchToMode "locked"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "locked"; }
         bind "f" { ToggleFocusFullscreen; SwitchToMode "locked"; }
         bind "h" { MoveFocus "left"; }
@@ -181,12 +182,8 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
         bind "Alt t" { NewTab; }
         bind "Alt w" { ToggleFocusFullscreen; }
-        bind "Alt p" {
-            Run "bash" "-c" "pbpaste | nvim" {
-                close_on_exit true
-                floating true
-            };
-        }
+        bind "Alt p" { TogglePaneInGroup; }
+        bind "Alt Shift p" { ToggleGroupMarking; }
         bind "Alt s" { SwitchToMode "entersearch"; SearchInput 0; }
         bind "Alt S" {
             LaunchOrFocusPlugin "session-manager" {
@@ -216,7 +213,7 @@ keybinds clear-defaults=true {
     shared_except "locked" "tab" "entersearch" "renametab" "renamepane" {
         bind "t" { SwitchToMode "tab"; }
     }
-    shared_except "locked" "tab" "scroll" "entersearch" "renametab" "renamepane" {
+    shared_except "locked" "tab" "scroll" "entersearch" "renametab" "renamepane" "pane" {
         bind "s" { SwitchToMode "scroll"; }
     }
     shared_among "normal" "resize" "tab" "scroll" "prompt" "tmux" {

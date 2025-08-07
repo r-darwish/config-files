@@ -80,3 +80,5 @@ set -g fish_pager_color_description $comment
 set -g fish_pager_color_selected_background --background=$selection
 
 test -e ~/.gen.fish && source ~/.gen.fish
+
+fish_add_path --path ~/.local/bin

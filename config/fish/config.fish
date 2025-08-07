@@ -82,4 +82,6 @@ set -g fish_pager_color_selected_background --background=$selection
 
 test -e ~/.gen.fish && source ~/.gen.fish
 
+export EDITOR=nvim
+
 fish_add_path --path ~/.local/bin

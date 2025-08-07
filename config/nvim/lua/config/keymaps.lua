@@ -13,9 +13,6 @@ local function toggle_macro_recording()
   end
 end
 
--- Remap replace because we use "r" for substitute
-map({ "n" }, "<C-r>", "r", { desc = "Replace" })
-
 -- Tab control
 map({ "t" }, "<C-tab>", "<C-\\><C-n>gt")
 map({ "n", "x" }, "<C-tab>", "gt")

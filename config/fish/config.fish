@@ -22,6 +22,7 @@ function godbg -d "Debug go"
     dlv debug --headless -l 127.0.0.1:31337 $argv
 end
 
+alias ls="lsd -l"
 alias yt-mp3="yt-dlp -x --audio-format mp3 --no-playlist"
 alias st="starship toggle"
 alias tidy="go mod tidy"

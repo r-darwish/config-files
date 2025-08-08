@@ -22,6 +22,7 @@ return {
         "shfmt",
         "bash-language-server",
         "gci",
+        "gotestsum",
       },
     },
   },

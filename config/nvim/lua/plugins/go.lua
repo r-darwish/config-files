@@ -29,6 +29,7 @@ return {
         ["neotest-golang"] = {
           dap_go_enabled = true,
           testify_enabled = true,
+          runner = "gotestsum",
         },
       },
     },

@@ -13,6 +13,9 @@ local function toggle_macro_recording()
   end
 end
 
+-- Quit & Save
+map({ "n", "x" }, "<c-c>", "<cmd>:wq<cr>", { desc = "Save and quit" })
+
 -- Tab control
 map({ "t" }, "<C-tab>", "<C-\\><C-n>gt")
 map({ "n", "x" }, "<C-tab>", "gt")

@@ -14,7 +14,6 @@ vim.opt.shada = "'1000,<1000,s100"
 vim.opt.autochdir = false
 vim.opt.hlsearch = false
 vim.fn.setenv("EDITOR", "nvim")
-vim.fn.setenv("LOG_COLOR", "1")
 vim.g.snacks_animate = false
 vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { link = "DiagnosticUnnecessary" })
 

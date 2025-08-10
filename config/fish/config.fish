@@ -1,5 +1,15 @@
 set fish_greeting
 
+set linuxbrew_dir /home/linuxbrew/
+
+if set -q SSH_CLIENT
+    export TERM=xterm-256color
+end
+
+if test -d $linuxbrew_dir
+    fish_add_path --path $linuxbrew_dir/.linuxbrew/bin
+end
+
 function bi -d "Install a brew package"
     brew search $query | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | xargs brew install -q
 end

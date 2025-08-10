@@ -6,6 +6,13 @@ if set -q SSH_CLIENT
     export TERM=xterm-256color
 end
 
+set ssh_sock_symlink ~/.ssh-auth.sock
+if set -q SSH_AUTH_SOCK
+    and test $SSH_AUTH_SOCK != $ssh_sock_symlink
+    ln -fs $SSH_AUTH_SOCK $ssh_sock_symlink
+    export SSH_AUTH_SOCK=$ssh_sock_symlink
+end
+
 if test -d $linuxbrew_dir
     fish_add_path --path $linuxbrew_dir/.linuxbrew/bin
 end

@@ -17,6 +17,10 @@ if test -d $linuxbrew_dir
     fish_add_path --path $linuxbrew_dir/.linuxbrew/bin
 end
 
+if test -d ~/go/bin
+    fish_add_path --path ~/go/bin
+end
+
 function bi -d "Install a brew package"
     brew search $query | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | xargs brew install -q
 end

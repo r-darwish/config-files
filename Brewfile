@@ -1,3 +1,4 @@
+brew "git-delta"
 brew "npm"
 brew "yazi"
 brew "starship"

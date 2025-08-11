@@ -48,3 +48,8 @@
 
 [diff]
     colorMoved = default
+
+[delta]
+    light = false
+    dark = true
+    syntax-theme = ansi

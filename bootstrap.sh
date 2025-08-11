@@ -66,7 +66,10 @@ if type "brew" >/dev/null 2>&1; then
     if [[ -n "$BACKGROUND" ]]; then
         export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
         brew tap rsteube/homebrew-tap || true
-        brew install nushell fish starship atuin zoxide neovim vivid || true
+        brew install nushell fish starship atuin zoxide neovim vivid lsd || true
+        if [[ "$(uname)" == "Linux" ]]; then
+            echo "exec /home/linuxbrew/.linuxbrew/bin/fish" > ~/.zshrc
+        fi
         echo "Running package installation in the background"
         nohup brew bundle install >/tmp/brew.log 2>&1 &
     else

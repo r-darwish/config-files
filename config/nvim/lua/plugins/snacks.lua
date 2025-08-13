@@ -20,6 +20,7 @@ return {
               ["<C-v>"] = { "focus_preview", mode = { "n", "i" } },
               ["<C-x>"] = { "focus_list", mode = { "n", "i" } },
               ["<C-l>"] = { "toggle_live", mode = { "i", "n" } },
+              ["<C-h>"] = { "toggle_hidden", mode = { "i", "n" } },
             },
           },
           list = {
@@ -36,6 +37,26 @@ return {
       },
     },
     keys = {
+      {
+        "<leader><space>",
+        function()
+          require("snacks.picker").files({
+            cwd = require("lazyvim.util.root").get(),
+            hidden = true,
+          })
+        end,
+        desc = "Find Files (Root Dir)",
+      },
+      {
+        "<leader>fg",
+        function()
+          require("snacks.picker").files({
+            cwd = require("lazyvim.util.root").git(),
+            hidden = true,
+          })
+        end,
+        desc = "Find Files (Git Dir)",
+      },
       {
         "<A-z>",
         function()

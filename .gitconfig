@@ -52,6 +52,7 @@
 [delta]
     light = false
     dark = true
+    syntax-theme = ansi
     minus-style                   = syntax "#3a273a"
     minus-non-emph-style          = syntax "#3a273a"
     minus-emph-style              = syntax "#6b2e43"

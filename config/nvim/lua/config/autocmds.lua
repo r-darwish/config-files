@@ -11,7 +11,10 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "set formatoptions-=cro",
 })
 
-autocmds.set_opts({ "lua", "javascript", "terraform", "yaml", "helm", "json", "nix" }, { tabstop = 2, shiftwidth = 2 })
+autocmds.set_opts(
+  { "lua", "javascript", "terraform", "yaml", "helm", "json", "nix", "markdown" },
+  { tabstop = 2, shiftwidth = 2 }
+)
 autocmds.set_filetype("*.tpl", "helm")
 autocmds.set_filetype("*.tf", "terraform")
 autocmds.set_filetype("*.wsb", "xml")

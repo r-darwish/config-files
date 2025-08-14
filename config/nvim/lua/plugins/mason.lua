@@ -6,6 +6,7 @@ local app_deps = {
   delve = "go",
   gci = "go",
   gotestsum = "go",
+  ["golangci-lint"] = "go",
 }
 
 --- returns whether an app should be installed

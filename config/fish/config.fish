@@ -30,6 +30,10 @@ function ez -d "Edit a file a zoxide saved directory"
     nvim $(fd |fzf)
 end
 
+function ef -d "Edit a file in the current directory"
+    nvim $(fd |fzf)
+end
+
 function es -d "Edit a file in the source directory"
     cd ~/src
     nvim $(fd |fzf)

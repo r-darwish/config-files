@@ -66,8 +66,8 @@ elseif vim.fn.has("linux") == 1 then
       ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
     },
     paste = {
-      ["+"] = os.getenv("ZELLIJ") ~= nil and paste or require("vim.ui.clipboard.osc52").paste("+"),
-      ["*"] = os.getenv("ZELLIJ") ~= nil and paste or require("vim.ui.clipboard.osc52").paste("*"),
+      ["+"] = paste,
+      ["*"] = paste,
     },
   }
 

@@ -25,11 +25,9 @@ local function linux_name()
         return wsl_distro
       end
 
-      if os.getenv("SSH_CONNECTION") ~= nil then
-        local utils = require("darwish.utils")
-        local host = utils.read_file("/proc/sys/kernel/hostname")
-        return host and utils.strip(host) or ""
-      end
+      local utils = require("darwish.utils")
+      local host = utils.read_file("/proc/sys/kernel/hostname")
+      return host and utils.strip(host) or ""
     end)()
   end
 

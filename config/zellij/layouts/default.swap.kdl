@@ -45,7 +45,6 @@ swap_tiled_layout name="stacked" {
 
 swap_floating_layout name="staggered" {
     floating_panes {
-         pane x="10%" y="10%" width="80%" height="80%"
     }
 }
 

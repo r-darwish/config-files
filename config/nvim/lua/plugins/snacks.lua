@@ -21,6 +21,7 @@ return {
               ["<C-x>"] = { "focus_list", mode = { "n", "i" } },
               ["<C-l>"] = { "toggle_live", mode = { "i", "n" } },
               ["<C-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+              ["<C-s>"] = { "flash", mode = { "n", "i" } },
             },
           },
           list = {

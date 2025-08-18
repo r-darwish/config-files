@@ -13,9 +13,12 @@ if set -q SSH_AUTH_SOCK
     export SSH_AUTH_SOCK=$ssh_sock_symlink
 end
 
-if test -d $linuxbrew_dir
-    fish_add_path --path $linuxbrew_dir/.linuxbrew/bin
+function add_to_path
+    test -d $argv[1] && fish_add_path --path $argv[1]
 end
+
+add_to_path /home/linuxbrew/.linuxbrew/bin
+add_to_path ~/.local/share/nvim/mason/bin
 
 function bi -d "Install a brew package"
     brew search $query | fzf --preview='HOMEBREW_COLOR=1 brew info {}' | xargs brew install -q

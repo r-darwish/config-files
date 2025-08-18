@@ -2,10 +2,6 @@ set fish_greeting
 
 set linuxbrew_dir /home/linuxbrew/
 
-if set -q SSH_CLIENT
-    export TERM=xterm-256color
-end
-
 set ssh_sock_symlink ~/.ssh-auth.sock
 if set -q SSH_AUTH_SOCK
     and test $SSH_AUTH_SOCK != $ssh_sock_symlink

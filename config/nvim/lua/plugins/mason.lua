@@ -40,6 +40,7 @@ return {
         "bash-language-server",
         "gci",
         "gotestsum",
+        "golangci-lint",
       }) do
         table.insert(opts.ensure_installed, app)
       end

@@ -20,6 +20,7 @@ autocmds.set_filetype("*.tf", "terraform")
 autocmds.set_filetype("*.wsb", "xml")
 autocmds.set_filetype("*ghostty/config", "confini")
 autocmds.set_filetype(".okta_aws_login_config", "toml")
+autocmds.set_filetype("*o10r/config", "toml")
 
 -- Set the filetype to helm in yaml files that seems like a go template
 vim.api.nvim_create_autocmd({

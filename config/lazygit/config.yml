@@ -41,7 +41,7 @@ customCommands:
     description: 'Show file tickets'
     output: terminal
   - key: "<c-p>"
-    command: "bash -c 'git push && gh pr create --fill --web'"
+    command: "bash -c 'git push && gh pr create --fill-first --web'"
     context: "localBranches"
   - key: "G"
     command: "gitpurge"

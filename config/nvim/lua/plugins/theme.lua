@@ -1,17 +1,8 @@
 local transparency = false -- os.getenv("TERM") == "xterm-kitty"
-local default_theme = "nord"
+local default_theme = "tokyonight-moon"
 local theme = os.getenv("NVIM_THEME") or default_theme
 
 vim.opt.cursorline = not transparency
-
-local autocmds = require("darwish.autocmds")
-vim.api.nvim_create_autocmd({
-  "ColorScheme",
-}, {
-  group = autocmds.augroup,
-  pattern = "nord",
-  command = "hi NonText guifg=#616E88",
-})
 
 return {
   {
@@ -38,10 +29,6 @@ return {
   {
     "catppuccin/nvim",
     enabled = false,
-  },
-  {
-    "shaunsingh/nord.nvim",
-    cond = theme == "nord",
   },
   {
     "rose-pine/neovim",

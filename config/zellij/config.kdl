@@ -265,9 +265,13 @@ keybinds clear-defaults=true {
             SwitchToMode "locked"
         }
         bind "h" {
-            Run "htop" {
+            Run "btop" {
                 close_on_exit true
                 floating true
+                height "80%"
+                x "10%"
+                width "80%"
+                y "10%"
             };
             SwitchToMode "locked"
         }

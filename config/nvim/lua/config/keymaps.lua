@@ -166,16 +166,16 @@ require("darwish.go").register_callback("c", function(commit)
   git.browse_commit(commit)
 end, "Browse commit")
 
--- Copliot
+-- Augment
 toggle
   .new({
-    id = "copilot_auto_trigger",
-    name = "Copilot Auto Suggestion",
+    id = "augment_auto_trigger",
+    name = "Augment Auto Suggestion",
     get = function()
-      return vim.b.copilot_suggestion_auto_trigger
+      return not vim.g.augment_disable_completions
     end,
     set = function(state)
-      vim.b.copilot_suggestion_auto_trigger = state
+      vim.g.augment_disable_completions = not state
     end,
   })
   :map("<leader>at")
@@ -208,3 +208,7 @@ vim.api.nvim_create_user_command("GetEnv", function(opts)
 end, { nargs = 1 })
 
 require("darwish.python")
+
+map({ "x" }, "s", function()
+  require("multicursor-nvim").splitCursors()
+end)

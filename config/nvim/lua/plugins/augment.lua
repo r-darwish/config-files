@@ -7,7 +7,7 @@ return {
     end,
     keys = {
       { "<leader>aa", "<cmd>Augment chat-toggle<cr>", desc = "Toggle Augment" },
-      { "<leader>ac", "<cmd>Augment chat<cr>", desc = "Send a message to augment" },
+      { "<leader>ac", "<cmd>Augment chat<cr>", desc = "Send a message to augment", mode = { "n", "x" } },
       {
         "<leader>ag",
         function()

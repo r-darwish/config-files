@@ -3,6 +3,7 @@ return {
     "augmentcode/augment.vim",
     lazy = true,
     config = function()
+      vim.g.augment_disable_tab_mapping = true
       vim.g.augment_workspace_folders = { LazyVim.root.git() }
     end,
     keys = {

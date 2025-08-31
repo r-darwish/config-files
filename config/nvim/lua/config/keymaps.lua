@@ -212,3 +212,5 @@ require("darwish.python")
 map({ "x" }, "s", function()
   require("multicursor-nvim").splitCursors()
 end)
+
+map({ "i" }, "<c-a>", "<cmd>call augment#Accept()<cr>")

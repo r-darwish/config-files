@@ -214,3 +214,4 @@ map({ "x" }, "s", function()
 end)
 
 map({ "i" }, "<c-a>", "<cmd>call augment#Accept()<cr>")
+map({ "i" }, "<c-v>", "<cmd>YankyRingHistory<cr>")

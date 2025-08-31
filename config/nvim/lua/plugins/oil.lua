@@ -44,7 +44,7 @@ return {
         end,
         desc = "Find files in the current directory",
       },
-      ["<c-g>"] = {
+      ["<a-g>"] = {
         function()
           local dir = require("oil").get_current_dir()
           Snacks.picker.grep({ cwd = dir })

@@ -135,6 +135,22 @@ return {
         mode = { "x", "n" },
       },
       {
+        "<leader>sG",
+        function()
+          local search = nil
+          local utils = require("darwish.utils")
+
+          if utils.in_visual_mode() then
+            search = utils.get_visual_selection()
+          end
+          Snacks.picker.grep({
+            search = search,
+          })
+        end,
+        desc = "Grep (Cwd)",
+        mode = { "x", "n" },
+      },
+      {
         "<leader>fP",
         function()
           Snacks.picker.files({

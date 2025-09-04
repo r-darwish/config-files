@@ -39,7 +39,8 @@ function es -d "Edit a file in the source directory"
 end
 
 function ag -d "Ask auggie for help"
-    auggie --print $argv[1] | glow
+    auggie --print $argv[1] >~/auggie.md
+    nvim ~/auggie.md
 end
 
 alias ls="lsd -l"

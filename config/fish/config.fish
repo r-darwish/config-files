@@ -38,6 +38,10 @@ function es -d "Edit a file in the source directory"
     nvim $(fd |fzf)
 end
 
+function ag -d "Ask auggie for help"
+    auggie --print $argv[1] | glow
+end
+
 alias ls="lsd -l"
 alias yt-mp3="yt-dlp -x --audio-format mp3 --no-playlist"
 alias st="starship toggle"

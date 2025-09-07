@@ -6,6 +6,7 @@
     sparseCheckout = true
     untrackedCache = true
     excludesfile = ~/.gitignore
+    pager = delta
 
 [diff]
     tool = difftastic
@@ -40,7 +41,7 @@
     diffFilter = delta --color-only
 
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [diff]
     colorMoved = default

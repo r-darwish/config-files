@@ -50,7 +50,7 @@ customCommands:
     command: "nu -l -c 'circle -b {{.SelectedLocalBranch.Name}}'"
     context: "localBranches"
   - key: "I"
-    command: "nu -l -c 'circle -a'"
+    command: "fish -c 'o wait-for-circle.py'"
     context: "global"
 git:
   paging:

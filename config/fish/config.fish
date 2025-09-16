@@ -1,6 +1,9 @@
 set fish_greeting
 
 set linuxbrew_dir /home/linuxbrew/
+set lima_docker $HOME/.lima/docker/sock/docker.sock
+
+test -e $lima_docker && set -gx DOCKER_HOST "unix://$lima_docker"
 
 set ssh_sock_symlink ~/.ssh-auth.sock
 if set -q SSH_AUTH_SOCK

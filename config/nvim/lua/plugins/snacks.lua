@@ -23,6 +23,7 @@ return {
               ["<C-l>"] = { "toggle_live", mode = { "i", "n" } },
               ["<C-h>"] = { "toggle_hidden", mode = { "i", "n" } },
               ["<C-s>"] = { "flash", mode = { "n", "i" } },
+              ["<C-q>"] = { "trouble_open", mode = { "n", "i" } },
             },
           },
           list = {

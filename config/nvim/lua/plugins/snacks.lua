@@ -135,6 +135,13 @@ return {
         mode = { "x", "n" },
       },
       {
+        "<leader>i",
+        function()
+          require("darwish.pickers.snippets")()
+        end,
+        desc = "Show snippets",
+      },
+      {
         "<leader>sG",
         function()
           local search = nil

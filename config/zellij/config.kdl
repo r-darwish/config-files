@@ -264,6 +264,13 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "locked"
         }
+        bind "g" {
+            Run "gemini" {
+                close_on_exit true
+                floating true
+            };
+            SwitchToMode "locked"
+        }
         bind "h" {
             Run "btop" {
                 close_on_exit true

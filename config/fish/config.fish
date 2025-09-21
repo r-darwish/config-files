@@ -12,6 +12,16 @@ if set -q SSH_AUTH_SOCK
     export SSH_AUTH_SOCK=$ssh_sock_symlink
 end
 
+function retry -d "Retry a command until it succeeds"
+    while true
+        if eval $argv
+            break
+        end
+        echo "Command failed, retrying..."
+        sleep 1
+    end
+end
+
 function add_to_path
     test -d $argv[1] && fish_add_path --path $argv[1]
 end

@@ -74,12 +74,11 @@ elseif vim.fn.has("linux") == 1 then
   vim.g.clipboard = clip
 end
 
-vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h12"
+vim.o.guifont = "Maple Mono NF:h14"
 vim.g.neovide_input_use_logo = 1
 vim.g.neovide_cursor_animate_command_line = false
-vim.g.neovide_cursor_vfx_mode = "railgun"
-vim.g.neovide_cursor_vfx_particle_density = 10.0
 vim.g.neovide_input_macos_option_key_is_meta = "only_left"
+vim.g.neovide_cursor_animation_length = 0
 
 if vim.g.neovide then
   pcall(vim.fn.serverstart, vim.fn.stdpath("data") .. "/neovide.sock")

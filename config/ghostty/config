@@ -6,7 +6,7 @@ keybind = alt+n=unbind
 
 font-family = "Maple Mono NF"
 font-size = 14
-font-thicken = false
+font-thicken = true
 font-thicken-strength = 130
 # adjust-cell-width = -10%
 maximize = true

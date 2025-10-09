@@ -19,6 +19,14 @@ end
 
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = {
+        enabled = false,
+      },
+    },
+  },
+  {
     "jay-babu/mason-nvim-dap.nvim",
     cond = enable_mason,
   },

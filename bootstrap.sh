@@ -54,6 +54,7 @@ for c in bin/*; do
     link_bin "$c"
 done
 
+[[ -d "$HOME/.config/nvim" ]] || git clone https://github.com/r-darwish/nvim "$HOME/.config/nvim"
 test -f "$HOME/.tmux.conf" || ln -s "$PWD/tmux.conf" "$HOME/.tmux.conf"
 
 for c in dynamic_config/*; do

@@ -58,6 +58,3 @@ git:
     pager: delta --paging=never
   autoFetch: false
   autoRefresh: false
-  commitPrefix:
-    - pattern: "^darwish/(\\w+-\\w+)/.*"
-      replace: '$1: '

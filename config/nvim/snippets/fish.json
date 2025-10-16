@@ -1,7 +1,0 @@
-{
-  "function": {
-    "prefix": ["func"],
-    "body": ["function $1", "\t$0", "end"],
-    "description": "Function"
-  }
-}

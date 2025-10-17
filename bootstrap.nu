@@ -22,10 +22,6 @@ def main [] {
         zoxide init nushell | save -a $gen
     }
 
-    if (exists "atuin")  {
-        atuin init nu | save -a $gen
-    }
-
     const local = ([$nu.home-path, ".local.nu"] | path join)
     if ($local | path exists) {
         $"source ($local)\n" | save -a $gen

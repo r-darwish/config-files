@@ -67,7 +67,7 @@ if type "brew" >/dev/null 2>&1; then
     if [[ -n "$BACKGROUND" ]]; then
         export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
         brew tap rsteube/homebrew-tap || true
-        brew install fish npm starship atuin zoxide neovim vivid lsd || true
+        brew install fish npm starship zoxide neovim vivid lsd || true
         if [[ "$(uname)" == "Linux" ]]; then
             echo "exec /home/linuxbrew/.linuxbrew/bin/fish" > ~/.zshrc
         fi
@@ -84,7 +84,7 @@ if [[ -d "$HOME/wiz-sec" ]]; then
 fi
 
 if type "pacman" >/dev/null 2>&1; then
-    sudo pacman -S --needed atuin base-devel fd fzf git github-cli go htop btop lazygit neovim nodejs npm fish python ripgrep starship tmux unzip uv yazi zoxide zellij vivid ghostty-terminfo gum lsd git-delta
+    sudo pacman -S --needed base-devel fd fzf git github-cli go htop btop lazygit neovim nodejs npm fish python ripgrep starship tmux unzip uv yazi zoxide zellij vivid ghostty-terminfo gum lsd git-delta
 fi
 
 ./bootstrap.fish

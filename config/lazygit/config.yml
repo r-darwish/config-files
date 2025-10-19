@@ -44,7 +44,7 @@ customCommands:
     command: "bash -c 'git push && gh pr create --fill-first --web'"
     context: "localBranches"
   - key: "G"
-    command: "gitpurge"
+    command: "fish -c 'o git-gc.py'"
     context: "localBranches"
   - key: "i"
     command: "nu -l -c 'circle -b {{.SelectedLocalBranch.Name}}'"

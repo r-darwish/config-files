@@ -69,7 +69,7 @@ if type "brew" >/dev/null 2>&1; then
         brew tap rsteube/homebrew-tap || true
         brew install fish npm starship zoxide neovim vivid lsd || true
         if [[ "$(uname)" == "Linux" ]]; then
-            echo "exec /home/linuxbrew/.linuxbrew/bin/fish" > ~/.zshrc
+            echo "exec /home/linuxbrew/.linuxbrew/bin/fish" >~/.zshrc
         fi
         echo "Running package installation in the background"
         nohup brew bundle install >/tmp/brew.log 2>&1 &

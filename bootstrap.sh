@@ -45,6 +45,14 @@ if [[ "$(uname)" == "Linux" ]]; then
 
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
+    if ! type "yay" >/dev/null 2>&1; then
+        sudo pacman -S --needed --noconfirm git base-devel
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        pushd /tmp/yay
+        makepkg -si
+        popd
+        rm -rf /tmp/yay
+    fi
 fi
 
 for c in config/*; do

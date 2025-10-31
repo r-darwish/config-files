@@ -1,1 +1,1 @@
-choco install powershell-core git starship neovim fzf lazygit nodejs 7zip go rust gzip visualstudio2019buildtools yazi fd ripgrep python3 go-task
+winget install powershell Git.Git starship neovim junegunn.fzf lazygit OpenJS.NodeJS peazip yazi sharkdp.fd ripgrep python3 zoxide

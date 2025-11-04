@@ -53,8 +53,8 @@ customCommands:
     command: "fish -c 'o wait-for-circle.py'"
     context: "global"
 git:
-  paging:
-    colorArg: always
-    pager: delta --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never
   autoFetch: false
   autoRefresh: false

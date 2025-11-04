@@ -4,11 +4,12 @@ keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = alt+n=unbind
 
-font-family = "Maple Mono NF"
-font-size = 14
+font-family = "CaskaydiaCove Nerd Font Mono"
+font-size = 15
 font-thicken = true
 font-thicken-strength = 130
 # adjust-cell-width = -10%
+adjust-cell-height = 10%
 maximize = true
 clipboard-write = allow
 

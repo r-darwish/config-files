@@ -1,1 +1,3 @@
-winget install powershell Git.Git starship neovim junegunn.fzf lazygit OpenJS.NodeJS peazip yazi sharkdp.fd ripgrep python3 zoxide
+winget install microsoft.powershell Git.Git starship neovim junegunn.fzf lazygit OpenJS.NodeJS peazip yazi sharkdp.fd ripgrep python3 zoxide eza-community.eza dandavison.delta
+
+New-Item -ItemType SymbolicLink -Path "~\.gitconfig" -Target "$pwd\.gitconfig"

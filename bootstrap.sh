@@ -45,14 +45,6 @@ if [[ "$(uname)" == "Linux" ]]; then
 
         eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     fi
-    if ! type "yay" >/dev/null 2>&1; then
-        sudo pacman -S --needed --noconfirm git base-devel
-        git clone https://aur.archlinux.org/yay.git /tmp/yay
-        pushd /tmp/yay
-        makepkg -si
-        popd
-        rm -rf /tmp/yay
-    fi
 fi
 
 for c in config/*; do
@@ -93,6 +85,14 @@ fi
 
 if type "pacman" >/dev/null 2>&1; then
     sudo pacman -S --needed base-devel fd fzf git github-cli go htop btop lazygit neovim nodejs npm fish python ripgrep starship tmux unzip uv yazi zoxide zellij vivid ghostty-terminfo gum lsd git-delta
+    if ! type "yay" >/dev/null 2>&1; then
+        sudo pacman -S --needed --noconfirm git base-devel
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        pushd /tmp/yay
+        makepkg -si
+        popd
+        rm -rf /tmp/yay
+    fi
 fi
 
 ./bootstrap.fish

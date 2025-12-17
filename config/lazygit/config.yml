@@ -47,10 +47,7 @@ customCommands:
     command: "fish -c 'o git-gc.py'"
     context: "localBranches"
   - key: "i"
-    command: "nu -l -c 'circle -b {{.SelectedLocalBranch.Name}}'"
-    context: "localBranches"
-  - key: "I"
-    command: "fish -c 'o wait-for-circle.py'"
+    command: "fish -c 'o wait-for-circle.py --download-files'"
     context: "global"
 git:
   pagers:

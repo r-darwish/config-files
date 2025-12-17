@@ -46,8 +46,8 @@ customCommands:
   - key: "G"
     command: "fish -c 'o git-gc.py'"
     context: "localBranches"
-  - key: "i"
-    command: "fish -c 'o wait-for-circle.py --download-files'"
+  - key: "I"
+    command: "fish -c 'o wait-for-circle.py --download-logs'"
     context: "global"
 git:
   pagers:
